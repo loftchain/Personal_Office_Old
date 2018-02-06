@@ -13,9 +13,7 @@
 
 Route::group(['middleware' =>  ['guest']], function(){
 
-  Route::get('/', function () {
-    return view('welcome');
-  })->name('root');
+  Route::get('/', 'HomeController@welcome')->name('root');
 
 
 });

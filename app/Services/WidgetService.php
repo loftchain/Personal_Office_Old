@@ -40,11 +40,6 @@ class WidgetService
             'img' => 'img/btc-icon.png',
             'name' => 'BTC',
             'value' => round($widget['BTC'], 2),
-          ],
-          [
-            'img' => 'img/ltc-icon.png',
-            'name' => 'LTC',
-            'value' => round($widget['LTC'], 2),
           ]
         ],
         'token_sold' => round($blocks[0]['token_sold'] + $blocks[0]['token_reserved']),
@@ -78,11 +73,6 @@ class WidgetService
             'img' => 'img/btc-icon.png',
             'name' => 'BTC',
             'value' => round(($widget['BTC'] + $increment['currencies'][1]['value']), 2),
-          ],
-          [
-            'img' => 'img/ltc-icon.png',
-            'name' => 'LTC',
-            'value' => round(($widget['LTC'] + $increment['currencies'][2]['value']), 2),
           ]
         ],
         'token_sold' => round($blocks[0]['token_sold'] + $increment['token_sold'] + $blocks[0]['token_reserved'] + $increment['token_reserved']),

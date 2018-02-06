@@ -10,7 +10,7 @@
       <h3>@lang('home/home.my_profile')</h3>
 
             <p class="your-entered-as"> @lang('home/home.logged_in_as')
-                <span>{{ obfuscate_email(Auth::user()->email) }}</span></p>
+                <span>{{ obfuscate_email('email@email.com') }}</span></p>
             <br/>
             <div class="option-container">
                 <a href="{{ route('change_email') }}"> @lang('home/home.change_email')</a>

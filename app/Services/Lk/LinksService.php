@@ -13,12 +13,12 @@ class LinksService
      * @param  User $user
      * @return mixed
      */
-    public function forUser(User $user)
-    {
-        return $user->links()
-            ->orderBy('id', 'asc')
-            ->get();
-    }
+//    public function forUser(User $user)
+//    {
+//        return $user->links()
+//            ->orderBy('id', 'asc')
+//            ->get();
+//    }
 
     /**
      * Генерация уникальной ссылки
@@ -87,7 +87,7 @@ class LinksService
 
         $tmp = [$user_id];
         for ($i = 1; $i <= count($stats); $i++) {
-            $stats[$i]['ids'] = collect(DB::select("SELECT id FROM users WHERE referred_by IN (" . implode(',', $tmp) . ")"))->toArray();
+//            $stats[$i]['ids'] = collect(DB::select("SELECT id FROM users WHERE referred_by IN (" . implode(',', $tmp) . ")")->toArray();
 
             if (empty($stats[$i]['ids'])) {
                 break;
@@ -97,19 +97,19 @@ class LinksService
 
             // SELECT SUM(`amount_tokens`) AS tokens FROM `transactions` WHERE `wallet_from` IN (SELECT (CASE `currency` WHEN 'BTC' THEN `BTC` WHEN 'ETH' THEN `ETH` END) AS wallet FROM `user_wallet_fields` WHERE `user_id` IN (2,3,4,5))
 
-            $tmp = collect(DB::select("SELECT SUM(t.amount_tokens) AS tokens, 
-                                              COUNT(DISTINCT w.BTC) + COUNT(DISTINCT w.ETH) AS wallets 
-                                       FROM user_wallet_fields AS w 
-                                       LEFT JOIN transactions AS t ON t.wallet_from = w.BTC OR t.wallet_from = w.ETH 
-                                       WHERE w.user_id IN (" . implode(',', $stats[$i]['ids']) . ")"))->first();
-
-            // Get all da referal wallets count
-            $stats[$i]['wallets_count'] = $tmp->wallets;
-
-            // Get all da money from transactions
-            $stats[$i]['tokens'] = $tmp->tokens * $stats[$i]['perc'];
-
-            $tmp = $stats[$i]['ids'];
+//            $tmp = collect(DB::select("SELECT SUM(t.amount_tokens) AS tokens,
+//                                              COUNT(DISTINCT w.BTC) + COUNT(DISTINCT w.ETH) AS wallets
+//                                       FROM user_wallet_fields AS w
+//                                       LEFT JOIN transactions AS t ON t.wallet_from = w.BTC OR t.wallet_from = w.ETH
+//                                       WHERE w.user_id IN (" . implode(',', $stats[$i]['ids']) . ")"))->first();
+//
+//            // Get all da referal wallets count
+//            $stats[$i]['wallets_count'] = $tmp->wallets;
+//
+//            // Get all da money from transactions
+//            $stats[$i]['tokens'] = $tmp->tokens * $stats[$i]['perc'];
+//
+//            $tmp = $stats[$i]['ids'];
         }
 
         //dd($stats);
