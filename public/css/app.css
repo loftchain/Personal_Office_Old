@@ -3,7 +3,11 @@
 .header,
 .header__links,
 .header__links ul,
-.header__lang {
+.header__lang,
+.x-dashboard,
+.x-dashboard__info,
+.x-dashboard__tabs,
+.x-dashboard__options {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9890,6 +9894,108 @@ button.close {
 @media (max-width: 769px) {
   .header {
     margin: 0 1%;
+  }
+}
+
+.x-dashboard {
+  font-family: 'Roboto', sans-serif;
+  padding: 0 15%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 100px;
+  border-bottom: 2px solid #F2F2F2;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#FFFFFF), color-stop(120%, #F2F2F2));
+  background-image: linear-gradient(to top, #FFFFFF 0%, #F2F2F2 120%);
+}
+
+.x-dashboard__info {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: left;
+}
+
+.x-dashboard__info span {
+  margin: 5px 0;
+}
+
+.x-dashboard__info_tokens {
+  color: #30CDCF;
+  font-weight: 700;
+}
+
+.x-dashboard__tabs ul {
+  border-bottom: none !important;
+}
+
+.x-dashboard__tabs ul li.active a {
+  color: #30CDCF !important;
+}
+
+.x-dashboard__tabs ul li a {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #828282;
+  border: none !important;
+  background: transparent !important;
+  letter-spacing: 1px;
+}
+
+.x-dashboard__options {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.x-dashboard__options a {
+  margin: 5px 0;
+  color: #828282;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+.x-dashboard__options_out {
+  color: #CF0032 !important;
+  text-decoration: none !important;
+}
+
+.x-dashboard__options_out img {
+  width: 35px;
+  height: 19px;
+}
+
+@media (max-width: 1000px) {
+  .x-dashboard {
+    padding: 0 5%;
+  }
+}
+
+@media (max-width: 700px) {
+  .x-dashboard {
+    height: 200px;
+    position: relative;
+    padding: 2% 1%;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+
+  .x-dashboard__tabs {
+    position: absolute;
+    top: 120px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
   }
 }
 

@@ -12,7 +12,7 @@ return array(
     'from_wallet' => 'from my wallet',
     'want_to_get_ERC20' => 'I want to get ERC20 tokens in Ethereum wallet',
     'change_btn' => 'Edit',
-    'token_sale' => 'Token Sale',
+    'token_sale' => 'ICO',
     'my_transactions' => 'My transactions',
     'my_referals' => 'My referals',
     'home' => 'Home',

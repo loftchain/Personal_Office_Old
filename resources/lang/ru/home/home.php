@@ -12,7 +12,7 @@ return [
     'from_wallet' => 'с кошелька',
     'want_to_get_ERC20' => 'Я хочу получить токены ERC20 в Ethereum кошелек',
     'change_btn' => 'Изменить',
-    'token_sale' => 'Продажа токенов',
+    'token_sale' => 'ICO',
     'my_transactions' => 'Мои транзакции',
     'my_referals' => 'Мои рефералы',
     'home' => 'Главная',
