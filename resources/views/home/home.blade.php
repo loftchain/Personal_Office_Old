@@ -15,8 +15,7 @@
             <div class="option-container">
                 <a href="{{ route('change_email') }}"> @lang('home/home.change_email')</a>
                 <a href="{{ route('change_password') }}"> @lang('home/home.change_password')</a>
-                <a href="{{ route('logout') }}"><i class="fa fa-times"
-                                                   aria-hidden="true">&nbsp;</i> @lang('home/home.log_out')</a>
+                <a href="{{ route('logout') }}"><i class="fa fa-times" aria-hidden="true"></i> @lang('home/home.log_out')</a>
             </div>
             <br/>
 

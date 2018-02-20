@@ -4,6 +4,11 @@
 
 // Variables
 @import "variables";
+@import "global";
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+@import "./header/header";
+@import "./header/header.mobile";
+

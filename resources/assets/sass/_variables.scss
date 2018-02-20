@@ -1,0 +1,22 @@
+$h-purple: #3c0078;
+$h-purple-hover: #4900a6;
+$h-box-shadow: 0 0 7px 0 $h-purple;
+
+@mixin m-box-shadow($shadow) {
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%linky {
+  display: inline-block;
+  text-decoration: none;
+  padding: 9px 32px;
+  color: lightgrey;
+}
