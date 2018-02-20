@@ -25,6 +25,7 @@
 </div>
 
 @include('layouts.scripts')
+
 @yield('script')
 
 
