@@ -9918,6 +9918,7 @@ button.close {
       -ms-flex-direction: column;
           flex-direction: column;
   text-align: left;
+  width: 320px;
 }
 
 .x-dashboard__info span {
@@ -9927,6 +9928,10 @@ button.close {
 .x-dashboard__info_tokens {
   color: #30CDCF;
   font-weight: 700;
+}
+
+.x-dashboard__tabs {
+  min-width: 320px;
 }
 
 .x-dashboard__tabs ul {
@@ -9955,6 +9960,7 @@ button.close {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
+  width: 320px;
 }
 
 .x-dashboard__options a {
@@ -9974,7 +9980,7 @@ button.close {
   height: 19px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1367px) {
   .x-dashboard {
     padding: 0 5%;
   }

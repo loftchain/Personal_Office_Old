@@ -18,6 +18,7 @@
     align-items: flex-start;
     flex-direction: column;
     text-align: left;
+    width:320px;
 
     span{
       margin:5px 0;
@@ -30,6 +31,7 @@
 
   &__tabs{
     @extend %flex-center;
+    min-width:320px;
 
     ul{
       border-bottom: none!important;
@@ -59,6 +61,7 @@
     @extend %flex-center;
     flex-direction: column;
     align-items: flex-end;
+    width:320px;
 
     a{
       margin:5px 0;
