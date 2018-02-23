@@ -21,6 +21,8 @@
             <a href="" class="x-dashboard__options_password">@lang('home/home.change_password')</a>
         </div>
     </section>
+
+
   {{--<div class="home-body">--}}
       {{--<span class="home-status-message"></span>--}}
     {{--<section class="upper-part">--}}
