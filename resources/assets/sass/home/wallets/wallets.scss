@@ -1,0 +1,7 @@
+.x-wallets{
+
+  &__container{
+    @extend %flex-center;
+    flex-direction: column;
+  }
+}

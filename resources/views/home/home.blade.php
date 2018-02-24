@@ -23,6 +23,9 @@
             <section class="x-widget">
                 @include('home.new_widget')
             </section>
+            <section class="x-wallets">
+                @include('home.new_wallet')
+            </section>
         </main>
         <footer>
             <img src="{{asset('img/foot-wave.png')}}" alt="">

@@ -11,7 +11,8 @@
 .x-widget__top,
 .x-widget__bot,
 .x-widget__bot .control-container2 ._c2,
-.x-widget__bot .control-container2 ._c2__cur .text-box {
+.x-widget__bot .control-container2 ._c2__cur .text-box,
+.x-wallets__container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10310,5 +10311,12 @@ button.close {
     right: 0;
     margin: 0 auto;
   }
+}
+
+.x-wallets__container {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
