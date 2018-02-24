@@ -1,0 +1,24 @@
+@media (max-width:1367px){
+  .x-dashboard{
+    padding: 0 5%;
+  }
+}
+
+@media (max-width:700px){
+  .x-dashboard{
+    height: 200px;
+    position: relative;
+    padding: 2% 1%;
+    align-items: flex-start;
+
+    &__tabs{
+      position: absolute;
+      top: 120px;
+      left:0;
+      right: 0;
+      margin: 0 auto;
+    }
+  }
+
+
+}

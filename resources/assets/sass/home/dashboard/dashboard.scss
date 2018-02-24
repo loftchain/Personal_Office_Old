@@ -4,13 +4,8 @@
   padding:0 15%;
   justify-content: space-between;
   height:100px;
-  border-bottom: 2px solid #F2F2F2;
-  background-image: -ms-linear-gradient(bottom, #FFFFFF 0%, #F2F2F2 120%);
-  background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #F2F2F2 120%);
-  background-image: -o-linear-gradient(bottom, #FFFFFF 0%, #F2F2F2 120%);
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #FFFFFF), color-stop(120, #F2F2F2));
-  background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, #F2F2F2 120%);
-  background-image: linear-gradient(to top, #FFFFFF 0%, #F2F2F2 120%);
+  border-bottom: 2px solid $x-dash-to;
+  @include x-dashboard-gradient(white,$x-dash-to);
 
 
   &__info{
@@ -24,7 +19,7 @@
       margin:5px 0;
     }
     &_tokens{
-      color:#30CDCF;
+      color:$main-blue;
       font-weight: 700;
     }
   }
@@ -39,7 +34,7 @@
       li{
 
         &.active a{
-          color:#30CDCF!important;
+          color:$main-blue!important;
         }
 
         a{

@@ -1,29 +1,35 @@
 @extends('layouts.app')
 
-
-
-
 @section('content')
-    <section class="x-dashboard">
-        <div class="x-dashboard__info">
-            <span class="x-dashboard__info_who"> @lang('home/home.logged_in_as'): {{ obfuscate_email('nkt.millers+test@email.com') }}</span>
-            <span class="x-dashboard__info_tokens">12.212312 TOK</span>
-        </div>
-        <div class="x-dashboard__tabs">
-            <ul class="nav nav-tabs">
-                <li class="active"> <a data-toggle="tab" href="#tokenSell">@lang('home/home.token_sale')</a> </li>
-                <li> <a data-toggle="tab" href="#myTokens">@lang('home/home.my_transactions')</a> </li>
-            </ul>
-        </div>
-        <div class="x-dashboard__options">
-            <a href="" class="x-dashboard__options_out"><img src="{{ asset('img/logout.png') }}" alt="logout">@lang('home/home.log_out')</a>
-            <a href="" class="x-dashboard__options_email">@lang('home/home.change_email')</a>
-            <a href="" class="x-dashboard__options_password">@lang('home/home.change_password')</a>
-        </div>
-    </section>
+
+        <section class="x-dashboard">
+            <div class="x-dashboard__info">
+                <span class="x-dashboard__info_who"> @lang('home/home.logged_in_as'): {{ obfuscate_email('nkt.millers+test@email.com') }}</span>
+                <span class="x-dashboard__info_tokens">12.212312 TOK</span>
+            </div>
+            <div class="x-dashboard__tabs">
+                <ul class="nav nav-tabs">
+                    <li class="active"> <a data-toggle="tab" href="#tokenSell">@lang('home/home.token_sale')</a> </li>
+                    <li> <a data-toggle="tab" href="#myTokens">@lang('home/home.my_transactions')</a> </li>
+                </ul>
+            </div>
+            <div class="x-dashboard__options">
+                <a href="" class="x-dashboard__options_out"><img src="{{ asset('img/logout.png') }}" alt="logout">@lang('home/home.log_out')</a>
+                <a href="" class="x-dashboard__options_email">@lang('home/home.change_email')</a>
+                <a href="" class="x-dashboard__options_password">@lang('home/home.change_password')</a>
+            </div>
+        </section>
+        <main class="x-body">
+            <section class="x-widget">
+                @include('home.new_widget')
+            </section>
+        </main>
+        <footer>
+            <img src="{{asset('img/foot-wave.png')}}" alt="">
+        </footer>
 
 
-  {{--<div class="home-body">--}}
+    {{--<div class="home-body">--}}
       {{--<span class="home-status-message"></span>--}}
     {{--<section class="upper-part">--}}
       {{--<h3>@lang('home/home.my_profile')</h3>--}}

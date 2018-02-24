@@ -1,16 +1,58 @@
-$h-purple: #3c0078;
-$h-purple-hover: #4900a6;
-$h-box-shadow: 0 0 7px 0 $h-purple;
+$x-progress-from: #330868;
+$main-blue: #30ced1;
+$x-dash-to:#e2e2e2;
 
-@mixin m-box-shadow($shadow) {
-  -webkit-box-shadow: $shadow;
-  -moz-box-shadow: $shadow;
-  box-shadow: $shadow;
+@mixin x-dashboard-gradient($from, $to) {
+  background-image: -ms-linear-gradient(bottom, $from 0%, $to 100%);
+  background-image: -moz-linear-gradient(bottom, $from 0%, $to 100%);
+  background-image: -o-linear-gradient(bottom, $from 0%, $to 100%);
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, $from), color-stop(100, $to));
+  background-image: -webkit-linear-gradient(bottom, $from 0%, $to 100%);
+  background-image: linear-gradient(to top, $from 0%, $to 100%);
+}
+
+@mixin x-gradient($from, $to) {
+  background: $from;
+  background: -moz-linear-gradient(left, $from 0%, $to 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, $from), color-stop(100%, $to));
+  background: -webkit-linear-gradient(left, $from 0%, $to 100%);
+  background: -o-linear-gradient(left, $from 0%, $to 100%);
+  background: -ms-linear-gradient(left, $from 0%, $to 100%);
+  background: linear-gradient(to right, $from 0%, $to 100%);
+}
+
+
+@mixin internal-filling(){
+  @include x-gradient($x-progress-from, $main-blue);
+  height:calc(100% + 4px);
+  border-radius: 5px;
+  z-index:9;
+  position: absolute;
+  top: -2px; left: -2px;
+}
+
+@mixin internal-filling-number(){
+  position: absolute;
+  margin:16px auto;
+  left: 0; right:  0;
+  color:lightgray;
+  text-align: center;
+  z-index:10;
+  font-size: 18px;
+  font-weight: 700;
+  text-shadow: 1px 1px black;
+  letter-spacing: 1px;
 }
 
 %flex-center {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+%flex-space-between {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
