@@ -27,9 +27,6 @@
                 @include('home.new_wallet')
             </section>
         </main>
-        <footer>
-            <img src="{{asset('img/foot-wave.png')}}" alt="">
-        </footer>
 
 
     {{--<div class="home-body">--}}

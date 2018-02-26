@@ -12,7 +12,8 @@
 .x-widget__bot,
 .x-widget__bot .control-container2 ._c2,
 .x-widget__bot .control-container2 ._c2__cur .text-box,
-.x-wallets__container {
+.x-wallets__container,
+.x-wallets__container_text .pay-to-us-wallet {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -31,7 +32,8 @@
 .x-widget__bot .control-container2,
 .x-widget__bot .control-container2 ._c1,
 .x-widget__bot .control-container2 ._c1 .x-progress-received__caps,
-.x-widget__bot .control-container2 ._c2__cur {
+.x-widget__bot .control-container2 ._c2__cur,
+.x-wallets__container_form div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -53,8 +55,6 @@ body {
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   z-index: 1;
 }
@@ -10053,7 +10053,7 @@ button.close {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 10px 15%;
+  margin: 10px 25%;
 }
 
 .x-widget__top p {
@@ -10186,7 +10186,7 @@ button.close {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 10px 15% 0 15%;
+  margin: 10px 25% 0 25%;
 }
 
 .x-widget__bot p {
@@ -10318,5 +10318,60 @@ button.close {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.x-wallets__container p {
+  font-size: 18px;
+  font-weight: 700;
+  color: #828282;
+  margin-bottom: 20px;
+}
+
+.x-wallets__container_buttons {
+  margin-bottom: 40px;
+}
+
+.x-wallets__container_buttons a {
+  border: 2px solid lightgray;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.x-wallets__container_buttons a:hover {
+  background: lightgray;
+}
+
+.x-wallets__container_form div {
+  margin-bottom: 10px;
+}
+
+.x-wallets__container_form div label {
+  float: left;
+  margin-right: 5px;
+}
+
+.x-wallets__container_form div input {
+  float: right;
+  margin: 2px;
+  width: 450px;
+  height: 50px;
+  border: 1px solid #E0E0E0;
+  border-radius: 5px;
+  outline: none;
+  padding-left: 10px;
+}
+
+.x-wallets__container_text {
+  width: 700px;
+}
+
+.x-wallets__container_text .pay-to-us-wallet {
+  border: 2px solid #E0E0E0;
+}
+
+.x-wallets__container_text .pay-to-us-wallet img {
+  width: 100px;
+  height: 100px;
 }
 
