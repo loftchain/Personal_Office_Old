@@ -1,6 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
     <div class="content-body register-body">
         <h3>@lang('home/register.registration')</h3>
         <form id="registerForm" class="x-form" method="POST" action="{{ route('register') }}">
@@ -32,9 +29,5 @@
             <button type="submit" class="register-btn login-btn reusable-btn"> <i class="small-spinner fa fa-circle-o-notch fa-spin fa-lg fa-fw"></i> @lang('home/register.register_btn')  </button>
           <a class="register-on-login" href="{{ route('login') }}"> @lang('home/login.login_btn') </a>
           <input type="hidden" name="hidden" class="my-input password-input">
-
         </form>
-
     </div>
-    <br><br><br><br><br>
-@endsection

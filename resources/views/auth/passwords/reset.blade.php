@@ -1,7 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
-
   <div class="content-body reset-body">
 
     <h3>@lang('home/password_recovery_fields.creating_new_pwd_title')</h3>
@@ -32,5 +28,3 @@
         </span>
     @endif
   </div>
-  <br><br><br><br><br>
-@endsection

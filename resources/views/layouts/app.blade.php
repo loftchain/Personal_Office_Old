@@ -17,6 +17,7 @@
 <div id="app">
 
     @include('layouts.header')
+    @include('home.new_dashboard')
     @yield('content')
     @include('layouts.footer')
 

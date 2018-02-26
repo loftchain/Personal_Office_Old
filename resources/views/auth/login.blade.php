@@ -1,7 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
-
   <div class="content-body login-body">
     @if (app('request')->input('token'))
       <h3 style="letter-spacing: 3px; text-transform: none;">@lang('auth.tnx_confirmed_title')</h3>
@@ -32,11 +28,4 @@
       <input type="hidden" name="hidden" class="my-input password-input">
       <div class="error-message error-message4 failed reg_limit_exceeded error_while_registration smth_went_wrong invalid_post_service not_confirmed_resend"></div>
     </form>
-
-
-
-
-
   </div>
-<br><br><br><br><br>
-@endsection

@@ -1,4 +1,6 @@
-    <div class="x-widget__top">
+<section class="x-widget">
+
+<div class="x-widget__top">
         <p>До конца ICO:</p>
         <div class="control-container">
             <div class="c c1">
@@ -73,3 +75,4 @@
             </div>
         </div>
     </div>
+</section>

@@ -1,7 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
-
   <div class="content-body email-body">
 
     <h3>@lang('home/password_recovery_send_email.pwd_recovery_title')</h3>
@@ -37,4 +33,3 @@
       </span>
     @endif
   </div>
-@endsection
