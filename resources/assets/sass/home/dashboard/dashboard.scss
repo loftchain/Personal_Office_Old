@@ -1,5 +1,4 @@
 .x-dashboard{
-  font-family: 'Roboto', sans-serif;
   @extend %flex-center;
   padding:0 15%;
   justify-content: space-between;
@@ -80,6 +79,54 @@
     }
     &_password{
 
+    }
+  }
+
+  &__guest{
+    width:100%;
+    @extend %flex-space-between;
+
+    .x-register-link{
+      color:$main-blue;
+      font-size: 16px;
+      font-weight:700;
+      border:1px solid #BDBDBD;
+      padding: 10px 50px;
+      border-radius: 25px;
+      text-decoration: none;
+
+      &:hover{
+        cursor:pointer;
+      }
+    }
+
+    .right-box{
+      @extend %flex-center;
+      flex-direction: column;
+
+      .x-login-link{
+        color:#27ae60!important;
+        text-decoration: none!important;
+        margin-bottom:10px;
+        img{
+          width:32px;
+          height:19px;
+          margin-top: -5px;
+        }
+
+        &:hover{
+          cursor: pointer;
+        }
+      }
+
+      .x-forgot-link{
+        color: #828282;
+        text-decoration: underline;
+        
+        &:hover{
+          cursor: pointer;
+        }
+      }
     }
   }
 

@@ -1,6 +1,6 @@
 $x-progress-from: #330868;
 $main-blue: #30ced1;
-$x-dash-to:#e2e2e2;
+$x-dash-to:#F2F2F2;
 
 @mixin x-dashboard-gradient($from, $to) {
   background-image: -ms-linear-gradient(bottom, $from 0%, $to 100%);
@@ -33,7 +33,7 @@ $x-dash-to:#e2e2e2;
 
 @mixin internal-filling-number(){
   position: absolute;
-  margin:16px auto;
+  margin:10px auto;
   left: 0; right:  0;
   color:lightgray;
   text-align: center;

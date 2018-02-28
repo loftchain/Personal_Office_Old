@@ -16,15 +16,21 @@
             <a href="" class="x-dashboard__options_password">@lang('home/home.change_password')</a>
         </div>
     @else
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-            @lang('app.sign_up')
-        </button>
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal1">
-            @lang('app.sign_in')
-        </button>
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal2">
-            @lang('home/login.forgot_pwd')
-        </button>
+        <div class="x-dashboard__guest">
+            <a type="button" class="x-register-link" data-toggle="modal" data-target="#myModal">
+                @lang('app.sign_up')
+            </a>
+            <div class="right-box">
+                <a type="button" class="x-login-link" data-toggle="modal" data-target="#myModal1">
+                    <img src="{{ asset('img/login.png') }}" alt="sign in">
+                    @lang('app.sign_in')
+                </a>
+                <a type="button" class="x-forgot-link" data-toggle="modal" data-target="#myModal2">
+                    @lang('home/login.forgot_pwd')
+                </a>
+            </div>
+
+        </div>
     @endif
 </section>
 

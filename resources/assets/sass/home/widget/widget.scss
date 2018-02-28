@@ -1,30 +1,29 @@
 .x-widget{
-  font-family: 'Roboto', sans-serif;
   width:100%;
+  margin-bottom: 50px;
 
   &__top{
     @extend %flex-center;
-    align-items: flex-start;
     flex-direction: column;
-    margin:10px 25%;
+    margin:10px 0;
 
     p{
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
       color: black;
       text-transform: uppercase;
       letter-spacing: .5px;
-      margin:0;
+      margin-bottom: 10px;
     }
 
     .control-container{
-      height:100px;
+      height:75px;
       width: 100%;
       @extend %flex-space-between;
       align-items: flex-start;
 
       .c{
-        height:60px;
+        height:46px;
       }
       .c1{
         width:60%;
@@ -56,7 +55,7 @@
             bottom:-25px;
 
             span{
-              font-size: 16px;
+              font-size: 14px;
               color: #A3A3A3;
               font-weight: 300;
             }
@@ -86,7 +85,7 @@
             position:absolute;
             margin: 0 auto;
             left:0; right: 0;
-            font-size: 40px;
+            font-size: 30px;
             font-weight: 300;
             text-align: center;
             color: $main-blue;
@@ -110,16 +109,16 @@
 
   &__bot{
     @extend %flex-center;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
-    margin:10px 25% 0 25%;
+    margin:10px 0;
     p{
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
       color: black;
       text-transform: uppercase;
       letter-spacing: .5px;
-      margin:0;
+      margin-bottom: 10px;
     }
     .control-container2{
       width:100%;
@@ -128,7 +127,7 @@
       align-items: flex-start;
 
       ._c{
-        height:60px;
+        height:46px;
       }
       ._c1{
         width:60%;
@@ -169,7 +168,7 @@
           @extend %flex-space-between;
           margin-left:20px;
           img{
-            height:50px;
+            height:40px;
           }
           .text-box{
             margin-left:10px;
