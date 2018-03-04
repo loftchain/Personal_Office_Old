@@ -2,9 +2,20 @@
     <div class="x-wallets__container">
         <p>Я собираюсь инвестировать в:</p>
         <div class="x-wallets__container_buttons">
-            <a href="#">Bitcoin</a>
-            <a href="#">Ethereum</a>
-            <a href="#">Выберу позже</a>
+
+            <div class="button">
+                <img src="{{ asset('img/checked-checkbox.png') }}" alt="">
+                <span>Bitcoin (BTC)</span>
+            </div>
+            <div class="button">
+                <img src="{{ asset('img/empty-checkbox.png') }}" alt="">
+                <span>Ethereum (ETH)</span>
+            </div>
+            <div class="button">
+                <img src="{{ asset('img/empty-checkbox.png') }}" alt="">
+                <span>Выберу позже</span>
+            </div>
+
         </div>
         <div class="x-wallets__container_form">
             <p>@lang('home/ico.enter_wallet_to_participate')</p>

@@ -40,7 +40,7 @@
           font-size: 18px;
           font-weight: 700;
           text-transform: uppercase;
-          color:#828282;
+          color:$gray1;
           border: none!important;
           background: transparent!important;
           letter-spacing: 1px;
@@ -59,7 +59,7 @@
 
     a{
       margin:5px 0;
-      color:#828282;
+      color:$gray1;
       text-decoration: underline;
       white-space: nowrap;
     }
@@ -81,7 +81,7 @@
 
     }
   }
-
+//------------------------------------------------If guest ----------------
   &__guest{
     width:100%;
     @extend %flex-space-between;
@@ -90,13 +90,16 @@
       color:$main-blue;
       font-size: 16px;
       font-weight:700;
-      border:1px solid #BDBDBD;
+      border:1px solid $gray3;
       padding: 10px 50px;
       border-radius: 25px;
       text-decoration: none;
 
       &:hover{
         cursor:pointer;
+        background: $main-blue;
+        color: white;
+        border: 1px solid $main-blue;
       }
     }
 
@@ -108,23 +111,27 @@
         color:#27ae60!important;
         text-decoration: none!important;
         margin-bottom:10px;
+
+        &:hover{
+          cursor: pointer;
+          color: #1F7E41!important;
+        }
+
         img{
           width:32px;
           height:19px;
           margin-top: -5px;
         }
 
-        &:hover{
-          cursor: pointer;
-        }
       }
 
       .x-forgot-link{
-        color: #828282;
+        color: $gray1;
         text-decoration: underline;
-        
+
         &:hover{
           cursor: pointer;
+          color: $gray2;
         }
       }
     }

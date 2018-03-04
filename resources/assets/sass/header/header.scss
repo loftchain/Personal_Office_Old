@@ -1,5 +1,4 @@
 .header {
-  font-family: 'Roboto', sans-serif;
   @extend %flex-center;
   justify-content: space-between;
   margin:0 15%;
@@ -30,10 +29,13 @@
 
 
         a{
-          color:black;
+          color:$almost-black;
           text-decoration: none;
           padding: 5px 10px;
           white-space: nowrap;
+          font-size: 18px;
+          font-weight: 700;
+          letter-spacing: 1.2px;
         }
       }
     }

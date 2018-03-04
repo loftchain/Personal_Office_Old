@@ -3,11 +3,12 @@
   &__container{
     @extend %flex-center;
     flex-direction: column;
+    align-items: flex-start;
 
     p{
       font-size:16px;
       font-weight: 700;
-      color: black;
+      color: $almost-black;
       margin-bottom: 20px;
       text-transform: uppercase;
     }
@@ -17,26 +18,10 @@
       margin-bottom: 40px;
       @extend %flex-space-between;
 
-
-      a{
-        display: block;
-        border-radius: 25px;
-        padding: 15px 30px;
-        text-decoration: none;
-        font-size: 16px;
-        color: white;
-        width:200px;
-        @include x-gradient($x-progress-from, $main-blue);
-        transition: .2s ease-in-out;
-        text-align: center;
-
-        &:hover{
-        }
-
-        &:last-child{
-          background: transparent;
-          border: 1px solid #BDBDBD;
-          color:black;
+      .button{
+        span{
+          margin-left:10px;
+          font-size: 16px;
         }
       }
 
@@ -44,9 +29,10 @@
 
     &_form{
       margin-bottom: 40px;
+      width:100%;
 
       p{
-        text-align: center;
+        text-align: left;
       }
       div{
         @extend %flex-space-between;
@@ -75,12 +61,16 @@
 
       .owner-wallet-span{
         color:#27ae60;
-        font-weight: 500;
+        font-weight: 700;
       }
 
       ul{
-        font-weight: 300;
+        font-weight: 500;
         margin-bottom: 40px;
+        font-size: 14px;
+      }
+      p{
+        text-align: left;
       }
       .pay-to-us-wallet{
         @extend %flex-center;

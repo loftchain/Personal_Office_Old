@@ -1,5 +1,77 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@charset "UTF-8";
 
+/** Black */
+
+@font-face {
+  font-family: "SF Display";
+  font-weight: 900;
+  src: url(/fonts/Black.otf?0ed34484d69ac8e980bc5f9752c8e0ff);
+}
+
+/** Bold */
+
+@font-face {
+  font-family: "SF Display";
+  font-weight: 700;
+  src: url(/fonts/Bold.otf?c2ac150e2e71dd86c1b83585d8c94d54);
+}
+
+/** Heavy */
+
+@font-face {
+  font-family: "SF Display";
+  font-weight: 800;
+  src: url(/fonts/Heavy.otf?eec3b52112a453851addd8d00a766a62);
+}
+
+/** Light */
+
+@font-face {
+  font-family: "SF Display";
+  font-weight: 200;
+  src: url(/fonts/Light.otf?e86da60644ecb4e4bf4495c7a73ff1e0);
+}
+
+/** Medium */
+
+@font-face {
+  font-family: "SF Display";
+  font-weight: 500;
+  src: url(/fonts/Medium.otf?df412f70199e9d1c15e8f349f6bfe386);
+}
+
+/** Regular */
+
+@font-face {
+  font-family: "SF Display";
+  font-weight: 400;
+  src: url(/fonts/Regular.otf?71d58d4684a4b47a053517743251d731);
+}
+
+/** Semibold */
+
+@font-face {
+  font-family: "SF Display";
+  font-weight: 600;
+  src: url(/fonts/Semibold.otf?fb1ea5a827056204608cc8d4a0c9fabf);
+}
+
+/** Thin */
+
+@font-face {
+  font-family: "SF Display";
+  font-weight: 300;
+  src: url(/fonts/Thin.otf?5585a63925818b59b79fde52d7bd7072);
+}
+
+/** Ultralight */
+
+@font-face {
+  font-family: "SF Display";
+  font-weight: 100;
+  src: url(/fonts/Ultralight.otf?46695cb281c3d9d385fed01cc9e06790);
+}
+
 .header,
 .header__links,
 .header__links ul,
@@ -11,7 +83,6 @@
 .x-dashboard__guest .right-box,
 .x-widget__top,
 .x-widget__bot,
-.x-widget__bot .control-container2 ._c2,
 .x-widget__bot .control-container2 ._c2__cur .text-box,
 .x-wallets__container,
 .x-wallets__container_text .pay-to-us-wallet {
@@ -34,6 +105,7 @@
 .x-widget__bot .control-container2,
 .x-widget__bot .control-container2 ._c1,
 .x-widget__bot .control-container2 ._c1 .x-progress-received__caps,
+.x-widget__bot .control-container2 ._c2,
 .x-widget__bot .control-container2 ._c2__cur,
 .x-wallets__container_buttons,
 .x-wallets__container_form div {
@@ -48,15 +120,19 @@
           align-items: center;
 }
 
-.x-body {
-  font-family: 'Roboto', sans-serif;
-  background: white;
-  width: 750px;
-  margin: 0 auto;
+html {
+  font-family: "SF Display", sans-serif !important;
 }
 
 body {
   position: relative !important;
+  font-family: "SF Display", sans-serif !important;
+}
+
+.x-body {
+  background: white;
+  width: 750px;
+  margin: 0 auto;
 }
 
 footer {
@@ -9808,7 +9884,6 @@ button.close {
 }
 
 .header {
-  font-family: 'Roboto', sans-serif;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -9839,10 +9914,13 @@ button.close {
 }
 
 .header__links ul li a {
-  color: black;
+  color: #333333;
   text-decoration: none;
   padding: 5px 10px;
   white-space: nowrap;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
 }
 
 .header__lang {
@@ -10035,6 +10113,9 @@ button.close {
 
 .x-dashboard__guest .x-register-link:hover {
   cursor: pointer;
+  background: #30ced1;
+  color: white;
+  border: 1px solid #30ced1;
 }
 
 .x-dashboard__guest .right-box {
@@ -10050,14 +10131,15 @@ button.close {
   margin-bottom: 10px;
 }
 
+.x-dashboard__guest .right-box .x-login-link:hover {
+  cursor: pointer;
+  color: #1F7E41 !important;
+}
+
 .x-dashboard__guest .right-box .x-login-link img {
   width: 32px;
   height: 19px;
   margin-top: -5px;
-}
-
-.x-dashboard__guest .right-box .x-login-link:hover {
-  cursor: pointer;
 }
 
 .x-dashboard__guest .right-box .x-forgot-link {
@@ -10067,6 +10149,7 @@ button.close {
 
 .x-dashboard__guest .right-box .x-forgot-link:hover {
   cursor: pointer;
+  color: #4b4b4b;
 }
 
 @media (max-width: 1367px) {
@@ -10100,20 +10183,23 @@ button.close {
 }
 
 .x-widget__top {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 10px 0;
+  margin: 20px 0;
 }
 
 .x-widget__top p {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
-  color: black;
+  color: #333333;
   text-transform: uppercase;
   letter-spacing: .5px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .x-widget__top .control-container {
@@ -10166,12 +10252,12 @@ button.close {
   margin: 10px auto;
   left: 0;
   right: 0;
-  color: lightgray;
+  color: white;
   text-align: center;
   z-index: 10;
   font-size: 18px;
   font-weight: 700;
-  text-shadow: 1px 1px black;
+  text-shadow: 1px 1px 25px #333333;
   letter-spacing: 1px;
 }
 
@@ -10208,11 +10294,13 @@ button.close {
 }
 
 .x-widget__top .control-container .c2 .d .t {
+  font-family: 'VT323', monospace;
   position: absolute;
   margin: 0 auto;
   left: 0;
   right: 0;
-  font-size: 30px;
+  font-size: 48px;
+  line-height: 42px;
   font-weight: 300;
   text-align: center;
   color: #30ced1;
@@ -10230,23 +10318,23 @@ button.close {
 }
 
 .x-widget__bot {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 10px 0;
+  margin: 20px 0;
 }
 
 .x-widget__bot p {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
-  color: black;
+  color: #333333;
   text-transform: uppercase;
   letter-spacing: .5px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .x-widget__bot .control-container2 {
@@ -10259,6 +10347,7 @@ button.close {
 
 .x-widget__bot .control-container2 ._c {
   height: 46px;
+  width: 30%;
 }
 
 .x-widget__bot .control-container2 ._c1 {
@@ -10293,12 +10382,12 @@ button.close {
   margin: 10px auto;
   left: 0;
   right: 0;
-  color: lightgray;
+  color: white;
   text-align: center;
   z-index: 10;
   font-size: 18px;
   font-weight: 700;
-  text-shadow: 1px 1px black;
+  text-shadow: 1px 1px 25px #333333;
   letter-spacing: 1px;
 }
 
@@ -10306,19 +10395,9 @@ button.close {
   position: absolute;
   bottom: -25px;
   width: 100%;
-  font-size: 16px;
+  font-size: 14px;
   color: #A3A3A3;
   font-weight: 300;
-}
-
-.x-widget__bot .control-container2 ._c2 {
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-}
-
-.x-widget__bot .control-container2 ._c2__cur {
-  margin-left: 20px;
 }
 
 .x-widget__bot .control-container2 ._c2__cur img {
@@ -10369,12 +10448,15 @@ button.close {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 .x-wallets__container p {
   font-size: 16px;
   font-weight: 700;
-  color: black;
+  color: #333333;
   margin-bottom: 20px;
   text-transform: uppercase;
 }
@@ -10384,35 +10466,18 @@ button.close {
   margin-bottom: 40px;
 }
 
-.x-wallets__container_buttons a {
-  display: block;
-  border-radius: 25px;
-  padding: 15px 30px;
-  text-decoration: none;
+.x-wallets__container_buttons .button span {
+  margin-left: 10px;
   font-size: 16px;
-  color: white;
-  width: 200px;
-  background: #330868;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #330868), color-stop(100%, #30ced1));
-  background: -webkit-gradient(linear, left top, right top, from(#330868), to(#30ced1));
-  background: linear-gradient(to right, #330868 0%, #30ced1 100%);
-  -webkit-transition: .2s ease-in-out;
-  transition: .2s ease-in-out;
-  text-align: center;
-}
-
-.x-wallets__container_buttons a:last-child {
-  background: transparent;
-  border: 1px solid #BDBDBD;
-  color: black;
 }
 
 .x-wallets__container_form {
   margin-bottom: 40px;
+  width: 100%;
 }
 
 .x-wallets__container_form p {
-  text-align: center;
+  text-align: left;
 }
 
 .x-wallets__container_form div {
@@ -10441,12 +10506,17 @@ button.close {
 
 .x-wallets__container_text .owner-wallet-span {
   color: #27ae60;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .x-wallets__container_text ul {
-  font-weight: 300;
+  font-weight: 500;
   margin-bottom: 40px;
+  font-size: 14px;
+}
+
+.x-wallets__container_text p {
+  text-align: left;
 }
 
 .x-wallets__container_text .pay-to-us-wallet {

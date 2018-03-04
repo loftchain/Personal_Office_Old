@@ -1,6 +1,10 @@
 $x-progress-from: #330868;
 $main-blue: #30ced1;
 $x-dash-to:#F2F2F2;
+$almost-black:#333333;
+$gray1:#828282;
+$gray2: #4b4b4b;
+$gray3: #BDBDBD;
 
 @mixin x-dashboard-gradient($from, $to) {
   background-image: -ms-linear-gradient(bottom, $from 0%, $to 100%);
@@ -35,12 +39,12 @@ $x-dash-to:#F2F2F2;
   position: absolute;
   margin:10px auto;
   left: 0; right:  0;
-  color:lightgray;
+  color:white;
   text-align: center;
   z-index:10;
   font-size: 18px;
   font-weight: 700;
-  text-shadow: 1px 1px black;
+  text-shadow: 1px 1px 25px $almost-black;
   letter-spacing: 1px;
 }
 

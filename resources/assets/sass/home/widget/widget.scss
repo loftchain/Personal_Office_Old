@@ -4,16 +4,17 @@
 
   &__top{
     @extend %flex-center;
+    align-items: flex-start;
     flex-direction: column;
-    margin:10px 0;
+    margin:20px 0;
 
     p{
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 700;
-      color: black;
+      color: $almost-black;
       text-transform: uppercase;
       letter-spacing: .5px;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
     .control-container{
@@ -82,10 +83,12 @@
           position:relative;
 
           .t{
+            font-family: 'VT323', monospace;
             position:absolute;
             margin: 0 auto;
             left:0; right: 0;
-            font-size: 30px;
+            font-size: 48px;
+            line-height: 42px;
             font-weight: 300;
             text-align: center;
             color: $main-blue;
@@ -109,16 +112,17 @@
 
   &__bot{
     @extend %flex-center;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
-    margin:10px 0;
+    margin:20px 0;
+
     p{
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 700;
-      color: black;
+      color: $almost-black;
       text-transform: uppercase;
       letter-spacing: .5px;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
     .control-container2{
       width:100%;
@@ -128,6 +132,7 @@
 
       ._c{
         height:46px;
+        width:30%;
       }
       ._c1{
         width:60%;
@@ -154,19 +159,17 @@
             position: absolute;
             bottom: -25px;
             width:100%;
-            font-size: 16px;
+            font-size: 14px;
             color: #A3A3A3;
             font-weight: 300;
           }
         }
       }
       ._c2{
-        @extend %flex-center;
-        align-items: flex-end;
+        @extend %flex-space-between;
 
         &__cur{
           @extend %flex-space-between;
-          margin-left:20px;
           img{
             height:40px;
           }
