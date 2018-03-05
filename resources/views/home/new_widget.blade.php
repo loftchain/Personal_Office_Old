@@ -1,6 +1,6 @@
 <section class="x-widget">
 
-<div class="x-widget__top">
+<div class="widget-part x-widget__top">
         <p>До конца ICO:</p>
         <div class="control-container">
             <div class="c c1">
@@ -37,19 +37,19 @@
             </div>
         </div>
     </div>
-    <div class="x-widget__bot">
+    <div class="widget-part x-widget__bot">
         <p>внесено:</p>
-        <div class="control-container2">
-            <div class="_c _c1">
-                <div class="x-progress-received">
-                    <div class="x-progress-received__in"></div>
-                    <span class="x-progress-received__percents">55%</span>
-                    <div class="x-progress-received__caps">
-                        <div class="x-progress-received__caps_crypto">
+        <div class="control-container">
+            <div class="c c1">
+                <div class="x-progress">
+                    <div class="x-progress__in"></div>
+                    <span class="x-progress__percents">55%</span>
+                    <div class="x-progress__caps">
+                        <div class="x-progress__caps_crypto">
                             <span class="dates__start_pre">123 123 TOK</span> of
                             <span class="dates__end_pre">9 422 000 TOK</span>
                         </div>
-                        <div class="x-progress-received__caps_fiat">
+                        <div class="x-progress__caps_fiat">
                             <span class="dates__start_pre">10 000 USD</span> of
                             <span class="dates__end_pre">50 000 000 USD</span>
                         </div>
@@ -57,15 +57,15 @@
                 </div>
             </div>
 
-            <div class="_c _c2">
-                <div class="_c2__cur">
+            <div class="c c2">
+                <div class="c2__cur">
                     <img src="{{ asset('img/Ethereum.png') }}" alt="">
                     <div class="tb0 text-box">
                         <span class="a0 amount">70</span>
                         <span class="n0 name">ETH</span>
                     </div>
                 </div>
-                <div class="_c2__cur">
+                <div class="c2__cur">
                     <img src="{{ asset('img/Bitcoin.png') }}" alt="">
                     <div class="tb1 text-box">
                         <span class="a1 amount">46.30</span>

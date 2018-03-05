@@ -8,12 +8,13 @@
   .header {
     &__logo{
       position:static;
-      z-index:6;
+      z-index:12;
+
     }
 
     &__links{
       position:absolute;
-      z-index:5;
+      z-index:11;
       top:-250px;
       margin: 0 auto;
       right: 0;
@@ -39,7 +40,7 @@
       width:180px;
       display:block;
       position:static;
-      z-index:6;
+      z-index:12;
 
       .hamburger{
         outline: none;
@@ -52,5 +53,16 @@
 @media (max-width:769px){
   .header {
     margin:0 1%;
+    &__logo{
+      img{
+        width:100px;
+        height:37px;
+      }
+
+    }
+    &__burger {
+      width: 65px;
+    }
+
   }
 }

@@ -1,92 +1,99 @@
-.x-wallets{
+%title{
+  font-size: 16px;
+  font-weight: 700;
+  color: $almost-black;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
 
-  &__container{
-    @extend %flex-center;
-    flex-direction: column;
-    align-items: flex-start;
+.x-wallets {
+  width: 750px;
+  @extend %flex-center;
+  flex-direction: column;
+  align-items: flex-start;
 
-    p{
-      font-size:16px;
-      font-weight: 700;
-      color: $almost-black;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-    }
+  &__title {
+    @extend %title;
+  }
 
-    &_buttons{
-      width:750px;
-      margin-bottom: 40px;
-      @extend %flex-space-between;
+  &__buttons {
+    width: 100%;
+    margin-bottom: 40px;
+    @extend %flex-space-between;
 
-      .button{
-        span{
-          margin-left:10px;
-          font-size: 16px;
-        }
-      }
-
-    }
-
-    &_form{
-      margin-bottom: 40px;
-      width:100%;
-
-      p{
-        text-align: left;
-      }
-      div{
-        @extend %flex-space-between;
-        margin-bottom: 10px;
-        label{
-          float: left;
-          margin-right: 5px;
-        }
-        input{
-          float: right;
-          margin:2px;
-          width:450px;
-          height:50px;
-          border:1px solid #E0E0E0;
-          border-radius: 5px;
-          outline: none;
-          padding-left:10px;
-        }
-      }
-
-
-    }
-
-    &_text{
-      width:700px;
-
-      .owner-wallet-span{
-        color:#27ae60;
-        font-weight: 700;
-      }
-
-      ul{
-        font-weight: 500;
-        margin-bottom: 40px;
-        font-size: 14px;
-      }
-      p{
-        text-align: left;
-      }
-      .pay-to-us-wallet{
-        @extend %flex-center;
-        border: 1px solid #E0E0E0;
-        height:100px;
-
-        img{
-          width:50px;
-          height:50px;
-        }
-        p{
-          margin-left: 10px;
-          margin-bottom: 0;
-        }
+    .button {
+      span {
+        margin-left: 10px;
+        font-size: 16px;
       }
     }
 
   }
+
+  &__form {
+    @extend %flex-center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 40px;
+    width: 100%;
+
+    p {
+      @extend %title;
+      text-align: left;
+    }
+
+    form {
+      @extend %flex-space-between;
+      margin-bottom: 10px;
+      width:100%;
+      label {
+        float: left;
+        margin-right: 5px;
+      }
+      input {
+        float: right;
+        margin: 2px;
+        width: 450px;
+        height: 50px;
+        border: 1px solid #E0E0E0;
+        border-radius: 5px;
+        outline: none;
+        padding-left: 10px;
+      }
+    }
+
+  }
+
+  &__text {
+    width: 100%;
+
+    ul {
+      font-weight: 500;
+      margin-bottom: 40px;
+      font-size: 14px;
+    }
+    p {
+      @extend %title;
+      text-align: left;
+    }
+    .pay-to-us-wallet {
+      @extend %flex-center;
+      border: 1px solid #E0E0E0;
+      height: 100px;
+
+      img {
+        width: 50px;
+        height: 50px;
+      }
+      span {
+        color: #27ae60;
+        font-weight: 700;
+        margin-left: 10px;
+        margin-bottom: 0;
+        word-break: break-all;
+        text-align: center;
+      }
+    }
+  }
+
 }

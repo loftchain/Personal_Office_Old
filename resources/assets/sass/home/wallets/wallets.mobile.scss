@@ -1,0 +1,99 @@
+@media (max-width: 769px) {
+  .x-wallets{
+    align-items: center;
+    width: auto;
+    &__buttons{
+      padding: 0 60px;
+      .button{
+        margin-bottom: 15px;
+        span{
+          white-space: nowrap;
+        }
+      }
+    }
+    &__form {
+      align-items: center;
+      p{
+        width:70%;
+        text-align: center;
+        font-size: 15px;
+      }
+
+      form {
+        flex-direction: column;
+        input{
+          width:70%;
+        }
+
+      }
+
+    }
+
+    &__text {
+      width:100%;
+      padding:0 30px;
+      p{
+        text-align: center;
+      }
+
+    }
+
+  }
+
+}
+@media (max-width: 545px) {
+  .x-wallets{
+    &__buttons{
+      width:165px;
+      padding: 0;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      .button{
+        margin-bottom: 15px;
+      }
+
+    }
+
+    &__form {
+
+      form {
+        label{
+          font-size: 13px;
+          font-weight: 500;
+        }
+        input{
+          width:275px;
+        }
+
+      }
+
+    }
+
+    &__text {
+      padding:0 10px;
+      .owner-wallet-span {
+        font-weight: 500;
+        font-size: 14px;
+      }
+
+      ul{
+        padding-left: 25px;
+      }
+
+      .pay-to-us-wallet {
+        height: auto;
+        padding: 10px;
+        flex-direction: column;
+        img{
+          margin-bottom: 10px;
+        }
+        p{
+          font-size: 13px;
+        }
+      }
+
+    }
+
+  }
+}

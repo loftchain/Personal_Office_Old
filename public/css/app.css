@@ -81,11 +81,11 @@
 .x-dashboard__tabs,
 .x-dashboard__options,
 .x-dashboard__guest .right-box,
-.x-widget__top,
-.x-widget__bot,
-.x-widget__bot .control-container2 ._c2__cur .text-box,
-.x-wallets__container,
-.x-wallets__container_text .pay-to-us-wallet {
+.x-widget .widget-part,
+.x-widget .c2__cur .text-box,
+.x-wallets,
+.x-wallets__form,
+.x-wallets__text .pay-to-us-wallet {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -98,17 +98,15 @@
 }
 
 .x-dashboard__guest,
-.x-widget__top .control-container,
-.x-widget__top .control-container .c1,
-.x-widget__top .control-container .c1 .x-progress .x-progress_dates,
-.x-widget__top .control-container .c2,
-.x-widget__bot .control-container2,
-.x-widget__bot .control-container2 ._c1,
-.x-widget__bot .control-container2 ._c1 .x-progress-received__caps,
-.x-widget__bot .control-container2 ._c2,
-.x-widget__bot .control-container2 ._c2__cur,
-.x-wallets__container_buttons,
-.x-wallets__container_form div {
+.x-widget .widget-part .control-container,
+.x-widget .widget-part .control-container .c,
+.x-widget .widget-part .control-container .c1,
+.x-widget .widget-part .control-container .c2,
+.x-widget__top .c1 .x-progress_dates,
+.x-widget__bot .x-progress__caps,
+.x-widget .c2__cur,
+.x-wallets__buttons,
+.x-wallets__form form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -142,6 +140,12 @@ footer {
 
 footer img {
   max-width: 100%;
+}
+
+@media (max-width: 769px) {
+  .x-body {
+    width: auto;
+  }
 }
 
 /*!
@@ -9956,12 +9960,12 @@ button.close {
 @media (max-width: 1120px) {
   .header__logo {
     position: static;
-    z-index: 6;
+    z-index: 12;
   }
 
   .header__links {
     position: absolute;
-    z-index: 5;
+    z-index: 11;
     top: -250px;
     margin: 0 auto;
     right: 0;
@@ -9999,7 +10003,7 @@ button.close {
     width: 180px;
     display: block;
     position: static;
-    z-index: 6;
+    z-index: 12;
   }
 
   .header__burger .hamburger {
@@ -10012,6 +10016,15 @@ button.close {
 @media (max-width: 769px) {
   .header {
     margin: 0 1%;
+  }
+
+  .header__logo img {
+    width: 100px;
+    height: 37px;
+  }
+
+  .header__burger {
+    width: 65px;
   }
 }
 
@@ -10158,14 +10171,10 @@ button.close {
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 769px) {
   .x-dashboard {
-    height: 200px;
     position: relative;
     padding: 2% 1%;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
   }
 
   .x-dashboard__tabs {
@@ -10175,6 +10184,16 @@ button.close {
     right: 0;
     margin: 0 auto;
   }
+
+  .x-dashboard__guest {
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+
+  .x-dashboard__guest .x-register-link {
+    font-size: 14px;
+    padding: 8px 30px;
+  }
 }
 
 .x-widget {
@@ -10182,7 +10201,7 @@ button.close {
   margin-bottom: 50px;
 }
 
-.x-widget__top {
+.x-widget .widget-part {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
@@ -10190,10 +10209,10 @@ button.close {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 20px 0;
+  margin: 20px 0 40px 0;
 }
 
-.x-widget__top p {
+.x-widget .widget-part p {
   font-size: 18px;
   font-weight: 700;
   color: #333333;
@@ -10202,31 +10221,36 @@ button.close {
   margin-bottom: 20px;
 }
 
-.x-widget__top .control-container {
-  height: 75px;
+.x-widget .widget-part .control-container {
   width: 100%;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
 }
 
-.x-widget__top .control-container .c {
-  height: 46px;
+.x-widget .widget-part .control-container .c {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 30%;
 }
 
-.x-widget__top .control-container .c1 {
+.x-widget .widget-part .control-container .c1 {
   width: 60%;
 }
 
-.x-widget__top .control-container .c1 .x-progress {
+.x-widget .widget-part .control-container .c1 .x-progress {
+  height: 46px;
   border: 2px solid lightgray;
-  height: 100%;
   background: url("/img/x-progress-background.png");
   border-radius: 5px;
   position: relative;
 }
 
-.x-widget__top .control-container .c1 .x-progress .x-in {
+.x-widget .widget-part .control-container .c2 {
+  width: 30%;
+}
+
+.x-widget__top .c1 .x-in {
   background: #330868;
   background: -webkit-gradient(left top, right top, color-stop(0%, #330868), color-stop(100%, #30ced1));
   background: -webkit-gradient(linear, left top, right top, from(#330868), to(#30ced1));
@@ -10239,15 +10263,15 @@ button.close {
   left: -2px;
 }
 
-.x-widget__top .control-container .c1 .x-progress .x-progress__in_pre {
+.x-widget__top .c1 .x-progress__in_pre {
   width: 102%;
 }
 
-.x-widget__top .control-container .c1 .x-progress .x-progress__in_ico {
+.x-widget__top .c1 .x-progress__in_ico {
   width: 50%;
 }
 
-.x-widget__top .control-container .c1 .x-progress .x-round {
+.x-widget__top .c1 .x-round {
   position: absolute;
   margin: 10px auto;
   left: 0;
@@ -10261,39 +10285,35 @@ button.close {
   letter-spacing: 1px;
 }
 
-.x-widget__top .control-container .c1 .x-progress .x-progress_dates {
+.x-widget__top .c1 .x-progress_dates {
   width: 100%;
   position: absolute;
   bottom: -25px;
 }
 
-.x-widget__top .control-container .c1 .x-progress .x-progress_dates span {
+.x-widget__top .c1 .x-progress_dates span {
   font-size: 14px;
   color: #A3A3A3;
   font-weight: 300;
 }
 
-.x-widget__top .control-container .c1__progress_pre {
+.x-widget__top .c1__progress_pre {
   width: 35%;
 }
 
-.x-widget__top .control-container .c1__progress_ico {
+.x-widget__top .c1__progress_ico {
   width: 60%;
 }
 
-.x-widget__top .control-container .c2 {
-  width: 30%;
-}
-
-.x-widget__top .control-container .c2 .d {
-  height: 100%;
+.x-widget .c2 .d {
+  height: 46px;
   width: 28%;
   border: 2px solid lightgray;
   border-radius: 5px;
   position: relative;
 }
 
-.x-widget__top .control-container .c2 .d .t {
+.x-widget .c2 .d .t {
   font-family: 'VT323', monospace;
   position: absolute;
   margin: 0 auto;
@@ -10306,7 +10326,7 @@ button.close {
   color: #30ced1;
 }
 
-.x-widget__top .control-container .c2 .d__name {
+.x-widget .c2 .d__name {
   position: absolute;
   margin: 0 auto;
   left: 0;
@@ -10317,53 +10337,11 @@ button.close {
   font-size: 16px;
 }
 
-.x-widget__bot {
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  margin: 20px 0;
-}
-
-.x-widget__bot p {
-  font-size: 18px;
-  font-weight: 700;
-  color: #333333;
-  text-transform: uppercase;
-  letter-spacing: .5px;
-  margin-bottom: 20px;
-}
-
-.x-widget__bot .control-container2 {
+.x-widget__bot .x-progress {
   width: 100%;
-  height: 100px;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
 }
 
-.x-widget__bot .control-container2 ._c {
-  height: 46px;
-  width: 30%;
-}
-
-.x-widget__bot .control-container2 ._c1 {
-  width: 60%;
-}
-
-.x-widget__bot .control-container2 ._c1 .x-progress-received {
-  border: 2px solid lightgray;
-  height: 100%;
-  width: 100%;
-  background: url("/img/x-progress-background.png");
-  border-radius: 5px;
-  position: relative;
-}
-
-.x-widget__bot .control-container2 ._c1 .x-progress-received__in {
+.x-widget__bot .x-progress__in {
   width: 50%;
   background: #330868;
   background: -webkit-gradient(left top, right top, color-stop(0%, #330868), color-stop(100%, #30ced1));
@@ -10377,7 +10355,7 @@ button.close {
   left: -2px;
 }
 
-.x-widget__bot .control-container2 ._c1 .x-progress-received__percents {
+.x-widget__bot .x-progress__percents {
   position: absolute;
   margin: 10px auto;
   left: 0;
@@ -10391,7 +10369,7 @@ button.close {
   letter-spacing: 1px;
 }
 
-.x-widget__bot .control-container2 ._c1 .x-progress-received__caps {
+.x-widget__bot .x-progress__caps {
   position: absolute;
   bottom: -25px;
   width: 100%;
@@ -10400,11 +10378,11 @@ button.close {
   font-weight: 300;
 }
 
-.x-widget__bot .control-container2 ._c2__cur img {
+.x-widget .c2__cur img {
   height: 40px;
 }
 
-.x-widget__bot .control-container2 ._c2__cur .text-box {
+.x-widget .c2__cur .text-box {
   margin-left: 10px;
   -webkit-box-align: start;
       -ms-flex-align: start;
@@ -10418,32 +10396,82 @@ button.close {
   color: #A3A3A3;
 }
 
-@media (max-width: 1367px) {
-  .x-dashboard {
-    padding: 0 5%;
+@media (max-width: 769px) {
+  .x-widget {
+    padding: 0 50px;
+  }
+
+  .x-widget .widget-part {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-bottom: 60px;
+  }
+
+  .x-widget .widget-part p {
+    font-size: 15px;
+  }
+
+  .x-widget .widget-part .control-container {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+
+  .x-widget .widget-part .control-container .c1 {
+    width: 450px;
+    margin-bottom: 40px;
+  }
+
+  .x-widget .widget-part .control-container .c1__progress_pre {
+    width: 157.5px;
+  }
+
+  .x-widget .widget-part .control-container .c1__progress_ico {
+    width: 270px;
+  }
+
+  .x-widget .widget-part .control-container .c2 {
+    width: 225px;
   }
 }
 
-@media (max-width: 700px) {
-  .x-dashboard {
-    height: 200px;
-    position: relative;
-    padding: 2% 1%;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
+@media (max-width: 545px) {
+  .x-widget .widget-part .control-container .c1 {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-bottom: 20px;
   }
 
-  .x-dashboard__tabs {
-    position: absolute;
-    top: 120px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+  .x-widget .widget-part .control-container .c1 .x-progress {
+    width: 270px;
+    margin-bottom: 40px;
+  }
+
+  .x-widget .widget-part .control-container .c1 .x-progress__caps {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    bottom: -45px;
   }
 }
 
-.x-wallets__container {
+.x-wallets__title,
+.x-wallets__form p,
+.x-wallets__text p {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.x-wallets {
+  width: 750px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -10453,43 +10481,43 @@ button.close {
           align-items: flex-start;
 }
 
-.x-wallets__container p {
-  font-size: 16px;
-  font-weight: 700;
-  color: #333333;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-}
-
-.x-wallets__container_buttons {
-  width: 750px;
+.x-wallets__buttons {
+  width: 100%;
   margin-bottom: 40px;
 }
 
-.x-wallets__container_buttons .button span {
+.x-wallets__buttons .button span {
   margin-left: 10px;
   font-size: 16px;
 }
 
-.x-wallets__container_form {
+.x-wallets__form {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   margin-bottom: 40px;
   width: 100%;
 }
 
-.x-wallets__container_form p {
+.x-wallets__form p {
   text-align: left;
 }
 
-.x-wallets__container_form div {
+.x-wallets__form form {
   margin-bottom: 10px;
+  width: 100%;
 }
 
-.x-wallets__container_form div label {
+.x-wallets__form form label {
   float: left;
   margin-right: 5px;
 }
 
-.x-wallets__container_form div input {
+.x-wallets__form form input {
   float: right;
   margin: 2px;
   width: 450px;
@@ -10500,37 +10528,149 @@ button.close {
   padding-left: 10px;
 }
 
-.x-wallets__container_text {
-  width: 700px;
+.x-wallets__text {
+  width: 100%;
 }
 
-.x-wallets__container_text .owner-wallet-span {
-  color: #27ae60;
-  font-weight: 700;
-}
-
-.x-wallets__container_text ul {
+.x-wallets__text ul {
   font-weight: 500;
   margin-bottom: 40px;
   font-size: 14px;
 }
 
-.x-wallets__container_text p {
+.x-wallets__text p {
   text-align: left;
 }
 
-.x-wallets__container_text .pay-to-us-wallet {
+.x-wallets__text .pay-to-us-wallet {
   border: 1px solid #E0E0E0;
   height: 100px;
 }
 
-.x-wallets__container_text .pay-to-us-wallet img {
+.x-wallets__text .pay-to-us-wallet img {
   width: 50px;
   height: 50px;
 }
 
-.x-wallets__container_text .pay-to-us-wallet p {
+.x-wallets__text .pay-to-us-wallet span {
+  color: #27ae60;
+  font-weight: 700;
   margin-left: 10px;
   margin-bottom: 0;
+  word-break: break-all;
+  text-align: center;
+}
+
+@media (max-width: 769px) {
+  .x-wallets {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: auto;
+  }
+
+  .x-wallets__buttons {
+    padding: 0 60px;
+  }
+
+  .x-wallets__buttons .button {
+    margin-bottom: 15px;
+  }
+
+  .x-wallets__buttons .button span {
+    white-space: nowrap;
+  }
+
+  .x-wallets__form {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+
+  .x-wallets__form p {
+    width: 70%;
+    text-align: center;
+    font-size: 15px;
+  }
+
+  .x-wallets__form form {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .x-wallets__form form input {
+    width: 70%;
+  }
+
+  .x-wallets__text {
+    width: 100%;
+    padding: 0 30px;
+  }
+
+  .x-wallets__text p {
+    text-align: center;
+  }
+}
+
+@media (max-width: 545px) {
+  .x-wallets__buttons {
+    width: 165px;
+    padding: 0;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+
+  .x-wallets__buttons .button {
+    margin-bottom: 15px;
+  }
+
+  .x-wallets__form form label {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .x-wallets__form form input {
+    width: 275px;
+  }
+
+  .x-wallets__text {
+    padding: 0 10px;
+  }
+
+  .x-wallets__text .owner-wallet-span {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .x-wallets__text ul {
+    padding-left: 25px;
+  }
+
+  .x-wallets__text .pay-to-us-wallet {
+    height: auto;
+    padding: 10px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .x-wallets__text .pay-to-us-wallet img {
+    margin-bottom: 10px;
+  }
+
+  .x-wallets__text .pay-to-us-wallet p {
+    font-size: 13px;
+  }
 }
 
