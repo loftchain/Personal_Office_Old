@@ -2,69 +2,16 @@
 
 @section('content')
 
-        <main class="x-body">
+    <div class="x-body">
+        <div id="home" class="tab-pane fade in active">
             @include('home.new_widget')
             @include('home.new_wallet')
-        </main>
+        </div>
+        <div id="transactions" class="tab-pane fade">
+            @include('home.my_transactions.transactions')
+        </div>
+    </div>
 
-
-    {{--<div class="home-body">--}}
-      {{--<span class="home-status-message"></span>--}}
-    {{--<section class="upper-part">--}}
-      {{--<h3>@lang('home/home.my_profile')</h3>--}}
-
-            {{--<p class="your-entered-as"> @lang('home/home.logged_in_as')--}}
-                {{--<span>{{ obfuscate_email('email@email.com') }}</span></p>--}}
-            {{--<br/>--}}
-            {{--<div class="option-container">--}}
-                {{--<a href="{{ route('change_email') }}"> @lang('home/home.change_email')</a>--}}
-                {{--<a href="{{ route('change_password') }}"> @lang('home/home.change_password')</a>--}}
-                {{--<a href="{{ route('logout') }}"><i class="fa fa-times" aria-hidden="true"></i> @lang('home/home.log_out')</a>--}}
-            {{--</div>--}}
-            {{--<br/>--}}
-
-            {{--<a class="suggest-invest-container-link" href="{{ route('mycrypto') }}">--}}
-                {{--<div class="suggest-investment-container">--}}
-                    {{--<p class="gonna-invest">--}}
-                        {{--@lang('home/home.want_purchase')<span--}}
-                                {{--class="temp-gray-span">{{ $data['walletFields']["name_of_wallet_invest_from"] or  __('home/home.currency_is_not_set') }}</span> @lang('home/home.wallet_address')--}}
-                        {{--<br> <span--}}
-                                {{--class="temp-gray-span">{{ $data['walletFields']["wallet_invest_from"] or __('home/home.not_set') }}</span>--}}
-
-                    {{--</p>--}}
-                    {{--<p class="wonna-get-tokens">--}}
-                        {{--@lang('home/home.want_to_get_ERC20') <span--}}
-                                {{--class="temp-gray-span">{{ $data['walletFields']["wallet_get_tokens"] or __('home/home.not_set')}}</span>--}}
-                    {{--</p>--}}
-                {{--</div>--}}
-            {{--</a>--}}
-            {{--<br/>--}}
-            {{--<a class="reusable-btn change-btn" href="{{ route('mycrypto') }}">@lang('home/home.change_btn')</a>--}}
-        {{--</section>--}}
-        {{--<br/>--}}
-        {{--<br/>--}}
-        {{--<section class="bottom-part">--}}
-            {{--<ul class="nav nav-tabs freed-tabs">--}}
-                {{--<li class="active"><a data-toggle="tab" href="#tokenSell">@lang('home/home.token_sale')</a></li>--}}
-                {{--<li><a data-toggle="tab" href="#myTokens">@lang('home/home.my_transactions')</a></li>--}}
-{{-- <li><a data-toggle="tab" href="#myRefs">@lang('home/home.my_referals')</a></li>--}}
-            {{--</ul>--}}
-            {{--<div class="tab-content">--}}
-                {{--<div id="tokenSell" class="tab-pane fade in active">--}}
-                    {{--@includeWhen($data['widget_data'] ,'home.token_sell.widget')--}}
-                    {{--@includeWhen($data["period"] == "pre_ico" ,'home.token_sell.pre_ico')--}}
-                    {{--@includeWhen($data["period"] == "ico",'home.token_sell.ico', ['data_tables'=>$data['data_tables']])--}}
-                    {{--@includeWhen($data["period"] == "out",'home.token_sell.out_of_ico')--}}
-                    {{--@include('home.token_sell.tables')--}}
-                {{--</div>--}}
-                {{--<div id="myTokens" class="tab-pane fade">--}}
-                    {{--@include('home.my_transactions.transactions')--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</section>--}}
-    {{--</div>--}}
-    {{--<br><br><br><br><br>--}}
-    {{--<br><br><br><br><br>--}}
     <script>
         localStorage.setItem('data-id', '{{ $name = isset($data['walletFields']["name_of_wallet_invest_from"]) ? $data['walletFields']["name_of_wallet_invest_from"] : 'ETH' }}');
         localStorage.setItem('current-currency', '{{ $name = isset($data['walletFields']["name_of_wallet_invest_from"]) ? $data['walletFields']["name_of_wallet_invest_from"] : 'ETH'  }}');
@@ -74,14 +21,10 @@
                 history.pushState(null, null, document.URL);
             });
         }
-
     </script>
 @endsection
 @section('script')
   <script>
-
-
-
 
 		var data = {!! $data['widget_data'] !!};
 		[].forEach.call(data.currencies, function(v,i,a) {

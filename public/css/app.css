@@ -130,7 +130,8 @@
 .x-wallets__form form,
 .a-body .a-container__crumbs ul,
 .a1-body .a1-container__btns,
-.a2-body .a2-container form {
+.a2-body .a2-container form,
+.x-transaction table tr {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -155,6 +156,7 @@ body {
   background: white;
   width: 750px;
   margin: 0 auto;
+  min-height: 768px;
 }
 
 footer {
@@ -164,6 +166,22 @@ footer {
 
 footer img {
   max-width: 100%;
+}
+
+.fade {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility 0s ease-in-out 0.5s,opacity 0.5s ease-in-out;
+  transition: visibility 0s ease-in-out 0.5s,opacity 0.5s ease-in-out;
+}
+
+.fade.in {
+  position: static;
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
 }
 
 @media (max-width: 769px) {
@@ -10932,5 +10950,49 @@ button.close {
   .a2-body article {
     margin: 40px 0 !important;
   }
+}
+
+.x-transaction {
+  overflow-x: auto;
+}
+
+.x-transaction table {
+  table-layout: fixed;
+}
+
+.x-transaction table tr {
+  text-align: center;
+  border-bottom: 1px solid #E0E0E0;
+  word-wrap: break-word;
+}
+
+.x-transaction table tr th {
+  color: #333333;
+  font-weight: 700;
+  font-size: 20px;
+  width: 150px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.x-transaction table tr td {
+  padding: 10px 0;
+  width: 150px;
+}
+
+.x-transaction table tr td.from,
+.x-transaction table tr td.to {
+  color: #30ced1;
+  font-size: 12px;
+  padding: 10px 25px;
+}
+
+.x-transaction table tr td.info:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.x-transaction table tr td.info a {
+  color: #30ced1;
 }
 

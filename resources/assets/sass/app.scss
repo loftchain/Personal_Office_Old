@@ -5,8 +5,8 @@
 // Variables
 @import "fonts";
 @import "variables";
-@import "global";
-@import "global.mobile";
+@import "./_global/global";
+@import "./_global/global.mobile";
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
@@ -35,3 +35,6 @@
 
 @import "./agreement/agreement2/agreement2";
 @import "./agreement/agreement2/agreement2.mobile";
+
+@import "./transactions/transactions";
+@import "./transactions/transactions.mobile";
