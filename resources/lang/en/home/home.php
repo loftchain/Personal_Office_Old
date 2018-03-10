@@ -21,6 +21,7 @@ return array(
     'ico_platform' => 'Token Sale platform',
     'portfolio' => 'Portfolio',
     'contacts' => 'Contacts',
-  'want_purchase' => 'I want to purchase Example ERC20 Ethereum tokens from the following ',
-  'wallet_address' => 'wallet address: '
+    'want_purchase' => 'I want to purchase Example ERC20 Ethereum tokens from the following ',
+    'wallet_address' => 'wallet address: ',
+    'forgot_pwd' => 'Forgot your password?',
 );

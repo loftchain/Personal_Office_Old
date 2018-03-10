@@ -3,7 +3,7 @@
 return [
 
   'registration' => 'Регистрация',
-  'type_your_email' => 'Укажите ваш Email (ссылка с подтверждением будет выслан на этот адрес)',
+  'type_your_email' => 'Укажите ваш Email',
   'register_btn' => 'Зарегистрироваться',
   'please_w8' => 'Пожалуйста, подождите',
   'create_password' => 'Придумайте свой пароль',

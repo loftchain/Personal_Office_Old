@@ -35,7 +35,7 @@ class AgreementController extends Controller
       'date_place_birth' => $data['date_place_birth'],
       'nationality' => $data['nationality'],
       'source_of_funds' => $data['source_of_funds'],
-      'presumptive_investment' => $data['presumptive_investment'],
+//      'presumptive_investment' => $data['presumptive_investment'],
     ]);
   }
 

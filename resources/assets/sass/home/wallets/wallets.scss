@@ -8,8 +8,7 @@
 
 .x-wallets {
   width: 750px;
-  @extend %flex-center;
-  flex-direction: column;
+  @extend %fcc;
   align-items: flex-start;
 
   &__title {
@@ -19,7 +18,7 @@
   &__buttons {
     width: 100%;
     margin-bottom: 40px;
-    @extend %flex-space-between;
+    @extend %fsb;
 
     .button {
       span {
@@ -31,9 +30,8 @@
   }
 
   &__form {
-    @extend %flex-center;
+    @extend %fcc;
     align-items: flex-start;
-    flex-direction: column;
     margin-bottom: 40px;
     width: 100%;
 
@@ -43,7 +41,7 @@
     }
 
     form {
-      @extend %flex-space-between;
+      @extend %fsb;
       margin-bottom: 10px;
       width:100%;
       label {
@@ -77,7 +75,7 @@
       text-align: left;
     }
     .pay-to-us-wallet {
-      @extend %flex-center;
+      @extend %fc;
       border: 1px solid #E0E0E0;
       height: 100px;
 

@@ -1,0 +1,46 @@
+@media (max-width:769px) {
+  .a-body {
+    p {
+      text-align: center;
+    }
+
+    .a-container {
+      width: 100%;
+      padding: 0 10px;
+      &__crumbs {
+        display: none;
+      }
+
+      article {
+        margin: 0;
+      }
+    }
+  }
+  .a1-body{
+    .a1-container{
+      &__wp{
+        div{
+          width:auto;
+        }
+
+      }
+
+      &__btns{
+        flex-direction: column;
+        button, a{
+          font-size: 14px;
+          padding: 10px 20px;
+        }
+
+        a{
+          margin-top: 20px;
+          margin-left: 0;
+        }
+
+      }
+
+    }
+
+  }
+
+}

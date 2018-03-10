@@ -3,7 +3,7 @@
 return [
 
   'registration' => 'Registration',
-  'type_your_email' => 'Type your Email (confirmation link will be sent to this address)',
+  'type_your_email' => 'Type your Email',
   'register_btn' => 'Sign Up',
   'please_w8' => 'Please, wait',
   'create_password' => 'Create your password',

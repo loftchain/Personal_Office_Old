@@ -41,7 +41,7 @@ m.form.on('submit', function () {
 $('.switch-box-container div').click(function () {
     $('.switch-box-container div').removeClass('active-investment');
     $(this).addClass('active-investment');
-    $('#presumptive_investment').val($(this).text());
+    // $('#presumptive_investment').val($(this).text());
 });
 
 $('.crypto-currency-container div').click(function () {

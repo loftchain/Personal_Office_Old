@@ -22,5 +22,7 @@ return [
     'portfolio' => 'Портфолио',
     'contacts' => 'Контакты',
     'want_purchase' => 'Я хочу купить Example ERC20 Ethereum токены используя текущий ',
-    'wallet_address' => 'адрес: '
+    'wallet_address' => 'адрес: ',
+    'forgot_pwd' => 'Забыли пароль?',
+
 ];

@@ -5,6 +5,7 @@ $almost-black:#333333;
 $gray1:#828282;
 $gray2: #4b4b4b;
 $gray3: #BDBDBD;
+$gray4: #E0E0E0;
 
 @mixin x-dashboard-gradient($from, $to) {
   background-image: -ms-linear-gradient(bottom, $from 0%, $to 100%);
@@ -48,21 +49,28 @@ $gray3: #BDBDBD;
   letter-spacing: 1px;
 }
 
-%flex-center {
+%fc {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-%flex-space-between {
+%fcc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+%fsb {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-%linky {
-  display: inline-block;
-  text-decoration: none;
-  padding: 9px 32px;
-  color: lightgrey;
+%fsbc {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
 }

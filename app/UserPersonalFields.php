@@ -15,7 +15,7 @@ class UserPersonalFields extends Authenticatable
      * @var array
      */
     protected $fillable = [
-      'user_id','name_surname','phone','telegram','emergency_email', 'permanent_address','contact_number','date_place_birth', 'nationality', 'source_of_funds', 'presumptive_investment'
+      'user_id','name_surname','phone','telegram','emergency_email', 'permanent_address','contact_number','date_place_birth', 'nationality', 'source_of_funds'
     ];
 
     /**

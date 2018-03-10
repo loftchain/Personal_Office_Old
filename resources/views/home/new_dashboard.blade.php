@@ -11,79 +11,30 @@
             </ul>
         </div>
         <div class="x-dashboard__options">
-            <a href="" class="x-dashboard__options_out"><img src="{{ asset('img/logout.png') }}" alt="logout">@lang('home/home.log_out')</a>
-            <a href="" class="x-dashboard__options_email">@lang('home/home.change_email')</a>
-            <a href="" class="x-dashboard__options_password">@lang('home/home.change_password')</a>
+            <a href="{{ route('logout') }}" class="x-dashboard__options_out"><img src="{{ asset('img/logout.png') }}" alt="logout">@lang('home/home.log_out')</a>
+            <a type="button" class="x-dashboard__options_email" data-toggle="modal" data-target="#m-ch-email">@lang('home/home.change_email')</a>
+            <a type="button" class="x-dashboard__options_password" data-toggle="modal" data-target="#m-ch-pwd">@lang('home/home.change_password')</a>
         </div>
     @else
         <div class="x-dashboard__guest">
-            <a type="button" class="x-register-link" data-toggle="modal" data-target="#myModal">
+            <a type="button" class="x-register-link" data-toggle="modal" data-target="#m-signUp">
                 @lang('app.sign_up')
             </a>
             <div class="right-box">
-                <a type="button" class="x-login-link" data-toggle="modal" data-target="#myModal1">
+                <a type="button" class="x-login-link" data-toggle="modal" data-target="#m-signIn">
                     <img src="{{ asset('img/login.png') }}" alt="sign in">
                     @lang('app.sign_in')
                 </a>
-                <a type="button" class="x-forgot-link" data-toggle="modal" data-target="#myModal2">
-                    @lang('home/login.forgot_pwd')
+                <a type="button" class="x-forgot-link" data-toggle="modal" data-target="#m-forgot">
+                    @lang('home/home.forgot_pwd')
                 </a>
             </div>
 
         </div>
     @endif
 </section>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                @include('auth.register')
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                @include('auth.login')
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                @include('auth.passwords.email')
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
+@include('auth.register')
+@include('auth.login')
+@include('auth.passwords.email')
+@include('home.change_email')
+@include('home.change_password')

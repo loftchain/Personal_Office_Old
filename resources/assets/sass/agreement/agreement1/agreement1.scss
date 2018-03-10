@@ -1,0 +1,111 @@
+.a-body {
+  @extend %fcc;
+  margin-top: 40px;
+  p {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: $almost-black;
+    letter-spacing: 1px;
+  }
+  .a-container {
+    margin-top: 20px;
+    width: 750px;
+    @extend %fcc;
+
+    &__crumbs {
+      ul {
+        @extend %fsb;
+        width: 750px;
+        padding: 0;
+        height: 70px;
+        border-bottom: 2px solid $gray4;
+        li {
+          position: relative;
+          list-style-type: none;
+          text-align: center;
+          &:after {
+            content: ' ';
+            position: absolute;
+            bottom: -37px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            border-radius: 25px;
+            width: 25px;
+            height: 25px;
+            @include x-gradient($x-progress-from, $main-blue)
+
+          }
+
+        }
+
+      }
+
+    }
+
+    article {
+      margin: 40px 0;
+      text-align: justify;
+    }
+  }
+}
+.a1-body {
+  .a1-container {
+    &__wp{
+      @extend %fc;
+      text-decoration: none;
+      div{
+        @extend %fcc;
+        align-items: flex-start;
+        width:250px;
+        margin-left: 30px;
+        color: $almost-black;
+        .title{
+          font-weight: 700;
+        }
+
+        .name{
+          color: $gray1;
+        }
+
+      }
+
+    }
+
+    &__btns{
+      width: 550px;
+      margin-top: 30px;
+      @extend %fsb;
+      button{
+        outline: none;
+        border: none;
+        border-radius: 25px;
+        @include x-gradient($x-progress-from, $main-blue);
+        padding: 15px 40px;
+        color: white;
+        font-size: 16px;
+        white-space: nowrap;
+      }
+
+      a{
+        border: 1px solid $gray2;
+        border-radius: 25px;
+        margin-left: 40px;
+        padding: 15px 40px;
+        color: black;
+        font-weight: 700;
+        text-decoration: none;
+        &:hover{
+          background: $gray4;
+          border: 1px solid transparent;
+        }
+
+      }
+
+    }
+
+  }
+
+
+}
