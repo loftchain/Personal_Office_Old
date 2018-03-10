@@ -29,6 +29,7 @@
                     @lang('home/home.forgot_pwd')
                 </a>
             </div>
+
         </div>
     @endif
 </section>

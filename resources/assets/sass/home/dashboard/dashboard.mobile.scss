@@ -6,9 +6,19 @@
 
 @media (max-width:769px){
   .x-dashboard{
-
     position: relative;
-    padding: 2% 1%;
+    padding: 10px;
+    &.auth{
+      height:200px;
+      align-items: flex-start;
+    }
+
+    &__info{
+      &_who{
+        word-break: break-all;
+      }
+
+    }
 
     &__tabs{
       position: absolute;

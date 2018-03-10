@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="x-body">
+    <div class="x-body tab-content">
         <div id="home" class="tab-pane fade in active">
             @include('home.new_widget')
             @include('home.new_wallet')

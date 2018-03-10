@@ -5,6 +5,7 @@
   border-bottom: 2px solid $x-dash-to;
   @include x-dashboard-gradient(white,$x-dash-to);
 
+
   &__info{
     @extend %fcc;
     align-items: flex-start;

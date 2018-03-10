@@ -168,22 +168,6 @@ footer img {
   max-width: 100%;
 }
 
-.fade {
-  position: absolute;
-  visibility: hidden;
-  opacity: 0;
-  -webkit-transition: visibility 0s ease-in-out 0.5s,opacity 0.5s ease-in-out;
-  transition: visibility 0s ease-in-out 0.5s,opacity 0.5s ease-in-out;
-}
-
-.fade.in {
-  position: static;
-  visibility: visible;
-  opacity: 1;
-  -webkit-transition-delay: 0s;
-          transition-delay: 0s;
-}
-
 @media (max-width: 769px) {
   .x-body {
     width: auto;
@@ -10192,7 +10176,18 @@ button.close {
 @media (max-width: 769px) {
   .x-dashboard {
     position: relative;
-    padding: 2% 1%;
+    padding: 10px;
+  }
+
+  .x-dashboard.auth {
+    height: 200px;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+
+  .x-dashboard__info_who {
+    word-break: break-all;
   }
 
   .x-dashboard__tabs {
