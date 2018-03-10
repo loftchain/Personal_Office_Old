@@ -1,15 +1,17 @@
-.a2-body {
-  .a2-container{
-    form{
-      @extend %fsbc;
-      div{
-        width:100%;
-        max-width:325px;
-        min-width: 290px;
+@media (max-width:769px) {
+  .a2-body {
+    .a2-container {
+      form {
+        flex-direction: column;
+        div {
+          width: 100%;
+          max-width: 325px;
+          min-width: 290px;
+        }
       }
     }
-  }
-  article{
-    margin: 40px 0!important;
+    article {
+      margin: 40px 0 !important;
+    }
   }
 }
