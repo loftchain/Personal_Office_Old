@@ -10947,10 +10947,6 @@ button.close {
   }
 }
 
-.x-transaction {
-  overflow-x: auto;
-}
-
 .x-transaction table {
   table-layout: fixed;
 }
@@ -10989,5 +10985,43 @@ button.close {
 
 .x-transaction table tr td.info a {
   color: #30ced1;
+}
+
+.x-transaction .x-ac-transaction {
+  display: none;
+}
+
+@media (max-width: 769px) {
+  .x-transaction table {
+    display: none;
+  }
+
+  .x-transaction .x-ac-transaction {
+    display: block;
+  }
+
+  .x-transaction .x-ac-transaction .panel .panel-heading .panel-title a {
+    word-break: break-all;
+  }
+
+  .x-transaction .x-ac-transaction .panel .panel-collapse .panel-body section {
+    padding: 10px 0;
+    border-bottom: 1px solid #E0E0E0;
+  }
+
+  .x-transaction .x-ac-transaction .panel .panel-collapse .panel-body section span {
+    display: inline-block;
+    word-break: break-all;
+  }
+
+  .x-transaction .x-ac-transaction .panel .panel-collapse .panel-body section .title {
+    font-weight: 700;
+    border-right: 1px solid #4b4b4b;
+    width: 60px;
+  }
+
+  .x-transaction .x-ac-transaction .panel .panel-collapse .panel-body section .value {
+    padding-left: 5px;
+  }
 }
 

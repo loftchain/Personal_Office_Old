@@ -1,5 +1,4 @@
 .x-transaction{
-  overflow-x:auto;
   table{
   table-layout: fixed;
       tr{
@@ -39,5 +38,8 @@
       }
 
     }
+  .x-ac-transaction{
+    display: none;
+  }
 
 }
