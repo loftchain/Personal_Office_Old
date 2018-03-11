@@ -3,38 +3,41 @@
     table {
       display: none;
     }
+
     .x-ac-transaction{
       display: block;
-      .panel{
-        .panel-heading{
-          .panel-title{
-            a{
-              word-break: break-all;
-            }
-          }
-        }
-        .panel-collapse{
-          .panel-body{
-            section{
-              padding: 10px 0;
-              border-bottom: 1px solid $gray4;
-              span{
-                display: inline-block;
-                word-break: break-all;
-              }
-              .title{
-                font-weight: 700;
-                border-right: 1px solid $gray2;
-                width:60px;
-              }
-              .value{
-                padding-left: 5px;
-              }
-
-            }
-          }
-        }
+      h3{
+        word-break: break-all;
       }
+      div{
+        height: auto;
+        section{
+          padding: 10px 0;
+          border-bottom: 1px solid $gray4;
+          span{
+            display: inline-block;
+            word-break: break-all;
+          }
+
+          .title{
+            font-weight: 700;
+            border-right: 1px solid $gray2;
+            width:60px;
+          }
+
+          .value{
+            padding-left: 5px;
+            &.from,&.to{
+              font-size: 10px;
+              color: $main-blue;
+            }
+          }
+        }
+
+      }
+
     }
+
   }
+
 }
