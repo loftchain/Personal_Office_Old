@@ -29,7 +29,7 @@
         text-align: left;
         width:100%;
         height:50px;
-        color: #ff443a;
+        color: $validationError;
       }
       .error-message-captcha{
         text-align: center;
@@ -50,9 +50,13 @@
         text-decoration: none;
         @include x-gradient($x-progress-from, $main-blue);
       }
-
     }
-
   }
+}
 
+.isError{
+  border:1px solid $validationError;
+}
+.isValid{
+  border:1px solid $gray4;
 }

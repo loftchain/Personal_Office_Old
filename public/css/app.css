@@ -2376,6 +2376,14 @@ footer img {
   background: linear-gradient(to right, #330868 0%, #30ced1 100%);
 }
 
+.isError {
+  border: 1px solid #ff443a;
+}
+
+.isValid {
+  border: 1px solid #E0E0E0;
+}
+
 @media (max-width: 769px) {
   .modal-dialog {
     width: 95%;

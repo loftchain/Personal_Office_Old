@@ -1,6 +1,4 @@
 
-
-
 $('body').css('height', $(document).height());
 
 $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
@@ -151,7 +149,7 @@ $(document).ready(function () {
       case 'LTC':
         $(this).val(btc_parse($(this).val()));
         break;
-      case 'ETC':
+      case 'ETH':
       default:
         $(this).val(eth_parse($(this).val()));
     }
@@ -169,9 +167,6 @@ $(document).ready(function () {
     $('input#contact_number').on('input', function (e) {
         $(this).val(VMasker.toPattern($(this).val(),'+9-999-999-99999999999'));
     });
-
-
-
 
 });
 

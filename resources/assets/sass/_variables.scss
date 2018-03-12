@@ -6,6 +6,7 @@ $gray1:#828282;
 $gray2: #4b4b4b;
 $gray3: #BDBDBD;
 $gray4: #E0E0E0;
+$validationError: #ff443a;
 
 @mixin x-dashboard-gradient($from, $to) {
   background-image: -ms-linear-gradient(bottom, $from 0%, $to 100%);
