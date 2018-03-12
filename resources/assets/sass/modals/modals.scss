@@ -1,5 +1,6 @@
 .modal-dialog{
   width:400px;
+
   .modal-header{
     button{
       outline:none;
@@ -8,6 +9,7 @@
   form{
     .modal-body{
       @extend %fcc;
+
       justify-content: flex-start;
       .x-label{
         font-size: 14px;
@@ -23,6 +25,10 @@
         outline: none;
         border: 1px solid $gray4;
         border-radius: 5px;
+
+        &.isError {
+          border: 1px solid $validationError !important;
+        }
       }
 
       .error-message{
@@ -36,8 +42,10 @@
       }
 
     }
+
     .modal-footer{
       @extend %fc;
+
       button{
         color: white;
         font-size: 14px;
@@ -48,15 +56,17 @@
         border: none;
         border-radius: 25px;
         text-decoration: none;
+        position: relative;
         @include x-gradient($x-progress-from, $main-blue);
+
+        .small-spinner{
+          position: absolute;
+          left: 30px;
+          top: 15.5px;
+          display: none;
+        }
       }
     }
   }
 }
 
-.isError{
-  border:1px solid $validationError;
-}
-.isValid{
-  border:1px solid $gray4;
-}

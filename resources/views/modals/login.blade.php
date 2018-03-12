@@ -18,7 +18,7 @@
                     <div class="error-message error-message3 error-message-captcha g-recaptcha-response"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="login-btn reusable-btn">
+                    <button type="submit" class="modal-btn">
                         <i class="small-spinner fa fa-circle-o-notch fa-spin fa-lg fa-fw"></i>
                         @lang('auth/login.login_btn')
                     </button>

@@ -33,8 +33,8 @@
         </div>
     @endif
 </section>
-@include('auth.register')
-@include('auth.login')
-@include('auth.passwords.email')
-@include('home.change_email')
-@include('home.change_password')
+@include('modals.register')
+@include('modals.login')
+@include('modals.email')
+@include('modals.change_email')
+@include('modals.change_password')

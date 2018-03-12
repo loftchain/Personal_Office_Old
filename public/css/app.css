@@ -2349,6 +2349,10 @@ footer img {
   border-radius: 5px;
 }
 
+.modal-dialog form .modal-body .x-input.isError {
+  border: 1px solid #ff443a !important;
+}
+
 .modal-dialog form .modal-body .error-message {
   text-align: left;
   width: 100%;
@@ -2370,18 +2374,18 @@ footer img {
   border: none;
   border-radius: 25px;
   text-decoration: none;
+  position: relative;
   background: #330868;
   background: -webkit-gradient(left top, right top, color-stop(0%, #330868), color-stop(100%, #30ced1));
   background: -webkit-gradient(linear, left top, right top, from(#330868), to(#30ced1));
   background: linear-gradient(to right, #330868 0%, #30ced1 100%);
 }
 
-.isError {
-  border: 1px solid #ff443a;
-}
-
-.isValid {
-  border: 1px solid #E0E0E0;
+.modal-dialog form .modal-footer button .small-spinner {
+  position: absolute;
+  left: 30px;
+  top: 15.5px;
+  display: none;
 }
 
 @media (max-width: 769px) {
