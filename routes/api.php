@@ -30,6 +30,8 @@ Route::get('table', function(){
   return response()->json($table_array);
 });
 
+Route::post('/post', 'PostController@store');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
