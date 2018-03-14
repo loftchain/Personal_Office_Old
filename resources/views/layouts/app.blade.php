@@ -9,7 +9,7 @@
         @include('layouts.links')
     </head>
     <body>
-        <div id="app">
+        <div id=x-app">
             @include('layouts.header')
             @include('layouts.dashboard')
             @yield('content')

@@ -762,7 +762,7 @@ module.exports = __webpack_require__(35);
 
 __webpack_require__(9);
 
-// window.Vue = require('vue');
+//window.Vue = require('vue');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -770,7 +770,7 @@ __webpack_require__(9);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('example', require('./components/Example.vue'));
+// Vue.component('home', require('./components/Home.vue'));
 //
 // const app = new Vue({
 //     el: '#app'
@@ -826,12 +826,12 @@ if (token) {
  */
 
 // import Echo from 'laravel-echo'
-
+//
 // window.Pusher = require('pusher-js');
-
+//
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
-//     key: 'your-pusher-key'
+//     key: 'bef82d5c2c7e0ec5b301'
 // });
 
 /***/ }),
