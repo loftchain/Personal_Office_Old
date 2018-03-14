@@ -7,8 +7,9 @@
     modalBtn: $('.modal-btn'),
     grayBorderColor: '#E0E0E0',
     exclamation: '<i class="fa fa-exclamation-circle fa-lg" aria-hidden="true"></i>&nbsp',
-    resetBorderColor: function () {
+    resetModal: function () {
       v.xInput.removeClass('isError');
+      v.errors.text('');
     },
     errorStateSelection: function (data) {
       switch (true) {
@@ -53,8 +54,7 @@
     ajax_form: function () {
       $(this).on('submit', function (e) {
         e.preventDefault();
-        v.errors.html('');
-        v.resetBorderColor();
+        v.resetModal();
         $.ajax({
           url: $(this).attr("action"),
           type: $(this).attr("method"),
@@ -73,9 +73,7 @@
   };
 
   $('.modal').on('hidden.bs.modal', function () {
-    v.resetBorderColor();
-    $('.error-message-captcha').text('');
-    $('.error-message').text('');
+      v.resetModal();
   });
 
   v.modalBtn.on('click', function () {
@@ -83,15 +81,9 @@
   });
 
   v.xInput.on('input', function () {
-    var index = v.xInput.index($(this));
-    console.log(index);
     if ($(this).is(':valid')) {
-      $('.error-message' + index).text('');
-      $('.error-message-captcha').text('');
-      $(this).removeClass('isError');
-    }
-    if ($(this).value === '') {
-      $(this).removeClass('isError');
+        $(this).removeClass('isError');
+        $(this).next().html('');
     }
   });
 
