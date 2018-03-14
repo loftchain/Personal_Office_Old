@@ -11,7 +11,12 @@
       v.xInput.removeClass('isError');
       v.errors.text('');
     },
+    closeModal: function () {
+      $('.modal').modal('hide');
+      $('.modal-backdrop').remove();
+    },
     errorStateSelection: function (data) {
+      console.log(data);
       switch (true) {
         case !$.isEmptyObject(data.validation_error):
           if (data.validation_error['g-recaptcha-response']) {
@@ -45,6 +50,10 @@
             $(".error-message." + key).html(v.exclamation + value);
             v.loaderSpinner.hide();
           });
+          break;
+        case !$.isEmptyObject(data.success_register):
+          v.closeModal();
+          $.notify("I'm over here !");
           break;
         default:
 

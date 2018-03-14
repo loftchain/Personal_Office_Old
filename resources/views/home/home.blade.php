@@ -11,21 +11,4 @@
             @include('home.my_transactions.transactions')
         </div>
     </div>
-    <script>
-        window.Laravel = {!! json_encode([
-      'csrfToken' => csrf_token(),
-    ]) !!};
-    </script>
-
-    <div id="app">
-      <!-- home Vue component -->
-      <home></home>
-    </div>
-    <script>
-        if (window.Notification) {
-            console.log('Notifications are supported!');
-        } else {
-            alert('Notifications aren\'t supported on your browser! :(');
-        }
-    </script>
 @endsection
