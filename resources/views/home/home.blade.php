@@ -4,11 +4,12 @@
 
     <div class="x-body tab-content">
         <div id="home" class="tab-pane fade in active">
-            @include('home.new_widget')
-            @include('home.new_wallet')
+            @include('home.widget')
+            @include('home.wallet')
         </div>
         <div id="transactions" class="tab-pane fade">
-            @include('home.my_transactions.transactions')
+            @include('home.transactions')
         </div>
     </div>
+
 @endsection

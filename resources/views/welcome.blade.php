@@ -55,7 +55,7 @@
                     @include('home.token_sell.tables')
                 </div>
                 <div id="myTokens" class="tab-pane fade">
-                    @include('home.my_transactions.transactions')
+                    @include('home.transactions')
                 </div>
             </div>
         </section>

@@ -15,6 +15,14 @@
       $('.modal').modal('hide');
       $('.modal-backdrop').remove();
     },
+    successRegisterChangeState: function () {
+        $(".modal-cloak").fadeIn('slow');
+        setTimeout(function(){
+            $('.process-register').hide();
+            $('.success-register').show();
+            $('.modal-cloak').fadeOut('slow');
+        },1500);
+    },
     errorStateSelection: function (data) {
       console.log(data);
       switch (true) {
@@ -52,8 +60,7 @@
           });
           break;
         case !$.isEmptyObject(data.success_register):
-          v.closeModal();
-          $.notify("I'm over here !");
+            v.successRegisterChangeState();
           break;
         default:
 
