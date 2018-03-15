@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\ConfirmRegistration;
 use App\Traits\ChangeUserFieldTrait;
 use App\Traits\SendDataServerTrait;
 use App\Models\User;
@@ -227,13 +228,14 @@ class RegisterController extends Controller
         if ($subscription) {
           $user['password'] = str_random(10);
         }
-        $this->thisConfirmationEmailSend($user, 3,$subscription);
+//        $this->thisConfirmationEmailSend($user, 3,$subscription);
         $user->password = ($subscription) ? bcrypt($user['password']) : bcrypt($data['password']);
         $user->valid_step = 1;
         $request->session()->put('this_email', $data['email']);
         $user->save();
-
-        $this->registration_history_make($user);
+        Log::info($data['email']);
+	      Mail::to($data['email'])->send(new ConfirmRegistration());
+//        $this->registration_history_make($user);
         return response()->json(['success_register' => Lang::get('controller/register.pwd_sent'), 'email' => $data['email']]);
     }
 
