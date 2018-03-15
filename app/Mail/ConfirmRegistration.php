@@ -28,7 +28,7 @@ class ConfirmRegistration extends Mailable
      */
     public function build()
     {
-	    return $this->from('loftchain@rambler.ru')
+	    return $this->from('info@loftchain.io')
 		    ->view('mails.registration_confirmation');
     }
 }

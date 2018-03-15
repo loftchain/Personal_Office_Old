@@ -16,6 +16,13 @@
 
   .success-register {
     display: none;
+
+    #resend-button{
+      &:disabled{
+        background: $gray3;
+        color: $gray1;
+      }
+    }
   }
 
 }

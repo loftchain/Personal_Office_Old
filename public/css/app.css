@@ -2520,6 +2520,11 @@ footer img {
   display: none;
 }
 
+.modal-dialog .success-register #resend-button:disabled {
+  background: #BDBDBD;
+  color: black;
+}
+
 .a-body {
   margin-top: 40px;
 }

@@ -40,23 +40,23 @@ function showMessage(time, storageItem, domEl){
 var second = 58;
 
 function timer() {
-    var time = document.getElementById('timer');
-    var button = document.getElementById('button');
-    if (time) {
-        time.innerHTML = second;
-        second--;
-        if (time.innerHTML == 0) {
+  var time = document.getElementById('timer');
+  var button = document.getElementById('button');
+  if (time) {
+    time.innerHTML = second;
+    second--;
+    if (time.innerHTML == 0) {
 
-            time.style.display = 'none';
-            button.classList.remove("repass-btn-dis");
-            button.classList.add("repass-btn");
-            button.disabled = false;
+      time.style.display = 'none';
+      button.classList.remove("repass-btn-dis");
+      button.classList.add("repass-btn");
+      button.disabled = false;
 
-        } else {
+    } else {
 
-            setTimeout(timer, 1000);
-        }
+      setTimeout(timer, 1000);
     }
+  }
 }
 
 // agreement2 page

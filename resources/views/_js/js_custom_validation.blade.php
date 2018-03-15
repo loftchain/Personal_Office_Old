@@ -15,15 +15,35 @@
       $('.modal').modal('hide');
       $('.modal-backdrop').remove();
     },
-    successRegisterChangeState: function () {
-        $(".modal-cloak").fadeIn('slow');
-        setTimeout(function(){
-            $('.process-register').hide();
-            $('.success-register').show();
-            $('.modal-cloak').fadeOut('slow');
-        },1500);
+    hideCloak: function () {
+      $('.modal-cloak').fadeOut();
     },
-    errorStateSelection: function (data) {
+    successRegisterChangeState: function () {
+      $('.process-register').hide();
+      $('.success-register').show();
+      $('.modal-cloak').fadeOut('slow');
+    },
+    resendTimeout: function () {
+      var seconds = 59;
+      var time = $('#timer');
+      var button = $('#resend-button');
+      if (time) {
+        time.innerHTML = seconds;
+        seconds--;
+        if (time.innerHTML == 0) {
+
+          time.hide();
+          button.removeClass("repass-btn-dis");
+          button.addClass("repass-btn");
+          button.disabled = false;
+
+        } else {
+
+          setTimeout(v.resendTimeout, 1000);
+        }
+      }
+    },
+    stateSelection: function (data) {
       console.log(data);
       switch (true) {
         case !$.isEmptyObject(data.validation_error):
@@ -36,6 +56,7 @@
             }
             $(".error-message." + key).html(v.exclamation + value[0]);
           });
+          v.hideCloak();
           break;
         case !$.isEmptyObject(data.not_your_email):
         case !$.isEmptyObject(data.not_equal):
@@ -56,11 +77,12 @@
           $.each(data, function (key, value) {
             $(".error-message." + key).prev().addClass('isError');
             $(".error-message." + key).html(v.exclamation + value);
-            v.loaderSpinner.hide();
+            v.hideCloak();
           });
           break;
         case !$.isEmptyObject(data.success_register):
-            v.successRegisterChangeState();
+          v.successRegisterChangeState();
+          setTimeout(v.resendTimeout, 1000);
           break;
         default:
 
@@ -78,7 +100,7 @@
           dataType: "json",
           success: function (data) {
             v.loaderSpinner.hide();
-            v.errorStateSelection(data);
+            v.stateSelection(data);
           },
           error: function (data) {
             console.log('Error: Something wrong with ajax call ' + data.errors);
@@ -89,17 +111,17 @@
   };
 
   $('.modal').on('hidden.bs.modal', function () {
-      v.resetModal();
+    v.resetModal();
   });
 
   v.modalBtn.on('click', function () {
-    v.loaderSpinner.show();
+    $(".modal-cloak").fadeIn('slow');
   });
 
   v.xInput.on('input', function () {
     if ($(this).is(':valid')) {
-        $(this).removeClass('isError');
-        $(this).next().html('');
+      $(this).removeClass('isError');
+      $(this).next().html('');
     }
   });
 
