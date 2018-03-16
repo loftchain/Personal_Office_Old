@@ -2520,9 +2520,9 @@ footer img {
   display: none;
 }
 
-.modal-dialog .success-register #resend-button:disabled {
+.modal-dialog .success-register .resend-btn:disabled {
   background: #BDBDBD;
-  color: black;
+  color: #828282;
 }
 
 .a-body {

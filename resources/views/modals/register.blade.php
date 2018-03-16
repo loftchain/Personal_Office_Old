@@ -32,10 +32,10 @@
                 <div class="modal-footer">
                   <div class="success-register">
                     <form id="resendForm" method="GET" action="{{ route('resend', ['email' => app('request')->input('email')]) }}">
-                      <button disabled id="resend-button" type="submit" class="repass-btn-dis">
+                      <button disabled type="submit" class="resend-btn">
                         <i class="small-spinner fa fa-circle-o-notch fa-spin fa-lg fa-fw"></i>
                         @lang('auth/login.repass_btn')
-                        <span id="timer">59</span>
+                        <span id="timer">30</span>
                       </button>
                     </form>
                   </div>

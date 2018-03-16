@@ -17,7 +17,7 @@
   .success-register {
     display: none;
 
-    #resend-button{
+    .resend-btn{
       &:disabled{
         background: $gray3;
         color: $gray1;
