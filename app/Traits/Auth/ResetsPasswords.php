@@ -2,187 +2,159 @@
 
 namespace App\Traits\Auth;
 
-
-use App\Traits\ChangeUserFieldTrait;
-use App\Traits\RegisterMailTrait;
-use App\UserHistoryFields;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Support\Facades\Validator;
-use ReCaptcha\ReCaptcha;
-use App\Traits\CaptchaTrait;
-use GuzzleHttp\Client;
-use App\Traits\RemoteHistoryTrait;
-use Illuminate\Foundation\Auth\RedirectsUsers;
-use App\Models\User;
 
 trait ResetsPasswords
 {
-    use RedirectsUsers,CaptchaTrait,ChangeUserFieldTrait, RemoteHistoryTrait;
+	use RedirectsUsers;
 
-    /**
-     * Display the password reset view for the given token.
-     *
-     * If no token is present, display the link request form.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string|null  $token
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showResetForm(Request $request, $token = null)
-    {
-        $user = User::where('remember_token', $token)->first();
+	/**
+	 * Display the password reset view for the given token.
+	 *
+	 * If no token is present, display the link request form.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  string|null  $token
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function showResetForm(Request $request, $token = null)
+	{
+		return view('auth.passwords.reset')->with(
+			['token' => $token, 'email' => $request->email]
+		);
+	}
 
-        if (is_null($user)) {
-            return redirect(route('login'))->with('success', 'Session for this operation is over');
-        }
+	/**
+	 * Reset the given user's password.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+	 */
+	public function reset(Request $request)
+	{
+		$this->validate($request, $this->rules(), $this->validationErrorMessages());
 
-        return view('auth.passwords.reset')->with(
-            ['token' => $token, 'email' => $request->email]
-        );
-    }
+		// Here we will attempt to reset the user's password. If it is successful we
+		// will update the password on an actual user model and persist it to the
+		// database. Otherwise we will parse the error and return the response.
+		$response = $this->broker()->reset(
+			$this->credentials($request), function ($user, $password) {
+			$this->resetPassword($user, $password);
+		}
+		);
 
-    /**
-     * Reset the given user's password.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
-     */
+		// If the password was successfully reset, we will redirect the user back to
+		// the application's home authenticated view. If there is an error we can
+		// redirect them back to where they came from with their error message.
+		return $response == Password::PASSWORD_RESET
+			? $this->sendResetResponse($response)
+			: $this->sendResetFailedResponse($request, $response);
+	}
 
-    protected function validator($request)
-    {
+	/**
+	 * Get the password reset validation rules.
+	 *
+	 * @return array
+	 */
+	protected function rules()
+	{
+		return [
+			'token' => 'required',
+			'email' => 'required|email',
+			'password' => 'required|confirmed|min:6',
+		];
+	}
 
-        $request['captcha'] = $this->captchaCheck();
-        return Validator::make($request, [
-            'token' => 'required',
-            'email' => 'required|email|min:7|max:255',
-            'password' => 'required|confirmed|min:3|max:255',
-            'password_confirmation' => 'required|min:3|max:255',
-            'g-recaptcha-response' => 'required',
-            'captcha' => 'accepted'
-        ]);
-    }
+	/**
+	 * Get the password reset validation error messages.
+	 *
+	 * @return array
+	 */
+	protected function validationErrorMessages()
+	{
+		return [];
+	}
 
+	/**
+	 * Get the password reset credentials from the request.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return array
+	 */
+	protected function credentials(Request $request)
+	{
+		return $request->only(
+			'email', 'password', 'password_confirmation', 'token'
+		);
+	}
 
-    public function reset(Request $request)
-    {
+	/**
+	 * Reset the given user's password.
+	 *
+	 * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
+	 * @param  string  $password
+	 * @return void
+	 */
+	protected function resetPassword($user, $password)
+	{
+		$user->password = Hash::make($password);
 
-        $user = User::where('email', $request['email'])->first();
+		$user->setRememberToken(Str::random(60));
 
-        if ($request['email'] != Session::get('reset_password_email')) {
-            return response()->json(['reset_email_not_match' => Lang::get('controller/resetPasswords.reset_email_not_match')]);
-        }
+		$user->save();
 
-        $input = $request->all();
-        $validator = $this->validator($input);
+		event(new PasswordReset($user));
 
-        if ($validator->fails()) {
-            return response()->json(['validation_error' => $validator->errors()]);
-        }
+		$this->guard()->login($user);
+	}
 
-        if (trim(strtolower($input['password'])) != trim(strtolower($input['password_confirmation']))) {
-            return response()->json(['not_equal' => Lang::get('controller/changePassword.not_equal')]);
-        }
+	/**
+	 * Get the response for a successful password reset.
+	 *
+	 * @param  string  $response
+	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+	 */
+	protected function sendResetResponse($response)
+	{
+		return response()->json(['success_reset_pwd' => $response]);
+	}
 
-        $user->password = bcrypt($request['password']);
-        $user->remember_token = str_random(32);
-        $user->save();
+	/**
+	 * Get the response for a failed password reset.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  string  $response
+	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+	 */
+	protected function sendResetFailedResponse(Request $request, $response)
+	{
+		return redirect()->back()
+			->withInput($request->only('email'))
+			->withErrors(['email' => trans($response)]);
+	}
 
-        $this->forgot_pwd_history_make($request['email'], $request['password']);
-        $this->guard()->login($user);
+	/**
+	 * Get the broker to be used during password reset.
+	 *
+	 * @return \Illuminate\Contracts\Auth\PasswordBroker
+	 */
+	public function broker()
+	{
+		return Password::broker();
+	}
 
-        return response()->json(['status' => Lang::get('controller/changePassword.success')]);
-    }
-
-    /**
-     * Get the password reset validation rules.
-     *
-     * @return array
-     */
-    protected function forgot_pwd_history_make($email, $new_password){
-        if ($email && $new_password) {
-            $user = User::where('email', $email)->first();
-            $r = [
-                'forgot_pwd_old' => $user['password'],
-                'forgot_pwd_new' => bcrypt($new_password),
-                'forgot_pwd_at' => Carbon::now(),
-            ];
-            UserHistoryFields::where('reg_email', $email)->update($r);
-            $this->remote_history($r, 'reset password', $user);
-        }
-    }
-    /**
-     * Get the password reset validation error messages.
-     *
-     * @return array
-     */
-    protected function validationErrorMessages()
-    {
-        return [];
-    }
-
-    /**
-     * Get the password reset credentials from the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    protected function credentials(Request $request)
-    {
-        return $request->only(
-            'email', 'password', 'password_confirmation', 'token'
-        );
-    }
-
-    /**
-     * Get the response for a successful password reset.
-     *
-     * @param  string  $response
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
-     */
-    protected function sendResetResponse($response)
-    {
-        return redirect($this->redirectPath())
-            ->with('status', trans($response));
-    }
-
-    /**
-     * Get the response for a failed password reset.
-     *
-     * @param  \Illuminate\Http\Request
-     * @param  string  $response
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
-     */
-    protected function sendResetFailedResponse(Request $request, $response)
-    {
-
-    }
-
-    /**
-     * Get the broker to be used during password reset.
-     *
-     * @return \Illuminate\Contracts\Auth\PasswordBroker
-     */
-    public function broker()
-    {
-        return Password::broker();
-    }
-
-    /**
-     * Get the guard to be used during password reset.
-     *
-     * @return \Illuminate\Contracts\Auth\StatefulGuard
-     */
-    protected function guard()
-    {
-        return Auth::guard();
-    }
+	/**
+	 * Get the guard to be used during password reset.
+	 *
+	 * @return \Illuminate\Contracts\Auth\StatefulGuard
+	 */
+	protected function guard()
+	{
+		return Auth::guard();
+	}
 }

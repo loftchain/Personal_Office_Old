@@ -62,7 +62,7 @@ class LoginController extends Controller
 		}
 
 		$this->guard()->login($user);
-		return response()->json(['auth_success' => 'auth_success']);
+		return response()->json(['success_login' => 'auth_success']);
 	}
 
 	public function logout(Request $request)

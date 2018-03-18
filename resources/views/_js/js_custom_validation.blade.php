@@ -78,8 +78,20 @@
                 case !$.isEmptyObject(data.success_register):
 	                window.location.replace( "{{ route('root') . '/agreement1' }}" );
 	                break;
-	            case !$.isEmptyObject(data.auth_success):
-		            window.location.replace( "{{ route('root') . '/agreement1' }}" );
+	            case !$.isEmptyObject(data.success_login):
+		            window.location.replace( "{{ route('root') }}" );
+		            break;
+	            case !$.isEmptyObject(data.success_reset_email_sent):
+		            $.notify("Enter: Fade In and RightExit: Fade Out and Right", {
+			            animate: {
+				            enter: 'animated fadeInRight',
+				            exit: 'animated fadeOutRight'
+			            }
+		            });
+		            v.closeModal();
+		            break;
+                case !$.isEmptyObject(data.success_reset_pwd):
+		            v.closeModal();
 		            break;
 	            case !$.isEmptyObject(data.goto2):
 		            window.location.replace( "{{ route('root') . '/agreement2' }}" );
@@ -115,6 +127,12 @@
 
     $('.modal').on('hidden.bs.modal', function () {
         v.resetModal();
+	        $.notify("Enter: Fade In and RightExit: Fade Out and Right", {
+		        animate: {
+			        enter: 'animated fadeInRight',
+			        exit: 'animated fadeOutRight'
+		        }
+	        });
     });
 
     v.modalBtn.on('click', function () {
