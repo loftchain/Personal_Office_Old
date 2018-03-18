@@ -15,10 +15,8 @@ Route::group(['middleware' =>  ['guest']], function(){
 
   Route::get('/', 'HomeController@welcome')->name('root');
 
-
 });
 
-Auth::routes();
 
 Route::any('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 
@@ -31,9 +29,9 @@ Route::get('/change_password', 'Auth\ChangePasswordController@change_password')-
 Route::get('/mycrypto', 'MycryptoController@mycrypto')->name('mycrypto');
 Route::get('/current_wallets', 'MycryptoController@current_wallets')->name('current_wallets');
 Route::get('/resend/{email}', 'Auth\RegisterController@resend')->name('resend');
-Route::get('/users/confirmation/{token}/{host}', 'Auth\RegisterController@confirmation')->name('confirmation');
+Route::get('/confirmation/{token}', 'Auth\RegisterController@confirmation')->name('confirmation');
 
-
+Route::post('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/goToAgreement2', 'Auth\StepValidation\AgreementController@goToAgreement2')->name('goToAgreement2');
 Route::post('/reset_email', 'Auth\ChangeEmailController@reset_email')->name('reset_email');
 Route::post('/renew_password', 'Auth\ChangePasswordController@renew_password')->name('renew_password');
@@ -41,6 +39,7 @@ Route::post('/store_personal_data', 'Auth\StepValidation\AgreementController@sto
 Route::post('/update_wallet_data', 'MycryptoController@update_wallet_data')->name('update_wallet_data');
 Route::post('/store_wallet_data', 'MycryptoController@store_wallet_data')->name('store_wallet_data');
 
+Auth::routes();
 
 
 Route::group(['middleware' =>  ['agreement1']], function(){
@@ -56,24 +55,3 @@ Route::group(['middleware' =>  ['guest']], function() {
 });
 
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
-
-
-// Referals
-Route::group([
-    'prefix'     => 'referals',
-    'middleware' => 'auth',
-    'namespace'  => 'Lk',
-], function () {
-    Route::get('/', 'ReferalsController@index')->name('lk.referals.list');
-    Route::post('/', 'ReferalsController@store');
-    Route::delete('/links/{link}', 'ReferalsController@delete');
-});
-
-Route::get('/test', 'HomeController@test')->name('test');
-
-Route::get('/page{refer}', 'ReferlinkController@linkReferal')->where('refer', '[a-zA-Z0-9]+')->name('refer');
-
-  Route::group(['middleware' =>  'admin'], function(){
-    Route::post('admin/force_confirm', 'Admin\AdminController@force_confirm')->name('admin.force_confirm');
-    Route::get('admin/confirmation', 'Admin\AdminController@confirmation')->name('admin.confirmation');
-  });

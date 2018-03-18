@@ -8,6 +8,8 @@ html{
 body{
   position:relative!important;
   font-family: 'SF Display', sans-serif!important;
+  min-height: 100vh;
+  z-index: 2;
 }
 .x-body{
   background: white;
@@ -18,7 +20,7 @@ body{
 
 
 footer{
-  //position: absolute;
+  //position: fixed;
   //bottom: 0;
   width:100%;
   z-index:1;

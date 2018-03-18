@@ -9,7 +9,7 @@
                 <div class="modal-body">
                     {{ csrf_field() }}
                     <label for="email" class="x-label l-label email-label">@lang('auth/login.email_label')</label>
-                    <input type="text" name="email" class="x-input email-input" placeholder="example@mail.com" value="">
+                    <input type="text" name="email" class="x-input email-input not_confirmed" placeholder="example@mail.com" value="">
                     <div class="error-message error-message0 email"></div>
                     <label for="password" class="x-label l-label password-label ">@lang('auth/login.pwd_label')</label>
                     <input type="password" name="password" autofocus class="x-input password-input">

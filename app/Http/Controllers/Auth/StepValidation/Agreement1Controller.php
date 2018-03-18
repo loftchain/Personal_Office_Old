@@ -19,7 +19,7 @@ class Agreement1Controller extends Controller
 
   public function agreement1()
   {
-    return view('auth.agreement1');
+    return view('agreement.agreement1');
   }
 
 }

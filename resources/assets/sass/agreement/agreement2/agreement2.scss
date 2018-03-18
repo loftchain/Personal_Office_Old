@@ -4,8 +4,10 @@
       @extend %fsb;
       width:100%;
       position: relative;
+
       div{
         width:325px;
+
         label{
           display:block;
           font-weight: 500;
@@ -21,7 +23,6 @@
           margin: 0;
           padding-left: 15px;
         }
-
       }
 
       button{
@@ -39,9 +40,17 @@
         white-space: nowrap;
         width:200px;
       }
-
     }
 
+    &__crumbs{
+      ul{
+        li:last-child{
+          &:after{
+            background: $gray5;
+          }
+        }
+      }
+    }
   }
 
 }

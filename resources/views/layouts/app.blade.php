@@ -11,11 +11,11 @@
     <body>
         <div id=x-app">
             @include('layouts.header')
-            @include('layouts.dashboard')
             @yield('content')
             @include('layouts.footer')
         </div>
         @include('layouts.scripts')
         @yield('script')
+        @stack('scripts')
     </body>
 </html>

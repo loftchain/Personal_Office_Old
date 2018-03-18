@@ -51,6 +51,7 @@
   }
 }
 .a1-body {
+
   .a1-container {
     &__wp{
       @extend %fc;
@@ -73,9 +74,19 @@
 
     }
 
+    &__crumbs{
+      ul{
+        li:not(:first-child){
+          &:after{
+            background: $gray5;
+          }
+        }
+      }
+    }
+
     &__btns{
       width: 550px;
-      margin-top: 30px;
+      margin-top: 50px;
       @extend %fsb;
       button{
         outline: none;

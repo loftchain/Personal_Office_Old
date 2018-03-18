@@ -12,7 +12,7 @@
         "guzzlehttp/guzzle": "~6.0",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "pusher/pusher-php-server": "^3.0"
+        "wildbit/postmark-php": "^2.5"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

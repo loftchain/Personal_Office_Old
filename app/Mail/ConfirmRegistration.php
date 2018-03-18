@@ -11,24 +11,17 @@ class ConfirmRegistration extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public $token;
+
+    public function __construct($token)
     {
-        //
+        $this->token = $token;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
 	    return $this->from('info@loftchain.io')
-		    ->view('mails.registration_confirmation');
+		    ->view('mails.registration_confirmation')
+		    ->with(['token' => $this->token]);
     }
 }

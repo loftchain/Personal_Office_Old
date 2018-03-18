@@ -2,6 +2,7 @@
 
 @section('content')
 
+    @include('layouts.dashboard')
     <div class="x-body tab-content">
         <div id="home" class="tab-pane fade in active">
             @include('home.widget')

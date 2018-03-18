@@ -20,6 +20,9 @@
         hideCloak: function () {
             $('.modal-cloak').fadeOut();
         },
+	    hideSpinner: function () {
+		    v.loaderSpinner.fadeOut();
+	    },
         successRegisterChangeState: function () {
             $('.process-register').hide();
             $('.success-register').show();
@@ -47,7 +50,7 @@
                         }
                         $('.error-message.' + key).html(v.exclamation + value[0]);
                     });
-                    v.hideCloak();
+	                v.hideSpinner();
                     break;
                 case !$.isEmptyObject(data.not_your_email):
                 case !$.isEmptyObject(data.not_equal):
@@ -56,7 +59,7 @@
                 case !$.isEmptyObject(data.failed):
                 case !$.isEmptyObject(data.reg_limit_exceeded):
                 case !$.isEmptyObject(data.reset_limit_exceeded):
-                case !$.isEmptyObject(data.not_confirmed_resend):
+                case !$.isEmptyObject(data.not_confirmed):
                 case !$.isEmptyObject(data.invalid_post_service):
                 case !$.isEmptyObject(data.smth_went_wrong):
                 case !$.isEmptyObject(data.user_not_found):
@@ -65,16 +68,25 @@
                 case !$.isEmptyObject(data.reset_email_not_match):
                 case !$.isEmptyObject(data.no_such_user):
                 case !$.isEmptyObject(data.already_confirmed):
+                case !$.isEmptyObject(data.already_exists):
                     $.each(data, function (key, value) {
                         $('.error-message.' + key).prev().addClass('isError');
                         $('.error-message.' + key).html(v.exclamation + value);
-                        v.hideCloak();
                     });
+	                v.hideSpinner();
                     break;
                 case !$.isEmptyObject(data.success_register):
-                    v.successRegisterChangeState();
-                    setInterval(v.resendTimeout, 1000);
-                    break;
+	                window.location.replace( "{{ route('root') . '/agreement1' }}" );
+	                break;
+	            case !$.isEmptyObject(data.auth_success):
+		            window.location.replace( "{{ route('root') . '/agreement1' }}" );
+		            break;
+	            case !$.isEmptyObject(data.goto2):
+		            window.location.replace( "{{ route('root') . '/agreement2' }}" );
+		            break;
+	            case !$.isEmptyObject(data.goto3):
+		            window.location.replace( "{{ route('root') }}" );
+		            break;
                 default:
 
                     break;
@@ -106,7 +118,7 @@
     });
 
     v.modalBtn.on('click', function () {
-        $('.modal-cloak').fadeIn('slow');
+        v.loaderSpinner.fadeIn('slow');
     });
 
     v.xInput.on('input', function () {
