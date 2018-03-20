@@ -19,20 +19,9 @@ trait ResetsPasswords
 {
 	use RedirectsUsers;
 
-	/**
-	 * Display the password reset view for the given token.
-	 *
-	 * If no token is present, display the link request form.
-	 *
-	 * @param  \Illuminate\Http\Request $request
-	 * @param  string|null $token
-	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-	 */
-	public function showResetForm(Request $request, $token = null)
+	public function showResetForm($token = null)
 	{
-		return view('auth.passwords.reset')->with(
-			['token' => $token, 'email' => $request->email]
-		);
+		return view('auth.passwords.reset')->with(['token' => $token]);
 	}
 
 	protected function validator(array $data)
@@ -45,17 +34,14 @@ trait ResetsPasswords
 		]);
 	}
 
-	protected function forgot_history_make($old_pwd, $new_pwd){
+	protected function forgot_history_make($id, $old_pwd, $new_pwd){
 		$fg = [
 			'forgot_pwd_old' => $old_pwd,
 			'forgot_pwd_new' => $new_pwd,
 			'forgot_pwd_at' => Carbon::now(),
 		];
 		if($old_pwd && $new_pwd){
-			Log::info($old_pwd);
-			Log::info($new_pwd);
-			Log::info(Auth::id());
-			UserHistoryFields::where('user_id', Auth::id())->update($fg);
+			UserHistoryFields::where('user_id', $id)->update($fg);
 		}
 	}
 
@@ -82,7 +68,7 @@ trait ResetsPasswords
 		$user->setRememberToken(Str::random(60));
 		$user->save();
 
-		$this->forgot_history_make($old_password, $user->password);
+		$this->forgot_history_make($user['id'], $old_password, $user->password);
 		event(new PasswordReset($user));
 		$this->guard()->login($user);
 		return response()->json(['success_reset_pwd'  => 'success']);
