@@ -20,7 +20,6 @@
                 </div>
                 <div class="modal-footer">
                   <button type="submit" class="modal-btn process-register">
-                      <i class="small-spinner fa fa-circle-o-notch fa-spin fa-lg fa-fw"></i>
                       @lang('auth/register.register_btn')
                   </button>
                 </div>

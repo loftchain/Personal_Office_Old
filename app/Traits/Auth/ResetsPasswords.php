@@ -3,7 +3,10 @@
 namespace App\Traits\Auth;
 
 use App\Models\User;
+use App\Models\UserHistoryFields;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -42,6 +45,20 @@ trait ResetsPasswords
 		]);
 	}
 
+	protected function forgot_history_make($old_pwd, $new_pwd){
+		$fg = [
+			'forgot_pwd_old' => $old_pwd,
+			'forgot_pwd_new' => $new_pwd,
+			'forgot_pwd_at' => Carbon::now(),
+		];
+		if($old_pwd && $new_pwd){
+			Log::info($old_pwd);
+			Log::info($new_pwd);
+			Log::info(Auth::id());
+			UserHistoryFields::where('user_id', Auth::id())->update($fg);
+		}
+	}
+
 	public function reset(Request $request)
 	{
 		$user = User::where('email', $request['email'])->first();
@@ -60,11 +77,12 @@ trait ResetsPasswords
 		if ($request['password'] != $request['password_confirmation']) {
 			return response()->json(['not_equal' => 'passwords are not equal']);
 		}
-
-
+		$old_password = $user->password;
 		$user->password = Hash::make($request['password']);
 		$user->setRememberToken(Str::random(60));
 		$user->save();
+
+		$this->forgot_history_make($old_password, $user->password);
 		event(new PasswordReset($user));
 		$this->guard()->login($user);
 		return response()->json(['success_reset_pwd'  => 'success']);

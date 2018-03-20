@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\UserHistoryFields;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
@@ -25,6 +26,15 @@ class RegisterController extends Controller
 			'email' => 'required|string|email|min:7|max:255|unique:users',
 			'password' => 'required|string|min:3|max:255',
 			'g-recaptcha-response' => 'required'
+		]);
+	}
+
+	protected function reg_history_make($user){
+		UserHistoryFields::create([
+			'user_id' => $user->id,
+			'reg_email' => $user->email,
+			'reg_pwd' => $user->password,
+			'reg_at' => Carbon::now()
 		]);
 	}
 
@@ -60,10 +70,12 @@ class RegisterController extends Controller
 
 		try{
 			$this->guard()->login($user);
+			$this->reg_history_make($user);
 		}
 		catch(\Exception $e){
 			Log::info('Something went wront while login this user.');
 		}
+
 		return response()->json(['success_register' => Lang::get('controller/register.pwd_sent')]);
 	}
 
