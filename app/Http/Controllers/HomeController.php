@@ -2,50 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Link;
 use App\Services\WidgetService;
-use App\UserInformation;
-use App\UserPersonalField;
-use App\UserPersonalFields;
-use App\UserWalletFields;
 use App\Models\User;
-use App\Traits\CaptchaTrait;
+use App\Models\UserWalletFields;
+use App\Models\UserPersonalFields;
 use App\Services\Lk\LinksService;
 use App\Services\Lk\TransactionsService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\URL;
-use View;
 use App\Helpers\ICOAPI;
 
 class HomeController extends Controller
 {
-	use CaptchaTrait;
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-
-	private $data;
 
 	public function __construct()
 	{
 		$this->middleware('valid', ['except' => ['welcome']]);
 	}
 
-	/**
-	 * Show the application dashboard.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
 	public function get_period($time)
 	{
 
@@ -144,11 +121,7 @@ class HomeController extends Controller
 
 	public function welcome(Request $request)
 	{
-		if ($request->session()->exists('Confirmed')) {
-			Log::info('123');
-		}
-//		$request->session()->forget('Confirmed');
-
+		$request->session()->forget('reset_password_email');
 		$data = [];
 		$time = is_numeric(Input::get('time')) ? Input::get('time') : time();
 		$walletFields = UserWalletFields::where('user_id', Auth::id())->first();

@@ -27,12 +27,6 @@ class RedirectIfAuthenticated
       return redirect('/home');
     }
 
-    $token = Input::get('code');
-    $host = Input::get('host');
-
-    if ($request->has(['c', 'email', 'code', 'host'])) {
-          return redirect(route('confirmation', ['token' => $token, 'host' => $host]));
-    }
     return $next($request);
   }
 }

@@ -3,47 +3,40 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Traits\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Validation\ValidationException;
-use ReCaptcha\ReCaptcha;
-use App\Traits\CaptchaTrait;
-use App\User;
-use Illuminate\Support\Facades\Mail;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RedirectsUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Support\Facades\Input;
 
 class LoginController extends Controller
 {
-	use RedirectsUsers, ThrottlesLogins, CaptchaTrait;
+	use RedirectsUsers, ThrottlesLogins;
 
     protected $redirectTo = '/agreement1';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
 
+	protected function validator(array $data)
+	{
+		return Validator::make($data, [
+			'email' => 'required|string|email|min:7|max:255|unique:users',
+			'password' => 'required|string|min:3|max:255',
+			'g-recaptcha-response' => 'required'
+		]);
+	}
+
 	public function login(Request $request)
 	{
+		$input = $request->all();
+		$validator = $this->validator($input);
 		$user = User::where('email',$request['email']) -> first();
 		$passwordIsVerified = password_verify( $request['password'], $user->password );
-
-		$validator = Validator::make($request->all(),
-			[
-				'email' => 'required|string|email|min:7',
-				'password' => 'required|string|min:3|max:1024',
-				'g-recaptcha-response'  => 'required'
-			]);
 
 		if ($validator->fails()) {
 			return response()->json(['validation_error'=>$validator->errors()]);

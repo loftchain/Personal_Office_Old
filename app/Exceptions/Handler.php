@@ -8,7 +8,7 @@ use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 Use Illuminate\Support\Facades\Log;
 use App\Models\User;
-use App\UserPersonalFields;
+use App\Models\UserPersonalFields;
 use Illuminate\Http\Response;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 

@@ -1,7 +1,7 @@
 <section class="x-dashboard {{ Auth::check() ? 'auth' : 'guest' }}">
     @if (Auth::check())
         <div class="x-dashboard__info">
-            <span class="x-dashboard__info_who"> @lang('home/home.logged_in_as'): {{ obfuscate_email('nkt.millers+test@email.com') }}</span>
+            <span class="x-dashboard__info_who"> @lang('home/home.logged_in_as'): {{ obfuscate_email(Auth::user()->email) }}</span>
             <span class="x-dashboard__info_tokens">12.212312 TOK</span>
         </div>
         <div class="x-dashboard__tabs">
@@ -34,6 +34,6 @@
 </section>
 @include('modals.register')
 @include('modals.login')
-@include('modals.email')
+@include('modals.send_password_reset_emails')
 @include('modals.change_email')
 @include('modals.change_password')

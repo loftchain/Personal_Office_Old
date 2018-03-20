@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Auth\StepValidation;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\UserPersonalFields;
+use App\Models\UserPersonalFields;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+
 class AgreementController extends Controller
 {
 
@@ -35,7 +36,6 @@ class AgreementController extends Controller
       'date_place_birth' => $data['date_place_birth'],
       'nationality' => $data['nationality'],
       'source_of_funds' => $data['source_of_funds'],
-//      'presumptive_investment' => $data['presumptive_investment'],
     ]);
   }
 

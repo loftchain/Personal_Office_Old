@@ -9,7 +9,7 @@
                 <div class="modal-body">
                     {{ csrf_field() }}
                     <label for="email" class="x-label email-label">@lang('auth/password_recovery_send_email.email_label')</label>
-                    <input type="text" name="email" class="x-input email-input">
+                    <input type="text" name="email" class="x-input email-input user_not_found">
                     <div class="error-message error-message0 email"></div>
                     <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
                     <div class="error-message error-message3 error-message-captcha g-recaptcha-response"></div>
