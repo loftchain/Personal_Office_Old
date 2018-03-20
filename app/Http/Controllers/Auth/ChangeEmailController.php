@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Models\UserHistoryFields;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -37,7 +39,6 @@ class ChangeEmailController extends Controller
 
 		if($old_email && $new_email){
 			UserHistoryFields::where('user_id', Auth::id())->update($chm);
-			$this->remote_history($chm, 'change email', null);
 		}
 	}
 

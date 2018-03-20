@@ -25,7 +25,7 @@ class LoginController extends Controller
 	protected function validator(array $data)
 	{
 		return Validator::make($data, [
-			'email' => 'required|string|email|min:7|max:255|unique:users',
+			'email' => 'required|string|email|min:7|max:255',
 			'password' => 'required|string|min:3|max:255',
 			'g-recaptcha-response' => 'required'
 		]);

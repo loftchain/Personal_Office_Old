@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\UserHistoryFields;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +18,6 @@ class ChangePasswordController extends Controller
 	public function __construct()
 	{
 		$this->middleware('valid');
-
 	}
 
 	protected function validator(array $data)
@@ -39,7 +39,6 @@ class ChangePasswordController extends Controller
 		];
 		if($old_pwd && $new_pwd){
 			UserHistoryFields::where('user_id', Auth::id())->update($chp);
-			$this->remote_history($chp, 'change password', null);
 		}
 	}
 
@@ -70,11 +69,6 @@ class ChangePasswordController extends Controller
 		if (trim(strtolower($input['password1'])) == trim(strtolower($input['password2']))) {
 			return response()->json(['not_equal' => Lang::get('controller/changePassword.not_equal')]);
 		}
-
-		$data = [
-			'password' => $input['password2'],
-			'email' => $user->email
-		];
 
 		$request->user()->fill([
 			'password' => bcrypt($request['password2'])
