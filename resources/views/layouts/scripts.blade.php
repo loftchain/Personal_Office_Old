@@ -7,3 +7,4 @@
 @include('_js.js_custom_validation')
 @include('_js.js_accordion')
 @include('_js.js_loader_cloak')
+@include('_js.js_widget')

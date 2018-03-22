@@ -25,15 +25,31 @@ class HomeController extends Controller
 
 	public function get_period($time)
 	{
+		$period = []; //current stage, next stage
 
-		if ($time >= env('PRE_ICO_START') && $time < env('PRE_ICO_END')) {
-			return 'pre_ico';
-		} else if ($time >= env('ICO_START') && $time < env('ICO_END')) {
-			return 'ico';
-		} else {
-			return 'out';
+		switch (true) {
+			case $time >= env('PRE_ICO_START') && $time < env('PRE_ICO_END'):
+				$difference = env('PRE_ICO_END') - env('PRE_ICO_START');
+				$period = ['pre_ico', 'out', $difference];
+				break;
+			case $time >= env('ICO_START') && $time < env('ICO_END'):
+				$difference = env('ICO_END') - env('ICO_START');
+				$period = ['ico', 'out', $difference];
+				break;
+			case $time < env('PRE_ICO_START'):
+				$difference = env('PRE_ICO_START') - time();
+				$period = ['out', 'pre-ico', $difference];
+				break;
+			case $time < env('ICO_START'):
+				$difference = env('ICO_START') - time();
+				$period = ['out', 'ico', $difference];
+				break;
+			case $time > env('ICO_END'):
+				$difference = null;
+				$period = ['out', 'finish', $difference];
+				break;
 		}
-
+		return $period;
 	}
 
 	protected function get_currency_name($currency)
@@ -73,7 +89,7 @@ class HomeController extends Controller
 //
 //
 //		$data['transactions'] = $this->get_wallet_data();
-//		$data['period'] = $this->get_period($time);
+		$data['period'] = $this->get_period($time);
 		$data['time'] = $time;
 //		$data['refs'] = $this->get_referals_data();
 		return view('home.home')->with('data', $data);
