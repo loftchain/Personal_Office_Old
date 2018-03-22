@@ -56,89 +56,26 @@ class HomeController extends Controller
 		return $transactionsService->getUserTransactions(Auth::id());
 	}
 
-	protected function get_referals_data()
-	{
-
-		$data = [];
-		$linksService = new LinksService();
-
-		$data['statistics'] = $linksService->userStatistics(Auth::id());
-//    $data['links'] = $linksService->forUser(User::where('id', Auth::id())->first());
-		$data['affiliate_id'] = $linksService->getUniqueAffiliate();
-
-		return $data;
-	}
-
-	protected function get_links_view()
-	{
-		$data = [];
-		$data['refs'] = $this->get_referals_data();
-		return view('lk.referals.list')->with('data', $data);
-	}
-
-	public function get_widget_data()
-	{
-		$w = new WidgetService();
-		return $w->getW();
-
-	}
-
-	protected function get_data_tables()
-	{
-		$ico = new ICOAPI(env('ICO_API_KEY'));
-		$blocks = $ico->getBlock();
-
-		return $blocks;
-	}
-
-
-	public function index()
-	{
-
-		Session::forget('reset_password_email');
-
-		$data = [];
-		$time = is_numeric(Input::get('time')) ? Input::get('time') : time();
-		$walletFields = UserWalletFields::where('user_id', Auth::id())->first();
-
-		if ($walletFields) {
-			$walletFields['full_name_of_wallet_invest_from'] = $this->get_currency_name($walletFields['name_of_wallet_invest_from']);
-			$data['walletFields'] = $walletFields;
-		}
-
-		$data['data_tables'] = $this->get_data_tables();
-		$data['widget_data'] = $this->get_widget_data();
-
-
-		$data['transactions'] = $this->get_wallet_data();
-		$data['period'] = $this->get_period($time);
-		$data['time'] = $time;
-		$data['refs'] = $this->get_referals_data();
-
-		return view('home.home')->with('data', $data);
-
-	}
-
 	public function welcome(Request $request)
 	{
 		$request->session()->forget('reset_password_email');
 		$data = [];
 		$time = is_numeric(Input::get('time')) ? Input::get('time') : time();
-		$walletFields = UserWalletFields::where('user_id', Auth::id())->first();
-
-		if ($walletFields) {
-			$walletFields['full_name_of_wallet_invest_from'] = $this->get_currency_name($walletFields['name_of_wallet_invest_from']);
-			$data['walletFields'] = $walletFields;
-		}
-
-		$data['data_tables'] = $this->get_data_tables();
-		$data['widget_data'] = $this->get_widget_data();
-
-
-		$data['transactions'] = $this->get_wallet_data();
-		$data['period'] = $this->get_period($time);
+//		$walletFields = UserWalletFields::where('user_id', Auth::id())->first();
+//
+//		if ($walletFields) {
+//			$walletFields['full_name_of_wallet_invest_from'] = $this->get_currency_name($walletFields['name_of_wallet_invest_from']);
+//			$data['walletFields'] = $walletFields;
+//		}
+//
+//		$data['data_tables'] = $this->get_data_tables();
+//		$data['widget_data'] = $this->get_widget_data();
+//
+//
+//		$data['transactions'] = $this->get_wallet_data();
+//		$data['period'] = $this->get_period($time);
 		$data['time'] = $time;
-		$data['refs'] = $this->get_referals_data();
+//		$data['refs'] = $this->get_referals_data();
 		return view('home.home')->with('data', $data);
 
 	}

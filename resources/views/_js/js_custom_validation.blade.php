@@ -1,46 +1,36 @@
 <script>
-	// var seconds = 59;
-	var v = {
+	let v = {
 		form: $('form'),
 		xInput: $('.x-input'),
 		errors: $('.error-message'),
 		loaderSpinner: $('.small-spinner'),
+		modal: $('.modal'),
 		modalBtn: $('.modal-btn'),
-		timer: $('#timer'),
 		grayBorderColor: '#E0E0E0',
 		exclamation: '<i class="fa fa-exclamation-circle fa-lg" aria-hidden="true"></i>&nbsp',
-		resetModal: function () {
+		resetModal: () => {
 			v.xInput.removeClass('isError');
 			v.errors.text('');
 		},
-		closeModal: function () {
-			$('.modal').modal('hide');
+		closeModal: () => {
+			v.modal.modal('hide');
 			$('.modal-backdrop').remove();
 		},
-		showNotification: function (text, type) {
+		showNotification: (text, type) => {
 			$.notify(text, {
 				type: type
 			});
 		},
-		hideCloak: function () {
-			$('.modal-cloak').fadeOut();
-		},
-		hideSpinner: function () {
+		hideSpinner: () => {
 			v.loaderSpinner.fadeOut();
 		},
-		successRegisterChangeState: function () {
-			$('.process-register').hide();
-			$('.success-register').show();
-			$('.modal-cloak').fadeOut('slow');
-		},
-		stateSelection: function (data) {
-			console.log(data);
+		stateSelection: data => {
 			switch (true) {
 				case !$.isEmptyObject(data.validation_error):
 					if (data.validation_error['g-recaptcha-response']) {
 						data.validation_error['g-recaptcha-response'] = ['{{ __('validation.accepted') }}'];
 					}
-					$.each(data.validation_error, function (key, value) {
+					$.each(data.validation_error, (key, value) => {
 						if ($('.error-message.' + key).prev().hasClass('x-input')) {
 							$('.error-message.' + key).prev().addClass('isError');
 						}
@@ -65,7 +55,7 @@
 				case !$.isEmptyObject(data.no_such_user):
 				case !$.isEmptyObject(data.already_confirmed):
 				case !$.isEmptyObject(data.already_exists):
-					$.each(data, function (key, value) {
+					$.each(data, (key, value) => {
 						$('.error-message.' + key).prev().addClass('isError');
 						$('.error-message.' + key).html(v.exclamation + value);
 					});
@@ -114,11 +104,11 @@
 					type: $(this).attr('method'),
 					data: $(this).serialize(),
 					dataType: 'json',
-					success: function (data) {
+					success: data => {
 						v.loaderSpinner.hide();
 						v.stateSelection(data);
 					},
-					error: function (data) {
+					error: data => {
 						console.log('Error: Something wrong with ajax call ' + data.errors);
 					}
 				});
@@ -126,11 +116,11 @@
 		}
 	};
 
-	$('.modal').on('hidden.bs.modal', function () {
+  v.modal.on('hidden.bs.modal', () => {
 		v.resetModal();
 	});
 
-	v.modalBtn.on('click', function () {
+	v.modalBtn.on('click', () => {
 		v.loaderSpinner.fadeIn('slow');
 	});
 
@@ -142,7 +132,4 @@
 	});
 
 	v.form.each(v.ajax_form);
-
-
-
 </script>

@@ -20,7 +20,7 @@ Route::group(['middleware' =>  ['guest']], function(){
 
 Route::any('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@welcome')->name('home');
 Route::get('/get_referals_data', 'HomeController@get_referals_data')->name('get_referals_data');
 Route::get('/get_links_view', 'HomeController@get_links_view')->name('get_links_view');
 
