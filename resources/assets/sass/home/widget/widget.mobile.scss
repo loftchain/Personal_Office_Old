@@ -1,24 +1,27 @@
 @media (max-width: 769px) {
   .x-widget {
-
     padding: 0 50px;
+
     .widget-part {
       align-items: center;
       margin-bottom: 60px;
+
       p{
         font-size: 15px;
       }
+
       .control-container {
         flex-wrap: wrap;
         justify-content: center;
-        .c1 {
 
+        .c1 {
           width: 450px;
           margin-bottom: 40px;
 
           &__progress_pre {
             width: 157.5px;
           }
+
           &__progress_ico {
             width: 270px;
           }
@@ -27,13 +30,9 @@
         .c2 {
           width: 225px;
         }
-
       }
-
     }
-
   }
-
 }
 
 @media (max-width: 545px) {
@@ -43,22 +42,18 @@
         .c1 {
           justify-content: center;
           margin-bottom: 20px;
+
           .x-progress {
             width: 270px;
             margin-bottom: 40px;
+
             &__caps{
               flex-direction: column;
               bottom: -45px;
             }
-
           }
-
         }
-
       }
-
     }
-
   }
-
 }

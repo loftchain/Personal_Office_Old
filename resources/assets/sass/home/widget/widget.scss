@@ -20,11 +20,13 @@
       width: 100%;
       @extend %fsb;
       align-items: flex-start;
+
       .c {
         @extend %fsb;
         flex-wrap: wrap;
         width: 30%;
       }
+
       .c1 {
         width: 60%;
         @extend %fsb;
@@ -36,32 +38,33 @@
           border-radius: 5px;
           position: relative;
         }
-
       }
+
       .c2{
         width: 30%;
         @extend %fsb;
       }
-
     }
-
   }
 
   &__top {
-
       .c1 {
         .x-in {
           @include internal-filling();
         }
+
         .x-progress__in_pre {
           width: 102%;
         }
+
         .x-progress__in_ico {
           width: 50%;
         }
-        .x-round {
+
+        .x-stage {
           @include internal-filling-number();
         }
+
         .x-progress_dates {
           width: 100%;
           @extend %fsb;
@@ -78,6 +81,7 @@
       &__progress_pre {
         width: 35%
       }
+
       &__progress_ico {
         width: 60%
       }
@@ -86,7 +90,6 @@
   }
 
   .c2 {
-
     .d {
       height: 46px;
       width: 28%;
@@ -105,8 +108,8 @@
         font-weight: 300;
         text-align: center;
         color: $main-blue;
-
       }
+
       &__name {
         position: absolute;
         margin: 0 auto;
@@ -121,9 +124,9 @@
   }
 
   &__bot {
-
     .x-progress {
       width:100%;
+
       &__in {
         width: 50%;
         @include internal-filling();
@@ -142,13 +145,12 @@
         color: #A3A3A3;
         font-weight: 300;
       }
-
     }
-
   }
   .c2 {
     &__cur {
       @extend %fsb;
+
       img {
         height: 40px;
       }
@@ -161,9 +163,6 @@
         font-weight: 500;
         color: #A3A3A3;
       }
-
     }
-
   }
-
 }
