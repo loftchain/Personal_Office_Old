@@ -29,24 +29,19 @@ class HomeController extends Controller
 
 		switch (true) {
 			case $time >= env('PRE_ICO_START') && $time < env('PRE_ICO_END'):
-				$difference = env('PRE_ICO_END') - env('PRE_ICO_START');
-				$period = ['pre_ico', 'out', $difference];
+				$period = ['pre_ico', 'out'];
 				break;
 			case $time >= env('ICO_START') && $time < env('ICO_END'):
-				$difference = env('ICO_END') - env('ICO_START');
-				$period = ['ico', 'out', $difference];
+				$period = ['ico', 'out'];
 				break;
 			case $time < env('PRE_ICO_START'):
-				$difference = env('PRE_ICO_START') - time();
-				$period = ['out', 'pre-ico', $difference];
+				$period = ['out', 'pre-ico'];
 				break;
 			case $time < env('ICO_START'):
-				$difference = env('ICO_START') - time();
-				$period = ['out', 'ico', $difference];
+				$period = ['out', 'ico'];
 				break;
 			case $time > env('ICO_END'):
-				$difference = null;
-				$period = ['out', 'finish', $difference];
+				$period = ['out', 'finish'];
 				break;
 		}
 		return $period;

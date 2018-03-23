@@ -54,7 +54,9 @@
         }
 
         .x-progress__in_pre {
-          width: 102%;
+          width: calc(100% + 4px);
+
+
         }
 
         .x-progress__in_ico {
@@ -73,7 +75,7 @@
 
           span {
             font-size: 14px;
-            color: #A3A3A3;
+            color: $gray2;
             font-weight: 300;
           }
         }
@@ -142,7 +144,7 @@
         bottom: -25px;
         width: 100%;
         font-size: 14px;
-        color: #A3A3A3;
+        color: $gray2;
         font-weight: 300;
       }
     }

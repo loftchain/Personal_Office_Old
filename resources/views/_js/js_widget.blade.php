@@ -1,8 +1,12 @@
 <script>
     let w = {
-    	currentStage: '{{ $data['period'][0] }}',
-    	nextStage: '{{ $data['period'][1] }}',
-    	diffStage: '{{ $data['period'][2] }}',
+        preIcoStart: '{{ env('PRE_ICO_START') }}',
+        preIcoEnd: '{{ env('PRE_ICO_END') }}',
+        icoStart: '{{ env('ICO_START') }}',
+        icoEnd: '{{ env('ICO_END') }}',
+        currentStage: '{{ $data['period'][0] }}',
+        nextStage: '{{ $data['period'][1] }}',
+        _now: Math.floor(new Date().getTime() / 1000),
         currentStageTitle: $('.js__stage-name-title'),
         preStageTitle: $('.js__stage-pre'),
         icoStageTitle: $('.js__stage-ico'),
@@ -25,48 +29,117 @@
         currencyValue1: $('.a1'),
         currencyName1: $('.n1'),
 
-        setStageTitle: () => {
-    		switch (true){
-			    case w.currentStage === 'pre-ico':
-				    w.currentStageTitle.text('До конца pre-ICO');
-				    break;
-			    case w.currentStage === 'ico':
-				    w.currentStageTitle.text('До конца ICO');
-				    break;
-                case w.nextStage === 'pre-ico':
-	                w.currentStageTitle.text('До начала pre-ICO');
-	                break;
-			    case w.nextStage === 'ico':
-				    w.currentStageTitle.text('До начала ICO');
-				    break;
-			    case w.nextStage === 'finish':
-				    w.currentStageTitle.text('Распродажа закончена');
-				    break;
+        setStage() {
+            switch (true) {
+                case w.currentStage === 'pre_ico':
+                    w.currentStageTitle.text('До конца pre-ICO');
+                    w.diffStage = w.preIcoEnd - w._now;
+                    w.setInnerWidth('pre_ico');
+                    break;
+                case w.currentStage === 'ico':
+                    w.currentStageTitle.text('До конца ICO');
+                    w.diffStage = w.icoEnd - w._now;
+                    w.setInnerWidth('ico');
+                    break;
+                case w.nextStage === 'pre_ico':
+                    w.currentStageTitle.text('До начала pre-ICO');
+                    w.diffStage = w.preIcoStart - w._now;
+                    w.setInnerWidth('pre_ico_next');
+                    break;
+                case w.nextStage === 'ico':
+                    w.currentStageTitle.text('До начала ICO');
+                    w.diffStage = w.icoStart - w._now;
+                    w.setInnerWidth('ico_next');
+                    break;
+                case w.currentStage === 'finish':
+                    w.diffStage = 0;
+                    w.setInnerWidth('finish');
+                    w.currentStageTitle.text('Распродажа закончена');
+                    break;
             }
         },
 
-        timeUpdate: () => {
-	        let days = daysInUTC(w.diffStage),
-		        hours = Math.floor(w.diffStage / (1000 * 60 * 60)),
-		        mins = Math.floor(w.diffStage / (1000 * 60)),
-		        secs = Math.floor(w.diffStage / 1000),
-		        dd = days,
-		        hh = hours - days * 24,
-		        mm = mins - hours * 60,
-		        ss = secs - mins * 60;
+        addZero(num) {
+            return num > 9 ? num : '0' + num;
+        },
 
-	        w.dd.html(dd);
-	        w.hh.html(pad(hh));
-	        w.mm.html(pad(mm));
-	        console.log(ss);
-	        w.diffStage -= 1000;
+        daysInUTC(utc) {
+            return Math.floor(utc / 86400) //24*60*60
+        },
 
-	        if (dd === 0 && hh === 0 && mm === 0 && ss === 0) {
-		        diff = 0;
-		        setTimeout(function () {
-			        location.reload();
-		        }, 2000);
-	        }
+        getSmallDate(param) {
+            let milliUTC = param * 1000,
+                o = new Date(milliUTC).getTimezoneOffset(),
+                d = new Date((milliUTC + o * 60000)),
+                date = w.addZero(d.getDate()),
+                month = w.addZero(d.getMonth() + 1),
+                year = d.getFullYear().toString().slice(2, 4);
+
+            return date + '.' + month + '.' + year;
+        },
+
+        resetStage(dd, hh, mm, ss) {
+            if (dd === 0 && hh === 0 && mm === 0 && ss === 0) {
+                w.diffStage = 0;
+                setTimeout(function () {
+                    location.reload();
+                }, 2000);
+            }
+        },
+
+        timeUpdate() {
+            let days = w.daysInUTC(w.diffStage),
+                hours = Math.floor(w.diffStage / 3600),
+                mins = Math.floor(w.diffStage / 60),
+                secs = Math.floor(w.diffStage),
+                dd = days,
+                hh = hours - days * 24,
+                mm = mins - hours * 60,
+                ss = secs - mins * 60;
+            w.dd.html(dd);
+            w.hh.html(w.addZero(hh));
+            w.mm.html(w.addZero(mm));
+            w.diffStage -= 1;
+
+            w.resetStage(dd, hh, mm, ss);
+        },
+
+        setTimeThreshold() {
+            w.preStartDate.text(w.getSmallDate(w.preIcoStart));
+            w.preEndDate.text(w.getSmallDate(w.preIcoEnd));
+            w.icoStartDate.text(w.getSmallDate(w.icoStart));
+            w.icoEndDate.text(w.getSmallDate(w.icoEnd));
+        },
+
+        setInnerWidth(stage) {
+            switch (stage) {
+                case 'pre_ico':
+                    w.preInnerProgress.css('width', 'calc(' + w.calcInnerWidth(w.preIcoStart, w.preIcoEnd) + '% + 4px)');
+                    w.icoInnerProgress.css('width', '0');
+                    break;
+                case 'ico':
+                    w.preInnerProgress.css('width', 'calc(100% + 4px)');
+                    w.icoInnerProgress.css('width', 'calc(' + w.calcInnerWidth(w.preIcoStart, w.preIcoEnd) + '% + 4px)');
+                    break;
+                case 'pre_ico_next':
+                    w.preInnerProgress.css('width', '0');
+                    w.icoInnerProgress.css('width', '0');
+                    break;
+                case 'ico_next':
+                    w.preInnerProgress.css('width', '100%');
+                    w.icoInnerProgress.css('width', '0');
+                    break;
+                case 'finish':
+                    w.preInnerProgress.css('width', '100%');
+                    w.icoInnerProgress.css('width', '100%');
+                    break;
+            }
+        },
+
+        calcInnerWidth(start, end) {
+            let wholePeriodInDays = Math.floor(w.daysInUTC(end - start));
+            let currentPeriodInDays = Math.floor(w.daysInUTC(w._now - start));
+            return Math.floor(currentPeriodInDays * 100 / wholePeriodInDays);
         },
 
         logb: function (number, base) {
@@ -78,23 +151,20 @@
     //     Jan, Feb, Mar, Apr, May, June, July, Aug, Sept, Oct, Nov, Dec
     // ];
 
-    let diff;
     $.fn.widthPerc = function () {
-        let parent = this.parent();
-        return ~~((this.width() / parent.width()) * 100) + "%";
+        let parent = w.parent();
+        return ~~((w.width() / parent.width()) * 100) + "%";
     };
 
-    function pad(num) {
-        return num > 9 ? num : '0' + num;
-    }
 
-    function daysInUTC(utc) {
-        return Math.floor(utc / (1000 * 60 * 60 * 24))
-    }
-
-    $(document).ready(() =>{
-    	w.setStageTitle();
-    	setInterval(() => {w.timeUpdate();},1000);
+    $(document).ready(() => {
+        w.calcInnerWidth(w.preIcoStart, w.preIcoEnd);
+        w.getSmallDate(w.preIcoStart);
+        w.setTimeThreshold();
+        w.setStage();
+        setInterval(() => {
+            w.timeUpdate();
+        }, 1000);
 
     });
 </script>
