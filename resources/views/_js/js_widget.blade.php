@@ -6,7 +6,7 @@
         icoEnd: '{{ env('ICO_END') }}',
         currentStage: '{{ $data['period'][0] }}',
         nextStage: '{{ $data['period'][1] }}',
-        _now: Math.floor(new Date().getTime() / 1000),
+        _now: ('{{ $data['time'] }}') ? '{{ $data['time'] }}' : Math.floor(new Date().getTime() / 1000),
         currentStageTitle: $('.js__stage-name-title'),
         preStageTitle: $('.js__stage-pre'),
         icoStageTitle: $('.js__stage-ico'),
@@ -147,21 +147,10 @@
         }
     };
 
-    // let monthNames = [
-    //     Jan, Feb, Mar, Apr, May, June, July, Aug, Sept, Oct, Nov, Dec
-    // ];
-
-    $.fn.widthPerc = function () {
-        let parent = w.parent();
-        return ~~((w.width() / parent.width()) * 100) + "%";
-    };
-
-
     $(document).ready(() => {
-        w.calcInnerWidth(w.preIcoStart, w.preIcoEnd);
-        w.getSmallDate(w.preIcoStart);
         w.setTimeThreshold();
         w.setStage();
+
         setInterval(() => {
             w.timeUpdate();
         }, 1000);

@@ -18,9 +18,12 @@ use App\Helpers\ICOAPI;
 class HomeController extends Controller
 {
 
-	public function __construct()
+	protected $widgetService;
+
+	public function __construct(WidgetService $widgetService)
 	{
 		$this->middleware('valid', ['except' => ['welcome']]);
+		$this->widgetService = $widgetService;
 	}
 
 	public function get_period($time)
@@ -35,7 +38,7 @@ class HomeController extends Controller
 				$period = ['ico', 'out'];
 				break;
 			case $time < env('PRE_ICO_START'):
-				$period = ['out', 'pre-ico'];
+				$period = ['out', 'pre_ico'];
 				break;
 			case $time < env('ICO_START'):
 				$period = ['out', 'ico'];
@@ -84,6 +87,7 @@ class HomeController extends Controller
 //
 //
 //		$data['transactions'] = $this->get_wallet_data();
+		Log::info($this->widgetService->getTx());
 		$data['period'] = $this->get_period($time);
 		$data['time'] = $time;
 //		$data['refs'] = $this->get_referals_data();
