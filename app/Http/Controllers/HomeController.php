@@ -87,7 +87,7 @@ class HomeController extends Controller
 //
 //
 //		$data['transactions'] = $this->get_wallet_data();
-		Log::info($this->widgetService->getTx());
+		//Log::info($this->widgetService->getTx()); TODO:here
 		$data['period'] = $this->get_period($time);
 		$data['time'] = $time;
 //		$data['refs'] = $this->get_referals_data();
