@@ -44,7 +44,7 @@ class WidgetService
 
 	}
 
-	public function calcSoftCap($currency)
+	public function calcSoftCap($currency, $pair)
 	{
 		$tx = $this->getTx();
 		$amountCurrency = $amountUsd = $amountToken = 0;
@@ -54,17 +54,10 @@ class WidgetService
 				$amountCurrency += $t->amount;
 			}
 		}
+		$amountUsd = $amountCurrency * $this->getCurrencyByPair($pair);
+		$amountToken = $amountUsd / $this->bonusService->getTokenPrice();
 
-		switch ($currency) {
-			case 'BTC':
-				$amountUsd = $amountCurrency * $this->getCurrencyByPair('BTC/USD');
-				break;
-			case 'ETH':
-				$amountUsd = $amountCurrency * $this->getCurrencyByPair('ETH/USD');
-				break;
-		}
-
-		return ['currency' => $amountCurrency, 'usd' => $amountUsd, ];
+		return ['currency' => $amountCurrency, 'usd' => $amountUsd, 'token' => $amountToken];
 	}
 
 
