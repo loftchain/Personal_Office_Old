@@ -18,9 +18,10 @@ class BonusService
 		return $body;
 	}
 
-	public function getTokenPrice(){
-		$tokenPriceInUsd = [0.8,1,1.25,1.5,1.75];
-		$thresholdDate = [1522368000,1522886400,1524700799,1526342400,1529107199];
+	public function getTokenPrice()
+	{
+		$tokenPriceInUsd = [0.8, 1, 1.25, 1.5, 1.75];
+		$thresholdDate = [1522368000, 1522886400, 1524700799, 1526342400, 1529107199];
 		$tokenPrice = 0;
 
 		switch (true) {

@@ -90,10 +90,10 @@ class HomeController extends Controller
 		$data['btcSoftCap'] = $this->widgetService->calcSoftCap('BTC', 'BTC/USD');
 		$data['ethSoftCap'] = $this->widgetService->calcSoftCap('ETH', 'ETH/USD');
 
-		$data['whole_caps'] = array_map(function () {
+		$data['wholeSoftCap'] = array_map(function () {
 			return array_sum(func_get_args());
 		}, $data['btcSoftCap'], $data['ethSoftCap']);
-		
+		Log::info($data['wholeSoftCap']);
 		$data['period'] = $this->get_period($time);
 		$data['time'] = $time;
 //		$data['refs'] = $this->get_referals_data();

@@ -7,6 +7,14 @@
         currentStage: '{{ $data['period'][0] }}',
         nextStage: '{{ $data['period'][1] }}',
         _now: ('{{ $data['time'] }}') ? '{{ $data['time'] }}' : Math.floor(new Date().getTime() / 1000),
+        ethSoftCap: ('{{ $data['ethSoftCap']['currency'] }}'),
+        ethSoftCapUsd: ('{{ $data['ethSoftCap']['usd'] }}'),
+        ethSoftCapToken: ('{{ $data['ethSoftCap']['token'] }}'),
+        btcSoftCap: ('{{ $data['btcSoftCap']['currency'] }}'),
+        btcSoftCapUsd: ('{{ $data['btcSoftCap']['usd'] }}'),
+        btcSoftCapToken: ('{{ $data['btcSoftCap']['token'] }}'),
+        wholeSoftCapUsd: ('{{ $data['wholeSoftCap'][1] }}'),
+        wholeSoftCapToken: ('{{ $data['wholeSoftCap'][2] }}'),
         currentStageTitle: $('.js__stage-name-title'),
         preStageTitle: $('.js__stage-pre'),
         icoStageTitle: $('.js__stage-ico'),
@@ -22,6 +30,10 @@
         ddName: $('.js__dd-name'),
         hhName: $('.js__hh-name'),
         mmName: $('.js__mm-name'),
+        capCryptoStart: $('.js_caps__start_crypto'),
+        capCryptoEnd: $('.js_caps__end_crypto'),
+        capFiatStart: $('.js_caps__start_fiat'),
+        capFiatEnd: $('.js_caps__end_fiat'),
         totalInnerProgress: $('.x-progress__in'),
         totalInnerPercents: $('.x-progress__percents'),
         currencyValue0: $('.a0'),
@@ -142,12 +154,20 @@
             return Math.floor(currentPeriodInDays * 100 / wholePeriodInDays);
         },
 
+        setCapTexts() {
+          w.capCryptoStart.text(w.wholeSoftCapToken);
+          w.capCryptoEnd.text('{{ env('TOKEN_CAP') }}');
+          w.capFiatStart.text(w.wholeSoftCapUsd);
+          w.capFiatEnd.text('{{ env('USD_CAP') }}');
+        },
+
         logb: function (number, base) {
             return Math.log(number) / Math.log(base);
         }
     };
 
     $(document).ready(() => {
+        w.setCapTexts();
         w.setTimeThreshold();
         w.setStage();
 
