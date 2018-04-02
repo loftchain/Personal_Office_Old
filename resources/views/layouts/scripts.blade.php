@@ -8,3 +8,4 @@
 @include('_js.js_accordion')
 @include('_js.js_loader_cloak')
 @include('_js.js_widget')
+@include('_js.js_wallet')
