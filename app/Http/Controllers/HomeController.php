@@ -75,18 +75,6 @@ class HomeController extends Controller
 		$request->session()->forget('reset_password_email');
 		$data = [];
 		$time = is_numeric(Input::get('time')) ? Input::get('time') : time();
-//		$walletFields = UserWalletFields::where('user_id', Auth::id())->first();
-//
-//		if ($walletFields) {
-//			$walletFields['full_name_of_wallet_invest_from'] = $this->get_currency_name($walletFields['name_of_wallet_invest_from']);
-//			$data['walletFields'] = $walletFields;
-//		}
-//
-//		$data['data_tables'] = $this->get_data_tables();
-//		$data['widget_data'] = $this->get_widget_data();
-//
-//
-//		$data['transactions'] = $this->get_wallet_data();
 		$data['btcSoftCap'] = $this->widgetService->calcSoftCap('BTC', 'BTC/USD');
 		$data['ethSoftCap'] = $this->widgetService->calcSoftCap('ETH', 'ETH/USD');
 
@@ -96,7 +84,6 @@ class HomeController extends Controller
 		Log::info($data['wholeSoftCap']);
 		$data['period'] = $this->get_period($time);
 		$data['time'] = $time;
-//		$data['refs'] = $this->get_referals_data();
 		return view('home.home')->with('data', $data);
 
 	}

@@ -1,11 +1,3 @@
-%title{
-  font-size: 16px;
-  font-weight: 700;
-  color: $almost-black;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-}
-
 .x-wallets {
   width: 750px;
   @extend %fcc;
@@ -20,12 +12,22 @@
     margin-bottom: 40px;
     @extend %fsb;
 
-    .button {
-      span {
-        margin-left: 10px;
-        font-size: 16px;
+    &.nav-tabs {
+      border: none;
+    }
+    a {
+      text-decoration: none;
+      color: $almost-black;
+      
+      .button {
+        span {
+          margin-left: 10px;
+          font-size: 16px;
+
+        }
       }
     }
+
 
   }
 
@@ -34,6 +36,8 @@
     align-items: flex-start;
     margin-bottom: 40px;
     width: 100%;
+    position: relative;
+    height: 200px;
 
     p {
       @extend %title;
@@ -43,7 +47,7 @@
     form {
       @extend %fsb;
       margin-bottom: 10px;
-      width:100%;
+      width: 100%;
       label {
         float: left;
         margin-right: 5px;

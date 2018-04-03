@@ -51,6 +51,7 @@ $validationError: #ff443a;
   letter-spacing: 1px;
 }
 
+
 %fc {
   display: flex;
   justify-content: center;
@@ -75,6 +76,14 @@ $validationError: #ff443a;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+}
+
+%title{
+  font-size: 16px;
+  font-weight: 700;
+  color: $almost-black;
+  margin-bottom: 20px;
+  text-transform: uppercase;
 }
 
 %register-loader{

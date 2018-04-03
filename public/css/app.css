@@ -146,6 +146,16 @@
           align-items: center;
 }
 
+.x-wallets__title,
+.x-wallets__form p,
+.x-wallets__text p {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
 .modal-dialog .modal-cloak .sk-folding-cube {
   margin: 55% auto;
   width: 40px;
@@ -283,6 +293,10 @@ footer img {
   top: 0;
   left: 0;
   background: white;
+}
+
+.fade {
+  position: absolute;
 }
 
 .spinner {
@@ -10621,16 +10635,6 @@ button.close {
   }
 }
 
-.x-wallets__title,
-.x-wallets__form p,
-.x-wallets__text p {
-  font-size: 16px;
-  font-weight: 700;
-  color: #333333;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-}
-
 .x-wallets {
   width: 750px;
   -webkit-box-align: start;
@@ -10643,7 +10647,16 @@ button.close {
   margin-bottom: 40px;
 }
 
-.x-wallets__buttons .button span {
+.x-wallets__buttons.nav-tabs {
+  border: none;
+}
+
+.x-wallets__buttons a {
+  text-decoration: none;
+  color: #333333;
+}
+
+.x-wallets__buttons a .button span {
   margin-left: 10px;
   font-size: 16px;
 }
@@ -10654,6 +10667,8 @@ button.close {
           align-items: flex-start;
   margin-bottom: 40px;
   width: 100%;
+  position: relative;
+  height: 200px;
 }
 
 .x-wallets__form p {

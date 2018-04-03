@@ -16,12 +16,9 @@ class CreateUserWalletFieldsTable extends Migration
       Schema::create('user_wallet_fields', function (Blueprint $table) {
         $table->increments('id');
         $table->integer('user_id')->unsigned()->nullable();
-        $table->string('wallet_invest_from')->nullable();
-        $table->string('name_of_wallet_invest_from')->nullable();
-        $table->string('wallet_get_tokens')->nullable();
-        $table->string('ETH')->nullable();
-        $table->string('BTC')->nullable();
-        $table->string('LTC')->nullable();
+        $table->string('currency')->nullable();
+        $table->string('wallet_from')->nullable();
+        $table->string('wallet_to')->nullable();
         $table->timestamps();
         $table->engine = 'InnoDB';
       });
