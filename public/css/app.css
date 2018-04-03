@@ -10819,6 +10819,7 @@ button.close {
   width: auto;
   height: auto;
   color: #30ced1;
+  padding: 5px;
 }
 
 .x-wallets__text {

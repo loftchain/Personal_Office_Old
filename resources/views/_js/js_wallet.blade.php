@@ -5,18 +5,27 @@
 		editBtn: $('.edit-btn'),
 		submitBtn: $('.sbmt-btn'),
 		wInput: $('.w-input'),
-		switchCheckBox(th) {
+		wInput0: $('#wallet_from0'),
+		switchCheckBox(_this) {
 			wa.checkboxImg.attr('src', '{{ asset('img/empty-checkbox.png') }}');
-			th[0].childNodes[1].childNodes[1].src = '{{ asset('img/checked-checkbox.png') }}';
+			_this[0].childNodes[1].childNodes[1].src = '{{ asset('img/checked-checkbox.png') }}';
 		},
-    editMode(){
-        wa.wInput.prop('disabled', false);
-        wa.submitBtn.show();
-        wa.editBtn.hide();
-        $('.w-input').focus();
-    }
 
-
+		editMode(_this) {
+			console.log(_this);
+			_this.prop('disabled', false);
+			_this.next().show();
+            _this.prev().hide();
+			 setTimeout(() => {
+				 _this.focus();
+			 }, 1);
+		},
+        
+        exitEditMode(){
+	        wa.wInput.prop('disabled', true);
+	        wa.submitBtn.hide();
+	        wa.editBtn.show();
+        }
 	};
 
 	$(document).ready(() => {
@@ -27,9 +36,15 @@
 			})
 		});
 
-    wa.editBtn.click(() => {
-        wa.editMode();
-    });
+		wa.wInput.each(function () {
+			$(this).prev().click(() => {
+				wa.editMode($(this));
+			});
+		});
+
+		wa.wInput.focusout(() => {
+			wa.exitEditMode();
+        });
 
 	});
 </script>
