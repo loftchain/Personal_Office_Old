@@ -81,7 +81,6 @@ class HomeController extends Controller
 		$data['wholeSoftCap'] = array_map(function () {
 			return array_sum(func_get_args());
 		}, $data['btcSoftCap'], $data['ethSoftCap']);
-		Log::info($data['wholeSoftCap']);
 		$data['period'] = $this->get_period($time);
 		$data['time'] = $time;
 		return view('home.home')->with('data', $data);

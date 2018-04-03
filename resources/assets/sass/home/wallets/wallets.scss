@@ -1,34 +1,57 @@
 .x-wallets {
-  width: 750px;
   @extend %fcc;
+  width: 750px;
   align-items: flex-start;
+
+  @media #{$mobile} {
+    align-items: center;
+    width: auto;
+  }
 
   &__title {
     @extend %title;
   }
 
   &__buttons {
+    @extend %fsb;
     width: 100%;
     margin-bottom: 40px;
-    @extend %fsb;
+
+    @media #{$mobile} {
+      padding: 0 60px;
+    }
+
+    @media #{$mobile545} {
+      width: 165px;
+      padding: 0;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
 
     &.nav-tabs {
       border: none;
     }
+
     a {
       text-decoration: none;
       color: $almost-black;
-      
+
       .button {
         span {
           margin-left: 10px;
           font-size: 16px;
 
+          @media #{$mobile} {
+            white-space: nowrap;
+          }
+        }
+
+        @media #{$mobile545} {
+          margin-bottom: 15px;
         }
       }
     }
-
-
   }
 
   &__form {
@@ -37,23 +60,45 @@
     margin-bottom: 40px;
     width: 100%;
     position: relative;
-    height: 200px;
+    height: 130px;
+
+    @media #{$mobile} {
+      align-items: center;
+    }
 
     p {
       @extend %title;
       text-align: left;
+
+      @media #{$mobile} {
+        width: 70%;
+        text-align: center;
+        font-size: 15px;
+      }
     }
 
     form {
       @extend %fsb;
       margin-bottom: 10px;
       width: 100%;
-      label {
-        float: left;
-        margin-right: 5px;
+      position:relative;
+
+      @media #{$mobile} {
+        flex-direction: column;
       }
+
+      label {
+        width: 295px;
+        margin-right: 5px;
+        font-weight: 400;
+
+        @media #{$mobile545} {
+          font-size: 13px;
+          font-weight: 500;
+        }
+      }
+
       input {
-        float: right;
         margin: 2px;
         width: 450px;
         height: 50px;
@@ -61,32 +106,107 @@
         border-radius: 5px;
         outline: none;
         padding-left: 10px;
+
+        &:focus{
+          border:1px solid $main-blue;
+        }
+
+        @media #{$mobile} {
+          width: 70%;
+        }
+
+        @media #{$mobile545} {
+          width: 275px;
+        }
+      }
+
+      button{
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        right: 20px;
+        border:none;
+        outline: none;
+
+        &.edit-btn{
+          background: url("/img/edit-pencil.svg");
+        }
+
+        &.sbmt-btn {
+          display: none;
+          background: transparent;
+          width: auto;
+          height: auto;
+          color: $main-blue;
+        }
       }
     }
-
   }
 
   &__text {
     width: 100%;
 
+    @media #{$mobile} {
+      width: 100%;
+      padding: 0 30px;
+    }
+
+    @media #{$mobile545} {
+      padding: 0 10px;
+    }
+
+    .owner-wallet-span {
+      @media #{$mobile545} {
+        font-weight: 500;
+        font-size: 14px;
+      }
+    }
+
     ul {
       font-weight: 500;
       margin-bottom: 40px;
       font-size: 14px;
+
+      @media #{$mobile545} {
+        padding-left: 25px;
+      }
     }
+
     p {
       @extend %title;
       text-align: left;
+
+      @media #{$mobile} {
+        text-align: center;
+      }
     }
+
     .pay-to-us-wallet {
       @extend %fc;
       border: 1px solid #E0E0E0;
       height: 100px;
 
+      @media #{$mobile545} {
+        height: auto;
+        padding: 10px;
+        flex-direction: column;
+      }
+
       img {
         width: 50px;
         height: 50px;
+
+        @media #{$mobile545} {
+          margin-bottom: 10px;
+        }
       }
+
+      p {
+        @media #{$mobile545} {
+          font-size: 13px;
+        }
+      }
+
       span {
         color: #27ae60;
         font-weight: 700;
@@ -97,5 +217,4 @@
       }
     }
   }
-
 }

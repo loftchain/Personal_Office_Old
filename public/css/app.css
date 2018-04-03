@@ -276,6 +276,12 @@ body {
   min-height: 768px;
 }
 
+@media (max-width: 767px) {
+  .x-body #home {
+    width: 100%;
+  }
+}
+
 footer {
   width: 100%;
   z-index: 1;
@@ -297,6 +303,11 @@ footer img {
 
 .fade {
   position: absolute;
+  z-index: 1;
+}
+
+.fade.in {
+  z-index: 2;
 }
 
 .spinner {
@@ -10642,143 +10653,23 @@ button.close {
           align-items: flex-start;
 }
 
-.x-wallets__buttons {
-  width: 100%;
-  margin-bottom: 40px;
-}
-
-.x-wallets__buttons.nav-tabs {
-  border: none;
-}
-
-.x-wallets__buttons a {
-  text-decoration: none;
-  color: #333333;
-}
-
-.x-wallets__buttons a .button span {
-  margin-left: 10px;
-  font-size: 16px;
-}
-
-.x-wallets__form {
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  margin-bottom: 40px;
-  width: 100%;
-  position: relative;
-  height: 200px;
-}
-
-.x-wallets__form p {
-  text-align: left;
-}
-
-.x-wallets__form form {
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.x-wallets__form form label {
-  float: left;
-  margin-right: 5px;
-}
-
-.x-wallets__form form input {
-  float: right;
-  margin: 2px;
-  width: 450px;
-  height: 50px;
-  border: 1px solid #E0E0E0;
-  border-radius: 5px;
-  outline: none;
-  padding-left: 10px;
-}
-
-.x-wallets__text {
-  width: 100%;
-}
-
-.x-wallets__text ul {
-  font-weight: 500;
-  margin-bottom: 40px;
-  font-size: 14px;
-}
-
-.x-wallets__text p {
-  text-align: left;
-}
-
-.x-wallets__text .pay-to-us-wallet {
-  border: 1px solid #E0E0E0;
-  height: 100px;
-}
-
-.x-wallets__text .pay-to-us-wallet img {
-  width: 50px;
-  height: 50px;
-}
-
-.x-wallets__text .pay-to-us-wallet span {
-  color: #27ae60;
-  font-weight: 700;
-  margin-left: 10px;
-  margin-bottom: 0;
-  word-break: break-all;
-  text-align: center;
-}
-
-@media (max-width: 769px) {
+@media (max-width: 767px) {
   .x-wallets {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
     width: auto;
   }
+}
 
+.x-wallets__buttons {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 767px) {
   .x-wallets__buttons {
     padding: 0 60px;
-  }
-
-  .x-wallets__buttons .button {
-    margin-bottom: 15px;
-  }
-
-  .x-wallets__buttons .button span {
-    white-space: nowrap;
-  }
-
-  .x-wallets__form {
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-
-  .x-wallets__form p {
-    width: 70%;
-    text-align: center;
-    font-size: 15px;
-  }
-
-  .x-wallets__form form {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-
-  .x-wallets__form form input {
-    width: 70%;
-  }
-
-  .x-wallets__text {
-    width: 100%;
-    padding: 0 30px;
-  }
-
-  .x-wallets__text p {
-    text-align: center;
   }
 }
 
@@ -10797,33 +10688,191 @@ button.close {
         -ms-flex-align: start;
             align-items: flex-start;
   }
+}
 
-  .x-wallets__buttons .button {
+.x-wallets__buttons.nav-tabs {
+  border: none;
+}
+
+.x-wallets__buttons a {
+  text-decoration: none;
+  color: #333333;
+}
+
+.x-wallets__buttons a .button span {
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+@media (max-width: 767px) {
+  .x-wallets__buttons a .button span {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 545px) {
+  .x-wallets__buttons a .button {
     margin-bottom: 15px;
   }
+}
 
+.x-wallets__form {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  margin-bottom: 40px;
+  width: 100%;
+  position: relative;
+  height: 130px;
+}
+
+@media (max-width: 767px) {
+  .x-wallets__form {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+.x-wallets__form p {
+  text-align: left;
+}
+
+@media (max-width: 767px) {
+  .x-wallets__form p {
+    width: 70%;
+    text-align: center;
+    font-size: 15px;
+  }
+}
+
+.x-wallets__form form {
+  margin-bottom: 10px;
+  width: 100%;
+  position: relative;
+}
+
+@media (max-width: 767px) {
+  .x-wallets__form form {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.x-wallets__form form label {
+  width: 295px;
+  margin-right: 5px;
+  font-weight: 400;
+}
+
+@media (max-width: 545px) {
   .x-wallets__form form label {
     font-size: 13px;
     font-weight: 500;
   }
+}
 
+.x-wallets__form form input {
+  margin: 2px;
+  width: 450px;
+  height: 50px;
+  border: 1px solid #E0E0E0;
+  border-radius: 5px;
+  outline: none;
+  padding-left: 10px;
+}
+
+.x-wallets__form form input:focus {
+  border: 1px solid #30ced1;
+}
+
+@media (max-width: 767px) {
+  .x-wallets__form form input {
+    width: 70%;
+  }
+}
+
+@media (max-width: 545px) {
   .x-wallets__form form input {
     width: 275px;
   }
+}
 
+.x-wallets__form form button {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  right: 20px;
+  border: none;
+  outline: none;
+}
+
+.x-wallets__form form button.edit-btn {
+  background: url("/img/edit-pencil.svg");
+}
+
+.x-wallets__form form button.sbmt-btn {
+  display: none;
+  background: transparent;
+  width: auto;
+  height: auto;
+  color: #30ced1;
+}
+
+.x-wallets__text {
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .x-wallets__text {
+    width: 100%;
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 545px) {
   .x-wallets__text {
     padding: 0 10px;
   }
+}
 
+@media (max-width: 545px) {
   .x-wallets__text .owner-wallet-span {
     font-weight: 500;
     font-size: 14px;
   }
+}
 
+.x-wallets__text ul {
+  font-weight: 500;
+  margin-bottom: 40px;
+  font-size: 14px;
+}
+
+@media (max-width: 545px) {
   .x-wallets__text ul {
     padding-left: 25px;
   }
+}
 
+.x-wallets__text p {
+  text-align: left;
+}
+
+@media (max-width: 767px) {
+  .x-wallets__text p {
+    text-align: center;
+  }
+}
+
+.x-wallets__text .pay-to-us-wallet {
+  border: 1px solid #E0E0E0;
+  height: 100px;
+}
+
+@media (max-width: 545px) {
   .x-wallets__text .pay-to-us-wallet {
     height: auto;
     padding: 10px;
@@ -10832,14 +10881,32 @@ button.close {
         -ms-flex-direction: column;
             flex-direction: column;
   }
+}
 
+.x-wallets__text .pay-to-us-wallet img {
+  width: 50px;
+  height: 50px;
+}
+
+@media (max-width: 545px) {
   .x-wallets__text .pay-to-us-wallet img {
     margin-bottom: 10px;
   }
+}
 
+@media (max-width: 545px) {
   .x-wallets__text .pay-to-us-wallet p {
     font-size: 13px;
   }
+}
+
+.x-wallets__text .pay-to-us-wallet span {
+  color: #27ae60;
+  font-weight: 700;
+  margin-left: 10px;
+  margin-bottom: 0;
+  word-break: break-all;
+  text-align: center;
 }
 
 .modal-dialog {

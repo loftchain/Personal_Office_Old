@@ -16,6 +16,12 @@ body{
   width:750px;
   margin: 0 auto;
   min-height: 768px;
+
+  @media #{$mobile} {
+    #home{
+      width: 100%;
+    }
+  }
 }
 
 
@@ -43,6 +49,11 @@ footer{
 
 .fade {
   position: absolute;
+  z-index: 1;
+}
+
+.fade.in{
+  z-index: 2;
 }
 
 
