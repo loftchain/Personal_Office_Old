@@ -1,13 +1,21 @@
-<form action="" id="form1">
-    <label for="wallet_from1">Я собираюсь известировать в <b>Bitcoin</b> с</label>
+<form action="{{ route('store_wallet') }}" method="POST" id="form1">
+    {{ csrf_field() }}
+    <input id="cur1" name="currency" type="hidden" value="BTC">
+    <input id="type1" name="type" type="hidden" value="from">
+    <label for="wallet1">Я собираюсь известировать в <b>Bitcoin</b> с</label>
     <button class="edit-btn" type="button"></button>
-    <input id="wallet_from1" name="wallet_from" class="w-input" type="text" disabled>
+    <input id="wallet1" name="wallet" class="w-input" type="text" disabled>
+    <div class="error-message error-message0"></div>
     <button class="sbmt-btn" type="submit">save</button>
 </form>
 
-<form action="" id="form2">
-    <label for="wallet_to1">Я хочу получить токены <b>ERC20</b> в кошелек <b>ETH</b></label>
+<form action="{{ route('store_wallet') }}" method="POST" id="form2">
+    {{ csrf_field() }}
+    <input id="cur2" name="cur2" type="hidden" value="ETH">
+    <input id="type2" name="type" type="hidden" value="to">
+    <label for="wallet2">Я хочу получить токены <b>ERC20</b> в кошелек <b>ETH</b></label>
     <button class="edit-btn" type="button"></button>
-    <input id="wallet_to1" name="wallet_to" class="w-input" type="text" disabled>
+    <input id="wallet2" name="wallet" class="w-input" type="text" disabled>
+    <div class="error-message error-message0"></div>
     <button class="sbmt-btn" type="submit">save</button>
 </form>

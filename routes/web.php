@@ -26,7 +26,7 @@ Route::get('/get_links_view', 'HomeController@get_links_view')->name('get_links_
 
 Route::get('/change_email', 'Auth\ChangeEmailController@change_email')->name('change_email');
 Route::get('/change_password', 'Auth\ChangePasswordController@change_password')->name('change_password');
-Route::get('/mycrypto', 'MycryptoController@mycrypto')->name('mycrypto');
+
 Route::get('/current_wallets', 'MycryptoController@current_wallets')->name('current_wallets');
 Route::get('/resend/{email}', 'Auth\RegisterController@resend')->name('resend');
 Route::get('/confirmation/{token}', 'Auth\RegisterController@confirmation')->name('confirmation');
@@ -38,6 +38,7 @@ Route::post('/renew_password', 'Auth\ChangePasswordController@renew_password')->
 Route::post('/store_personal_data', 'Auth\StepValidation\AgreementController@store_personal_data')->name('store_personal_data');
 Route::post('/update_wallet_data', 'MycryptoController@update_wallet_data')->name('update_wallet_data');
 Route::post('/store_wallet_data', 'MycryptoController@store_wallet_data')->name('store_wallet_data');
+Route::post('/store_wallet', 'WalletController@store_wallet')->name('store_wallet');
 
 Auth::routes();
 

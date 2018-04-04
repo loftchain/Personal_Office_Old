@@ -1,6 +1,10 @@
-<form action="" id="form0">
-    <label for="wallet_from0">Я собираюсь известировать в <b>ETH</b> и получать токены на данный кошелёк</label>
+<form action="{{ route('store_wallet') }}" method="POST" id="form0">
+    {{ csrf_field() }}
+    <input id="cur0" name="currency" type="hidden" value="ETH">
+    <input id="type0" name="type" type="hidden" value="from_to">
+    <label for="wallet0">Я собираюсь известировать в <b>ETH</b> и получать токены на данный кошелёк</label>
     <button class="edit-btn" type="button"></button>
-    <input id="wallet_from0" name="wallet_from" class="w-input" type="text" disabled>
+    <input id="wallet0" name="wallet" class="w-input" type="text" disabled>
+    <div class="error-message error-message0"></div>
     <button class="sbmt-btn" type="submit">save</button>
 </form>

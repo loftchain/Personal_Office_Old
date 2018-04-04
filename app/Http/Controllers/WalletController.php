@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use GuzzleHttp\Client;
 use App\Http\Controllers\Controller;
-use App\UserHistoryFields;
-use App\UserWalletFields;
+use App\Models\UserHistoryFields;
+use App\Models\UserWalletFields;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
@@ -16,12 +16,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 use ReCaptcha\ReCaptcha;
-use App\Traits\CaptchaTrait;
-use App\Traits\RemoteHistoryTrait;
 
-class MycryptoController extends Controller
+class WalletController extends Controller
 {
-  use CaptchaTrait, RemoteHistoryTrait;
 
   /**
    * Create a new controller instance.
@@ -34,15 +31,15 @@ class MycryptoController extends Controller
 
   }
 
+
+
   protected function create(array $data)
   {
     return UserWalletFields::create([
-      'user_id'=> Auth::id(),
-      'wallet_invest_from' => $data['wallet_invest_from'],
-      'name_of_wallet_invest_from' => $data['name_of_wallet_invest_from'],
-      'wallet_get_tokens' => $data['wallet_get_tokens'],
-      'ETH' => $data['ETH'],
-      'BTC' => $data['BTC'],
+      'user_id' => Auth::id(),
+      'currency' => $data['wallet_invest_from'],
+      'wallet_from' => $data['name_of_wallet_invest_from'],
+      'wallet_to' => $data['wallet_get_tokens']
     ]);
   }
 
@@ -57,7 +54,6 @@ class MycryptoController extends Controller
       ];
 
       UserHistoryFields::where('user_id', Auth::id())->update($h);
-      $this->remote_history($h, $method, null);
     } else {
 
       $uh = [
@@ -71,20 +67,12 @@ class MycryptoController extends Controller
       ];
 
       UserHistoryFields::where('user_id', Auth::id())->update($uh);
-      $this->remote_history($uh, $method,null);
 
     }
   }
 
-  public function mycrypto()
-  {
-    Log::info(Auth::id());
-    $walletFields = UserWalletFields::where('user_id',Auth::id())->first(); // got this from database model
-    if($walletFields){ //if user exists
-      return view('mycrypto.mycrypto_change')->with('walletFields', $walletFields);
-    }
-    return view('mycrypto.mycrypto')->with('walletFields', $walletFields);
-
+  public function store_wallet(Request $request) {
+		Log::info($request);
   }
 
   public function store_wallet_data(Request $request)

@@ -310,6 +310,14 @@ footer img {
   z-index: 2;
 }
 
+.modal-backdrop.fade.in {
+  z-index: 1040;
+}
+
+.modal.fade.in {
+  z-index: 1050;
+}
+
 .spinner {
   width: 60px;
   height: 60px;

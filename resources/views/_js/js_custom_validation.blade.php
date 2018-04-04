@@ -91,7 +91,7 @@
 					window.location.replace("{{ route('root') }}");
 					break;
 				default:
-
+            console.log('success default');
 					break;
 			}
 		},

@@ -17,8 +17,8 @@ class CreateUserWalletFieldsTable extends Migration
         $table->increments('id');
         $table->integer('user_id')->unsigned()->nullable();
         $table->string('currency')->nullable();
-        $table->string('wallet_from')->nullable();
-        $table->string('wallet_to')->nullable();
+        $table->string('type')->nullable();
+        $table->string('wallet')->nullable();
         $table->timestamps();
         $table->engine = 'InnoDB';
       });
