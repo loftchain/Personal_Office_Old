@@ -25,7 +25,6 @@
             v.loaderSpinner.fadeOut();
         },
         stateSelection: (data, _this) => {
-            console.log(data);
             switch (true) {
                 case !$.isEmptyObject(data.validation_error):
                     if (data.validation_error['g-recaptcha-response']) {
@@ -58,8 +57,8 @@
                 case !$.isEmptyObject(data.already_confirmed):
                 case !$.isEmptyObject(data.already_exists):
                     $.each(data, (key, value) => {
-                        $('.error-message.' + key).prev().addClass('isError');
-                        $('.error-message.' + key).html(v.exclamation + value);
+                        _this.children('.error-message.' + key).prev().addClass('isError');
+                        _this.children('.error-message.' + key).html(v.exclamation + value);
                     });
                     v.hideSpinner();
                     break;
@@ -103,7 +102,6 @@
         },
         ajax_form: function () {
             $(this).on('submit', function (e) {
-                console.log($(this));
                 e.preventDefault();
                 v.resetModal();
                 $.ajax({

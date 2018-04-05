@@ -49,9 +49,5 @@
             // wa.exitEditMode();
         });
 
-        wa.submitBtn.click(() => {
-            console.log(1);
-        });
-
     });
 </script>
