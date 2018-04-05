@@ -37,9 +37,9 @@ class WalletController extends Controller
   {
     return UserWalletFields::create([
       'user_id' => Auth::id(),
-      'currency' => $data['wallet_invest_from'],
-      'wallet_from' => $data['name_of_wallet_invest_from'],
-      'wallet_to' => $data['wallet_get_tokens']
+      'currency' => $data['currency'],
+      'type' => $data['type'],
+      'wallet' => $data['wallet']
     ]);
   }
 
@@ -72,7 +72,17 @@ class WalletController extends Controller
   }
 
   public function store_wallet(Request $request) {
-		Log::info($request);
+	  $validator = Validator::make($request->all(), [
+		  'wallet' => 'required|string|min:25|max:45|unique:user_wallet_fields',
+	  ]);
+
+	  if ($validator->fails()) {
+		  return response()->json(['validation_error'=>$validator->errors()]);
+	  }
+
+	  $this->create($request->all());
+	  return response()->json(['wallet_added' => 'Wallet was successfully added']);
+
   }
 
   public function store_wallet_data(Request $request)

@@ -15,7 +15,7 @@ class UserWalletFields extends Authenticatable
      * @var array
      */
     protected $fillable = [
-      'user_id','wallet_invest_from','wallet_get_tokens','name_of_wallet_invest_from','ETH','BTC','DASH','XMR','LTC','XRP','FIAT','paypal_email'
+      'user_id','currency','type','wallet'
     ];
 
     /**

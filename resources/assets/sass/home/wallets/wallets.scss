@@ -15,7 +15,7 @@
   &__buttons {
     @extend %fsb;
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 15px;
 
     @media #{$mobile} {
       padding: 0 60px;
@@ -60,10 +60,16 @@
     margin-bottom: 40px;
     width: 100%;
     position: relative;
-    height: 130px;
+    height: 160px;
 
     @media #{$mobile} {
       align-items: center;
+    }
+
+    .tab-pane{
+      height: 100%;
+      margin-bottom: 20px;
+      @extend %fcc;
     }
 
     p {
@@ -79,9 +85,9 @@
 
     form {
       @extend %fsb;
-      margin-bottom: 10px;
       width: 100%;
-      position:relative;
+      height:85px;
+      position: relative;
 
       @media #{$mobile} {
         flex-direction: column;
@@ -91,7 +97,6 @@
         width: 295px;
         margin-right: 5px;
         font-weight: 400;
-
         @media #{$mobile545} {
           font-size: 13px;
           font-weight: 500;
@@ -102,13 +107,13 @@
         margin: 2px;
         width: 450px;
         height: 50px;
-        border: 1px solid #E0E0E0;
+        border: 1px solid $gray4;
         border-radius: 5px;
         outline: none;
         padding-left: 10px;
 
-        &:focus{
-          border:1px solid $main-blue;
+        &:focus {
+          border: 1px solid $main-blue;
         }
 
         @media #{$mobile} {
@@ -118,17 +123,29 @@
         @media #{$mobile545} {
           width: 275px;
         }
+
+        &.isError{
+          border: 1px solid $validationError;
+        }
       }
 
-      button{
+      .error-message {
+        position: absolute;
+        width: 450px;
+        right:0;
+        bottom: -10px;
+        color: $validationError;
+      }
+
+      button {
         width: 25px;
         height: 25px;
         position: absolute;
         right: 20px;
-        border:none;
+        border: none;
         outline: none;
 
-        &.edit-btn{
+        &.edit-btn {
           background: url("/img/edit-pencil.svg");
         }
 
@@ -140,7 +157,7 @@
           color: $main-blue;
           padding: 5px;
 
-          &:hover{
+          &:hover {
 
           }
         }

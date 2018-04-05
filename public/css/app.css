@@ -97,6 +97,7 @@
 .x-widget .c2__cur .text-box,
 .x-wallets,
 .x-wallets__form,
+.x-wallets__form .tab-pane,
 .modal-dialog form .modal-body,
 .a-body,
 .a-body .a-container,
@@ -10672,7 +10673,7 @@ button.close {
 
 .x-wallets__buttons {
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 15px;
 }
 
 @media (max-width: 767px) {
@@ -10731,7 +10732,7 @@ button.close {
   margin-bottom: 40px;
   width: 100%;
   position: relative;
-  height: 130px;
+  height: 160px;
 }
 
 @media (max-width: 767px) {
@@ -10740,6 +10741,11 @@ button.close {
         -ms-flex-align: center;
             align-items: center;
   }
+}
+
+.x-wallets__form .tab-pane {
+  height: 100%;
+  margin-bottom: 20px;
 }
 
 .x-wallets__form p {
@@ -10755,8 +10761,8 @@ button.close {
 }
 
 .x-wallets__form form {
-  margin-bottom: 10px;
   width: 100%;
+  height: 85px;
   position: relative;
 }
 
@@ -10806,6 +10812,18 @@ button.close {
   .x-wallets__form form input {
     width: 275px;
   }
+}
+
+.x-wallets__form form input.isError {
+  border: 1px solid #ff443a;
+}
+
+.x-wallets__form form .error-message {
+  position: absolute;
+  width: 450px;
+  right: 0;
+  bottom: -10px;
+  color: #ff443a;
 }
 
 .x-wallets__form form button {
