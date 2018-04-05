@@ -6,7 +6,6 @@
                   <h4 class="modal-title" id="myModalLabel">@lang('home/change_password.edit_pwd')</h4>
               </div>
               <form id="changePwdForm" class="x-form"  method="POST" action="{{ route('renew_password') }}">
-                  <div class="modal-body">
                       {{ csrf_field() }}
                       <label for="email" class="x-label email-label">@lang('home/change_email.current_email')</label>
                       <input type="email" name="email" class="x-input email-input">
@@ -22,7 +21,6 @@
 
                       <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
                       <div class="error-message error-message3 error-message-captcha g-recaptcha-response"></div>
-                  </div>
                   <div class="modal-footer">
                       <button type="submit" class="modal-btn">
                           <i class="small-spinner fa fa-circle-o-notch fa-spin fa-lg fa-fw"></i>

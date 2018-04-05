@@ -6,7 +6,6 @@
                 <h4 class="modal-title" id="myModalLabel">@lang('auth/login.welcome')</h4>
             </div>
             <form id="loginForm" class="l-form" method="POST" action="{{ route('login') }}">
-                <div class="modal-body">
                     {{ csrf_field() }}
                     <label for="email" class="x-label l-label email-label">@lang('auth/login.email_label')</label>
                     <input type="text" name="email" class="x-input email-input " placeholder="example@mail.com" value="">
@@ -16,7 +15,6 @@
                     <div class="error-message error-message1 password pwd_not_match"></div>
                     <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
                     <div class="error-message error-message3 error-message-captcha g-recaptcha-response"></div>
-                </div>
                 <div class="modal-footer">
                     <button type="submit" class="modal-btn">
                         <i class="small-spinner fa fa-circle-o-notch fa-spin fa-lg fa-fw"></i>

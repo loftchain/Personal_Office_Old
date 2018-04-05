@@ -94,6 +94,7 @@
                 case !$.isEmptyObject(data.wallet_added):
                     v.closeModal();
                     v.showNotification('Кошелёк был добавлен', 'success');
+	                wa.exitEditMode();
                     break;
                 default:
                     console.log('success default');

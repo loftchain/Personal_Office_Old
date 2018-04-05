@@ -7,7 +7,6 @@
                 <h4 class="modal-title process-register" id="myModalLabel">@lang('auth/register.registration')</h4>
             </div>
             <form id="registerForm" class="r-form" method="POST" action="{{ route('register') }}">
-                <div class="r-modal-body modal-body process-register">
                     {{ csrf_field() }}
                     <label for="email" class="x-label r-label email-label">@lang('auth/register.type_your_email')</label>
                     <input id="email" type="text" name="email" class="x-input email-input">
@@ -17,7 +16,6 @@
                     <div class="error-message error-message1 password"></div>
                     <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
                     <div class="error-message error-message3 error-message-captcha g-recaptcha-response"></div>
-                </div>
                 <div class="modal-footer">
                   <button type="submit" class="modal-btn process-register">
                       @lang('auth/register.register_btn')

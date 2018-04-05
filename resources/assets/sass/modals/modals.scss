@@ -10,7 +10,7 @@
     }
   }
   form{
-    .modal-body{
+      padding: 15px;
       @extend %fcc;
 
       justify-content: flex-start;
@@ -44,9 +44,8 @@
         text-align: center;
       }
 
-    }
-
     .modal-footer{
+      width: 100%;
       @extend %fc;
 
       button{
