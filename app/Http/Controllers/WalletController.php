@@ -35,11 +35,11 @@ class WalletController extends Controller
 
   protected function create(array $data)
   {
-    return UserWalletFields::create([
+	  return UserWalletFields::create([
       'user_id' => Auth::id(),
       'currency' => $data['currency'],
       'type' => $data['type'],
-      'wallet' => $data['wallet']
+      'wallet' => $data['wallet'],
     ]);
   }
 
@@ -75,14 +75,15 @@ class WalletController extends Controller
 	  $validator = Validator::make($request->all(), [
 		  'wallet' => 'required|string|min:25|max:45|unique:user_wallet_fields',
 	  ]);
-
 	  if ($validator->fails()) {
 		  return response()->json(['validation_error'=>$validator->errors()]);
 	  }
 
-	  $this->create($request->all());
-	  return response()->json(['wallet_added' => 'Wallet was successfully added']);
+	  $wallet = $this->create($request->all());
+	  $wallet->active = '1';
+	  $wallet->save();
 
+	  return response()->json(['wallet_added' => 'Wallet was successfully added']);
   }
 
   public function store_wallet_data(Request $request)
@@ -134,8 +135,8 @@ class WalletController extends Controller
   }
 
   public function current_wallets(Request $request){
-    $walletData = UserWalletFields::where('user_id', Auth::id())->first();
-    return response()->json(['data' => $walletData]);
+    $walletData = UserWalletFields::where('user_id', Auth::id())->get();
+    return response()->json(['currentWallets' => $walletData]);
   }
 
 }

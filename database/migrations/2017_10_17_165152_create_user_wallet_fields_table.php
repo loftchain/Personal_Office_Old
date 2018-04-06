@@ -19,6 +19,7 @@ class CreateUserWalletFieldsTable extends Migration
         $table->string('currency')->nullable();
         $table->string('type')->nullable();
         $table->string('wallet')->nullable();
+        $table->string('active')->nullable();
         $table->timestamps();
         $table->engine = 'InnoDB';
       });

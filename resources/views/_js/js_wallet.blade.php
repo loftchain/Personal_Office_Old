@@ -4,6 +4,7 @@
         switchWalletLink: $('.switch-wallet-link'),
         editBtn: $('.edit-btn'),
         submitBtn: $('.sbmt-btn'),
+        wForm: $('.w-form'),
         wInput: $('.w-input'),
         wInput0: $('#wallet_from0'),
         errorMessage: $('.error-message'),
@@ -25,25 +26,66 @@
             wa.wInput.prop('disabled', true);
             wa.submitBtn.hide();
             wa.editBtn.show();
-	        wa.wInput.removeClass('isError');
-	        wa.wInput.val('');
-	        wa.errorMessage.html('');
+            wa.wInput.removeClass('isError');
+            wa.wInput.val('');
+            wa.errorMessage.html('');
         },
 
-	    resetInput() {
-		    wa.wInput.removeClass('isError');
-		    wa.wInput.val('');
-		    wa.errorMessage.html('');
-	    }
-    };
+        resetInput() {
+            wa.wInput.removeClass('isError');
+            wa.wInput.val('');
+            wa.errorMessage.html('');
+        },
 
+        getCurrentWallets() {
+            $.ajax({
+                url: '{{ route('current_wallets') }}',
+                type: 'GET',
+                dataType: 'json',
+                success: data => {
+                    wa.setWalletsToInputs(data);
+                },
+                error: data => {
+                    console.dir('Error: Something wrong with ajax call ' + data.errors);
+                }
+            });
+        },
+
+        setWalletsToInputs(walletsData) {
+            walletsData.currentWallets.forEach(function(item, i, arr) {
+                switch(item.type){
+                    case 'from_to':
+                        if(item.active === '1') {
+                          $('#wallet0').val(item.wallet);
+                        } else {
+
+                        }
+                        break;
+                    case 'from':
+                        if(item.active === '1') {
+                            $('#wallet1').val(item.wallet);
+                        } else {
+
+                        }
+                        break;
+                    case 'to':
+                        if(item.active === '1') {
+                            $('#wallet2').val(item.wallet);
+                        } else {
+
+                        }
+                        break;
+                }
+            });
+        }
+    };
 
     //--------------------------------------
 
-
     $(document).ready(() => {
-    	
-	    let submitClicked = false;
+        let submitClicked = false;
+
+        wa.getCurrentWallets();
 
         wa.switchWalletLink.each(function () {
             $(this).click(() => {
@@ -57,19 +99,18 @@
             });
         });
 
-	    wa.submitBtn.click(() => {
-		    submitClicked = true;
-	    });
+        wa.submitBtn.click(() => {
+            submitClicked = true;
+        });
 
         wa.wInput.focusout(() => {
-	        console.log(submitClicked);
-	        	setTimeout(() => {
-			        if(!submitClicked) {
-				        wa.exitEditMode();
-			        } else {
-				        submitClicked = false;
-			        }
-		        },150);
+            setTimeout(() => {
+                if (!submitClicked) {
+                    wa.exitEditMode();
+                } else {
+                    submitClicked = false;
+                }
+            }, 150);
         });
 
     });

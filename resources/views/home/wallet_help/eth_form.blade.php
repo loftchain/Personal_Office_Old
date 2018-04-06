@@ -1,4 +1,4 @@
-<form action="{{ route('store_wallet') }}" method="POST" id="form0">
+<form action="{{ route('store_wallet') }}" class="w-form" method="POST" id="form0">
     {{ csrf_field() }}
     <input id="cur0" name="currency" type="hidden" value="ETH">
     <input id="type0" name="type" type="hidden" value="from_to">

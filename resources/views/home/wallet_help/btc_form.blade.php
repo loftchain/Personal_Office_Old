@@ -1,4 +1,4 @@
-<form action="{{ route('store_wallet') }}" method="POST" id="form1">
+<form action="{{ route('store_wallet') }}" class="w-form" method="POST" id="form1">
     {{ csrf_field() }}
     <input id="cur1" name="currency" type="hidden" value="BTC">
     <input id="type1" name="type" type="hidden" value="from">
@@ -9,9 +9,9 @@
     <button class="sbmt-btn" type="submit">save</button>
 </form>
 
-<form action="{{ route('store_wallet') }}" method="POST" id="form2">
+<form action="{{ route('store_wallet') }}" class="w-form" method="POST" id="form2">
     {{ csrf_field() }}
-    <input id="cur2" name="cur2" type="hidden" value="ETH">
+    <input id="cur2" name="currency" type="hidden" value="ETH">
     <input id="type2" name="type" type="hidden" value="to">
     <label for="wallet2">Я хочу получить токены <b>ERC20</b> в кошелек <b>ETH</b></label>
     <button class="edit-btn" type="button"></button>
