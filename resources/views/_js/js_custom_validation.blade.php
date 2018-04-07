@@ -92,10 +92,13 @@
                     window.location.replace("{{ route('root') }}");
                     break;
                 case !$.isEmptyObject(data.wallet_added):
-                    v.closeModal();
                     v.showNotification('Кошелёк был добавлен', 'success');
 	                wa.exitEditMode();
                     break;
+	            case !$.isEmptyObject(data.wallet_edited):
+		            v.showNotification('Кошелёк был изменён', 'success');
+		            wa.exitEditMode();
+		            break;
                 default:
                     console.log('success default');
                     break;

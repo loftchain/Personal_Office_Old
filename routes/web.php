@@ -34,6 +34,7 @@ Route::post('/reset_email', 'Auth\ChangeEmailController@reset_email')->name('res
 Route::post('/renew_password', 'Auth\ChangePasswordController@renew_password')->name('renew_password');
 Route::post('/store_personal_data', 'Auth\StepValidation\AgreementController@store_personal_data')->name('store_personal_data');
 Route::post('/store_wallet', 'WalletController@store_wallet')->name('store_wallet');
+Route::post('/edit_wallet', 'WalletController@edit_wallet')->name('edit_wallet');
 Route::get('/current_wallets', 'WalletController@current_wallets')->name('current_wallets');
 
 Auth::routes();

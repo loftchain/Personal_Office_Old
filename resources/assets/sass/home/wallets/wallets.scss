@@ -144,12 +144,28 @@
         right: 20px;
         border: none;
         outline: none;
+        padding: 0;
+        background: transparent;
 
-        &.edit-btn {
+        &.edit-wallet-btn {
+          display: none;
+          right: 60px;
           background: url("/img/edit-pencil.svg");
         }
 
-        &.sbmt-btn {
+        &.add-wallet-btn {
+          //background: url("/img/add-wallet-btn.png");
+          //background-size: contain;
+
+
+          i{
+            color: $main-blue;
+            width: 25px;
+            height: 25px;
+          }
+        }
+
+        &.sbmt-wallet-btn {
           display: none;
           background: transparent;
           width: auto;

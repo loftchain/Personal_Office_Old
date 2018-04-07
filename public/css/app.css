@@ -10833,13 +10833,23 @@ button.close {
   right: 20px;
   border: none;
   outline: none;
+  padding: 0;
+  background: transparent;
 }
 
-.x-wallets__form form button.edit-btn {
+.x-wallets__form form button.edit-wallet-btn {
+  display: none;
+  right: 60px;
   background: url("/img/edit-pencil.svg");
 }
 
-.x-wallets__form form button.sbmt-btn {
+.x-wallets__form form button.add-wallet-btn i {
+  color: #30ced1;
+  width: 25px;
+  height: 25px;
+}
+
+.x-wallets__form form button.sbmt-wallet-btn {
   display: none;
   background: transparent;
   width: auto;

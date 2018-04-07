@@ -1,117 +1,149 @@
 <script>
-    let wa = {
-        checkboxImg: $('.checkbox-img'),
-        switchWalletLink: $('.switch-wallet-link'),
-        editBtn: $('.edit-btn'),
-        submitBtn: $('.sbmt-btn'),
-        wForm: $('.w-form'),
-        wInput: $('.w-input'),
-        wInput0: $('#wallet_from0'),
-        errorMessage: $('.error-message'),
-        switchCheckBox(_this) {
-            wa.checkboxImg.attr('src', '{{ asset('img/empty-checkbox.png') }}');
-            _this[0].childNodes[1].childNodes[1].src = '{{ asset('img/checked-checkbox.png') }}';
-        },
+	let wa = {
+		authenticated: '{{ $data['authenticated'] }}',
+		checkboxImg: $('.checkbox-img'),
+		switchWalletLink: $('.switch-wallet-link'),
+		editBtn: $('.edit-wallet-btn'),
+		addBtn: $('.add-wallet-btn'),
+		submitBtn: $('.sbmt-wallet-btn'),
+		wForm: $('.w-form'),
+		wInput: $('.w-input'),
+		wInput0: $('#wallet0'),
+		wInput1: $('#wallet1'),
+		wInput2: $('#wallet2'),
+		errorMessage: $('.error-message'),
+		switchCheckBox(_this) {
+			wa.checkboxImg.attr('src', '{{ asset('img/empty-checkbox.png') }}');
+			_this[0].childNodes[1].childNodes[1].src = '{{ asset('img/checked-checkbox.png') }}';
+		},
 
-        editMode(_this) {
-            _this.prop('disabled', false);
-            _this.next().next().show();
-            _this.prev().hide();
-            setTimeout(() => {
-                _this.focus();
-            }, 1);
-        },
+		editMode(_this) { //input
+			const form = _this.parent();
+			const sbmtBtn = form.find('.sbmt-wallet-btn');
+			const addBtn = form.find('.add-wallet-btn');
+			const editBtn = form.find('.edit-wallet-btn');
+			let submitClicked = false;
 
-        exitEditMode() {
-            wa.wInput.prop('disabled', true);
-            wa.submitBtn.hide();
-            wa.editBtn.show();
-            wa.wInput.removeClass('isError');
-            wa.wInput.val('');
-            wa.errorMessage.html('');
-        },
-
-        resetInput() {
-            wa.wInput.removeClass('isError');
-            wa.wInput.val('');
-            wa.errorMessage.html('');
-        },
-
-        getCurrentWallets() {
-            $.ajax({
-                url: '{{ route('current_wallets') }}',
-                type: 'GET',
-                dataType: 'json',
-                success: data => {
-                    wa.setWalletsToInputs(data);
-                },
-                error: data => {
-                    console.dir('Error: Something wrong with ajax call ' + data.errors);
-                }
+			addBtn.click(() => {
+				_this.prop('disabled', false);
+				setTimeout(() => {
+					_this.focus();
+				}, 1);
+				sbmtBtn.show();
+				addBtn.hide();
+				editBtn.hide();
+				form.attr('action', '{{ route('store_wallet') }}');
+				wa.submitBtn.text('save');
             });
-        },
 
-        setWalletsToInputs(walletsData) {
-            walletsData.currentWallets.forEach(function(item, i, arr) {
-                switch(item.type){
-                    case 'from_to':
-                        if(item.active === '1') {
-                          $('#wallet0').val(item.wallet);
-                        } else {
+			editBtn.click(() => {
+				_this.prop('disabled', false);
+				setTimeout(() => {
+					_this.focus();
+				}, 1);
+				sbmtBtn.show();
+				addBtn.hide();
+				editBtn.hide();
+				form.attr('action', '{{ route('edit_wallet') }}');
+				wa.submitBtn.text('edit');
+			});
 
-                        }
-                        break;
-                    case 'from':
-                        if(item.active === '1') {
-                            $('#wallet1').val(item.wallet);
-                        } else {
+			wa.submitBtn.click(() => {
+				submitClicked = true;
+			});
 
-                        }
-                        break;
-                    case 'to':
-                        if(item.active === '1') {
-                            $('#wallet2').val(item.wallet);
-                        } else {
+			_this.focusout(() => {
+				setTimeout(() => {
+					if (!submitClicked) {
+						wa.exitEditMode();
+					} else {
+						submitClicked = false;
+					}
+				}, 150);
+			});
+		},
 
-                        }
-                        break;
-                }
-            });
-        }
-    };
+		exitEditMode(_this) {
+			wa.wInput.prop('disabled', true);
+			wa.submitBtn.hide();
+			wa.addBtn.show();
+			wa.wInput.removeClass('isError');
+            if(wa.wInput0.data('status') === 'active'){
+	            wa.editBtn.show();
+            }
+			// wa.wInput.val('');
+			wa.errorMessage.html('');
+		},
 
-    //--------------------------------------
 
-    $(document).ready(() => {
-        let submitClicked = false;
+		setWallets() {
+			$.ajax({
+				url: '{{ route('current_wallets') }}',
+				type: 'GET',
+				dataType: 'json',
+				success: data => {
+					wa.setWalletsToInputs(data);
+				},
+				error: data => {
+					console.dir('Error: Something wrong with ajax call ' + data.errors);
+				}
+			});
+		},
 
-        wa.getCurrentWallets();
+		setWalletsToInputs(walletsData) {
+			walletsData.currentWallets.forEach(function (item) {
+				switch (item.type) {
+					case 'from_to':
+						if (item.active === '1') {
+							wa.wInput0.val(item.wallet);
+							wa.wInput0.data("status", "active");
+							wa.editBtn.show();
 
-        wa.switchWalletLink.each(function () {
-            $(this).click(() => {
-                wa.switchCheckBox($(this));
-            })
-        });
+						} else {
 
-        wa.wInput.each(function () {
-            $(this).prev().click(() => {
-                wa.editMode($(this));
-            });
-        });
+						}
+						break;
+					case 'from':
+						if (item.active === '1') {
+							wa.wInput1.val(item.wallet);
+							wa.wInput1.data("status", "active");
+							wa.editBtn.show();
+						} else {
 
-        wa.submitBtn.click(() => {
-            submitClicked = true;
-        });
+						}
+						break;
+					case 'to':
+						if (item.active === '1') {
+							wa.wInput2.val(item.wallet);
+							wa.wInput2.data("status", "active");
+							wa.editBtn.show();
+						} else {
 
-        wa.wInput.focusout(() => {
-            setTimeout(() => {
-                if (!submitClicked) {
-                    wa.exitEditMode();
-                } else {
-                    submitClicked = false;
-                }
-            }, 150);
-        });
+						}
+						break;
+				}
+			});
+		}
+	};
 
-    });
+	//--------------------------------------
+
+	$(document).ready(() => {
+
+		if (wa.authenticated) {
+			wa.setWallets();
+		}
+
+		wa.switchWalletLink.each(function () {
+			$(this).click(() => {
+				wa.switchCheckBox($(this));
+			})
+		});
+
+		wa.wInput.each(function () {
+				wa.editMode($(this));
+		});
+
+
+	});
 </script>

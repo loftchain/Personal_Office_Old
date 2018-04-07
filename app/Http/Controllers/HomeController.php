@@ -77,12 +77,13 @@ class HomeController extends Controller
 		$time = is_numeric(Input::get('time')) ? Input::get('time') : time();
 		$data['btcSoftCap'] = $this->widgetService->calcSoftCap('BTC', 'BTC/USD');
 		$data['ethSoftCap'] = $this->widgetService->calcSoftCap('ETH', 'ETH/USD');
-
 		$data['wholeSoftCap'] = array_map(function () {
 			return array_sum(func_get_args());
 		}, $data['btcSoftCap'], $data['ethSoftCap']);
 		$data['period'] = $this->get_period($time);
 		$data['time'] = $time;
+		$data['authenticated'] = Auth::check();
+
 		return view('home.home')->with('data', $data);
 
 	}

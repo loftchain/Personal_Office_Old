@@ -86,6 +86,22 @@ class WalletController extends Controller
 	  return response()->json(['wallet_added' => 'Wallet was successfully added']);
   }
 
+	public function edit_wallet(Request $request) {
+		$validator = Validator::make($request->all(), [
+			'wallet' => 'required|string|min:25|max:45|unique:user_wallet_fields',
+		]);
+
+		if ($validator->fails()) {
+			return response()->json(['validation_error'=>$validator->errors()]);
+		}
+
+		$wallet = UserWalletFields::where('type', $request['type'])->where('active', '1')->first();
+	    $wallet->wallet = $request['wallet'];
+		$wallet->save();
+
+		return response()->json(['wallet_edited' => 'Wallet was successfully edited']);
+	}
+
   public function store_wallet_data(Request $request)
   {
     $validator = Validator::make($request->all(), [

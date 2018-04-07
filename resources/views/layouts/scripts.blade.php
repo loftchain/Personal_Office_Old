@@ -4,11 +4,11 @@
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap-notify.min.js') }}"></script>
 <script src="{{ asset('js/vanilla-masker.js') }}"></script>
-@include('_js.js_custom_validation')
 @include('_js.js_accordion')
 @include('_js.js_loader_cloak')
-@include('_js.js_wallet')
 
 @if(isset($data))
+    @include('_js.js_wallet')
     @include('_js.js_widget')
 @endif
+@include('_js.js_custom_validation')
