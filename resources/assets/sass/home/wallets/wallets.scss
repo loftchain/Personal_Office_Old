@@ -60,7 +60,7 @@
     margin-bottom: 40px;
     width: 100%;
     position: relative;
-    height: 160px;
+    height: 500px;
 
     @media #{$mobile} {
       align-items: center;
@@ -183,6 +183,7 @@
 
   &__text {
     width: 100%;
+    display: none;
 
     @media #{$mobile} {
       width: 100%;
