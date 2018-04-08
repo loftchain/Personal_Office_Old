@@ -32,6 +32,7 @@
 				sbmtBtn.show();
 				addBtn.hide();
 				editBtn.hide();
+				_this.val('');
 				form.attr('action', '{{ route('store_wallet') }}');
 				wa.submitBtn.text('save');
             });
@@ -68,13 +69,13 @@
 			wa.submitBtn.hide();
 			wa.addBtn.show();
 			wa.wInput.removeClass('isError');
-            if(wa.wInput0.data('status') === 'active'){
-	            wa.editBtn.show();
-            }
+            // if(wa.wInput0.data('status') === 'active'){
+	         //    wa.editBtn.show();
+            // }
 			// wa.wInput.val('');
 			wa.errorMessage.html('');
+			wa.setWallets();
 		},
-
 
 		setWallets() {
 			$.ajax({
@@ -97,7 +98,7 @@
 						if (item.active === '1') {
 							wa.wInput0.val(item.wallet);
 							wa.wInput0.data("status", "active");
-							wa.editBtn.show();
+							// wa.editBtn.show();
 
 						} else {
 
@@ -107,7 +108,7 @@
 						if (item.active === '1') {
 							wa.wInput1.val(item.wallet);
 							wa.wInput1.data("status", "active");
-							wa.editBtn.show();
+							// wa.editBtn.show();
 						} else {
 
 						}
@@ -116,7 +117,7 @@
 						if (item.active === '1') {
 							wa.wInput2.val(item.wallet);
 							wa.wInput2.data("status", "active");
-							wa.editBtn.show();
+							// wa.editBtn.show();
 						} else {
 
 						}
