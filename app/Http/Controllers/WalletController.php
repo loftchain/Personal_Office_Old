@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\WalletService;
+use App\Services\WidgetService;
 use GuzzleHttp\Client;
 use App\Http\Controllers\Controller;
 use App\Models\UserHistoryFields;
@@ -20,20 +22,16 @@ use ReCaptcha\ReCaptcha;
 class WalletController extends Controller
 {
 
-  /**
-   * Create a new controller instance.
-   *
-   * @return void
-   */
-  public function __construct()
+  protected $walletService;
+
+  public function __construct(WalletService $walletService)
   {
+  	$this->walletService = $walletService;
     $this->middleware('valid');
 
   }
 
-
-
-  protected function create(array $data)
+	  protected function create(array $data)
   {
 	  return UserWalletFields::create([
       'user_id' => Auth::id(),
@@ -83,7 +81,7 @@ class WalletController extends Controller
 	  $wallet->active = '1';
 	  $wallet->save();
 
-	  return response()->json(['wallet_added' => 'Wallet was successfully added']);
+	  return response()->json(['wallet_added' => 'Wallet was successfully added', 'currency' => $wallet->currency]);
   }
 
 	public function edit_wallet(Request $request) {
@@ -102,57 +100,13 @@ class WalletController extends Controller
 		return response()->json(['wallet_edited' => 'Wallet was successfully edited']);
 	}
 
-  public function store_wallet_data(Request $request)
-  {
-    $validator = Validator::make($request->all(), [
-      'wallet_invest_from' => 'required|string|min:25|max:45|unique_wallet',
-      'wallet_get_tokens' => 'required|string|min:25|max:45|unique_wallet',
-    ]);
-    if ($validator->fails()) {
-      return response()->json(['validation_error'=>$validator->errors()]);
-    }
-    $request[$request['name_of_wallet_invest_from']] = $request['wallet_invest_from'];
-    $wallet = $this->create($request->all())->toArray();
-    $this->wallet_history_make('store wallet', $wallet, null);
-
-    return response()->json(['status', Lang::get('controller/mycrypto.message_0')]);
-  }
-
-  public function update_wallet_data(Request $request)
-  {
-    $request['captcha'] = $this->captchaCheck();
-    $validator = Validator::make($request->all(), [
-      'wallet_invest_from' => 'required|string|min:25|max:45|unique_wallet_update',
-      'wallet_get_tokens' => 'required|string|min:25|max:45|unique_wallet_update',
-      'password' => 'required|string|min:3',
-      'g-recaptcha-response'  => 'required'
-    ]);
-    if ($validator->fails()) {
-      return response()->json(['validation_error'=>$validator->errors()]);
-    }
-
-    $walletData = UserWalletFields::where('user_id', Auth::id())->first();
-    $user = User::where('id', Auth::id())->first();
-    $passwordIsVerified = password_verify( $request['password'], $user->password );
-    if (!$passwordIsVerified) {
-      $validator->getMessageBag()->add('password', Lang::get('controller/mycrypto.message_2'));
-      return response()->json(['validation_error' => $validator->errors()]);
-    }
-
-    $walletData->wallet_invest_from = $request['wallet_invest_from'];
-    $walletData[$request['name_of_wallet_invest_from']] = $request['wallet_invest_from'];
-    $walletData->name_of_wallet_invest_from = $request['name_of_wallet_invest_from'];
-    $walletData->wallet_get_tokens = $request['wallet_get_tokens'];
-    $walletData->save();
-
-    @$user_history = UserHistoryFields::where('user_id', Auth::id())->first();
-    $this->wallet_history_make('update wallet', $walletData, $user_history);
-    return response()->json(['status', Lang::get('controller/mycrypto.message_1')]);
-  }
-
   public function current_wallets(Request $request){
-    $walletData = UserWalletFields::where('user_id', Auth::id())->get();
+    $walletData = $this->walletService->getCurrentWallets();
     return response()->json(['currentWallets' => $walletData]);
   }
+
+	public function description_view($currency){
+		return view('home.wallet_help.description')->with('currency', $currency);
+	}
 
 }

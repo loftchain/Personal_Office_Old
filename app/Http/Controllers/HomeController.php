@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Services\WidgetService;
+use App\Services\WalletService;
 use App\Models\User;
 use App\Models\UserWalletFields;
 use App\Models\UserPersonalFields;
-use App\Services\Lk\LinksService;
-use App\Services\Lk\TransactionsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
@@ -19,10 +18,13 @@ class HomeController extends Controller
 {
 
 	protected $widgetService;
+	protected $walletService;
 
-	public function __construct(WidgetService $widgetService)
+
+	public function __construct(WidgetService $widgetService, WalletService $walletService)
 	{
 		$this->middleware('valid', ['except' => ['welcome']]);
+		$this->walletService = $walletService;
 		$this->widgetService = $widgetService;
 	}
 
@@ -83,6 +85,8 @@ class HomeController extends Controller
 		$data['period'] = $this->get_period($time);
 		$data['time'] = $time;
 		$data['authenticated'] = Auth::check();
+		$data['wallets'] = $this->walletService->getCurrentWallets();
+		Log::info($data['wallets']);
 
 		return view('home.home')->with('data', $data);
 

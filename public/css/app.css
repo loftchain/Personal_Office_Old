@@ -10732,7 +10732,7 @@ button.close {
   margin-bottom: 40px;
   width: 100%;
   position: relative;
-  height: 160px;
+  height: 500px;
 }
 
 @media (max-width: 767px) {
@@ -10746,6 +10746,9 @@ button.close {
 .x-wallets__form .tab-pane {
   height: 100%;
   margin-bottom: 20px;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .x-wallets__form p {
@@ -10856,6 +10859,10 @@ button.close {
   height: auto;
   color: #30ced1;
   padding: 5px;
+}
+
+.x-wallets__form .description-container {
+  width: 100%;
 }
 
 .x-wallets__text {

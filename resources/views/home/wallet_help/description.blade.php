@@ -1,7 +1,6 @@
 <div class="x-wallets__text">
-    <p class="x-wallets__form_title">@lang('home/ico.enter_wallet_to_participate')</p>
-
     <ul>
+        <li>Благодарим за участие в программе</li>
         @if($currency == 'ETH')
         <li>@lang('home/ico.set_gas') 199 000</li>
         @endif

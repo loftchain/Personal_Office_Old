@@ -89,21 +89,21 @@
 			const currency = form.find('.currency');
 			const type = form.find('.type');
 
-			walletsData.currentWallets.forEach(function (item) {
-				switch (item.type) {
+			walletsData.currentWallets.forEach(function (wallet) {
+				switch (wallet.type) {
 					case 'from':
-						if (currency.val() === item.currency) {
-							_this.val(item.wallet);
+						if (currency.val() === wallet.currency) {
+							_this.val(wallet.wallet);
 						}
 						break;
 					default:
-						if (type.val() === item.type) {
-							_this.val(item.wallet);
+						if (type.val() === wallet.type) {
+							_this.val(wallet.wallet);
 						}
 						break;
 				}
 			});
-		}
+		},
 	};
 
 	//--------------------------------------

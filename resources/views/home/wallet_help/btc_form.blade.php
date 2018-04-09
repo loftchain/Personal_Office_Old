@@ -21,4 +21,18 @@
     <div class="error-message error-message0 wallet"></div>
     <button class="sbmt-wallet-btn" type="submit">save</button>
 </form>
-@include('home.wallet_help.description', ['currency' => 'BTC'])
+
+<div class="description-container">
+    @if (count($data['wallets']) > 0)
+        @foreach($data['wallets'] as $k => $w)
+            @if($w['type'] == 'from' && $w['currency'] == 'BTC')
+                @include('home.wallet_help.description', ['currency' => 'BTC'])
+                @break
+            @else
+                <p class="x-wallets__form_title">Для инвестирования в BTC, пожалуйста, добавьте кошелёк</p>
+            @endif
+        @endforeach
+    @else
+        <p class="x-wallets__form_title">Для инвестирования в BTC, пожалуйста, добавьте кошелёк</p>
+    @endif
+</div>
