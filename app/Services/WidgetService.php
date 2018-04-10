@@ -23,7 +23,7 @@ class WidgetService
 	public function getTx()
 	{
 		$client = new Client();
-		$res = $client->request('GET', env('SELF_API_URL') . '/api/tx/' . env('CUSTOMER_ID'));
+		$res = $client->request('GET', env('SELF_API_URL') . '/api/tx/' . env('OWNER_ID'));
 		$body = json_decode($res->getBody());
 		return $body;
 	}

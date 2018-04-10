@@ -10,11 +10,16 @@ use App\Http\Controllers\HomeController;
 class BonusService
 {
 
-	public function getLatestCurrencies()
+	public function getLatestCurrencies($pair, $timestamp)
 	{
 		$client = new Client();
 		$res = $client->request('GET', env('SELF_API_URL') . '/api/currencies/');
 		$body = json_decode($res->getBody());
+		foreach ($body as $item) {
+			if($item->pair == $pair){
+				return $item->price;
+			}
+		}
 		return $body;
 	}
 

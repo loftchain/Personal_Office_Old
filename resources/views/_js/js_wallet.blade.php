@@ -115,15 +115,13 @@
 		        method: "GET",
 		        url: `{{ route('root') }}/description_view/${currency}`,
 		        dataType: 'html',
-		        success: function (res)
-		        {
+		        success: res =>  {
 			        noWalletMessage.remove();
 			        if( !$.trim( descriptionContainer.html() ).length ) { //if description container is empty
 				        descriptionContainer.hide().html(res).fadeIn('slow');
 			        }
 		        },
-		        error: function(data)
-		        {
+		        error: data => {
 			        console.dir('Error: Something wrong with ajax call ' + data.errors);
 		        }
 	        });
