@@ -94,16 +94,40 @@
 					case 'from':
 						if (currency.val() === wallet.currency) {
 							_this.val(wallet.wallet);
+							wa.showDescription(wallet.currency);
 						}
 						break;
 					default:
 						if (type.val() === wallet.type) {
 							_this.val(wallet.wallet);
+							wa.showDescription(wallet.currency);
 						}
 						break;
 				}
 			});
 		},
+
+        showDescription(currency){
+			const descriptionContainer = $(`.description-container.${currency}`);
+			const noWalletMessage = $(`.no-wallet.${currency}`);
+
+	        $.ajax({
+		        method: "GET",
+		        url: `{{ route('root') }}/description_view/${currency}`,
+		        dataType: 'html',
+		        success: function (res)
+		        {
+			        noWalletMessage.remove();
+			        if( !$.trim( descriptionContainer.html() ).length ) { //if description container is empty
+				        descriptionContainer.hide().html(res).fadeIn('slow');
+			        }
+		        },
+		        error: function(data)
+		        {
+			        console.dir('Error: Something wrong with ajax call ' + data.errors);
+		        }
+	        });
+        }
 	};
 
 	//--------------------------------------

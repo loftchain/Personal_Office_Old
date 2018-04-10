@@ -92,9 +92,9 @@
                     window.location.replace("{{ route('root') }}");
                     break;
                 case !$.isEmptyObject(data.wallet_added):
-                	window.location.reload();
                     v.showNotification('Кошелёк был добавлен', 'success');
 	                wa.exitEditMode(_this.children('.w-input'));
+	                wa.showDescription(data.currency);
 	                break;
 	            case !$.isEmptyObject(data.wallet_edited):
 		            v.showNotification('Кошелёк был изменён', 'success');
