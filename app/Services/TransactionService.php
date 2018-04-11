@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Helpers\ICOAPI;
+use App\Models\Transactions;
 use App\Models\UserWalletFields;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -16,67 +17,91 @@ class TransactionService
 {
 
 	protected $bonusService;
-	protected $txService;
 
 	public function __construct(BonusService $bonusService)
 	{
 		$this->bonusService = $bonusService;
 	}
 
-	public function getTransactions(){
+	public function getTransactions()
+	{
 		$client = new Client();
 		$res = $client->request('GET', env('SELF_API_URL') . '/api/tx/' . env('OWNER_ID'));
 		$body = json_decode($res->getBody());
 		return $body;
 	}
 
-	public function countTokens($currency, $amount, $date){
-		$tokens = 0;
-		$curs = $this->bonusService->getLatestCurrencies();
-		$txTimestamp = strtotime($date);
+	public function getClosest($search, $arr) {
 		$closest = null;
-
-		foreach ($curs as $c) {
-			if ($closest === null || abs($txTimestamp - $closest) > abs($c->timestamp - $txTimestamp)) {
-				$closest = $c->timestamp;
+		foreach ($arr as $k => $v) {
+			if ($closest === null || abs($search - $closest) > abs($v - $search)) {
+				$closest = $v;
 			}
-			Log::info($closest);
-
-//			switch($currency){
-//				case 'ETH':
-//
-//					break;
-//			}
 		}
-
-		return $tokens;
+		return $closest;
 	}
 
-	public function storeTx(){
+	public function countTokens($curs, $amount, $date, $currency, $tokenPrice) {
+		$dateArr = [];
+		$tokenAmount = 0;
+
+		foreach ($curs as $c) {
+			if(!in_array($c->timestamp, $dateArr)){
+				$dateArr[] = (int)$c->timestamp;
+			}
+		}
+
+		$closetDate = $this->getClosest((int)$date, $dateArr);
+
+		foreach ($curs as $c) {
+			if((int)$c->timestamp == $closetDate){
+				switch($currency){
+					case 'ETH':
+						if($c->pair == 'ETH/USD'){
+							$tokenAmount = $amount * $c->price / $tokenPrice;
+						}
+						break;
+					case 'BTC':
+						if($c->pair == 'BTC/USD') {
+							$tokenAmount = $amount * $c->price / $tokenPrice;
+						}
+						break;
+				}
+			}
+		}
+
+		return round($tokenAmount,2);
+	}
+
+	public function storeTx()
+	{
 		$tx = $this->getTransactions();
 		$db = [];
 		$curs = $this->bonusService->getLatestCurrencies();
-
+		$tokenPrice = $this->bonusService->getTokenPrice();
 
 		foreach ($tx as $t) {
-					$db[] = [
-						'transaction_id' => $t->txId,
-						'status' => $t->status,
-						'currency' => $t->currency,
-						'from' => $t->from,
-						'amount' => $t->amount,
-						'amount_tokens' => $this->countTokens($t->currency, $t->amount, $t->date),
-						'date' => $t->date
-					];
-			}
 
-//		for ($k = 0; $k < count($db); $k++) {
-//			if (!Transactions::where('txId', '=', $db[$k]['txId'])->exists()) {
-//				Transactions::create($db[$k]);
-//			}
-//		}
+			$txTimestamp = strtotime($t->date);
+			$closest = null;
+
+			$db[] = [
+				'transaction_id' => $t->txId,
+				'status' => $t->status,
+				'currency' => $t->currency,
+				'from' => $t->from,
+				'amount' => $t->amount,
+				'amount_tokens' => $this->countTokens($curs, $t->amount, $t->date, $t->currency, $tokenPrice),
+				'date' => $t->date
+			];
+
+			for ($i = 0; $i < count($db); $i++) {
+				if (!Transactions::where('transaction_id', '=', $db[$i]['transaction_id'])->exists()) {
+					Transactions::create($db[$i]);
+				}
+			}
+		}
 
 		return $db;
 	}
-
 }
