@@ -17,10 +17,12 @@ class TransactionService
 {
 
 	protected $bonusService;
+	protected $walletService;
 
-	public function __construct(BonusService $bonusService)
+	public function __construct(BonusService $bonusService, WalletService $walletService)
 	{
 		$this->bonusService = $bonusService;
+		$this->walletService = $walletService;
 	}
 
 	public function getTransactions()
@@ -31,7 +33,8 @@ class TransactionService
 		return $body;
 	}
 
-	public function getClosest($search, $arr) {
+	public function getClosest($search, $arr)
+	{
 		$closest = null;
 		foreach ($arr as $k => $v) {
 			if ($closest === null || abs($search - $closest) > abs($v - $search)) {
@@ -41,12 +44,13 @@ class TransactionService
 		return $closest;
 	}
 
-	public function countTokens($curs, $amount, $date, $currency, $tokenPrice) {
+	public function countTokens($curs, $amount, $date, $currency, $tokenPrice)
+	{
 		$dateArr = [];
 		$tokenAmount = 0;
 
 		foreach ($curs as $c) {
-			if(!in_array($c->timestamp, $dateArr)){
+			if (!in_array($c->timestamp, $dateArr)) {
 				$dateArr[] = (int)$c->timestamp;
 			}
 		}
@@ -54,15 +58,15 @@ class TransactionService
 		$closetDate = $this->getClosest((int)$date, $dateArr);
 
 		foreach ($curs as $c) {
-			if((int)$c->timestamp == $closetDate){
-				switch($currency){
+			if ((int)$c->timestamp == $closetDate) {
+				switch ($currency) {
 					case 'ETH':
-						if($c->pair == 'ETH/USD'){
+						if ($c->pair == 'ETH/USD') {
 							$tokenAmount = $amount * $c->price / $tokenPrice;
 						}
 						break;
 					case 'BTC':
-						if($c->pair == 'BTC/USD') {
+						if ($c->pair == 'BTC/USD') {
 							$tokenAmount = $amount * $c->price / $tokenPrice;
 						}
 						break;
@@ -70,7 +74,7 @@ class TransactionService
 			}
 		}
 
-		return round($tokenAmount,2);
+		return round($tokenAmount, 2);
 	}
 
 	public function storeTx()
@@ -81,7 +85,6 @@ class TransactionService
 		$tokenPrice = $this->bonusService->getTokenPrice();
 
 		foreach ($tx as $t) {
-
 			$txTimestamp = strtotime($t->date);
 			$closest = null;
 
@@ -101,7 +104,18 @@ class TransactionService
 				}
 			}
 		}
-
 		return $db;
+	}
+
+	public function getWalletTx($wallet)
+	{
+		return Transactions::where('from', $wallet)->get();
+	}
+
+	public function setDataForMyTx()
+	{
+		$currenUserWallets = $this->walletService->getCurrentWallets();
+
+
 	}
 }
