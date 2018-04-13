@@ -35,4 +35,8 @@ class TransactionController extends Controller
 	public function storeTxToDb(){
 		$this->txService->storeTx();
 	}
+
+	public function setDataForMyTx(){
+		$this->txService->setDataForMyTx();
+	}
 }

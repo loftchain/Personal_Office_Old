@@ -114,8 +114,14 @@ class TransactionService
 
 	public function setDataForMyTx()
 	{
-		$currenUserWallets = $this->walletService->getCurrentWallets();
+		$txData = [];
+		$currentUserWallets = $this->walletService->getCurrentWallets();
 
+		foreach ($currentUserWallets as $wallet) {
+			$tx = Transactions::where('from', $wallet->wallet)->get();
+			$txData[] = ['wallet' => $wallet->wallet, 'tx' => $tx];
+		}
 
+		return $txData;
 	}
 }

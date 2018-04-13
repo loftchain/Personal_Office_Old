@@ -38,7 +38,7 @@ Route::post('/edit_wallet', 'WalletController@edit_wallet')->name('edit_wallet')
 Route::get('/current_wallets', 'WalletController@current_wallets')->name('current_wallets');
 Route::get('/description_view/{currency}', 'WalletController@description_view')->name('description_view');
 
-Route::get('/storeTxToDb', 'TransactionController@storeTxToDb')->name('storeTxToDb');
+Route::get('/setDataForMyTx', 'TransactionController@setDataForMyTx')->name('setDataForMyTx');
 
 Auth::routes();
 
