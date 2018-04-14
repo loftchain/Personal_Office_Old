@@ -1,4 +1,99 @@
 .x-transaction{
+
+  form {
+    @extend %fsb;
+    width: 100%;
+    height:85px;
+    position: relative;
+
+    @media #{$mobile} {
+      flex-direction: column;
+    }
+
+    label {
+      width: 295px;
+      margin-right: 5px;
+      font-weight: 400;
+      @media #{$mobile545} {
+        font-size: 13px;
+        font-weight: 500;
+      }
+    }
+
+    input {
+      margin: 2px;
+      width: 450px;
+      height: 50px;
+      border: 1px solid $gray4;
+      border-radius: 5px;
+      outline: none;
+      padding-left: 20px;
+
+      &:focus {
+        border: 1px solid $main-blue;
+      }
+
+      @media #{$mobile} {
+        width: 70%;
+      }
+
+      @media #{$mobile545} {
+        width: 275px;
+      }
+
+      &.isError{
+        border: 1px solid $validationError;
+      }
+    }
+
+    .error-message {
+      position: absolute;
+      width: 450px;
+      right:0;
+      bottom: -10px;
+      color: $validationError;
+    }
+
+    button {
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      right: 20px;
+      border: none;
+      outline: none;
+      padding: 0;
+      background: transparent;
+
+      &.edit-wallet-btn {
+        background: url("/img/edit-pencil.svg");
+      }
+
+      &.add-wallet-btn {
+        //background: url("/img/add-wallet-btn.png");
+        //background-size: contain;
+
+
+        i{
+          color: $main-blue;
+          width: 25px;
+          height: 25px;
+        }
+      }
+
+      &.sbmt-wallet-btn {
+        display: none;
+        background: transparent;
+        width: auto;
+        height: auto;
+        color: $main-blue;
+        padding: 5px;
+
+        &:hover {
+
+        }
+      }
+    }
+  }
   table{
   table-layout: fixed;
       tr{
@@ -38,8 +133,8 @@
       }
 
     }
-  .x-ac-transaction{
-    display: none;
-  }
+}
 
+.x-ac-transaction{
+  display: none;
 }

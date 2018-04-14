@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\TransactionService;
 use App\Services\WidgetService;
 use App\Services\WalletService;
 use App\Models\User;
@@ -19,13 +20,15 @@ class HomeController extends Controller
 
 	protected $widgetService;
 	protected $walletService;
+	protected $transactionService;
 
 
-	public function __construct(WidgetService $widgetService, WalletService $walletService)
+	public function __construct(WidgetService $widgetService, WalletService $walletService,  TransactionService $transactionService)
 	{
 		$this->middleware('valid', ['except' => ['welcome']]);
 		$this->walletService = $walletService;
 		$this->widgetService = $widgetService;
+		$this->transactionService = $transactionService;
 	}
 
 	public function get_period($time)
@@ -86,7 +89,9 @@ class HomeController extends Controller
 		$data['time'] = $time;
 		$data['authenticated'] = Auth::check();
 		$data['wallets'] = $this->walletService->getCurrentWallets();
-		Log::info($data['wallets']);
+		$data['transactions'] = $this->transactionService->getDataForMyTx();
+
+		Log::info($data['transactions']);
 
 		return view('home.home')->with('data', $data);
 

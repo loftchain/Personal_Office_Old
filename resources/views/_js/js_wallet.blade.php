@@ -9,6 +9,8 @@
 		wForm: $('.w-form'),
 		wInput: $('.w-input'),
 		errorMessage: $('.error-message'),
+		noTxMessage: $('.x-transaction__no-tx-msg'),
+		haveTxContainer: $('.x-transaction__have-tx-container'),
 		switchCheckBox(_this) {
 			wa.checkboxImg.attr('src', '{{ asset('img/empty-checkbox.png') }}');
 			_this[0].childNodes[1].childNodes[1].src = '{{ asset('img/checked-checkbox.png') }}';
@@ -28,7 +30,6 @@
 				}, 1);
 				sbmtBtn.show();
 				addBtn.hide();
-				editBtn.hide();
 				_this.val('');
 				form.attr('action', '{{ route('store_wallet') }}');
 				wa.submitBtn.text('save');
@@ -41,7 +42,6 @@
 				}, 1);
 				sbmtBtn.show();
 				addBtn.hide();
-				editBtn.hide();
 				form.attr('action', '{{ route('edit_wallet') }}');
 				wa.submitBtn.text('edit');
 			});
@@ -125,7 +125,31 @@
 			        console.dir('Error: Something wrong with ajax call ' + data.errors);
 		        }
 	        });
-        }
+        },
+
+		getMyTxData(){
+
+        },
+
+		showTransactions(data){
+			const desctopUrl = `{{ route('root') }}/description_view/${currency}`;
+			const desctopUrl = `{{ route('root') }}/description_view/${currency}`;
+
+			$.ajax({
+				method: "GET",
+				url: `{{ route('root') }}/description_view/${currency}`,
+				dataType: 'html',
+				success: res =>  {
+					noWalletMessage.remove();
+					if( !$.trim( descriptionContainer.html() ).length ) { //if description container is empty
+						descriptionContainer.hide().html(res).fadeIn('slow');
+					}
+				},
+				error: data => {
+					console.dir('Error: Something wrong with ajax call ' + data.errors);
+				}
+			});
+		}
 	};
 
 	//--------------------------------------

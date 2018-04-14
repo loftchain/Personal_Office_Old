@@ -83,6 +83,7 @@ class TransactionService
 		$db = [];
 		$curs = $this->bonusService->getLatestCurrencies();
 		$tokenPrice = $this->bonusService->getTokenPrice();
+		$info='';
 
 		foreach ($tx as $t) {
 			$txTimestamp = strtotime($t->date);
@@ -95,6 +96,7 @@ class TransactionService
 				'from' => $t->from,
 				'amount' => $t->amount,
 				'amount_tokens' => $this->countTokens($curs, $t->amount, $t->date, $t->currency, $tokenPrice),
+				'info' => $info,
 				'date' => $t->date
 			];
 
@@ -112,7 +114,7 @@ class TransactionService
 		return Transactions::where('from', $wallet)->get();
 	}
 
-	public function setDataForMyTx()
+	public function getDataForMyTx()
 	{
 		$txData = [];
 		$currentUserWallets = $this->walletService->getCurrentWallets();

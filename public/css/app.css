@@ -135,6 +135,7 @@
 .a-body .a-container__crumbs ul,
 .a1-body .a1-container__btns,
 .a2-body .a2-container form,
+.x-transaction form,
 .x-transaction table tr {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11332,6 +11333,102 @@ button.close {
   display: none;
 }
 
+.x-transaction form {
+  width: 100%;
+  height: 85px;
+  position: relative;
+}
+
+@media (max-width: 767px) {
+  .x-transaction form {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.x-transaction form label {
+  width: 295px;
+  margin-right: 5px;
+  font-weight: 400;
+}
+
+@media (max-width: 545px) {
+  .x-transaction form label {
+    font-size: 13px;
+    font-weight: 500;
+  }
+}
+
+.x-transaction form input {
+  margin: 2px;
+  width: 450px;
+  height: 50px;
+  border: 1px solid #E0E0E0;
+  border-radius: 5px;
+  outline: none;
+  padding-left: 20px;
+}
+
+.x-transaction form input:focus {
+  border: 1px solid #30ced1;
+}
+
+@media (max-width: 767px) {
+  .x-transaction form input {
+    width: 70%;
+  }
+}
+
+@media (max-width: 545px) {
+  .x-transaction form input {
+    width: 275px;
+  }
+}
+
+.x-transaction form input.isError {
+  border: 1px solid #ff443a;
+}
+
+.x-transaction form .error-message {
+  position: absolute;
+  width: 450px;
+  right: 0;
+  bottom: -10px;
+  color: #ff443a;
+}
+
+.x-transaction form button {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  right: 20px;
+  border: none;
+  outline: none;
+  padding: 0;
+  background: transparent;
+}
+
+.x-transaction form button.edit-wallet-btn {
+  background: url("/img/edit-pencil.svg");
+}
+
+.x-transaction form button.add-wallet-btn i {
+  color: #30ced1;
+  width: 25px;
+  height: 25px;
+}
+
+.x-transaction form button.sbmt-wallet-btn {
+  display: none;
+  background: transparent;
+  width: auto;
+  height: auto;
+  color: #30ced1;
+  padding: 5px;
+}
+
 .x-transaction table {
   table-layout: fixed;
 }
@@ -11372,7 +11469,7 @@ button.close {
   color: #30ced1;
 }
 
-.x-transaction .x-ac-transaction {
+.x-ac-transaction {
   display: none;
 }
 

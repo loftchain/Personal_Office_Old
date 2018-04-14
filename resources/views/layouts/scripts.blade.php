@@ -10,5 +10,6 @@
 @if(isset($data))
     @include('_js.js_wallet')
     @include('_js.js_widget')
+    @include('_js.js_transactions')
 @endif
 @include('_js.js_custom_validation')

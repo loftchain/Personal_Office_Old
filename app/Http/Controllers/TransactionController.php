@@ -36,7 +36,17 @@ class TransactionController extends Controller
 		$this->txService->storeTx();
 	}
 
-	public function setDataForMyTx(){
-		$this->txService->setDataForMyTx();
+	public function getDataForMyTx(){
+		return $this->txService->getDataForMyTx();
 	}
+
+	public function getTxDesktopView(){
+		return view('home.wallet_help.tx_desktop');
+	}
+
+	public function getTxMobileView(){
+		return view('home.wallet_help.tx_desktop');
+	}
+
+
 }
