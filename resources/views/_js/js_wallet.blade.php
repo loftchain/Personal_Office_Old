@@ -11,6 +11,12 @@
 		errorMessage: $('.error-message'),
 		noTxMessage: $('.x-transaction__no-tx-msg'),
 		haveTxContainer: $('.x-transaction__have-tx-container'),
+		txDesktopContainer: $('.x-transaction_desktop'),
+
+		ajaxErrorMessage(data) {
+			console.log(`Error: Something wrong with ajax call ${data.errors}`);
+		},
+
 		switchCheckBox(_this) {
 			wa.checkboxImg.attr('src', '{{ asset('img/empty-checkbox.png') }}');
 			_this[0].childNodes[1].childNodes[1].src = '{{ asset('img/checked-checkbox.png') }}';
@@ -79,7 +85,7 @@
 					wa.setWalletsToInputs(data, _this);
 				},
 				error: data => {
-					console.dir('Error: Something wrong with ajax call ' + data.errors);
+					wa.ajaxErrorMessage(data);
 				}
 			});
 		},
@@ -107,60 +113,158 @@
 			});
 		},
 
-        showDescription(currency){
+		showDescription(currency) {
 			const descriptionContainer = $(`.description-container.${currency}`);
 			const noWalletMessage = $(`.no-wallet.${currency}`);
-
-	        $.ajax({
-		        method: "GET",
-		        url: `{{ route('root') }}/description_view/${currency}`,
-		        dataType: 'html',
-		        success: res =>  {
-			        noWalletMessage.remove();
-			        if( !$.trim( descriptionContainer.html() ).length ) { //if description container is empty
-				        descriptionContainer.hide().html(res).fadeIn('slow');
-			        }
-		        },
-		        error: data => {
-			        console.dir('Error: Something wrong with ajax call ' + data.errors);
-		        }
-	        });
-        },
-
-		getMyTxData(){
-
-        },
-
-		showTransactions(data){
-			const desctopUrl = `{{ route('root') }}/description_view/${currency}`;
-			const desctopUrl = `{{ route('root') }}/description_view/${currency}`;
 
 			$.ajax({
 				method: "GET",
 				url: `{{ route('root') }}/description_view/${currency}`,
 				dataType: 'html',
-				success: res =>  {
+				success: res => {
 					noWalletMessage.remove();
-					if( !$.trim( descriptionContainer.html() ).length ) { //if description container is empty
+					if (!$.trim(descriptionContainer.html()).length) {    //if description container is empty
 						descriptionContainer.hide().html(res).fadeIn('slow');
 					}
 				},
 				error: data => {
-					console.dir('Error: Something wrong with ajax call ' + data.errors);
+					wa.ajaxErrorMessage(data)
 				}
 			});
-		}
+		},
+
+		getMyTxData() {
+			const desktopUrl = {
+				name: 'desktop',
+				url: `{{ route('root') }}/getTxDesktopView`
+			};
+
+			const mobileUrl = {
+				name: 'mobile',
+				url: `{{ route('root') }}/getTxMobileView`
+			};
+			console.log('here');
+
+			$.ajax({
+				url: '{{ route('getDataForMyTx') }}',
+				type: 'GET',
+				dataType: 'json',
+				success: data => {
+					wa.haveTxContainer.empty();
+
+					wa.showTransactions(data, desktopUrl);
+					wa.showTransactions(data, mobileUrl);
+
+					setTimeout(() => {
+						$('.x-transaction_desktop').each(function (index) {
+							$(this).children('.t-form').children('.t-input').val(data[index].wallet);
+							$(this).children('.t-form').children('.t-label').text(`#${index+1} | Транзакции по кошельку : `);
+							$(this)
+                                .children('.x-transaction_desktop-table')
+                                .children('.x-transaction_desktop-table-body')
+                                .children('.td-block')
+							    .each(function (i) {
+								let _tx = data[index].tx[i];
+								let wallet_to = ``;
+								let info = ``;
+								let infoHref = ``;
+								    console.log(_tx);
+								switch(_tx.currency){
+									case 'ETH':
+										wallet_to = `{{ env('HOME_WALLET_ETH') }}`;
+										info = `etherscan.io`;
+										infoHref = `https://etherscan.io/tx/${_tx.transaction_id}`;
+
+										break;
+									case 'BTC':
+										wallet_to = `{{ env('HOME_WALLET_BTC') }}`;
+										info = `blockchain.info`;
+										infoHref = `https://blockchain.info/tx/${_tx.transaction_id}`;
+
+										break;
+                                    }
+
+								$(this).children('.td-value').text(`-${_tx.amount} ${_tx.currency} | ${_tx.amount_tokens} {{ env('TOKEN_NAME') }}`);
+								$(this).children('.td-from').text(_tx.from);
+								$(this).children('.td-to').text(wallet_to);
+								$(this).children('.td-status').text(_tx.status);
+								$(this).children('.td-info').children('.td-info-link').text(info);
+								$(this).children('.td-info').children('.td-info-link').attr('href',infoHref);
+								$(this).children('.td-date').text(_tx.date);
+							});
+						});
+
+					}, 1000);
+				},
+				error: data => {
+					wa.ajaxErrorMessage(data)
+				}
+			});
+		},
+
+		showTransactions(txData, urlObj) {
+			$.ajax({
+				method: "GET",
+				url: urlObj.url,
+				dataType: 'html',
+				data: txData,
+				success: res => {
+					wa.noTxMessage.remove();
+					if (urlObj.name === 'desktop') {
+						console.log(txData);
+						txData.forEach((transaction, index) => {
+							wa.haveTxContainer.append(res);
+							transaction.tx.forEach((tx, i, arr) => {
+									wa.getTdForTable(index, i, tx);
+							});
+						});
+					}
+				},
+
+				error: data => {
+					wa.ajaxErrorMessage(data)
+				}
+			});
+		},
+
+		getTdForTable(index) {
+			$.ajax({
+				method: "GET",
+				url: `{{ route('root') }}/getTdDesktop`,
+				dataType: 'html',
+				success: res => {
+					$('.x-transaction_desktop-table-body').get(index).insertAdjacentHTML('beforeend', res);
+				},
+
+				error: data => {
+					wa.ajaxErrorMessage(data)
+				}
+			});
+		},
+
+
 	};
 
 	//--------------------------------------
 
 	$(document).ready(() => {
 
+		wa.getMyTxData();
+
+
 		wa.switchWalletLink.each(function () {
 			$(this).click(() => {
 				wa.switchCheckBox($(this));
 			})
 		});
+
+		wa.submitBtn.each(function(){
+			$(this).click(() => {
+				setTimeout(() => {
+					wa.getMyTxData();
+				},1000);
+			});
+        });
 
 		wa.wInput.each(function () {
 			wa.editMode($(this));

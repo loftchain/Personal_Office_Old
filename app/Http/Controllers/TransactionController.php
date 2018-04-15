@@ -41,11 +41,15 @@ class TransactionController extends Controller
 	}
 
 	public function getTxDesktopView(){
-		return view('home.wallet_help.tx_desktop');
+		return view('home.tx_help.tx_desktop');
 	}
 
 	public function getTxMobileView(){
-		return view('home.wallet_help.tx_desktop');
+		return view('home.tx_help.tx_desktop');
+	}
+
+	public function getTdDesktop(){
+		return view('home.tx_help.td_desktop');
 	}
 
 
