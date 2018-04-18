@@ -21,7 +21,7 @@
         </tr>
         </thead>
         <tbody class="x-transaction_desktop-table-body">
-
+            {{--<p class="noTD">На данный момент транзакций по этому кошельку нет</p>--}}
         </tbody>
 
     </table>

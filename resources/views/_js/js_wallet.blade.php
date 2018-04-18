@@ -103,7 +103,6 @@
 			const form = _this.parent();
 			const currency = form.find('.currency');
 			const type = form.find('.type');
-
 			walletsData.currentWallets.forEach(function (wallet) {
 				switch (wallet.type) {
 					case 'from':
@@ -125,7 +124,6 @@
 		showDescription(currency) {
 			const descriptionContainer = $(`.description-container.${currency}`);
 			const noWalletMessage = $(`.no-wallet.${currency}`);
-
 			$.ajax({
 				method: "GET",
 				url: `{{ route('root') }}/description_view/${currency}`,
@@ -151,99 +149,96 @@
 					success: data => resolve(data),
 					error: data => reject(data)
 				});
-				//    .done(data => {
-				// 	wa.haveTxContainer.empty();
-				// 	wa.getTxWalletTemplates(data, desktopUrl);
-				// 	wa.getTxWalletTemplates(data, mobileUrl);
-				// 	wa.setDataToTxView(data);
-				// 	console.log(1);
-				// }).done(() => {
-				// 	wa.reinitialize();
-				// 	console.log(3);
-				// }).fail(response => {
-				// 	wa.ajaxErrorMessage(response)
-				// });
 			});
-
 		},
 
-		getTxWalletTemplates(data ,urlObj) {
+		getTransactionTemplates(data, urlObj) {
 			return new Promise(function (resolve, reject) {
 				$.ajax({
 					method: "GET",
 					url: urlObj.url,
 					dataType: 'html',
-					success: htmlData => {resolve({mainData:data, htmlData:htmlData}, urlObj)},
+					success: htmlData => {
+						resolve({
+							mainData: data,
+							htmlData: htmlData
+						}, urlObj)
+					},
 					error: data => reject(data)
 				});
 			});
 		},
 
-		renderTxWalletTemplates(data, urlObj) {
-			console.log(data, urlObj);
-			wa.noTxMessage.remove();
-			if (urlObj.name === 'desktop') {
-				data.mainData.forEach((transaction, index) => {
-					wa.haveTxContainer.append(data.htmlData);
-					transaction.tx.forEach((tx, i, arr) => {
-						wa.getTdForTable(index, i, tx);
+		renderTransactionTemplates(data, urlObj) {
+			return new Promise(function (resolve, reject) {
+				wa.noTxMessage.remove();
+				if (urlObj.name === 'desktop') {
+					data.mainData.forEach((transaction, index) => {
+						wa.haveTxContainer.append(data.htmlData);
+						transaction.tx.forEach((tx, i, arr) => {
+								wa.getTD(index, i, tx);
+						});
 					});
-				});
-			}
+				}
+				resolve(data);
+				reject(() => console.error('Failed to render Transaction templates'));
+			});
 		},
 
-		getTdForTable(index) {
+		getTD(index) {
 			$.ajax({
 				method: "GET",
 				url: `{{ route('root') }}/getTdDesktop`,
 				dataType: 'html'
 			}).done(res => {
 				$('.x-transaction_desktop-table-body').get(index).insertAdjacentHTML('beforeend', res);
-				console.log('getTdForTable');
 			}).fail(data => {
 				wa.ajaxErrorMessage(data)
 			});
 		},
 
-		setDataToTxView(data) {
-			setTimeout(() => {
-				$('.x-transaction_desktop').each(function (index) {
-					$(this).children('.t-form').children('.t-input').val(data[index].wallet);
-					$(this).children('.t-form').children('.t-label').text(`#${index + 1} | Транзакции по кошельку : `);
-					$(this)
-						.children('.x-transaction_desktop-table')
-						.children('.x-transaction_desktop-table-body')
-						.children('.td-block')
-						.each(function (i) {
-							let _tx = data[index].tx[i];
-							let wallet_to = ``;
-							let info = ``;
-							let infoHref = ``;
+		renderTD(data) {
+			return new Promise(function (resolve, reject) {
+				setTimeout(() => {
+					$('.x-transaction_desktop').each(function (index) {
+						$(this).children('.t-form').children('.t-input').val(data.mainData[index].wallet);
+						$(this).children('.t-form').children('.t-label').text(`#${index + 1} | Транзакции по кошельку : `);
+						$(this)
+							.children('.x-transaction_desktop-table')
+							.children('.x-transaction_desktop-table-body')
+							.children('.td-block')
+							.each(function (i) {
+								let _tx = data.mainData[index].tx[i];
+								let wallet_to = ``;
+								let info = ``;
+								let infoHref = ``;
+								console.log(_tx);
+								switch (_tx.currency) {
+									case 'ETH':
+										wallet_to = `{{ env('HOME_WALLET_ETH') }}`;
+										info = `etherscan.io`;
+										infoHref = `https://etherscan.io/tx/${_tx.transaction_id}`;
+										break;
+									case 'BTC':
+										wallet_to = `{{ env('HOME_WALLET_BTC') }}`;
+										info = `blockchain.info`;
+										infoHref = `https://blockchain.info/tx/${_tx.transaction_id}`;
+										break;
+								}
 
-							switch (_tx.currency) {
-								case 'ETH':
-									wallet_to = `{{ env('HOME_WALLET_ETH') }}`;
-									info = `etherscan.io`;
-									infoHref = `https://etherscan.io/tx/${_tx.transaction_id}`;
-									break;
-								case 'BTC':
-									wallet_to = `{{ env('HOME_WALLET_BTC') }}`;
-									info = `blockchain.info`;
-									infoHref = `https://blockchain.info/tx/${_tx.transaction_id}`;
-									break;
-							}
-
-							$(this).children('.td-value').text(`-${_tx.amount} ${_tx.currency} | ${_tx.amount_tokens} {{ env('TOKEN_NAME') }}`);
-							$(this).children('.td-from').text(_tx.from);
-							$(this).children('.td-to').text(wallet_to);
-							$(this).children('.td-status').text(_tx.status);
-							$(this).children('.td-info').children('.td-info-link').text(info);
-							$(this).children('.td-info').children('.td-info-link').attr('href', infoHref);
-							$(this).children('.td-date').text(_tx.date);
-						});
-				});
-
-			}, 1000);
+								$(this).children('.td-value').text(`-${_tx.amount} ${_tx.currency} | ${_tx.amount_tokens} {{ env('TOKEN_NAME') }}`);
+								$(this).children('.td-from').text(_tx.from);
+								$(this).children('.td-to').text(wallet_to);
+								$(this).children('.td-status').text(_tx.status);
+								$(this).children('.td-info').children('.td-info-link').text(info);
+								$(this).children('.td-info').children('.td-info-link').attr('href', infoHref);
+								$(this).children('.td-date').text(_tx.date);
+							});
+					});
+				}, 1000);
+				resolve();
+				reject();
+			});
 		},
 
 		reinitialize() {
@@ -256,7 +251,11 @@
 			wa.submitBtn.each(function () {
 				$(this).click(() => {
 					setTimeout(() => {
-						wa.setTransactions();
+						wa.setTransactions()
+							.then((data) => wa.getTransactionTemplates(data, wa.desktopObj))
+							.then((data) => wa.renderTransactionTemplates(data, wa.desktopObj))
+							.then((data) => wa.renderTD(data))
+							.then(() => wa.reinitialize());
 					}, 1000);
 				});
 			});
@@ -277,8 +276,10 @@
 	$(document).ready(() => {
 
 		wa.setTransactions()
-			.then((data) => wa.getTxWalletTemplates(data, wa.desktopObj))
-			.then((data) => wa.renderTxWalletTemplates(data, wa.desktopObj));
+			.then((data) => wa.getTransactionTemplates(data, wa.desktopObj))
+			.then((data) => wa.renderTransactionTemplates(data, wa.desktopObj))
+			.then((data) => wa.renderTD(data))
+			.then(() => wa.reinitialize());
 
 
 		wa.switchWalletLink.each(function () {
