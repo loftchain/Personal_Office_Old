@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
+	public function showRegistrationForm()
+	{
+		return redirect('login');
+	}
+
 	public function __construct()
 	{
 		$this->middleware('guest');

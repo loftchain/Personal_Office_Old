@@ -281,16 +281,16 @@
 
 	$(document).ready(() => {
 
-		wa.setTransactions()
-			.then((data) => wa.getTxWalletTemplates(data, wa.desktopObj))
-			.then((htmlData, data, urlObj) => wa.renderTxWalletTemplates(htmlData, data, wa.desktopObj));
-
-
-		wa.switchWalletLink.each(function () {
-			$(this).click(() => {
-				wa.switchCheckBox($(this));
-			})
-		});
+		// wa.setTransactions()
+		// 	.then((data) => wa.getTxWalletTemplates(data, wa.desktopObj))
+		// 	.then((htmlData, data, urlObj) => wa.renderTxWalletTemplates(htmlData, data, wa.desktopObj));
+    //
+    //
+		// wa.switchWalletLink.each(function () {
+		// 	$(this).click(() => {
+		// 		wa.switchCheckBox($(this));
+		// 	})
+		// });
 
 
 	});
