@@ -12,6 +12,14 @@
 		noTxMessage: $('.x-transaction__no-tx-msg'),
 		haveTxContainer: $('.x-transaction__have-tx-container'),
 		txDesktopContainer: $('.x-transaction_desktop'),
+		desktopObj: {
+			url: `{{ route('root') }}/getTxDesktopView`,
+			name: 'desktop'
+		},
+		mobileObj: {
+			url: `{{ route('root') }}/getTxMobileView`,
+			name: 'mobile'
+		},
 
 		ajaxErrorMessage(data) {
 			console.log(`Error: Something wrong with ajax call ${data.errors}`);
@@ -47,7 +55,7 @@
 					_this.focus();
 				}, 1);
 				sbmtBtn.show();
-				addBtn.hide();
+				editBtn.hide();
 				form.attr('action', '{{ route('edit_wallet') }}');
 				wa.submitBtn.text('edit');
 			});
@@ -71,6 +79,7 @@
 			wa.wInput.prop('disabled', true);
 			wa.submitBtn.hide();
 			wa.addBtn.show();
+			wa.editBtn.show();
 			wa.wInput.removeClass('isError');
 			wa.errorMessage.html('');
 			wa.setWallets(_this);
@@ -133,115 +142,138 @@
 			});
 		},
 
-		getMyTxData() {
-			const desktopUrl = {
-				name: 'desktop',
-				url: `{{ route('root') }}/getTxDesktopView`
-			};
+		setTransactions() {
+			return new Promise(function (resolve, reject) {
+				$.ajax({
+					url: '{{ route('getDataForMyTx') }}',
+					type: 'GET',
+					dataType: 'json',
+					success: data => resolve(data),
+					error: data => reject(data)
+				});
+				//    .done(data => {
+				// 	wa.haveTxContainer.empty();
+				// 	wa.getTxWalletTemplates(data, desktopUrl);
+				// 	wa.getTxWalletTemplates(data, mobileUrl);
+				// 	wa.setDataToTxView(data);
+				// 	console.log(1);
+				// }).done(() => {
+				// 	wa.reinitialize();
+				// 	console.log(3);
+				// }).fail(response => {
+				// 	wa.ajaxErrorMessage(response)
+				// });
+			});
 
-			const mobileUrl = {
-				name: 'mobile',
-				url: `{{ route('root') }}/getTxMobileView`
-			};
-			console.log('here');
+		},
 
-			$.ajax({
-				url: '{{ route('getDataForMyTx') }}',
-				type: 'GET',
-				dataType: 'json',
-				success: data => {
-					wa.haveTxContainer.empty();
-
-					wa.showTransactions(data, desktopUrl);
-					wa.showTransactions(data, mobileUrl);
-
-					setTimeout(() => {
-						$('.x-transaction_desktop').each(function (index) {
-							$(this).children('.t-form').children('.t-input').val(data[index].wallet);
-							$(this).children('.t-form').children('.t-label').text(`#${index+1} | Транзакции по кошельку : `);
-							$(this)
-                                .children('.x-transaction_desktop-table')
-                                .children('.x-transaction_desktop-table-body')
-                                .children('.td-block')
-							    .each(function (i) {
-								let _tx = data[index].tx[i];
-								let wallet_to = ``;
-								let info = ``;
-								let infoHref = ``;
-								    console.log(_tx);
-								switch(_tx.currency){
-									case 'ETH':
-										wallet_to = `{{ env('HOME_WALLET_ETH') }}`;
-										info = `etherscan.io`;
-										infoHref = `https://etherscan.io/tx/${_tx.transaction_id}`;
-
-										break;
-									case 'BTC':
-										wallet_to = `{{ env('HOME_WALLET_BTC') }}`;
-										info = `blockchain.info`;
-										infoHref = `https://blockchain.info/tx/${_tx.transaction_id}`;
-
-										break;
-                                    }
-
-								$(this).children('.td-value').text(`-${_tx.amount} ${_tx.currency} | ${_tx.amount_tokens} {{ env('TOKEN_NAME') }}`);
-								$(this).children('.td-from').text(_tx.from);
-								$(this).children('.td-to').text(wallet_to);
-								$(this).children('.td-status').text(_tx.status);
-								$(this).children('.td-info').children('.td-info-link').text(info);
-								$(this).children('.td-info').children('.td-info-link').attr('href',infoHref);
-								$(this).children('.td-date').text(_tx.date);
-							});
-						});
-
-					}, 1000);
-				},
-				error: data => {
-					wa.ajaxErrorMessage(data)
-				}
+		getTxWalletTemplates(data ,urlObj) {
+			return new Promise(function (resolve, reject) {
+				$.ajax({
+					method: "GET",
+					url: urlObj.url,
+					dataType: 'html',
+					success: htmlData => {
+						// console.log(htmlData);
+						// console.log(data);
+						// console.log(urlObj);
+						 resolve(htmlData, data, urlObj)
+                    },
+					error: data => reject(data)
+				});
 			});
 		},
 
-		showTransactions(txData, urlObj) {
-			$.ajax({
-				method: "GET",
-				url: urlObj.url,
-				dataType: 'html',
-				data: txData,
-				success: res => {
-					wa.noTxMessage.remove();
-					if (urlObj.name === 'desktop') {
-						console.log(txData);
-						txData.forEach((transaction, index) => {
-							wa.haveTxContainer.append(res);
-							transaction.tx.forEach((tx, i, arr) => {
-									wa.getTdForTable(index, i, tx);
-							});
-						});
-					}
-				},
-
-				error: data => {
-					wa.ajaxErrorMessage(data)
-				}
-			});
+		renderTxWalletTemplates(htmlData, data1, urlObj) {
+			console.log(htmlData, data1, urlObj);
+			wa.noTxMessage.remove();
+			// if (urlObj.name === 'desktop') {
+			// 	data.forEach((transaction, index) => {
+			// 		wa.haveTxContainer.append(res);
+			// 		transaction.tx.forEach((tx, i, arr) => {
+			// 			wa.getTdForTable(index, i, tx);
+			// 		});
+			// 	});
+			// }
 		},
 
 		getTdForTable(index) {
 			$.ajax({
 				method: "GET",
 				url: `{{ route('root') }}/getTdDesktop`,
-				dataType: 'html',
-				success: res => {
-					$('.x-transaction_desktop-table-body').get(index).insertAdjacentHTML('beforeend', res);
-				},
-
-				error: data => {
-					wa.ajaxErrorMessage(data)
-				}
+				dataType: 'html'
+			}).done(res => {
+				$('.x-transaction_desktop-table-body').get(index).insertAdjacentHTML('beforeend', res);
+				console.log('getTdForTable');
+			}).fail(data => {
+				wa.ajaxErrorMessage(data)
 			});
 		},
 
+		setDataToTxView(data) {
+			setTimeout(() => {
+				$('.x-transaction_desktop').each(function (index) {
+					$(this).children('.t-form').children('.t-input').val(data[index].wallet);
+					$(this).children('.t-form').children('.t-label').text(`#${index + 1} | Транзакции по кошельку : `);
+					$(this)
+						.children('.x-transaction_desktop-table')
+						.children('.x-transaction_desktop-table-body')
+						.children('.td-block')
+						.each(function (i) {
+							let _tx = data[index].tx[i];
+							let wallet_to = ``;
+							let info = ``;
+							let infoHref = ``;
+
+							switch (_tx.currency) {
+								case 'ETH':
+									wallet_to = `{{ env('HOME_WALLET_ETH') }}`;
+									info = `etherscan.io`;
+									infoHref = `https://etherscan.io/tx/${_tx.transaction_id}`;
+									break;
+								case 'BTC':
+									wallet_to = `{{ env('HOME_WALLET_BTC') }}`;
+									info = `blockchain.info`;
+									infoHref = `https://blockchain.info/tx/${_tx.transaction_id}`;
+									break;
+							}
+
+							$(this).children('.td-value').text(`-${_tx.amount} ${_tx.currency} | ${_tx.amount_tokens} {{ env('TOKEN_NAME') }}`);
+							$(this).children('.td-from').text(_tx.from);
+							$(this).children('.td-to').text(wallet_to);
+							$(this).children('.td-status').text(_tx.status);
+							$(this).children('.td-info').children('.td-info-link').text(info);
+							$(this).children('.td-info').children('.td-info-link').attr('href', infoHref);
+							$(this).children('.td-date').text(_tx.date);
+						});
+				});
+
+			}, 1000);
+		},
+
+		reinitialize() {
+			wa.editBtn = $('.edit-wallet-btn');
+			wa.addBtn = $('.add-wallet-btn');
+			wa.submitBtn = $('.sbmt-wallet-btn');
+			wa.wForm = $('.w-form');
+			wa.wInput = $('.w-input');
+
+			wa.submitBtn.each(function () {
+				$(this).click(() => {
+					setTimeout(() => {
+						wa.setTransactions();
+					}, 1000);
+				});
+			});
+
+			wa.wInput.each(function () {
+				wa.editMode($(this));
+
+				if (wa.authenticated) {
+					wa.setWallets($(this));
+				}
+			});
+		}
 
 	};
 
@@ -249,7 +281,9 @@
 
 	$(document).ready(() => {
 
-		wa.getMyTxData();
+		wa.setTransactions()
+			.then((data) => wa.getTxWalletTemplates(data, wa.desktopObj))
+			.then((htmlData, data, urlObj) => wa.renderTxWalletTemplates(htmlData, data, wa.desktopObj));
 
 
 		wa.switchWalletLink.each(function () {
@@ -258,20 +292,6 @@
 			})
 		});
 
-		wa.submitBtn.each(function(){
-			$(this).click(() => {
-				setTimeout(() => {
-					wa.getMyTxData();
-				},1000);
-			});
-        });
 
-		wa.wInput.each(function () {
-			wa.editMode($(this));
-
-			if (wa.authenticated) {
-				wa.setWallets($(this));
-			}
-		});
 	});
 </script>
