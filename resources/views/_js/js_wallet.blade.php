@@ -173,28 +173,23 @@
 					method: "GET",
 					url: urlObj.url,
 					dataType: 'html',
-					success: htmlData => {
-						// console.log(htmlData);
-						// console.log(data);
-						// console.log(urlObj);
-						 resolve(htmlData, data, urlObj)
-                    },
+					success: htmlData => {resolve({mainData:data, htmlData:htmlData}, urlObj)},
 					error: data => reject(data)
 				});
 			});
 		},
 
-		renderTxWalletTemplates(htmlData, data1, urlObj) {
-			console.log(htmlData, data1, urlObj);
+		renderTxWalletTemplates(data, urlObj) {
+			console.log(data, urlObj);
 			wa.noTxMessage.remove();
-			// if (urlObj.name === 'desktop') {
-			// 	data.forEach((transaction, index) => {
-			// 		wa.haveTxContainer.append(res);
-			// 		transaction.tx.forEach((tx, i, arr) => {
-			// 			wa.getTdForTable(index, i, tx);
-			// 		});
-			// 	});
-			// }
+			if (urlObj.name === 'desktop') {
+				data.mainData.forEach((transaction, index) => {
+					wa.haveTxContainer.append(data.htmlData);
+					transaction.tx.forEach((tx, i, arr) => {
+						wa.getTdForTable(index, i, tx);
+					});
+				});
+			}
 		},
 
 		getTdForTable(index) {
@@ -281,16 +276,16 @@
 
 	$(document).ready(() => {
 
-		// wa.setTransactions()
-		// 	.then((data) => wa.getTxWalletTemplates(data, wa.desktopObj))
-		// 	.then((htmlData, data, urlObj) => wa.renderTxWalletTemplates(htmlData, data, wa.desktopObj));
-    //
-    //
-		// wa.switchWalletLink.each(function () {
-		// 	$(this).click(() => {
-		// 		wa.switchCheckBox($(this));
-		// 	})
-		// });
+		wa.setTransactions()
+			.then((data) => wa.getTxWalletTemplates(data, wa.desktopObj))
+			.then((data) => wa.renderTxWalletTemplates(data, wa.desktopObj));
+
+
+		wa.switchWalletLink.each(function () {
+			$(this).click(() => {
+				wa.switchCheckBox($(this));
+			})
+		});
 
 
 	});

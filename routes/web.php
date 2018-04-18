@@ -54,6 +54,7 @@ Route::get('/description_view/{currency}', 'WalletController@description_view')-
 //-----------------------------------------------------------------------------------
 
 //------------------------Transaction------------------------------------------------
+Route::get('/storeTxToDb', 'TransactionController@storeTxToDb')->name('storeTxToDb');
 Route::get('/getDataForMyTx', 'TransactionController@getDataForMyTx')->name('getDataForMyTx');
 Route::get('/getTxDesktopView', 'TransactionController@getTxDesktopView')->name('getTxDesktopView');
 Route::get('/getTdDesktop', 'TransactionController@getTdDesktop')->name('getTdDesktop');
