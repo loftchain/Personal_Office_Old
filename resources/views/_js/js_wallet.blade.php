@@ -172,6 +172,8 @@
 		renderTransactionTemplates(data, urlObj) {
 			return new Promise(function (resolve, reject) {
 				wa.noTxMessage.remove();
+				wa.haveTxContainer.empty();
+
 				if (urlObj.name === 'desktop') {
 					data.mainData.forEach((transaction, index) => {
 						wa.haveTxContainer.append(data.htmlData);
