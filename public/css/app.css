@@ -11469,6 +11469,10 @@ button.close {
   color: #30ced1;
 }
 
+.x-transaction_desktop {
+  border-bottom: 1px dashed #828282;
+}
+
 .x-ac-transaction {
   display: none;
 }

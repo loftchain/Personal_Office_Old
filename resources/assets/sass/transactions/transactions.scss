@@ -133,6 +133,9 @@
       }
 
     }
+  &_desktop{
+    border-bottom: 1px dashed $gray1;
+  }
 }
 
 .x-ac-transaction{
