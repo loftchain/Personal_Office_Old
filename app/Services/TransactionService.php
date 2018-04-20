@@ -121,7 +121,7 @@ class TransactionService
 
 		foreach ($currentUserWallets as $wallet) {
 			$tx = Transactions::where('from', $wallet->wallet)->get();
-			$txData[] = ['wallet' => $wallet->wallet, 'tx' => $tx];
+			$txData[] = ['wallet' => [$wallet->wallet, $wallet->currency], 'tx' => $tx];
 		}
 
 		return $txData;

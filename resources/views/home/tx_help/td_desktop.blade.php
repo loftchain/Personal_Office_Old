@@ -1,7 +1,5 @@
-<tr class="td-block">
-    <td class="td-value">1</td>
-    <td class="td-to">3</td>
-    <td class="td-status">3</td>
-    <td class="td-info"><a class="td-info-link" href="">4</a></td>
-    <td class="td-date">5</td>
-</tr>
+<span class="td td-currency">Валюта</span>
+<span class="td td-to">Кому</span>
+<span class="td td-status">Статус</span>
+<span class="td td-info">Инфо</span>
+<span class="td td-date">Дата</span>

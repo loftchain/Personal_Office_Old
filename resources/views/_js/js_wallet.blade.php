@@ -1,4 +1,9 @@
 <script>
+	String.prototype.trunc = String.prototype.trunc ||
+		function(n){
+			return (this.length > n) ? this.substr(0, n-1) + '&hellip;' : this;
+		};
+
 	let wa = {
 		authenticated: '{{ $data['authenticated'] }}',
 		checkboxImg: $('.checkbox-img'),
@@ -12,6 +17,9 @@
 		noTxMessage: $('.x-transaction__no-tx-msg'),
 		haveTxContainer: $('.x-transaction__have-tx-container'),
 		txDesktopContainer: $('.x-transaction_desktop'),
+		walletTx: $('.x-transaction__walletContainer_wallet'),
+		walletTxContainer: $('.x-transaction__walletContainer'),
+		walletTxBody: $('.x-transaction__table_body'),
 		desktopObj: {
 			url: `{{ route('root') }}/getTxDesktopView`,
 			name: 'desktop'
@@ -152,19 +160,33 @@
 			});
 		},
 
-		getTransactionTemplates(data, urlObj) {
+		renderDesktopTx(data) {
 			return new Promise(function (resolve, reject) {
-				$.ajax({
-					method: "GET",
-					url: urlObj.url,
-					dataType: 'html',
-					success: htmlData => {
-						resolve({
-							mainData: data,
-							htmlData: htmlData
-						}, urlObj)
-					},
-					error: data => reject(data)
+                data.forEach((item, i) => {
+                	let tw = item.wallet[0].trunc(10);
+                	let walletHTML = `<a class="x-transaction__walletContainer_wallet" data-toggle="tab" href="#${item.wallet[0]}">(${item.wallet[1]}) ${tw}</a>`;
+                	let tabSection = `<div id="${item.wallet[0]}" class="tab-pane fade"></div>`;
+	                wa.walletTxContainer.prepend(walletHTML);
+	                wa.walletTxBody.prepend(tabSection);
+                });
+                let walletItem = $('.x-transaction__walletContainer_wallet');
+                let tabItem = $('.tab-pane');
+                let td = `
+                        <span class="td td-currency">Валюта</span>
+                        <span class="td td-to">Кому</span>
+                        <span class="td td-status">Статус</span>
+                        <span class="td td-info">Инфо</span>
+                        <span class="td td-date">Дата</span>
+                `;
+
+				walletItem.eq(0).addClass('active');
+				tabItem.eq(0).addClass('in active');
+
+				walletItem.each(function () {
+                    $(this).click(() => {
+	                    walletItem.removeClass('active');
+	                    $(this).addClass('active');
+                    })
 				});
 			});
 		},
@@ -176,7 +198,7 @@
 
 				if (urlObj.name === 'desktop') {
 					data.mainData.forEach((transaction, index) => {
-						wa.haveTxContainer.append(data.htmlData);
+						wa.haveTxContainer.pre(data.htmlData);
 						transaction.tx.forEach((tx, i, arr) => {
 								wa.getTD(index, i, tx);
 						});
@@ -277,8 +299,8 @@
 
 	$(document).ready(() => {
 
-		// wa.setTransactions()
-		// 	.then((data) => wa.getTransactionTemplates(data, wa.desktopObj))
+		wa.setTransactions()
+			.then((data) => wa.renderDesktopTx(data));
 		// 	.then((data) => wa.renderTransactionTemplates(data, wa.desktopObj))
 		// 	.then((data) => wa.renderTD(data))
 		// 	.then(() => wa.reinitialize());

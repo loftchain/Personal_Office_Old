@@ -1,4 +1,5 @@
 .x-transaction {
+
   &__desktop {
     margin: 0 auto;
     width: 750px;
@@ -7,11 +8,31 @@
   &__walletContainer {
     @extend %fsb;
     justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px 0;
+
 
     &_wallet {
       border: 1px solid $gray4;
       border-radius: 25px;
       padding: 10px 20px;
+      margin: 10px 0;
+      color: $almost-black;
+      text-decoration: none;
+
+      &.active{
+        @include x-gradient($x-progress-from, $main-blue);
+        color:  white;
+      }
+
+      &:hover{
+        background-color: $main-blue;
+        color: white;
+      }
+
+      &:active, &:hover, &:focus, &:focus-within, &:visited{
+        text-decoration: none;
+      }
     }
   }
 
@@ -21,9 +42,8 @@
       @extend %fsb;
       text-align: center;
       border-bottom: 1px solid $gray4;
-      word-wrap: break-word;
 
-      th {
+      .th {
         color: $almost-black;
         font-weight: 700;
         font-size: 20px;
@@ -32,25 +52,33 @@
         padding: 10px 0;
       }
 
-      td {
-        padding: 10px 0;
-        width: 150px;
-        &.from, &.to {
-          color: $main-blue;
-          font-size: 12px;
-          padding: 10px 25px;
-        }
-        &.info {
-          &:hover {
-            cursor: pointer;
-            text-decoration: underline;
-          }
-          a {
+    }
+
+    &_body {
+      .tab-pane{
+        @extend %fsb;
+        text-align: center;
+        border-bottom: 1px solid $gray4;
+
+        .td {
+          padding: 10px 0;
+          width: 150px;
+          &.from, &.to {
             color: $main-blue;
+            font-size: 12px;
+            padding: 10px 25px;
+          }
+          &.info {
+            &:hover {
+              cursor: pointer;
+              text-decoration: underline;
+            }
+            a {
+              color: $main-blue;
+            }
           }
         }
       }
-
     }
 
   }

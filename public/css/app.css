@@ -136,7 +136,8 @@
 .a1-body .a1-container__btns,
 .a2-body .a2-container form,
 .x-transaction__walletContainer,
-.x-transaction__table_head {
+.x-transaction__table_head,
+.x-transaction__table_body .tab-pane {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11341,12 +11342,39 @@ button.close {
 .x-transaction__walletContainer {
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 20px 0;
 }
 
 .x-transaction__walletContainer_wallet {
   border: 1px solid #E0E0E0;
   border-radius: 25px;
   padding: 10px 20px;
+  margin: 10px 0;
+  color: #333333;
+  text-decoration: none;
+}
+
+.x-transaction__walletContainer_wallet.active {
+  background: #330868;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #330868), color-stop(100%, #30ced1));
+  background: -webkit-gradient(linear, left top, right top, from(#330868), to(#30ced1));
+  background: linear-gradient(to right, #330868 0%, #30ced1 100%);
+  color: white;
+}
+
+.x-transaction__walletContainer_wallet:hover {
+  background-color: #30ced1;
+  color: white;
+}
+
+.x-transaction__walletContainer_wallet:active,
+.x-transaction__walletContainer_wallet:hover,
+.x-transaction__walletContainer_wallet:focus,
+.x-transaction__walletContainer_wallet:focus-within,
+.x-transaction__walletContainer_wallet:visited {
+  text-decoration: none;
 }
 
 .x-transaction__table {
@@ -11356,10 +11384,9 @@ button.close {
 .x-transaction__table_head {
   text-align: center;
   border-bottom: 1px solid #E0E0E0;
-  word-wrap: break-word;
 }
 
-.x-transaction__table_head th {
+.x-transaction__table_head .th {
   color: #333333;
   font-weight: 700;
   font-size: 20px;
@@ -11368,24 +11395,29 @@ button.close {
   padding: 10px 0;
 }
 
-.x-transaction__table_head td {
+.x-transaction__table_body .tab-pane {
+  text-align: center;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.x-transaction__table_body .tab-pane .td {
   padding: 10px 0;
   width: 150px;
 }
 
-.x-transaction__table_head td.from,
-.x-transaction__table_head td.to {
+.x-transaction__table_body .tab-pane .td.from,
+.x-transaction__table_body .tab-pane .td.to {
   color: #30ced1;
   font-size: 12px;
   padding: 10px 25px;
 }
 
-.x-transaction__table_head td.info:hover {
+.x-transaction__table_body .tab-pane .td.info:hover {
   cursor: pointer;
   text-decoration: underline;
 }
 
-.x-transaction__table_head td.info a {
+.x-transaction__table_body .tab-pane .td.info a {
   color: #30ced1;
 }
 
