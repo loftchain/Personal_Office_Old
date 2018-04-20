@@ -1,0 +1,64 @@
+.x-transaction {
+  &__desktop {
+    margin: 0 auto;
+    width: 750px;
+  }
+
+  &__walletContainer {
+    @extend %fsb;
+    justify-content: space-around;
+
+    &_wallet {
+      border: 1px solid $gray4;
+      border-radius: 25px;
+      padding: 10px 20px;
+    }
+  }
+
+  &__table {
+    table-layout: fixed;
+    &_head {
+      @extend %fsb;
+      text-align: center;
+      border-bottom: 1px solid $gray4;
+      word-wrap: break-word;
+
+      th {
+        color: $almost-black;
+        font-weight: 700;
+        font-size: 20px;
+        width: 150px;
+        text-align: center;
+        padding: 10px 0;
+      }
+
+      td {
+        padding: 10px 0;
+        width: 150px;
+        &.from, &.to {
+          color: $main-blue;
+          font-size: 12px;
+          padding: 10px 25px;
+        }
+        &.info {
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
+          a {
+            color: $main-blue;
+          }
+        }
+      }
+
+    }
+
+  }
+  &_desktop {
+    border-bottom: 1px dashed $gray1;
+  }
+}
+
+.x-ac-transaction {
+  display: none;
+}

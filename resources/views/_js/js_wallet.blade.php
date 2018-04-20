@@ -277,11 +277,11 @@
 
 	$(document).ready(() => {
 
-		wa.setTransactions()
-			.then((data) => wa.getTransactionTemplates(data, wa.desktopObj))
-			.then((data) => wa.renderTransactionTemplates(data, wa.desktopObj))
-			.then((data) => wa.renderTD(data))
-			.then(() => wa.reinitialize());
+		// wa.setTransactions()
+		// 	.then((data) => wa.getTransactionTemplates(data, wa.desktopObj))
+		// 	.then((data) => wa.renderTransactionTemplates(data, wa.desktopObj))
+		// 	.then((data) => wa.renderTD(data))
+		// 	.then(() => wa.reinitialize());
 
 
 		wa.switchWalletLink.each(function () {

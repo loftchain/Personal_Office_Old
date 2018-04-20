@@ -135,8 +135,8 @@
 .a-body .a-container__crumbs ul,
 .a1-body .a1-container__btns,
 .a2-body .a2-container form,
-.x-transaction form,
-.x-transaction table tr {
+.x-transaction__walletContainer,
+.x-transaction__table_head {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11333,113 +11333,33 @@ button.close {
   display: none;
 }
 
-.x-transaction form {
-  width: 100%;
-  height: 85px;
-  position: relative;
+.x-transaction__desktop {
+  margin: 0 auto;
+  width: 750px;
 }
 
-@media (max-width: 767px) {
-  .x-transaction form {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
+.x-transaction__walletContainer {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
-.x-transaction form label {
-  width: 295px;
-  margin-right: 5px;
-  font-weight: 400;
-}
-
-@media (max-width: 545px) {
-  .x-transaction form label {
-    font-size: 13px;
-    font-weight: 500;
-  }
-}
-
-.x-transaction form input {
-  margin: 2px;
-  width: 450px;
-  height: 50px;
+.x-transaction__walletContainer_wallet {
   border: 1px solid #E0E0E0;
-  border-radius: 5px;
-  outline: none;
-  padding-left: 20px;
+  border-radius: 25px;
+  padding: 10px 20px;
 }
 
-.x-transaction form input:focus {
-  border: 1px solid #30ced1;
-}
-
-@media (max-width: 767px) {
-  .x-transaction form input {
-    width: 70%;
-  }
-}
-
-@media (max-width: 545px) {
-  .x-transaction form input {
-    width: 275px;
-  }
-}
-
-.x-transaction form input.isError {
-  border: 1px solid #ff443a;
-}
-
-.x-transaction form .error-message {
-  position: absolute;
-  width: 450px;
-  right: 0;
-  bottom: -10px;
-  color: #ff443a;
-}
-
-.x-transaction form button {
-  width: 25px;
-  height: 25px;
-  position: absolute;
-  right: 20px;
-  border: none;
-  outline: none;
-  padding: 0;
-  background: transparent;
-}
-
-.x-transaction form button.edit-wallet-btn {
-  background: url("/img/edit-pencil.svg");
-}
-
-.x-transaction form button.add-wallet-btn i {
-  color: #30ced1;
-  width: 25px;
-  height: 25px;
-}
-
-.x-transaction form button.sbmt-wallet-btn {
-  display: none;
-  background: transparent;
-  width: auto;
-  height: auto;
-  color: #30ced1;
-  padding: 5px;
-}
-
-.x-transaction table {
+.x-transaction__table {
   table-layout: fixed;
 }
 
-.x-transaction table tr {
+.x-transaction__table_head {
   text-align: center;
   border-bottom: 1px solid #E0E0E0;
   word-wrap: break-word;
 }
 
-.x-transaction table tr th {
+.x-transaction__table_head th {
   color: #333333;
   font-weight: 700;
   font-size: 20px;
@@ -11448,24 +11368,24 @@ button.close {
   padding: 10px 0;
 }
 
-.x-transaction table tr td {
+.x-transaction__table_head td {
   padding: 10px 0;
   width: 150px;
 }
 
-.x-transaction table tr td.from,
-.x-transaction table tr td.to {
+.x-transaction__table_head td.from,
+.x-transaction__table_head td.to {
   color: #30ced1;
   font-size: 12px;
   padding: 10px 25px;
 }
 
-.x-transaction table tr td.info:hover {
+.x-transaction__table_head td.info:hover {
   cursor: pointer;
   text-decoration: underline;
 }
 
-.x-transaction table tr td.info a {
+.x-transaction__table_head td.info a {
   color: #30ced1;
 }
 
