@@ -16,6 +16,7 @@ class Transactions extends Model
 		'from',
 		'amount',  //amount in original currency
 		'amount_tokens', //amount converted from ETH to Tokens
+		'info', //amount converted from ETH to Tokens
 		'date',  // of transactions
 	];
 }

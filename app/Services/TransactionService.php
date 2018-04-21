@@ -83,11 +83,11 @@ class TransactionService
 		$db = [];
 		$curs = $this->bonusService->getLatestCurrencies();
 		$tokenPrice = $this->bonusService->getTokenPrice();
-		$info='';
 
 		foreach ($tx as $t) {
 			$txTimestamp = strtotime($t->date);
 			$closest = null;
+			$info = ($t->currency == 'ETH') ? 'etherscan.io' : 'blockchain.info';
 
 			$db[] = [
 				'transaction_id' => $t->txId,

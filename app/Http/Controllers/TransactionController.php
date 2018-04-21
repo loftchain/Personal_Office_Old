@@ -40,17 +40,4 @@ class TransactionController extends Controller
 		return $this->txService->getDataForMyTx();
 	}
 
-	public function getTxDesktopView(){
-		return view('home.tx_help.tx_desktop');
-	}
-
-	public function getTxMobileView(){
-		return view('home.tx_help.tx_desktop');
-	}
-
-	public function getTdDesktop(){
-		return view('home.tx_help.td_desktop');
-	}
-
-
 }

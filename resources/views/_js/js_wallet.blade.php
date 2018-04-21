@@ -1,7 +1,7 @@
 <script>
 	String.prototype.trunc = String.prototype.trunc ||
-		function(n){
-			return (this.length > n) ? this.substr(0, n-1) + '&hellip;' : this;
+		function (n) {
+			return (this.length > n) ? this.substr(0, n - 1) + '&hellip;' : this;
 		};
 
 	let wa = {
@@ -19,7 +19,12 @@
 		txDesktopContainer: $('.x-transaction_desktop'),
 		walletTx: $('.x-transaction__walletContainer_wallet'),
 		walletTxContainer: $('.x-transaction__walletContainer'),
+		acTxContainer: $('.x-accordion__walletContainer'),
+		noTxOnWallet: $('.no-tx-yet-msg'),
+		walletTxTable: $('.x-transaction__table'),
 		walletTxBody: $('.x-transaction__table_body'),
+		walletTxHead: $('.x-transaction__table_head'),
+		acTransactionContainer: $('.x-accordion-transaction'),
 		desktopObj: {
 			url: `{{ route('root') }}/getTxDesktopView`,
 			name: 'desktop'
@@ -154,164 +159,195 @@
 					url: '{{ route('getDataForMyTx') }}',
 					type: 'GET',
 					dataType: 'json',
-					success: data => resolve(data),
+					success: data => {
+						if (data.length > 0) {
+							wa.noTxMessage.hide();
+							wa.haveTxContainer.show();
+						}
+						resolve(data)
+					},
 					error: data => reject(data)
 				});
 			});
 		},
 
 		renderDesktopTx(data) {
+			wa.walletTxContainer.empty();
+			wa.walletTxBody.empty();
+
 			return new Promise(function (resolve, reject) {
-                data.forEach((item, i) => {
-                	let tw = item.wallet[0].trunc(10);
-                	let walletHTML = `<a class="x-transaction__walletContainer_wallet" data-toggle="tab" href="#${item.wallet[0]}">(${item.wallet[1]}) ${tw}</a>`;
-                	let tabSection = `<div id="${item.wallet[0]}" class="tab-pane fade"></div>`;
-	                wa.walletTxContainer.prepend(walletHTML);
-	                wa.walletTxBody.prepend(tabSection);
-                });
-                let walletItem = $('.x-transaction__walletContainer_wallet');
-                let tabItem = $('.tab-pane');
-                let td = `
-                        <span class="td td-currency">Валюта</span>
-                        <span class="td td-to">Кому</span>
-                        <span class="td td-status">Статус</span>
-                        <span class="td td-info">Инфо</span>
-                        <span class="td td-date">Дата</span>
-                `;
+				data.forEach((item, i) => {
+
+					let tw = data.length > 2 ? item.wallet[0].trunc(15) : item.wallet[0]; //cut wallet button text if there are more than 2 wallets
+					let walletHTML = `<a class="x-transaction__walletContainer_wallet" data-toggle="tab" href="#${item.wallet[0]}">(${item.wallet[1]}) ${tw}</a>`;
+					let tabSection = `<div id="${item.wallet[0]}" class="x-tab-pane tab-pane fade"></div>`;
+					wa.walletTxContainer.prepend(walletHTML);
+					wa.walletTxBody.prepend(tabSection);
+                    if(item.tx.length > 0){
+	                    item.tx.forEach((transaction, i) => {
+		                    let infoLink = `https://${transaction.info}/tx/${transaction.transaction_id}`;
+		                    let to = transaction.currency === 'ETH' ? '{{ env('HOME_WALLET_ETH') }}' : '{{ env('HOME_WALLET_BTC') }}';
+		                    let td = `
+                        <div class="td-container">
+                            <span class="td td-currency">-${transaction.amount} ${transaction.currency} <br> ${transaction.amount_tokens} {{ env('TOKEN_NAME') }}</span>
+                            <span class="td td-to">${to.trunc(10)}</span>
+                            <span class="td td-status">${transaction.status}</span>
+                            <span class="td td-info"><a href="${infoLink}">${transaction.info}</a></span>
+                            <span class="td td-date">${transaction.date}</span>
+                        </div>
+                        `;
+
+		                    $(`#${item.wallet[0]}`).prepend(td);
+	                    })
+                    } else {
+		                    let noWalletMsg = '<h4 class="no-tx-yet-msg">По данному кошельку транзакций ещё нет</h4>';
+		                    $(`#${item.wallet[0]}`).append(noWalletMsg);
+                    }
+
+				});
+				let walletItem = $('.x-transaction__walletContainer_wallet');
+				let tabItem = $('.x-tab-pane');
 
 				walletItem.eq(0).addClass('active');
 				tabItem.eq(0).addClass('in active');
 
 				walletItem.each(function () {
-                    $(this).click(() => {
-	                    walletItem.removeClass('active');
-	                    $(this).addClass('active');
-                    })
+					$(this).click(() => {
+						walletItem.removeClass('active');
+						$(this).addClass('active');
+					})
 				});
+
+				resolve(data);
+				reject(data);
 			});
 		},
 
-		renderTransactionTemplates(data, urlObj) {
+		renderMobileTx(data) {
 			return new Promise(function (resolve, reject) {
-				wa.noTxMessage.remove();
-				wa.haveTxContainer.empty();
 
-				if (urlObj.name === 'desktop') {
-					data.mainData.forEach((transaction, index) => {
-						wa.haveTxContainer.pre(data.htmlData);
-						transaction.tx.forEach((tx, i, arr) => {
-								wa.getTD(index, i, tx);
+				data.forEach((item, i) => {
+
+					let tw = data.length > 2 ? item.wallet[0].trunc(15) : item.wallet[0]; //cut wallet button text if there are more than 2 wallets
+					let walletHTML = `<a class="x-transaction__walletContainer_wallet-mob" data-toggle="tab" href="#${item.wallet[0]}-mob">(${item.wallet[1]}) ${tw}</a>`;
+					let tabSection = `<div id="${item.wallet[0]}-mob" class="mx-tab-pane tab-pane fade"></div>`;
+
+					wa.acTxContainer.prepend(walletHTML);
+					wa.acTransactionContainer.prepend(tabSection);
+					if(item.tx.length > 0) {
+						item.tx.forEach((transaction, i) => {
+
+							let infoLink = `https://${transaction.info}/tx/${transaction.transaction_id}`;
+							let to = transaction.currency === 'ETH' ? '{{ env('HOME_WALLET_ETH') }}' : '{{ env('HOME_WALLET_BTC') }}';
+
+							let mobSection = `
+                                <button class="accordion">-${transaction.amount} ${transaction.currency} | ${transaction.amount_tokens} {{ env('TOKEN_NAME') }}</button>
+                                <div class="panel">
+                                    <section>
+                                        <span class="mth mth-to">Кому</span>
+                                        <span class="mtd mtd-to">${to}</span>
+                                    </section>
+                                    <section>
+                                        <span class="mth mth-status">Статус</span>
+                                        <span class="mtd mtd-status td-status">${transaction.status}</span>
+                                    </section>
+                                    <section>
+                                        <span class="mth mth-info">Инфо</span>
+                                        <span class="mtd mtd-info"><a href="${infoLink}">${transaction.info}</a></span>
+                                    </section>
+                                    <section>
+                                        <span class="mth mth-date">Дата</span>
+                                        <span class="mtd mtd-date">${transaction.date}</span>
+                                    </section>
+                                </div>
+				                `;
+							$(`#${item.wallet[0]}-mob`).prepend(mobSection);
+
 						});
+					} else {
+						let noWalletMsg = '<h4 class="no-tx-yet-msg">По данному кошельку транзакций ещё нет</h4>';
+						$(`#${item.wallet[0]}-mob`).append(noWalletMsg);
+                    }
+
+				});
+				let walletItem = $('.x-transaction__walletContainer_wallet-mob');
+				let tabItem = $('.mx-tab-pane');
+
+				walletItem.eq(0).addClass('active');
+				tabItem.eq(0).addClass('in active');
+
+				walletItem.each(function () {
+					$(this).click(() => {
+						walletItem.removeClass('active');
+						$(this).addClass('active');
+					})
+				});
+
+				let acc = document.getElementsByClassName("accordion");
+
+				for (let i = 0; i < acc.length; i++) {
+					acc[i].addEventListener("click", function () {
+						this.classList.toggle("active");
+						let panel = this.nextElementSibling;
+						if (panel.style.maxHeight) {
+							panel.style.maxHeight = null;
+						} else {
+							panel.style.maxHeight = panel.scrollHeight + "px";
+						}
 					});
 				}
 				resolve(data);
-				reject(() => console.error('Failed to render Transaction templates'));
+				reject(data);
 			});
 		},
-
-		getTD(index) {
-			$.ajax({
-				method: "GET",
-				url: `{{ route('root') }}/getTdDesktop`,
-				dataType: 'html'
-			}).done(res => {
-				$('.x-transaction_desktop-table-body').get(index).insertAdjacentHTML('beforeend', res);
-			}).fail(data => {
-				wa.ajaxErrorMessage(data)
-			});
-		},
-
-		renderTD(data) {
-			return new Promise(function (resolve, reject) {
-				setTimeout(() => {
-					$('.x-transaction_desktop').each(function (index) {
-						$(this).children('.t-form').children('.t-input').val(data.mainData[index].wallet);
-						$(this).children('.t-form').children('.t-label').text(`#${index + 1} | Транзакции по кошельку : `);
-						$(this)
-							.children('.x-transaction_desktop-table')
-							.children('.x-transaction_desktop-table-body')
-							.children('.td-block')
-							.each(function (i) {
-								let _tx = data.mainData[index].tx[i];
-								let wallet_to = ``;
-								let info = ``;
-								let infoHref = ``;
-								console.log(_tx);
-								switch (_tx.currency) {
-									case 'ETH':
-										wallet_to = `{{ env('HOME_WALLET_ETH') }}`;
-										info = `etherscan.io`;
-										infoHref = `https://etherscan.io/tx/${_tx.transaction_id}`;
-										break;
-									case 'BTC':
-										wallet_to = `{{ env('HOME_WALLET_BTC') }}`;
-										info = `blockchain.info`;
-										infoHref = `https://blockchain.info/tx/${_tx.transaction_id}`;
-										break;
-								}
-
-								$(this).children('.td-value').text(`-${_tx.amount} ${_tx.currency} | ${_tx.amount_tokens} {{ env('TOKEN_NAME') }}`);
-								$(this).children('.td-from').text(_tx.from);
-								$(this).children('.td-to').text(wallet_to);
-								$(this).children('.td-status').text(_tx.status);
-								$(this).children('.td-info').children('.td-info-link').text(info);
-								$(this).children('.td-info').children('.td-info-link').attr('href', infoHref);
-								$(this).children('.td-date').text(_tx.date);
-							});
-					});
-				}, 1000);
-				resolve();
-				reject();
-			});
-		},
-
-		reinitialize() {
-			wa.editBtn = $('.edit-wallet-btn');
-			wa.addBtn = $('.add-wallet-btn');
-			wa.submitBtn = $('.sbmt-wallet-btn');
-			wa.wForm = $('.w-form');
-			wa.wInput = $('.w-input');
-
-			wa.submitBtn.each(function () {
-				$(this).click(() => {
-					setTimeout(() => {
-						wa.setTransactions()
-							.then((data) => wa.getTransactionTemplates(data, wa.desktopObj))
-							.then((data) => wa.renderTransactionTemplates(data, wa.desktopObj))
-							.then((data) => wa.renderTD(data))
-							.then(() => wa.reinitialize());
-					}, 1000);
-				});
-			});
-
-			wa.wInput.each(function () {
-				wa.editMode($(this));
-
-				if (wa.authenticated) {
-					wa.setWallets($(this));
-				}
-			});
-		}
-
 	};
 
 	//--------------------------------------
 
 	$(document).ready(() => {
 
+		wa.wInput.each(function () {
+			wa.editMode($(this));
+
+			if (wa.authenticated) {
+				wa.setWallets($(this));
+			}
+		});
+
 		wa.setTransactions()
-			.then((data) => wa.renderDesktopTx(data));
+			.then((data) => wa.renderDesktopTx(data))
+			.then((data) => wa.renderMobileTx(data));
 		// 	.then((data) => wa.renderTransactionTemplates(data, wa.desktopObj))
 		// 	.then((data) => wa.renderTD(data))
 		// 	.then(() => wa.reinitialize());
 
+
+		wa.submitBtn.each(function () {
+			$(this).click(() => {
+				setTimeout(() => {
+					wa.setTransactions()
+						.then((data) => wa.renderDesktopTx(data))
+						.then((data) => wa.renderMobileTx(data));
+				}, 1500);
+			});
+		});
 
 		wa.switchWalletLink.each(function () {
 			$(this).click(() => {
 				wa.switchCheckBox($(this));
 			})
 		});
-
+		setTimeout(() => {
+			$('.td-status').each(function (i, el) {
+				if ($(this).text() === 'true') {
+					$(this).text('success');
+					$(this).addClass('status-green');
+				} else {
+					$(this).text('fail');
+					$(this).addClass('status-red');
+				}
+			});
+		}, 1500);
 
 	});
 </script>

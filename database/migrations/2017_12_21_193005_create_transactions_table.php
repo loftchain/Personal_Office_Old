@@ -21,6 +21,7 @@ class CreateTransactionsTable extends Migration
             $table->string('from');
             $table->double('amount');
             $table->double('amount_tokens');
+            $table->string('info');
             $table->dateTime('date');
             $table->timestamps();
         });

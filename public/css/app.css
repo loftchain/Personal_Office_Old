@@ -136,7 +136,20 @@
 .a1-body .a1-container__btns,
 .a2-body .a2-container form,
 .x-transaction__walletContainer,
+.x-transaction .x-accordion__walletContainer,
 .x-transaction__table_head,
+.x-transaction__table_body .tab-pane .td-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .x-transaction__table_body .tab-pane {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -147,6 +160,10 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .x-wallets__title,
@@ -11334,12 +11351,119 @@ button.close {
   display: none;
 }
 
+.no-tx-yet-msg {
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.x-transaction__no-tx-msg {
+  margin-top: 20px;
+}
+
+.x-transaction__have-tx-container {
+  display: none;
+}
+
 .x-transaction__desktop {
   margin: 0 auto;
   width: 750px;
 }
 
-.x-transaction__walletContainer {
+@media (max-width: 767px) {
+  .x-transaction__desktop {
+    display: none;
+  }
+}
+
+.x-transaction__mobile {
+  display: none;
+  width: 100vw;
+}
+
+@media (max-width: 767px) {
+  .x-transaction__mobile {
+    display: block;
+  }
+}
+
+.x-transaction__mobile .x-accordion-transaction .mx-tab-pane {
+  width: 100vw;
+}
+
+.x-transaction__mobile .x-accordion-transaction .mx-tab-pane .accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.x-transaction__mobile .x-accordion-transaction .mx-tab-pane .active,
+.x-transaction__mobile .x-accordion-transaction .mx-tab-pane .accordion:hover {
+  background-color: #ccc;
+}
+
+.x-transaction__mobile .x-accordion-transaction .mx-tab-pane .accordion:after {
+  content: '+';
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.x-transaction__mobile .x-accordion-transaction .mx-tab-pane .active:after {
+  content: "\2212";
+}
+
+.x-transaction__mobile .x-accordion-transaction .mx-tab-pane .panel {
+  width: 100%;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 0.2s ease-out;
+  transition: max-height 0.2s ease-out;
+}
+
+.x-transaction__mobile .x-accordion-transaction .mx-tab-pane .panel section span {
+  display: inline-block;
+  padding: 5px 0;
+}
+
+.x-transaction__mobile .x-accordion-transaction .mx-tab-pane .panel section span.mth {
+  width: 20%;
+  text-align: right;
+  padding-right: 5px;
+  border-right: 1px solid #333333;
+}
+
+.x-transaction__mobile .x-accordion-transaction .mx-tab-pane .panel section span.mtd {
+  width: auto;
+  text-align: left;
+  margin-left: 5px;
+  padding-right: 5px;
+}
+
+.x-transaction__mobile .x-accordion-transaction .mx-tab-pane .panel section span.mtd.status-green {
+  color: #27ae60;
+}
+
+.x-transaction__mobile .x-accordion-transaction .mx-tab-pane .panel section span.mtd.status-red {
+  color: #CF0032;
+}
+
+.x-transaction__mobile .x-accordion-transaction .mx-tab-pane .panel section span.mtd.mtd-to {
+  word-break: break-all;
+}
+
+.x-transaction__walletContainer,
+.x-transaction .x-accordion__walletContainer {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   -ms-flex-wrap: wrap;
@@ -11347,7 +11471,10 @@ button.close {
   margin: 20px 0;
 }
 
-.x-transaction__walletContainer_wallet {
+.x-transaction__walletContainer_wallet,
+.x-transaction__walletContainer_wallet-mob,
+.x-transaction .x-accordion__walletContainer_wallet,
+.x-transaction .x-accordion__walletContainer_wallet-mob {
   border: 1px solid #E0E0E0;
   border-radius: 25px;
   padding: 10px 20px;
@@ -11356,7 +11483,10 @@ button.close {
   text-decoration: none;
 }
 
-.x-transaction__walletContainer_wallet.active {
+.x-transaction__walletContainer_wallet.active,
+.x-transaction__walletContainer_wallet-mob.active,
+.x-transaction .x-accordion__walletContainer_wallet.active,
+.x-transaction .x-accordion__walletContainer_wallet-mob.active {
   background: #330868;
   background: -webkit-gradient(left top, right top, color-stop(0%, #330868), color-stop(100%, #30ced1));
   background: -webkit-gradient(linear, left top, right top, from(#330868), to(#30ced1));
@@ -11364,7 +11494,10 @@ button.close {
   color: white;
 }
 
-.x-transaction__walletContainer_wallet:hover {
+.x-transaction__walletContainer_wallet:hover,
+.x-transaction__walletContainer_wallet-mob:hover,
+.x-transaction .x-accordion__walletContainer_wallet:hover,
+.x-transaction .x-accordion__walletContainer_wallet-mob:hover {
   background-color: #30ced1;
   color: white;
 }
@@ -11373,7 +11506,22 @@ button.close {
 .x-transaction__walletContainer_wallet:hover,
 .x-transaction__walletContainer_wallet:focus,
 .x-transaction__walletContainer_wallet:focus-within,
-.x-transaction__walletContainer_wallet:visited {
+.x-transaction__walletContainer_wallet:visited,
+.x-transaction__walletContainer_wallet-mob:active,
+.x-transaction__walletContainer_wallet-mob:hover,
+.x-transaction__walletContainer_wallet-mob:focus,
+.x-transaction__walletContainer_wallet-mob:focus-within,
+.x-transaction__walletContainer_wallet-mob:visited,
+.x-transaction .x-accordion__walletContainer_wallet:active,
+.x-transaction .x-accordion__walletContainer_wallet:hover,
+.x-transaction .x-accordion__walletContainer_wallet:focus,
+.x-transaction .x-accordion__walletContainer_wallet:focus-within,
+.x-transaction .x-accordion__walletContainer_wallet:visited,
+.x-transaction .x-accordion__walletContainer_wallet-mob:active,
+.x-transaction .x-accordion__walletContainer_wallet-mob:hover,
+.x-transaction .x-accordion__walletContainer_wallet-mob:focus,
+.x-transaction .x-accordion__walletContainer_wallet-mob:focus-within,
+.x-transaction .x-accordion__walletContainer_wallet-mob:visited {
   text-decoration: none;
 }
 
@@ -11396,28 +11544,45 @@ button.close {
 }
 
 .x-transaction__table_body .tab-pane {
+  width: 100%;
+}
+
+.x-transaction__table_body .tab-pane .td-container {
+  width: 100%;
   text-align: center;
   border-bottom: 1px solid #E0E0E0;
 }
 
-.x-transaction__table_body .tab-pane .td {
+.x-transaction__table_body .tab-pane .td-container .td {
   padding: 10px 0;
   width: 150px;
 }
 
-.x-transaction__table_body .tab-pane .td.from,
-.x-transaction__table_body .tab-pane .td.to {
+.x-transaction__table_body .tab-pane .td-container .td.td-currency,
+.x-transaction__table_body .tab-pane .td-container .td.td-date {
+  font-size: 11px;
+}
+
+.x-transaction__table_body .tab-pane .td-container .td.td-to {
   color: #30ced1;
   font-size: 12px;
   padding: 10px 25px;
 }
 
-.x-transaction__table_body .tab-pane .td.info:hover {
+.x-transaction__table_body .tab-pane .td-container .td.status-green {
+  color: #27ae60;
+}
+
+.x-transaction__table_body .tab-pane .td-container .td.status-red {
+  color: #CF0032;
+}
+
+.x-transaction__table_body .tab-pane .td-container .td.td-info:hover {
   cursor: pointer;
   text-decoration: underline;
 }
 
-.x-transaction__table_body .tab-pane .td.info a {
+.x-transaction__table_body .tab-pane .td-container .td.td-info a {
   color: #30ced1;
 }
 
@@ -11427,49 +11592,5 @@ button.close {
 
 .x-ac-transaction {
   display: none;
-}
-
-@media (max-width: 769px) {
-  .x-transaction table {
-    display: none;
-  }
-
-  .x-transaction .x-ac-transaction {
-    display: block;
-  }
-
-  .x-transaction .x-ac-transaction h3 {
-    word-break: break-all;
-  }
-
-  .x-transaction .x-ac-transaction div {
-    height: auto;
-  }
-
-  .x-transaction .x-ac-transaction div section {
-    padding: 10px 0;
-    border-bottom: 1px solid #E0E0E0;
-  }
-
-  .x-transaction .x-ac-transaction div section span {
-    display: inline-block;
-    word-break: break-all;
-  }
-
-  .x-transaction .x-ac-transaction div section .title {
-    font-weight: 700;
-    border-right: 1px solid #4b4b4b;
-    width: 60px;
-  }
-
-  .x-transaction .x-ac-transaction div section .value {
-    padding-left: 5px;
-  }
-
-  .x-transaction .x-ac-transaction div section .value.from,
-  .x-transaction .x-ac-transaction div section .value.to {
-    font-size: 10px;
-    color: #30ced1;
-  }
 }
 
