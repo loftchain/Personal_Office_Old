@@ -10,6 +10,7 @@
     @include('_js.js_widget')
     @if(\Illuminate\Support\Facades\Auth::check())
         @include('_js.js_wallet')
+        @include('_js.js_transaction')
     @endif
 @endif
 

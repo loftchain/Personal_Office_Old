@@ -1,5 +1,5 @@
 <div class="x-transaction">
-    <h4 class="x-transaction__no-tx-msg">На данный момент нет ни одной транзакации. Пожалуйста, введите кошелёк.</h4>
+    <h4 class="x-transaction__no-tx-msg">На данный момент нет ни одной транзакации. Пожалуйста, добавьте кошелёк.</h4>
     <div class="x-transaction__have-tx-container">
     <section class="x-transaction__desktop">
         <div class="x-transaction__walletContainer"></div>
