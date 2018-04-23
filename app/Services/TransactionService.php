@@ -106,6 +106,7 @@ class TransactionService
 				}
 			}
 		}
+		Log::info('---------------------TxStored------------------------');
 		return $db;
 	}
 
