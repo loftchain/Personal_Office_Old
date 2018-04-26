@@ -177,7 +177,10 @@
 		txs.setTransactions()
 			.then((data) => txs.renderDesktopTx(data))
 			.then((data) => txs.renderMobileTx(data))
-			.then(() => txs.changeStatuses());
+			.then(() => txs.changeStatuses())
+			.catch(e => {
+				console.error(e);
+			});
 
 		wa.submitBtn.each(function () {
 			$(this).click(() => {
@@ -185,7 +188,10 @@
 					txs.setTransactions()
 						.then((data) => txs.renderDesktopTx(data))
 						.then((data) => txs.renderMobileTx(data))
-						.then(() => txs.changeStatuses());
+						.then(() => txs.changeStatuses())
+                        .catch(e => {
+						console.error(e);
+					});
 				}, 1500);
 			});
 		});

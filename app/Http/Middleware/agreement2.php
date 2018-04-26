@@ -26,7 +26,7 @@ class agreement2
                 return redirect('agreement1');
                 break;
             case 3:
-                return redirect()->back();
+	            return redirect('home');
                 break;
         }
         return $next($request);

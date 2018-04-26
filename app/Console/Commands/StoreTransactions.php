@@ -43,6 +43,5 @@ class StoreTransactions extends Command
     public function handle()
     {
 	    $this->txService->storeTx();
-	    $this->info('Store:Transactions Command Run successfully!');
     }
 }

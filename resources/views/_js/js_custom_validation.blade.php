@@ -8,23 +8,29 @@
         modalBtn: $('.modal-btn'),
         grayBorderColor: '#E0E0E0',
         exclamation: '<i class="fa fa-exclamation-circle fa-lg" aria-hidden="true"></i>&nbsp',
+
         resetModal: () => {
             v.xInput.removeClass('isError');
             v.errors.text('');
         },
+
         closeModal: () => {
             v.modal.modal('hide');
             $('.modal-backdrop').remove();
         },
+
         showNotification: (text, type) => {
             $.notify(text, {
                 type: type
             });
         },
+
         hideSpinner: () => {
             v.loaderSpinner.fadeOut();
         },
+
         stateSelection: (data, _this) => {
+	        console.log(data);
             switch (true) {
                 case !$.isEmptyObject(data.validation_error):
                     if (data.validation_error['g-recaptcha-response']) {
@@ -32,10 +38,17 @@
                     }
 
                     $.each(data.validation_error, (key, value) => {
+	                    console.log(_this.children('.error-message.' + key).prev());
+
                         if (_this.children('.error-message.' + key).prev().hasClass('x-input')) {
                             _this.children('.error-message.' + key).prev().addClass('isError');
                         }
                         _this.children('.error-message.' + key).html(v.exclamation + value[0]);
+
+	                    if (_this.children().children('.error-message.' + key).prev().hasClass('x-input')) {
+		                    _this.children().children('.error-message.' + key).prev().addClass('isError');
+	                    }
+	                    _this.children().children('.error-message.' + key).html(v.exclamation + value[0]);
                     });
                     v.hideSpinner();
                     break;
@@ -109,6 +122,7 @@
                     break;
             }
         },
+
         ajax_form: function () {
             $(this).on('submit', function (e) {
                 e.preventDefault();
@@ -122,6 +136,7 @@
                         v.loaderSpinner.hide();
                         v.stateSelection(data, $(this));
                     },
+
                     error: data => {
                         console.log('Error: Something wrong with ajax call ' + data.errors);
                     }

@@ -14,36 +14,61 @@
         <article>
           @lang('home/agreement2.attention_big_text')
         </article>
-        <form class="form-horizontal" method="POST" action="{{ route('store_personal_data') }}">
-            <div>
+        <section class="a2-container__section doc-section">
+            <form id="upload" method="post" action="{{ route('store_documents') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                <label for="nameSurname" class=""> @lang('home/agreement2.name_surname')</label>
-                <input id="nameSurname" type="text" class="" name="name_surname">
+                <div id="drop">
+                    Drop Here
 
-                <label for="telegram" class=""> @lang('home/agreement2.telegram')</label>
-                <input id="telegram" type="text" class="" name="telegram">
+                    <a>Browse</a>
+                    <input type="file" name="upl" multiple />
+                    <ul>
+                        <!-- The file uploads will be shown here -->
+                    </ul>
+                </div>
 
-                <label for="emergency_email" class=""> @lang('home/agreement2.extra_email')</label>
-                <input id="emergency_email" type="text" class="" name="emergency_email">
+            </form>
+        </section>
+        <section class="a2-container__section text-section">
+            <form class="a2-form" method="POST" accept-charset="multipart/form-data" enctype="multipart/form-data" action="{{ route('store_personal_data') }}">
+                <div class="input-text-container input-container-left">
+                    {{ csrf_field() }}
+                    <label for="name_surname" class=""> @lang('home/agreement2.name_surname')</label>
+                    <input id="name_surname" type="text" class="x-input" name="name_surname">
+                    <div class="error-message error-message0 name_surname"></div>
 
-                <label for="permanent_address" class=""> @lang('home/agreement2.perm_address')</label>
-                <input id="permanent_address" type="text" class="" name="permanent_address">
-            </div>
-            <div>
-                <label for="contact_number" class=""> @lang('home/agreement2.contact_number')</label>
-                <input id="contact_number" type="text" class="" name="contact_number">
+                    <label for="telegram" class=""> @lang('home/agreement2.telegram')</label>
+                    <input id="telegram" type="text" class="x-input" name="telegram">
+                    <div class="error-message error-message1 telegram"></div>
 
-                <label for="date_place_birth" class=""> @lang('home/agreement2.date_place_birth')</label>
-                <input id="date_place_birth" type="text" class="" name="date_place_birth">
+                    <label for="emergency_email" class=""> @lang('home/agreement2.extra_email')</label>
+                    <input id="emergency_email" type="text" class="x-input" name="emergency_email">
+                    <div class="error-message error-message2 emergency_email"></div>
 
-                <label for="nationality" class=""> @lang('home/agreement2.nationality')</label>
-                <input id="nationality" type="text" class="" name="nationality">
+                    <label for="permanent_address" class=""> @lang('home/agreement2.perm_address')</label>
+                    <input id="permanent_address" type="text" class="x-input" name="permanent_address">
+                    <div class="error-message error-message3 permanent_address"></div>
+                </div>
+                <div class="input-text-container input-container-left">
+                    <label for="contact_number" class=""> @lang('home/agreement2.contact_number')</label>
+                    <input id="contact_number" type="text" class="x-input" name="contact_number">
+                    <div class="error-message error-message4 contact_number"></div>
 
-                <label for="source_of_funds" class=""> @lang('home/agreement2.source_of_funds')</label>
-                <input id="source_of_funds" type="text" class="" name="source_of_funds">
-            </div>
-            <button type="submit" class="agreement2-btn reusable-btn">@lang('home/mycrypto.save_btn')</button>
-        </form>
+                    <label for="date_place_birth" class=""> @lang('home/agreement2.date_place_birth')</label>
+                    <input id="date_place_birth" type="text" class="x-input" name="date_place_birth">
+                    <div class="error-message error-message5 date_place_birth"></div>
+
+                    <label for="nationality" class=""> @lang('home/agreement2.nationality')</label>
+                    <input id="nationality" type="text" class="x-input" name="nationality">
+                    <div class="error-message error-message6 nationality"></div>
+
+                    <label for="source_of_funds" class=""> @lang('home/agreement2.source_of_funds')</label>
+                    <input id="source_of_funds" type="text" class="x-input" name="source_of_funds">
+                    <div class="error-message error-message7 source_of_funds"></div>
+                </div>
+                <button type="submit" class="a2-form__sbmt-btn">@lang('home/mycrypto.save_btn')</button>
+            </form>
+        </section>
     </div>
 </div>
     <script src="{{ asset('js/noBackButton.js') }}"></script>
