@@ -90,7 +90,7 @@ class HomeController extends Controller
 		$data['authenticated'] = Auth::check();
 
 
-		return view('home.home')->with('data', $data);
+		return view('home.welcome')->with('data', $data);
 
 	}
 
@@ -110,6 +110,7 @@ class HomeController extends Controller
 		$data['time'] = $time;
 		$data['authenticated'] = Auth::check();
 		$data['confirmed'] = $user->confirmed;
+		$data['admin'] = $user->admin;
 
 		return view('home.home')->with('data', $data);
 

@@ -11,7 +11,8 @@
 @include('_js.js_loader_cloak')
 
 
-@if(\Illuminate\Support\Facades\Route::current()->getName() !== 'agreement1' && \Illuminate\Support\Facades\Route::current()->getName() !== 'agreement2')
+@if(\Illuminate\Support\Facades\Route::current()->getName() == 'home'
+ OR \Illuminate\Support\Facades\Route::current()->getName() == 'welcome')
     @include('_js.js_widget')
 @endif
 

@@ -174,13 +174,15 @@
 	};
 
 	$(document).ready(() => {
-		txs.setTransactions()
-			.then((data) => txs.renderDesktopTx(data))
-			.then((data) => txs.renderMobileTx(data))
-			.then(() => txs.changeStatuses())
-			.catch(e => {
-				console.error(e);
-			});
+		if(wa.userConfirmed === 1) {
+			txs.setTransactions()
+				.then((data) => txs.renderDesktopTx(data))
+				.then((data) => txs.renderMobileTx(data))
+				.then(() => txs.changeStatuses())
+				.catch(e => {
+					console.error(e);
+				});
+		}
 
 		wa.submitBtn.each(function () {
 			$(this).click(() => {

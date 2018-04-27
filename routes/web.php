@@ -67,3 +67,11 @@ Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@swit
 //-----------------------------------------------------------------------------------
 
 Auth::routes();
+
+
+//------------------------Admin---------------------------------------------------
+
+
+Route::group(['middleware' =>  ['admin']], function(){
+	Route::get('/admin/confirmation', 'Admin\AdminController@confirmation')->name('confirmation');
+});

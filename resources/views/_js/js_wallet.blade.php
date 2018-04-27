@@ -89,22 +89,25 @@
 			const form = _this.parent();
 			const currency = form.find('.currency');
 			const type = form.find('.type');
-			walletsData.currentWallets.forEach(function (wallet) {
-				switch (wallet.type) {
-					case 'from':
-						if (currency.val() === wallet.currency) {
-							_this.val(wallet.wallet);
-							wa.showDescription(wallet.currency);
-						}
-						break;
-					default:
-						if (type.val() === wallet.type) {
-							_this.val(wallet.wallet);
-							wa.showDescription(wallet.currency);
-						}
-						break;
-				}
-			});
+
+			if(wa.userConfirmed === 1) {
+				walletsData.currentWallets.forEach(function (wallet) {
+					switch (wallet.type) {
+						case 'from':
+							if (currency.val() === wallet.currency) {
+								_this.val(wallet.wallet);
+								wa.showDescription(wallet.currency);
+							}
+							break;
+						default:
+							if (type.val() === wallet.type) {
+								_this.val(wallet.wallet);
+								wa.showDescription(wallet.currency);
+							}
+							break;
+					}
+				});
+            }
 		},
 
 		showDescription(currency) {
@@ -130,11 +133,11 @@
 	//--------------------------------------
 
 	$(document).ready(() => {
-		console.log(wa.userAuthenticated);
+		
 		wa.wInput.each(function () {
 			wa.editMode($(this));
 
-			if (wa.userAuthenticated) {
+			if (wa.userConfirmed) {
 				wa.setWallets($(this));
 			}
 		});

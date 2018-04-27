@@ -6,8 +6,12 @@
         </div>
         <div class="x-dashboard__tabs">
             <ul class="nav nav-tabs">
-                <li class="active"> <a data-toggle="tab" href="#home">@lang('home/home.token_sale')</a> </li>
-                <li> <a data-toggle="tab" href="#transactions">@lang('home/home.my_transactions')</a> </li>
+                @if($data['admin'] == 1)
+                    <li class="active"> <a data-toggle="tab" href="#admin">Confirmation</a> </li>
+                @else
+                    <li class="active"> <a data-toggle="tab" href="#home">@lang('home/home.token_sale')</a> </li>
+                    <li> <a data-toggle="tab" href="#transactions">@lang('home/home.my_transactions')</a> </li>
+                @endif
             </ul>
         </div>
         <div class="x-dashboard__options">
