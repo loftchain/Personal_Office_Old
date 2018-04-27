@@ -10,6 +10,7 @@ class UserPersonalFields extends Authenticatable
 {
 	use Notifiable;
 
+
 	/**
 	 * The attributes that are mass assignable.
 	 *
@@ -26,8 +27,11 @@ class UserPersonalFields extends Authenticatable
 		'date_place_birth',
 		'nationality',
 		'source_of_funds',
-		'input_img0',
-		'input_img1'
+		'doc_img_path',
+	];
+
+	protected $casts = [
+		'doc_img_path' => 'array',
 	];
 
 	/**

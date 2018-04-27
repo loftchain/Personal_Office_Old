@@ -86,7 +86,7 @@ class AgreementController extends Controller
 	public function store_documents()
 	{
 		$user = User::find(Auth::id());
-
+		$userPersonalField = UserPersonalFields::where('user_id', Auth::id())->first();
 		$allowed = array('png', 'jpg', 'jpeg', 'svg', 'gif', 'pdf', 'zip', 'rar');
 		if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
 
@@ -94,18 +94,28 @@ class AgreementController extends Controller
 
 			if (!in_array(strtolower($extension), $allowed)) {
 				echo '{"status":"error"}';
-				exit;
+				return;
 			}
 
 			$fileName = time() . '-' . $user->email . '-' . $_FILES['upl']['name'];
 
 			if (move_uploaded_file($_FILES['upl']['tmp_name'], env('UPLOAD_PATH') . $fileName)) {
 				echo '{"status":"success"}';
-				exit;
 			}
-			
-			$userPersonalField = UserPersonalFields::updateOrCreate(['user_id' => $user->id], ['doc_img_path' => env('APP_URL') . '/uploads/' . $fileName]);
-			$userPersonalField->save();
+
+			if ($userPersonalField === null){
+				UserPersonalFields::create([
+					'user_id' => Auth::id(),
+					'doc_img_path' => [env('APP_URL') . '/uploads/' . $fileName]
+				]);
+			} else {
+				$docArr = $userPersonalField->doc_img_path;
+				$docArr[] = env('APP_URL') . '/uploads/' . $fileName;
+				$userPersonalField->doc_img_path = $docArr;
+				$userPersonalField->save();
+
+			}
+
 		}
 
 		echo '{"status":"error"}';

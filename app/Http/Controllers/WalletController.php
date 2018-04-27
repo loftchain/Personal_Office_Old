@@ -101,7 +101,9 @@ class WalletController extends Controller
 	}
 
   public function current_wallets(Request $request){
-    $walletData = $this->walletService->getCurrentWallets();
+
+	$user = User::find(Auth::id());
+	$walletData = ($user->confirmed == '1') ? $this->walletService->getCurrentWallets() : '';
     return response()->json(['currentWallets' => $walletData]);
   }
 

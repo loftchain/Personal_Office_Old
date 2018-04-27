@@ -24,7 +24,7 @@ class CreateUserPersonalFieldsTable extends Migration
           $table->string('date_place_birth')->nullable();
           $table->string('nationality')->nullable();
           $table->string('source_of_funds')->nullable();
-          $table->string('doc_img_path')->nullable();
+          $table->longText('doc_img_path')->nullable();
           $table->timestamps();
           $table->engine = 'InnoDB';
         });

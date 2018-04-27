@@ -88,8 +88,8 @@ class HomeController extends Controller
 		$data['period'] = $this->get_period($time);
 		$data['time'] = $time;
 		$data['authenticated'] = Auth::check();
-		$data['wallets'] = $this->walletService->getCurrentWallets();
-		$data['transactions'] = $this->transactionService->getDataForMyTx();
+//		$data['wallets'] = $this->walletService->getCurrentWallets();
+//		$data['transactions'] = $this->transactionService->getDataForMyTx();
 
 		return view('home.home')->with('data', $data);
 
@@ -105,6 +105,7 @@ class HomeController extends Controller
 		$data['wholeSoftCap'] = array_map(function () {
 			return array_sum(func_get_args());
 		}, $data['btcSoftCap'], $data['ethSoftCap']);
+
 		$data['period'] = $this->get_period($time);
 		$data['time'] = $time;
 		$data['authenticated'] = Auth::check();

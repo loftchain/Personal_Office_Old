@@ -20,7 +20,6 @@ class ValidateUser
     {
 
         $user = User::find(Auth::id());
-        Log::info($user);
         switch ($user['valid_step']) {
             case 0:
                 return redirect('logout');
