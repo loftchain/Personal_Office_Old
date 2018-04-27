@@ -50,10 +50,6 @@ class LoginController extends Controller
 			return response()->json(['pwd_not_match' => __('controller/changeEmail.pwd_not_match')]);
 		}
 
-		if ($user && $passwordIsVerified && $user->confirmed == 0) {
-			return response()->json(['not_confirmed_resend' => __('auth.not_confirmed')]);
-		}
-
 		$this->guard()->login($user);
 		return response()->json(['success_login' => 'auth_success']);
 	}

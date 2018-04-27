@@ -30,18 +30,20 @@
 			let submitClicked = false;
 
 			addBtn.click(() => {
-				if(wa.userConfirmed === '1'){
-					_this.prop('disabled', false);
-					setTimeout(() => {
-						_this.focus();
-					}, 1);
-					sbmtBtn.show();
-					addBtn.hide();
-					_this.val('');
-                } else {
-					v.showNotification('Пожалуйста дождитесь подтверждения от админимстратора.');
+				switch (true) {
+					case wa.userConfirmed === '1' && wa.userAuthenticated === '1':
+						_this.prop('disabled', false);
+						setTimeout(() => {
+							_this.focus();
+						}, 1);
+						sbmtBtn.show();
+						addBtn.hide();
+						_this.val('');
+						break;
+					case wa.userConfirmed === '0':
+						v.showNotification('Пожалуйста дождитесь подтверждения от админимстратора.');
+						break;
 				}
-
 			});
 
 			wa.submitBtn.click(() => {
@@ -128,7 +130,7 @@
 	//--------------------------------------
 
 	$(document).ready(() => {
-
+		console.log(wa.userAuthenticated);
 		wa.wInput.each(function () {
 			wa.editMode($(this));
 

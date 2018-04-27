@@ -141,12 +141,12 @@
 					w.icoInnerProgress.css('width', '0');
 					break;
 				case 'ico_next':
-					w.preInnerProgress.css('width', '100%');
+					w.preInnerProgress.css('width', 'calc(100% + 4px)');
 					w.icoInnerProgress.css('width', '0');
 					break;
 				case 'finish':
-					w.preInnerProgress.css('width', '100%');
-					w.icoInnerProgress.css('width', '100%');
+					w.preInnerProgress.css('width', 'calc(100% + 4px)');
+					w.icoInnerProgress.css('width', 'calc(100% + 4px)');
 					break;
 			}
 		},

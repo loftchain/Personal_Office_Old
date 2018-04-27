@@ -10,7 +10,11 @@
 </form>
 
 <div class="description-container ETH" data-currency="ETH">
-    <p class="no-wallet ETH">Для инвестирования, пожалуйста добавьте кошелёк ETH</p>
+    @if(\Illuminate\Support\Facades\Auth::check())
+        <p class="no-wallet ETH">Для инвестирования, пожалуйста, добавьте кошелёк ETH</p>
+    @else
+        <p class="no-wallet ETH">Для участия в программе, пожалуйста, зарегистрируйтесь</p>
+    @endif
 </div>
 
 

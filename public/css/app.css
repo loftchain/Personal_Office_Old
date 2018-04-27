@@ -80,7 +80,8 @@
 .modal-dialog form .modal-footer,
 .a1-body .a1-container__wp,
 .a2-body .a2-container__section #upload #drop ul,
-.a2-body .a2-container__section #upload #drop ul li {
+.a2-body .a2-container__section #upload #drop ul li,
+.a2-body .a2-container__section .a2-form .check-box-container div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -104,6 +105,7 @@
 .a-body,
 .a-body .a-container,
 .a1-body .a1-container__wp div,
+.a2-body .a2-container__section .a2-form .check-box-container,
 .reset-body,
 .reset-body form {
   display: -webkit-box;
@@ -11235,6 +11237,11 @@ button.close {
   }
 }
 
+.a2-body .a2-container__article {
+  font-size: 14px;
+  font-weight: 500;
+}
+
 .a2-body .a2-container__section {
   padding-bottom: 10px;
   width: 100%;
@@ -11242,8 +11249,6 @@ button.close {
 }
 
 .a2-body .a2-container__section #upload {
-  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   width: 750px;
   height: auto;
   min-height: 120px;
@@ -11255,10 +11260,12 @@ button.close {
   width: 100%;
   height: 100%;
   text-align: center;
-  text-transform: uppercase;
-  font-size: 16px;
-  font-weight: bold;
-  color: #7f858a;
+}
+
+.a2-body .a2-container__section #upload #drop span {
+  font-size: 12px;
+  font-weight: 400;
+  color: #333333;
 }
 
 .a2-body .a2-container__section #upload #drop a {
@@ -11372,12 +11379,29 @@ button.close {
   color: #ff443a;
 }
 
-.a2-body .a2-container__section .a2-form__sbmt-btn {
+.a2-body .a2-container__section .a2-form .check-box-container {
   position: absolute;
   right: 0;
   left: 0;
   margin: 0 auto;
-  bottom: -80px;
+  bottom: -110px;
+}
+
+.a2-body .a2-container__section .a2-form .check-box-container div {
+  margin-bottom: 20px;
+}
+
+.a2-body .a2-container__section .a2-form .check-box-container div label {
+  margin: 0 20px 0 0;
+  font-weight: 400;
+  color: #333333;
+}
+
+.a2-body .a2-container__section .a2-form .check-box-container div input {
+  margin: 0;
+}
+
+.a2-body .a2-container__section .a2-form .check-box-container .a2-form__sbmt-btn {
   outline: none;
   border: none;
   border-radius: 25px;
@@ -11390,6 +11414,14 @@ button.close {
   font-size: 16px;
   white-space: nowrap;
   width: 200px;
+  cursor: pointer;
+}
+
+.a2-body .a2-container__section .a2-form .check-box-container .a2-form__sbmt-btn:disabled,
+.a2-body .a2-container__section .a2-form .check-box-container .a2-form__sbmt-btn[disabled] {
+  background: #E0E0E0;
+  color: #828282;
+  cursor: not-allowed;
 }
 
 .a2-body .a2-container__crumbs ul li:last-child:after {

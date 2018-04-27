@@ -53,6 +53,7 @@ MIN_PAY_RUB=267583
 VERSION=0.13
 
 UPLOAD_PATH=/var/www/pao/public/uploads/
+
 #----------------IPS------------------------
 
 SELF_API_URL=http://ips.loc

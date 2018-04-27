@@ -30,7 +30,6 @@
         },
 
         stateSelection: (data, _this) => {
-	        console.log(data);
             switch (true) {
                 case !$.isEmptyObject(data.validation_error):
                     if (data.validation_error['g-recaptcha-response']) {
@@ -38,8 +37,6 @@
                     }
 
                     $.each(data.validation_error, (key, value) => {
-	                    console.log(_this.children('.error-message.' + key).prev());
-
                         if (_this.children('.error-message.' + key).prev().hasClass('x-input')) {
                             _this.children('.error-message.' + key).prev().addClass('isError');
                         }

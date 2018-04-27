@@ -1,15 +1,19 @@
 .a2-body {
   .a2-container {
+    &__article{
+      font-size: 14px;
+      font-weight: 500;
+    }
 
     &__section {
       padding-bottom: 10px;
       width: 100%;
       @extend %fsb;
       margin-bottom: 50px;
+
       //----------------------------------------------
 
       #upload {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         width: 750px;
         height: auto;
         min-height: 120px;
@@ -20,11 +24,13 @@
           width: 100%;
           height: 100%;
           text-align: center;
-          text-transform: uppercase;
 
-          font-size: 16px;
-          font-weight: bold;
-          color: #7f858a;
+
+          span{
+            font-size: 12px;
+            font-weight: 400;
+            color: $almost-black;
+          }
 
           a {
             background-color: #007a96;
@@ -146,23 +152,49 @@
             color: $validationError;
           }
         }
-
-        &__sbmt-btn {
+        .check-box-container{
           position: absolute;
           right: 0;
           left: 0;
           margin: 0 auto;
-          bottom: -80px;
-          outline: none;
-          border: none;
-          border-radius: 25px;
-          @include x-gradient($x-progress-from, $main-blue);
-          padding: 15px 40px;
-          color: white;
-          font-size: 16px;
-          white-space: nowrap;
-          width: 200px;
+          bottom: -110px;
+          @extend %fcc;
+
+          div{
+            @extend %fc;
+            margin-bottom: 20px;
+
+            label{
+              margin: 0 20px 0 0;
+              font-weight: 400;
+              color: $almost-black;
+            }
+
+            input{
+              margin: 0;
+            }
+          }
+          .a2-form__sbmt-btn {
+
+            outline: none;
+            border: none;
+            border-radius: 25px;
+            @include x-gradient($x-progress-from, $main-blue);
+            padding: 15px 40px;
+            color: white;
+            font-size: 16px;
+            white-space: nowrap;
+            width: 200px;
+            cursor: pointer;
+
+            &:disabled, &[disabled]{
+              background: $gray4;
+              color: $gray1;
+              cursor:not-allowed;
+            }
+          }
         }
+
       }
     }
 

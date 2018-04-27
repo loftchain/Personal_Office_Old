@@ -25,3 +25,22 @@
 
   </div>
 </section>
+
+@push('scripts')
+    @if(!\Illuminate\Support\Facades\Auth::check())
+        <script>
+            $('.switch-wallet-link').each(function () {
+                $(this).click(() => {
+                    $('.checkbox-img').attr('src', '{{ asset('img/empty-checkbox.png') }}');
+                    $(this)[0].childNodes[1].childNodes[1].src = '{{ asset('img/checked-checkbox.png') }}';
+                })
+            });
+
+            $('.add-wallet-btn').click(() => {
+                $.notify('Для участия в программе, пожалуйста, зарегистрируйтесь', {
+                    type: 'info'
+                });
+            });
+        </script>
+    @endif
+@endpush

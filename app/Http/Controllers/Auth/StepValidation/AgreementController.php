@@ -46,14 +46,11 @@ class AgreementController extends Controller
 	{
 		return Validator::make($data, [
 			'name_surname' => 'required|string|max:255',
-			'emergency_email' => 'required|string|email|min:7|max:255',
 			'permanent_address' => 'required|string|max:255',
 			'contact_number' => 'required|numeric',
 			'date_place_birth' => 'required|string|max:255',
 			'nationality' => 'required|string|max:255',
 			'source_of_funds' => 'required|string|max:255',
-//			'input_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-//			'input_img1' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
 		]);
 	}
 
@@ -113,7 +110,6 @@ class AgreementController extends Controller
 				$docArr[] = env('APP_URL') . '/uploads/' . $fileName;
 				$userPersonalField->doc_img_path = $docArr;
 				$userPersonalField->save();
-
 			}
 
 		}

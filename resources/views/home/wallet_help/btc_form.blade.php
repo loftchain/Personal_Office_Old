@@ -21,5 +21,9 @@
 </form>
 
 <div class="description-container BTC" data-currency="BTC">
-    <p class="no-wallet BTC">Для инвестирования, пожалуйста добавьте кошелёк BTC</p>
+    @if(\Illuminate\Support\Facades\Auth::check())
+        <p class="no-wallet BTC">Для инвестирования, пожалуйста, добавьте кошелёк BTC</p>
+    @else
+        <p class="no-wallet ETH">Для участия в программе, пожалуйста, зарегистрируйтесь</p>
+    @endif
 </div>

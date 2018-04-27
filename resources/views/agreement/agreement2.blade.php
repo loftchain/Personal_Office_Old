@@ -11,20 +11,17 @@
               <li>@lang('home/agreement1.pay_in')</li>
             </ul>
         </div>
-        <article>
+        <article class="a2-container__article">
           @lang('home/agreement2.attention_big_text')
         </article>
         <section class="a2-container__section doc-section">
             <form id="upload" method="post" action="{{ route('store_documents') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div id="drop">
-                    Drop Here
-
-                    <a>Browse</a>
+                    <span>Перетащите изображение документа сюда<br> (принимаемые форматы: jpg, jpeg, png, svg, pdf, zip, rar)</span>
+                    <a>Загрузить</a>
                     <input type="file" name="upl" multiple />
-                    <ul>
-                        <!-- The file uploads will be shown here -->
-                    </ul>
+                    <ul class="doc-container"></ul>
                 </div>
 
             </form>
@@ -66,7 +63,13 @@
                     <input id="source_of_funds" type="text" class="x-input" name="source_of_funds">
                     <div class="error-message error-message7 source_of_funds"></div>
                 </div>
-                <button type="submit" class="a2-form__sbmt-btn">@lang('home/mycrypto.save_btn')</button>
+                <div class="check-box-container">
+                    <div>
+                        <label for="terms" class=""> Даю согласие на обработку моих персональных данных</label>
+                        <input type="checkbox" id="terms" class="terms-checkbox" name="terms">
+                    </div>
+                    <button type="submit" class="a2-form__sbmt-btn">@lang('home/mycrypto.save_btn')</button>
+                </div>
             </form>
         </section>
     </div>

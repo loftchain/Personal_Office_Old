@@ -88,8 +88,7 @@ class HomeController extends Controller
 		$data['period'] = $this->get_period($time);
 		$data['time'] = $time;
 		$data['authenticated'] = Auth::check();
-//		$data['wallets'] = $this->walletService->getCurrentWallets();
-//		$data['transactions'] = $this->transactionService->getDataForMyTx();
+
 
 		return view('home.home')->with('data', $data);
 
