@@ -97,6 +97,7 @@ class HomeController extends Controller
 
 	public function home(Request $request)
 	{
+		$user = User::find(Auth::id());
 		$request->session()->forget('reset_password_email');
 		$data = [];
 		$time = is_numeric(Input::get('time')) ? Input::get('time') : time();
@@ -109,8 +110,7 @@ class HomeController extends Controller
 		$data['period'] = $this->get_period($time);
 		$data['time'] = $time;
 		$data['authenticated'] = Auth::check();
-		$data['wallets'] = $this->walletService->getCurrentWallets();
-		$data['transactions'] = $this->transactionService->getDataForMyTx();
+		$data['confirmed'] = $user->confirmed;
 
 		return view('home.home')->with('data', $data);
 

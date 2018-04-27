@@ -2,7 +2,8 @@
 
 
 	let wa = {
-		authenticated: '{{ $data['authenticated'] }}',
+		userAuthenticated: '{{ $data['authenticated'] }}',
+		userConfirmed: '{{ $data['confirmed'] }}',
 		checkboxImg: $('.checkbox-img'),
 		switchWalletLink: $('.switch-wallet-link'),
 		editBtn: $('.edit-wallet-btn'),
@@ -29,15 +30,18 @@
 			let submitClicked = false;
 
 			addBtn.click(() => {
-				_this.prop('disabled', false);
-				setTimeout(() => {
-					_this.focus();
-				}, 1);
-				sbmtBtn.show();
-				addBtn.hide();
-				_this.val('');
-				form.attr('action', '{{ route('store_wallet') }}');
-				wa.submitBtn.text('save');
+				if(wa.userConfirmed === '1'){
+					_this.prop('disabled', false);
+					setTimeout(() => {
+						_this.focus();
+					}, 1);
+					sbmtBtn.show();
+					addBtn.hide();
+					_this.val('');
+                } else {
+					v.showNotification('Пожалуйста дождитесь подтверждения от админимстратора.');
+				}
+
 			});
 
 			wa.submitBtn.click(() => {
@@ -128,7 +132,7 @@
 		wa.wInput.each(function () {
 			wa.editMode($(this));
 
-			if (wa.authenticated) {
+			if (wa.userAuthenticated) {
 				wa.setWallets($(this));
 			}
 		});
