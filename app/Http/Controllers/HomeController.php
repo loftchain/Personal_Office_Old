@@ -68,12 +68,6 @@ class HomeController extends Controller
 		return $currency;
 	}
 
-	protected function get_wallet_data()
-	{
-		$transactionsService = new TransactionsService();
-
-		return $transactionsService->getUserTransactions(Auth::id());
-	}
 
 	public function welcome(Request $request)
 	{
@@ -97,6 +91,7 @@ class HomeController extends Controller
 	public function home(Request $request)
 	{
 		$user = User::find(Auth::id());
+
 		$request->session()->forget('reset_password_email');
 		$data = [];
 		$time = is_numeric(Input::get('time')) ? Input::get('time') : time();

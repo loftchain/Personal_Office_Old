@@ -20,6 +20,7 @@
 @if(isset($data) && \Illuminate\Support\Facades\Route::current()->getName() == 'home')
     @include('_js.js_wallet')
     @include('_js.js_transaction')
+    @include('_js.js_admin_confirmation')
     @if(\Illuminate\Support\Facades\Auth::check())
 
     @endif

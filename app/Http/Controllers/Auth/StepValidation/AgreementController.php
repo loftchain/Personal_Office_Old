@@ -64,6 +64,9 @@ class AgreementController extends Controller
 
 	public function store_personal_data(Request $request)
 	{
+		$user = User::find(Auth::id());
+		$userPersonalField = UserPersonalFields::where('user_id', Auth::id())->first();
+
 		$input = $request->all();
 		$validator = $this->validator($input);
 
@@ -71,11 +74,24 @@ class AgreementController extends Controller
 			return response()->json(['validation_error' => $validator->errors()]);
 		}
 
-		$this->create($input)->toArray();
-		$user = User::find(Auth::id());
-		$user->valid_step = 3;
-		$user->valid_at = Carbon::now();
-		$user->save();
+		if ($userPersonalField === null){
+			$this->create($input)->toArray();
+			$user->valid_step = 3;
+			$user->valid_at = Carbon::now();
+			$user->save();
+		} else {
+			$userPersonalField->name_surname = $request['name_surname'];
+			$userPersonalField->permanent_address = $request['permanent_address'];
+			$userPersonalField->contact_number = $request['contact_number'];
+			$userPersonalField->date_place_birth = $request['date_place_birth'];
+			$userPersonalField->nationality = $request['nationality'];
+			$userPersonalField->source_of_funds = $request['source_of_funds'];
+			$user->valid_step = 3;
+			$user->valid_at = Carbon::now();
+			$user->save();
+			$userPersonalField->save();
+		}
+
 		return response()->json(['goto3' => 'goto3']);
 
 	}

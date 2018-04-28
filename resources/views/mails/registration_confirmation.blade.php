@@ -1,6 +1,7 @@
 <div class="reg-conf">
     <h2>Welcome to Loftchain</h2>
-    Please follow the <a href="{{route('root') . '/confirmation/'. $token}}">link</a> to get access.
+    You account has been successfully confirmed, now you are more than welcome to invest us all your money.
+    cheers. =)
 </div>
 
 

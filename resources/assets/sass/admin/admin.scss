@@ -1,0 +1,111 @@
+.a-wrapper {
+  width: 1350px;
+  margin: 40px 0 0 -15vw;
+
+  section{
+
+    div{
+      @extend %fc;
+      border: 1px solid $gray6;
+      text-align: center;
+      height: 40px;
+    }
+
+    .a-id{
+      width: 25px;
+    }
+
+    .a-email{
+      width: 200px;
+      font-size: 12px;
+      overflow: auto;
+    }
+
+    .a-registered-at{
+      width: 100px;
+      font-size: 12px;
+    }
+
+    .a-ip{
+      width: 50px;
+      font-size: 10px;
+    }
+
+    .a-name{
+      width: 150px;
+      font-size: 12px;
+    }
+
+    .a-address{
+      width: 120px;
+      font-size: 12px;
+      word-break: break-all;
+    }
+
+    .a-phone{
+      width: 100px;
+      font-size: 12px;
+    }
+
+    .a-birth{
+      width: 100px;
+      font-size: 12px;
+    }
+
+    .a-nationality{
+      width: 70px;
+      font-size: 12px;
+    }
+
+    .a-funds{
+      width: 70px;
+      font-size: 12px;
+    }
+
+    .a-doc-wrapper{
+      width: 150px;
+      font-size: 12px;
+      overflow: auto;
+      @extend %fc;
+
+      a{
+        padding: 3px;
+      }
+    }
+
+    .a-confirmed{
+      width: 100px;
+    }
+
+    .a-confirm-btn{
+      border: transparent!important;
+      margin-left: 10px;
+    }
+
+  }
+
+  &__header {
+    @extend %fsb;
+    justify-content: flex-start;
+
+
+    &_el {
+      text-align: center;
+      font-weight: 500;
+      font-size: 14px!important;
+      background: $gray6;
+      color: white;
+
+    }
+  }
+
+  &__section {
+    @extend %fsb;
+    justify-content: flex-start;
+
+    &_el {
+
+
+    }
+  }
+}

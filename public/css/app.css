@@ -73,6 +73,8 @@
 }
 
 .cloak,
+.a-wrapper section div,
+.a-wrapper section .a-doc-wrapper,
 .header__links,
 .header__links ul,
 .x-dashboard__tabs,
@@ -123,6 +125,8 @@
           flex-direction: column;
 }
 
+.a-wrapper__header,
+.a-wrapper__section,
 .header,
 .header__lang,
 .x-dashboard,
@@ -10125,6 +10129,107 @@ button.close {
   bottom: 0;
   -webkit-transform: rotate(-90deg);
           transform: rotate(-90deg);
+}
+
+.a-wrapper {
+  width: 1350px;
+  margin: 40px 0 0 -15vw;
+}
+
+.a-wrapper section div {
+  border: 1px solid #adabab;
+  text-align: center;
+  height: 40px;
+}
+
+.a-wrapper section .a-id {
+  width: 25px;
+}
+
+.a-wrapper section .a-email {
+  width: 200px;
+  font-size: 12px;
+  overflow: auto;
+}
+
+.a-wrapper section .a-registered-at {
+  width: 100px;
+  font-size: 12px;
+}
+
+.a-wrapper section .a-ip {
+  width: 50px;
+  font-size: 10px;
+}
+
+.a-wrapper section .a-name {
+  width: 150px;
+  font-size: 12px;
+}
+
+.a-wrapper section .a-address {
+  width: 120px;
+  font-size: 12px;
+  word-break: break-all;
+}
+
+.a-wrapper section .a-phone {
+  width: 100px;
+  font-size: 12px;
+}
+
+.a-wrapper section .a-birth {
+  width: 100px;
+  font-size: 12px;
+}
+
+.a-wrapper section .a-nationality {
+  width: 70px;
+  font-size: 12px;
+}
+
+.a-wrapper section .a-funds {
+  width: 70px;
+  font-size: 12px;
+}
+
+.a-wrapper section .a-doc-wrapper {
+  width: 150px;
+  font-size: 12px;
+  overflow: auto;
+}
+
+.a-wrapper section .a-doc-wrapper a {
+  padding: 3px;
+}
+
+.a-wrapper section .a-confirmed {
+  width: 100px;
+}
+
+.a-wrapper section .a-confirm-btn {
+  border: transparent !important;
+  margin-left: 10px;
+}
+
+.a-wrapper__header {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.a-wrapper__header_el {
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px !important;
+  background: #adabab;
+  color: white;
+}
+
+.a-wrapper__section {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .header {

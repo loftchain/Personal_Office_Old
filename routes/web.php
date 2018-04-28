@@ -73,5 +73,7 @@ Auth::routes();
 
 
 Route::group(['middleware' =>  ['admin']], function(){
-	Route::get('/admin/confirmation', 'Admin\AdminController@confirmation')->name('confirmation');
+	Route::get('/admin/confirmation/{user_id}', 'Admin\AdminController@confirmation')->name('confirmation');
+	Route::get('/admin/confirm_view/{data}', 'Admin\AdminController@confirm_view')->name('confirm_view');
+	Route::get('/admin/get_user_info', 'Admin\AdminController@get_user_info')->name('get_user_info');
 });

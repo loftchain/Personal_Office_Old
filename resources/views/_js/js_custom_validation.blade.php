@@ -114,6 +114,19 @@
 			            wa.exitEditMode(_this.children('.w-input'));
 		            }
 		            break;
+	            case !$.isEmptyObject(data.confirmation_complete):
+		            {{--$.ajax({--}}
+			            {{--method: "GET",--}}
+			            {{--url: `{{ route('confirm_view', $data['users'] ) }}`,--}}
+			            {{--dataType: 'html',--}}
+			            {{--success: res => {--}}
+			            {{--},--}}
+			            {{--error: data => {--}}
+				            {{--wa.ajaxErrorMessage(data)--}}
+			            {{--}--}}
+		            {{--});--}}
+		            v.showNotification('Пользователь был подтверждён', 'success');
+		            break;
                 default:
                     console.log('success default');
                     break;

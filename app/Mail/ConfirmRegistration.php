@@ -13,15 +13,14 @@ class ConfirmRegistration extends Mailable
 
     public $token;
 
-    public function __construct($token)
+    public function __construct()
     {
-        $this->token = $token;
+
     }
 
     public function build()
     {
-	    return $this->from('info@loftchain.io')
-		    ->view('mails.registration_confirmation')
-		    ->with(['token' => $this->token]);
+	    return $this->from('support@loftchain.io')
+		    ->view('mails.registration_confirmation');
     }
 }

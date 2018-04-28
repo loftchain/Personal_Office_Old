@@ -3,7 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ConfirmRegistration;
+use App\Models\User;
+use App\Models\UserPersonalFields;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -15,10 +21,36 @@ class AdminController extends Controller
 		$this->middleware('auth');
 	}
 
-    public function confirmation()
+	public function get_user_info(){
+		$usersPersonal = UserPersonalFields::where('user_id', '!=', Auth::id())->get();
+		$users = [];
+		foreach ($usersPersonal as $up) {
+			$_user = User::find($up->user_id);
+			$_user['name_surname'] = $up->name_surname;
+			$_user['permanent_address'] = $up->permanent_address;
+			$_user['contact_number'] = $up->contact_number;
+			$_user['date_place_birth'] = $up->date_place_birth;
+			$_user['nationality'] = $up->nationality;
+			$_user['source_of_funds'] = $up->source_of_funds;
+			$_user['doc_img_path'] = $up->doc_img_path;
+			$users[] = $_user;
+		}
+
+		return $users;
+	}
+
+    public function confirmation($user_id)
     {
+	    $user = User::find($user_id);
+	    $user->confirmed = 1;
+	    $user->save();
+	    Mail::to($user->email)->send(new ConfirmRegistration());
+	    return response()->json(['confirmation_complete' => 'confirmation_complete']);
 
-
-		return view('admin.confirmation');
     }
+
+	public function confirm_view($data)
+	{
+		return view('admin.confirmation')->with('data', $data);
+	}
 }
