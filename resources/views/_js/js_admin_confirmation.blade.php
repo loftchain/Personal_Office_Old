@@ -4,7 +4,7 @@
 			return (this.length > n) ? this.substr(0, n - 1) + '&hellip;' : this;
 		};
 	let ac = {
-
+        isAdmin: `{{ $data['admin'] }}`,
 
 		getUsersInfo() {
 			return new Promise(function (resolve, reject) {
@@ -73,7 +73,6 @@
 								ac.getUsersInfo()
 									.then((data) => ac.renderUsersView(data))
 									.then(() => ac.confirmUser());
-
 							},
 							error: data => console.log(data)
 						});
@@ -87,9 +86,10 @@
 
 
 	$(document).ready(() => {
-		ac.getUsersInfo()
-			.then((data) => ac.renderUsersView(data))
-			.then(() => ac.confirmUser());
-
+		if(ac.isAdmin == 1) {
+			ac.getUsersInfo()
+				.then((data) => ac.renderUsersView(data))
+				.then(() => ac.confirmUser());
+        }
 	});
 </script>

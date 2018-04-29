@@ -10153,22 +10153,22 @@ button.close {
 }
 
 .a-wrapper section .a-registered-at {
-  width: 100px;
+  width: 90px;
   font-size: 12px;
 }
 
 .a-wrapper section .a-ip {
-  width: 50px;
+  width: 100px;
   font-size: 10px;
 }
 
 .a-wrapper section .a-name {
-  width: 150px;
+  width: 120px;
   font-size: 12px;
 }
 
 .a-wrapper section .a-address {
-  width: 120px;
+  width: 150px;
   font-size: 12px;
   word-break: break-all;
 }
@@ -10184,17 +10184,17 @@ button.close {
 }
 
 .a-wrapper section .a-nationality {
-  width: 70px;
+  width: 80px;
   font-size: 12px;
 }
 
 .a-wrapper section .a-funds {
-  width: 70px;
+  width: 80px;
   font-size: 12px;
 }
 
 .a-wrapper section .a-doc-wrapper {
-  width: 150px;
+  width: 90px;
   font-size: 12px;
   overflow: auto;
 }
@@ -10204,7 +10204,7 @@ button.close {
 }
 
 .a-wrapper section .a-confirmed {
-  width: 100px;
+  width: 50px;
 }
 
 .a-wrapper section .a-confirm-btn {

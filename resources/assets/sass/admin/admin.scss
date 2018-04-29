@@ -22,22 +22,22 @@
     }
 
     .a-registered-at{
-      width: 100px;
+      width: 90px;
       font-size: 12px;
     }
 
     .a-ip{
-      width: 50px;
+      width: 100px;
       font-size: 10px;
     }
 
     .a-name{
-      width: 150px;
+      width: 120px;
       font-size: 12px;
     }
 
     .a-address{
-      width: 120px;
+      width: 150px;
       font-size: 12px;
       word-break: break-all;
     }
@@ -53,17 +53,17 @@
     }
 
     .a-nationality{
-      width: 70px;
+      width: 80px;
       font-size: 12px;
     }
 
     .a-funds{
-      width: 70px;
+      width: 80px;
       font-size: 12px;
     }
 
     .a-doc-wrapper{
-      width: 150px;
+      width: 90px;
       font-size: 12px;
       overflow: auto;
       @extend %fc;
@@ -74,7 +74,7 @@
     }
 
     .a-confirmed{
-      width: 100px;
+      width: 50px;
     }
 
     .a-confirm-btn{
