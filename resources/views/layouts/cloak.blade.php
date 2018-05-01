@@ -1,3 +1,3 @@
-{{--<div class="cloak">--}}
-    {{--<div class="spinner"></div>--}}
-{{--</div>--}}
+<div class="cloak">
+    <div class="spinner"></div>
+</div>

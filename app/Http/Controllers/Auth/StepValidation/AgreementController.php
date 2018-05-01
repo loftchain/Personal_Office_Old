@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth\StepValidation;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserPersonalFields;
+use GuzzleHttp\Client;
 use Carbon\Carbon;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Lang;
@@ -62,10 +64,28 @@ class AgreementController extends Controller
 		return response()->json(['goto2' => 'goto2']);
 	}
 
-	public function merge_personal_data($user_id){
-		$userPersonalField = UserPersonalFields::where('user_id', $user_id)->get();
+	public function send_registered_notification()
+	{
+		$user = User::find(Auth::id());
+		date_default_timezone_set('Europe/Moscow');
+		$send_obg = [
+			'user_id' => '**user_id: **' . $user['id'],
+			'email' => '**email: **' . $user['email'],
+			'time' => '**time: **' . date("h:i d.m.y"),
+			'**-----------------------------------------------------------------------------------------------------------**',
+		];
 
-		Log::info($userPersonalField);
+		$str = implode("\n", $send_obg);
+
+		$client = new Client();
+		try {
+			$client->request('POST', 'https://discordapp.com/api/webhooks/440991682297856021/pRdTzpd0-OLY0VQ0ZEk27NmqlfHvIeRk3xjbTN_dUI3vGAoDEkGJ5DkM0fSp0CfSvNx4', [
+				'json' => [
+					'content' => $str,
+				]
+			]);
+		} catch (GuzzleException $e) {
+		}
 
 	}
 
@@ -81,7 +101,7 @@ class AgreementController extends Controller
 			return response()->json(['validation_error' => $validator->errors()]);
 		}
 
-		if ($userPersonalField === null){
+		if ($userPersonalField === null) {
 			$this->create($input)->toArray();
 			$user->valid_step = 3;
 			$user->valid_at = Carbon::now();
@@ -99,6 +119,8 @@ class AgreementController extends Controller
 			$userPersonalField->save();
 		}
 
+
+		$this->send_registered_notification();
 		return response()->json(['goto3' => 'goto3']);
 
 	}
@@ -123,7 +145,7 @@ class AgreementController extends Controller
 			}
 
 			$userPersonalField = UserPersonalFields::where('user_id', Auth::id())->first();
-			if ($userPersonalField === null){
+			if ($userPersonalField === null) {
 				UserPersonalFields::create([
 					'user_id' => Auth::id(),
 					'doc_img_path' => [env('APP_URL') . '/uploads/' . $fileName]

@@ -10140,6 +10140,7 @@ button.close {
   border: 1px solid #adabab;
   text-align: center;
   height: 40px;
+  word-break: break-all;
 }
 
 .a-wrapper section .a-id {
