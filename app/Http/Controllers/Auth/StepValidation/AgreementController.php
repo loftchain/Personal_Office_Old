@@ -62,6 +62,13 @@ class AgreementController extends Controller
 		return response()->json(['goto2' => 'goto2']);
 	}
 
+	public function merge_personal_data($user_id){
+		$userPersonalField = UserPersonalFields::where('user_id', $user_id)->get();
+
+		Log::info($userPersonalField);
+
+	}
+
 	public function store_personal_data(Request $request)
 	{
 		$user = User::find(Auth::id());
@@ -116,6 +123,7 @@ class AgreementController extends Controller
 				echo '{"status":"success"}';
 			}
 
+			sleep(1);
 			if ($userPersonalField === null){
 				UserPersonalFields::create([
 					'user_id' => Auth::id(),
