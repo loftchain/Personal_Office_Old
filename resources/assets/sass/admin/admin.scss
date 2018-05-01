@@ -80,7 +80,28 @@
     .a-confirm-btn{
       border: transparent!important;
       margin-left: 10px;
+
+      button{
+        border: transparent!important;
+        word-break: break-all;
+        margin-right: 2px;
+        background: $gray2;
+        color: white;
+      }
+
+      .confirm-user-btn{
+        &:hover{
+          background: $status-green;
+        }
+      }
+
+      .rts2-user-btn{
+        &:hover{
+          background: $status-red;
+        }
+      }
     }
+
 
   }
 

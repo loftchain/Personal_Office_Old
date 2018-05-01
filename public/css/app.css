@@ -10212,6 +10212,22 @@ button.close {
   margin-left: 10px;
 }
 
+.a-wrapper section .a-confirm-btn button {
+  border: transparent !important;
+  word-break: break-all;
+  margin-right: 2px;
+  background: #4b4b4b;
+  color: white;
+}
+
+.a-wrapper section .a-confirm-btn .confirm-user-btn:hover {
+  background: #27ae60;
+}
+
+.a-wrapper section .a-confirm-btn .rts2-user-btn:hover {
+  background: #CF0032;
+}
+
 .a-wrapper__header {
   -webkit-box-pack: start;
       -ms-flex-pack: start;

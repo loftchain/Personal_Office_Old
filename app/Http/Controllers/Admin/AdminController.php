@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ConfirmRegistration;
+use App\Mail\ReturnToStep2;
 use App\Models\User;
 use App\Models\UserPersonalFields;
 use Illuminate\Http\Request;
@@ -46,8 +47,16 @@ class AdminController extends Controller
 	    $user->save();
 	    Mail::to($user->email)->send(new ConfirmRegistration());
 	    return response()->json(['confirmation_complete' => 'confirmation_complete']);
-
     }
+
+	public function return_to_step2($user_id)
+	{
+		$user = User::find($user_id);
+		$user->valid_step = 2;
+		$user->save();
+		Mail::to($user->email)->send(new ReturnToStep2());
+		return response()->json(['returned_to_step2' => 'returned_to_step2']);
+	}
 
 	public function confirm_view($data)
 	{

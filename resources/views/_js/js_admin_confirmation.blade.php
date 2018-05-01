@@ -13,7 +13,8 @@
 					type: 'GET',
 					dataType: 'json',
 					success: data => {
-						resolve(data)
+						let _data = _.sortBy( data, 'confirmed' );
+						resolve(_data)
 					},
 					error: data => reject(data)
 				});
@@ -25,6 +26,7 @@
 				if (data.length > 0) {
 					data.forEach((user, index) => {
 						let sbmtBtn = `<button type="submit" data-id="${user.id}" class="confirm-user-btn">confirm</button>`;
+						let rts2Btn = `<button type="submit" data-id="${user.id}" class="rts2-user-btn">return to KYC</button>`;
 						let userDom = `
                             <section id="a-w__s${index}" class="a-wrapper__section">
                                 <div class="a-wrapper__section_el a-id">${user.id}</div>
@@ -39,14 +41,14 @@
                                 <div class="a-wrapper__section_el a-funds">${user.source_of_funds}</div>
                                 <div id="docWrap${index}" class="a-wrapper__section_el a-doc-wrapper"></div>
                                 <div class="a-wrapper__section_el a-confirmed">${user.confirmed}</div>
-                                <div class="a-wrapper__section_el a-confirm-btn"></div>
+                                <div id="cbc${index}" class="a-wrapper__section_el a-confirm-btn"></div>
                             </section>
 		                `;
 
 						$(userDom).hide().appendTo('.users-wrapper').fadeIn('slow');
 
 						if (user.confirmed === 0) {
-							$(`#a-w__s${index}`).append(sbmtBtn);
+							$(`#cbc${index}`).append(sbmtBtn, rts2Btn);
 						}
 
 						user.doc_img_path.forEach((img, i) => {
@@ -70,9 +72,10 @@
 							dataType: 'json',
 							success: data => {
 								$('.users-wrapper').empty();
-								ac.getUsersInfo()
-									.then((data) => ac.renderUsersView(data))
-									.then(() => ac.confirmUser());
+								main();
+								$.notify('Пользователь был подтверждён', {
+									type: 'success'
+								});
 							},
 							error: data => console.log(data)
 						});
@@ -81,15 +84,44 @@
 				resolve();
 				reject();
 			});
-		}
+		},
+
+		returnToStep2() {
+			return new Promise(function (resolve, reject) {
+				$('.rts2-user-btn').each(function () {
+					$(this).click(function () {
+						$.ajax({
+							url: `{{route('root')}}/admin/return_to_step2/${$(this).data("id")}`,
+							type: 'GET',
+							dataType: 'json',
+							success: data => {
+								$('.users-wrapper').empty();
+								$.notify('Пользователь был сброшен до шага заполнения KYC', {
+									type: 'info'
+								});
+								main();
+							},
+							error: data => console.log(data)
+						});
+					})
+				});
+				resolve();
+				reject();
+			});
+		},
 	};
 
 
 	$(document).ready(() => {
 		if(ac.isAdmin == 1) {
-			ac.getUsersInfo()
-				.then((data) => ac.renderUsersView(data))
-				.then(() => ac.confirmUser());
+			main();
         }
 	});
+
+	function main() {
+		ac.getUsersInfo()
+			.then((data) => ac.renderUsersView(data))
+			.then(() => ac.confirmUser())
+			.then(() => ac.returnToStep2());
+	}
 </script>
