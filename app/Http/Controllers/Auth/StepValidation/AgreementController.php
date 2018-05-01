@@ -106,7 +106,6 @@ class AgreementController extends Controller
 	public function store_documents()
 	{
 		$user = User::find(Auth::id());
-		$userPersonalField = UserPersonalFields::where('user_id', Auth::id())->first();
 		$allowed = array('png', 'jpg', 'jpeg', 'svg', 'gif', 'pdf', 'zip', 'rar');
 		if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
 
@@ -123,7 +122,7 @@ class AgreementController extends Controller
 				echo '{"status":"success"}';
 			}
 
-			sleep(1);
+			$userPersonalField = UserPersonalFields::where('user_id', Auth::id())->first();
 			if ($userPersonalField === null){
 				UserPersonalFields::create([
 					'user_id' => Auth::id(),
