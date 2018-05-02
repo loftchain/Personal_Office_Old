@@ -1,5 +1,5 @@
-$x-progress-from: #330868;
-$main-blue: #30ced1;
+$main1: #FE4E02;
+$main2: #9C0A49;
 $x-dash-to:#F2F2F2;
 $almost-black:#333333;
 $gray1:#828282;
@@ -52,9 +52,13 @@ $noDesktop: '(max-width: 1024px)';
   background: linear-gradient(to right, $from 0%, $to 100%);
 }
 
+@mixin x-gradient-color($from, $to) {
+  color: linear-gradient(to right, $from 0%, $to 100%);
+
+}
 
 @mixin internal-filling(){
-  @include x-gradient($x-progress-from, $main-blue);
+  @include x-gradient($main1, $main2);
   height:calc(100% + 4px);
   border-radius: 5px;
   z-index:9;

@@ -11,6 +11,7 @@
                 @else
                     <li class="active"> <a data-toggle="tab" href="#home">@lang('home/home.token_sale')</a> </li>
                     <li> <a data-toggle="tab" href="#transactions">@lang('home/home.my_transactions')</a> </li>
+                    <li> <a data-toggle="tab" href="#refs">мои рефералы</a> </li>
                 @endif
             </ul>
         </div>

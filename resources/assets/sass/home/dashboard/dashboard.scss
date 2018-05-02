@@ -16,7 +16,7 @@
     }
 
     &_tokens{
-      color:$main-blue;
+      color:$main2;
       font-weight: 700;
     }
 
@@ -29,7 +29,7 @@
       border-bottom: none!important;
       li{
         &.active a{
-          color:$main-blue!important;
+          color:$main2!important;
         }
 
         a{
@@ -79,7 +79,7 @@
     @extend %fsb;
 
     .x-register-link{
-      color:$main-blue;
+      color:$main2;
       font-size: 16px;
       font-weight:700;
       border:1px solid $gray3;
@@ -89,9 +89,9 @@
 
       &:hover{
         cursor:pointer;
-        background: $main-blue;
+        background: $main2;
         color: white;
-        border: 1px solid $main-blue;
+        border: 1px solid $main2;
       }
     }
 

@@ -8,6 +8,7 @@ use App\Models\UserHistoryFields;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -45,9 +46,12 @@ class RegisterController extends Controller
 
 	protected function create(array $data)
 	{
+		$referred_by = User::where('token', Cookie::get('referral'))->first();
+
 		$user = User::create([
 			'email' => $data['email'],
-			'password' => $data['password']
+			'password' => $data['password'],
+			'referred_by'   => $referred_by->id
 		]);
 		return $user;
 	}

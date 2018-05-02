@@ -59,7 +59,7 @@
         border-radius: 25px;
         text-decoration: none;
         position: relative;
-        @include x-gradient($x-progress-from, $main-blue);
+        @include x-gradient($main1, $main2);
 
         .small-spinner{
           position: absolute;

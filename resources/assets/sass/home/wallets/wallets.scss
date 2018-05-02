@@ -114,7 +114,7 @@
         padding-left: 10px;
 
         &:focus {
-          border: 1px solid $main-blue;
+          border: 1px solid $main2;
         }
 
         @media #{$mobile} {
@@ -160,7 +160,7 @@
 
 
           i{
-            color: $main-blue;
+            color: $main2;
             width: 25px;
             height: 25px;
           }
@@ -171,7 +171,7 @@
           background: transparent;
           width: auto;
           height: auto;
-          color: $main-blue;
+          color: $main2;
           padding: 5px;
 
           &:hover {

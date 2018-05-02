@@ -79,6 +79,9 @@
 .header__links ul,
 .x-dashboard__tabs,
 .x-wallets__text .pay-to-us-wallet,
+.x-refs__bonus,
+.x-refs__header,
+.x-refs__section,
 .modal-dialog form .modal-footer,
 .a1-body .a1-container__wp,
 .a2-body .a2-container__section #upload #drop ul,
@@ -103,6 +106,7 @@
 .x-wallets,
 .x-wallets__form,
 .x-wallets__form .tab-pane,
+.x-refs,
 .modal-dialog form,
 .a-body,
 .a-body .a-container,
@@ -10297,7 +10301,7 @@ button.close {
 
 .header__lang .lang-switcher-rus.ru,
 .header__lang .lang-switcher-eng.en {
-  color: #30ced1;
+  color: #9C0A49;
 }
 
 .header__burger {
@@ -10402,7 +10406,7 @@ button.close {
 }
 
 .x-dashboard__info_tokens {
-  color: #30ced1;
+  color: #9C0A49;
   font-weight: 700;
 }
 
@@ -10415,7 +10419,7 @@ button.close {
 }
 
 .x-dashboard__tabs ul li.active a {
-  color: #30ced1 !important;
+  color: #9C0A49 !important;
 }
 
 .x-dashboard__tabs ul li a {
@@ -10460,7 +10464,7 @@ button.close {
 }
 
 .x-dashboard__guest .x-register-link {
-  color: #30ced1;
+  color: #9C0A49;
   font-size: 16px;
   font-weight: 700;
   border: 1px solid #BDBDBD;
@@ -10471,9 +10475,9 @@ button.close {
 
 .x-dashboard__guest .x-register-link:hover {
   cursor: pointer;
-  background: #30ced1;
+  background: #9C0A49;
   color: white;
-  border: 1px solid #30ced1;
+  border: 1px solid #9C0A49;
 }
 
 .x-dashboard__guest .right-box .x-login-link {
@@ -10596,10 +10600,10 @@ button.close {
 }
 
 .x-widget__top .c1 .x-in {
-  background: #330868;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #330868), color-stop(100%, #30ced1));
-  background: -webkit-gradient(linear, left top, right top, from(#330868), to(#30ced1));
-  background: linear-gradient(to right, #330868 0%, #30ced1 100%);
+  background: #FE4E02;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #FE4E02), color-stop(100%, #9C0A49));
+  background: -webkit-gradient(linear, left top, right top, from(#FE4E02), to(#9C0A49));
+  background: linear-gradient(to right, #FE4E02 0%, #9C0A49 100%);
   height: calc(100% + 4px);
   border-radius: 5px;
   z-index: 9;
@@ -10668,7 +10672,7 @@ button.close {
   line-height: 42px;
   font-weight: 300;
   text-align: center;
-  color: #30ced1;
+  color: #9C0A49;
 }
 
 .x-widget .c2 .d__name {
@@ -10688,10 +10692,10 @@ button.close {
 
 .x-widget__bot .x-progress__in {
   width: 50%;
-  background: #330868;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #330868), color-stop(100%, #30ced1));
-  background: -webkit-gradient(linear, left top, right top, from(#330868), to(#30ced1));
-  background: linear-gradient(to right, #330868 0%, #30ced1 100%);
+  background: #FE4E02;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #FE4E02), color-stop(100%, #9C0A49));
+  background: -webkit-gradient(linear, left top, right top, from(#FE4E02), to(#9C0A49));
+  background: linear-gradient(to right, #FE4E02 0%, #9C0A49 100%);
   height: calc(100% + 4px);
   border-radius: 5px;
   z-index: 9;
@@ -10948,7 +10952,7 @@ button.close {
 }
 
 .x-wallets__form form input:focus {
-  border: 1px solid #30ced1;
+  border: 1px solid #9C0A49;
 }
 
 @media (max-width: 767px) {
@@ -10993,7 +10997,7 @@ button.close {
 }
 
 .x-wallets__form form button.add-wallet-btn i {
-  color: #30ced1;
+  color: #9C0A49;
   width: 25px;
   height: 25px;
 }
@@ -11003,7 +11007,7 @@ button.close {
   background: transparent;
   width: auto;
   height: auto;
-  color: #30ced1;
+  color: #9C0A49;
   padding: 5px;
 }
 
@@ -11099,6 +11103,91 @@ button.close {
   text-align: center;
 }
 
+.x-refs {
+  width: 750px;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+.x-refs__bonus {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-top: 20px;
+  width: 750px;
+}
+
+.x-refs__bonus .ref-bonus-text {
+  margin-right: 20px;
+}
+
+.x-refs__bonus .big-five-span {
+  font-size: 36px;
+  font-weight: 700;
+  background: -webkit-linear-gradient(#FE4E02, #9C0A49);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.x-refs__input-container {
+  margin-top: 20px;
+  width: 750px;
+  position: relative;
+}
+
+.x-refs__input-container label {
+  width: 310px;
+  font-weight: 500;
+}
+
+.x-refs__input-container input {
+  padding-left: 15px;
+  height: 40px;
+  width: 435px;
+  border: 1px solid #1D52A7;
+  border-radius: 3px;
+}
+
+.x-refs__input-container input:focus {
+  border: 1px solid #FE4E02;
+}
+
+.x-refs__input-container img {
+  position: absolute;
+  top: 9px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.x-refs__header {
+  margin-top: 30px;
+  border-bottom: 1px solid #1D52A7;
+  border-top: 1px solid #1D52A7;
+  width: 750px;
+}
+
+.x-refs__header_el {
+  padding: 15px 0;
+  width: 33.3%;
+  color: black;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.x-refs__section {
+  border-bottom: 1px solid #1D52A7;
+  width: 750px;
+}
+
+.x-refs__section_el {
+  padding: 20px 0;
+  width: 33.3%;
+  color: black;
+  font-size: 14px;
+  text-align: center;
+}
+
 .modal-dialog {
   width: 400px;
   border: transparent;
@@ -11162,10 +11251,10 @@ button.close {
   border-radius: 25px;
   text-decoration: none;
   position: relative;
-  background: #330868;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #330868), color-stop(100%, #30ced1));
-  background: -webkit-gradient(linear, left top, right top, from(#330868), to(#30ced1));
-  background: linear-gradient(to right, #330868 0%, #30ced1 100%);
+  background: #FE4E02;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #FE4E02), color-stop(100%, #9C0A49));
+  background: -webkit-gradient(linear, left top, right top, from(#FE4E02), to(#9C0A49));
+  background: linear-gradient(to right, #FE4E02 0%, #9C0A49 100%);
 }
 
 .modal-dialog form .modal-footer button .small-spinner {
@@ -11195,7 +11284,7 @@ button.close {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #30ced1;
+  background: #9C0A49;
   z-index: 2;
 }
 
@@ -11248,10 +11337,10 @@ button.close {
   border-radius: 25px;
   width: 25px;
   height: 25px;
-  background: #330868;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #330868), color-stop(100%, #30ced1));
-  background: -webkit-gradient(linear, left top, right top, from(#330868), to(#30ced1));
-  background: linear-gradient(to right, #330868 0%, #30ced1 100%);
+  background: #FE4E02;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #FE4E02), color-stop(100%, #9C0A49));
+  background: -webkit-gradient(linear, left top, right top, from(#FE4E02), to(#9C0A49));
+  background: linear-gradient(to right, #FE4E02 0%, #9C0A49 100%);
 }
 
 .a-body .a-container article {
@@ -11293,10 +11382,10 @@ button.close {
   outline: none;
   border: none;
   border-radius: 25px;
-  background: #330868;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #330868), color-stop(100%, #30ced1));
-  background: -webkit-gradient(linear, left top, right top, from(#330868), to(#30ced1));
-  background: linear-gradient(to right, #330868 0%, #30ced1 100%);
+  background: #FE4E02;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #FE4E02), color-stop(100%, #9C0A49));
+  background: -webkit-gradient(linear, left top, right top, from(#FE4E02), to(#9C0A49));
+  background: linear-gradient(to right, #FE4E02 0%, #9C0A49 100%);
   padding: 15px 40px;
   color: white;
   font-size: 16px;
@@ -11527,10 +11616,10 @@ button.close {
   outline: none;
   border: none;
   border-radius: 25px;
-  background: #330868;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #330868), color-stop(100%, #30ced1));
-  background: -webkit-gradient(linear, left top, right top, from(#330868), to(#30ced1));
-  background: linear-gradient(to right, #330868 0%, #30ced1 100%);
+  background: #FE4E02;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #FE4E02), color-stop(100%, #9C0A49));
+  background: -webkit-gradient(linear, left top, right top, from(#FE4E02), to(#9C0A49));
+  background: linear-gradient(to right, #FE4E02 0%, #9C0A49 100%);
   padding: 15px 40px;
   color: white;
   font-size: 16px;
@@ -11606,10 +11695,10 @@ button.close {
   outline: none;
   border: none;
   border-radius: 25px;
-  background: #330868;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #330868), color-stop(100%, #30ced1));
-  background: -webkit-gradient(linear, left top, right top, from(#330868), to(#30ced1));
-  background: linear-gradient(to right, #330868 0%, #30ced1 100%);
+  background: #FE4E02;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #FE4E02), color-stop(100%, #9C0A49));
+  background: -webkit-gradient(linear, left top, right top, from(#FE4E02), to(#9C0A49));
+  background: linear-gradient(to right, #FE4E02 0%, #9C0A49 100%);
   padding: 15px 40px;
   color: white;
   font-size: 16px;
@@ -11756,10 +11845,10 @@ button.close {
 .x-transaction__walletContainer_wallet-mob.active,
 .x-transaction .x-accordion__walletContainer_wallet.active,
 .x-transaction .x-accordion__walletContainer_wallet-mob.active {
-  background: #330868;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #330868), color-stop(100%, #30ced1));
-  background: -webkit-gradient(linear, left top, right top, from(#330868), to(#30ced1));
-  background: linear-gradient(to right, #330868 0%, #30ced1 100%);
+  background: #FE4E02;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #FE4E02), color-stop(100%, #9C0A49));
+  background: -webkit-gradient(linear, left top, right top, from(#FE4E02), to(#9C0A49));
+  background: linear-gradient(to right, #FE4E02 0%, #9C0A49 100%);
   color: white;
 }
 
@@ -11767,7 +11856,7 @@ button.close {
 .x-transaction__walletContainer_wallet-mob:hover,
 .x-transaction .x-accordion__walletContainer_wallet:hover,
 .x-transaction .x-accordion__walletContainer_wallet-mob:hover {
-  background-color: #30ced1;
+  background-color: #9C0A49;
   color: white;
 }
 
@@ -11833,7 +11922,7 @@ button.close {
 }
 
 .x-transaction__table_body .tab-pane .td-container .td.td-to {
-  color: #30ced1;
+  color: #9C0A49;
   font-size: 12px;
   padding: 10px 25px;
 }
@@ -11852,7 +11941,7 @@ button.close {
 }
 
 .x-transaction__table_body .tab-pane .td-container .td.td-info a {
-  color: #30ced1;
+  color: #9C0A49;
 }
 
 .x-transaction_desktop {

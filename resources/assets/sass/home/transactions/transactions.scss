@@ -125,12 +125,12 @@
       text-decoration: none;
 
       &.active{
-        @include x-gradient($x-progress-from, $main-blue);
+        @include x-gradient($main1, $main2);
         color:  white;
       }
 
       &:hover{
-        background-color: $main-blue;
+        background-color: $main2;
         color: white;
       }
 
@@ -178,7 +178,7 @@
             }
 
             &.td-to {
-              color: $main-blue;
+              color: $main2;
               font-size: 12px;
               padding: 10px 25px;
             }
@@ -198,7 +198,7 @@
               }
 
               a {
-                color: $main-blue;
+                color: $main2;
               }
             }
           }
