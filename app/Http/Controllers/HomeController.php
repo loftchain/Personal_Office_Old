@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ReferralService;
 use App\Services\TransactionService;
 use App\Services\WidgetService;
 use App\Services\WalletService;
@@ -21,14 +22,21 @@ class HomeController extends Controller
 	protected $widgetService;
 	protected $walletService;
 	protected $transactionService;
+	protected $referralService;
 
 
-	public function __construct(WidgetService $widgetService, WalletService $walletService,  TransactionService $transactionService)
+	public function __construct(
+		WidgetService $widgetService,
+		WalletService $walletService,
+		TransactionService $transactionService,
+		ReferralService $referralService
+	)
 	{
 		$this->middleware('valid', ['except' => ['welcome']]);
 		$this->walletService = $walletService;
 		$this->widgetService = $widgetService;
 		$this->transactionService = $transactionService;
+		$this->referralService = $referralService;
 	}
 
 	public function get_period($time)
@@ -106,6 +114,8 @@ class HomeController extends Controller
 		$data['authenticated'] = Auth::check();
 		$data['confirmed'] = $user->confirmed;
 		$data['admin'] = $user->admin;
+		$this->referralService->getReferralData();
+
 
 		return view('home.home')->with('data', $data);
 
