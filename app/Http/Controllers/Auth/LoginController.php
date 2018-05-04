@@ -63,6 +63,11 @@ class LoginController extends Controller
 		return redirect('/');
 	}
 
+	public function showLoginForm()
+	{
+		return redirect('agreement1');
+	}
+
 	protected function guard()
 	{
 		return Auth::guard();

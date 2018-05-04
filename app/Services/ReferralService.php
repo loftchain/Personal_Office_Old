@@ -27,9 +27,22 @@ class ReferralService
 	}
 
 	public function getReferralData(){
-		$myReferrals = User::where('referred_by', Auth::user()->id)->get();
-		Log::info($myReferrals);
-		//TODO:Collect token bonuses from theirs transactions
+		$referralData = [];
+
+		if(Auth::user()){
+			$myReferrals = User::where('referred_by', Auth::user()->id)->get();
+			foreach ($myReferrals as $mr){
+				$uwf = UserWalletFields::where('user_id', $mr->id)->get();
+				foreach ($uwf as $item){
+					if($item->type === 'from_to' || $item->type === 'to'){
+						$referralData['wallets_to'][] = $item['wallet'];
+					}
+				}
+			}
+		}
+
+		Log::info($referralData);
+
 	}
 
 }

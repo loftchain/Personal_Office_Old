@@ -51,7 +51,7 @@ class RegisterController extends Controller
 		$user = User::create([
 			'email' => $data['email'],
 			'password' => $data['password'],
-			'referred_by'   => $referred_by->id
+			'referred_by'   => $referred_by->id ?? null
 		]);
 		return $user;
 	}
