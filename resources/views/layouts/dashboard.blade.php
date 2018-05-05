@@ -7,7 +7,8 @@
         <div class="x-dashboard__tabs">
             <ul class="nav nav-tabs">
                 @if($data['admin'] == 1)
-                    <li class="active"> <a data-toggle="tab" href="#admin">Confirmation</a> </li>
+                    <li> <a data-toggle="tab" href="#adminConfirmation">Confirmation</a> </li>
+                    <li class="active"> <a data-toggle="tab" href="#adminReferrals">Referrals</a> </li>
                 @else
                     <li class="active"> <a data-toggle="tab" href="#home">@lang('home/home.token_sale')</a> </li>
                     <li> <a data-toggle="tab" href="#transactions">@lang('home/home.my_transactions')</a> </li>

@@ -21,21 +21,27 @@
         <div class="x-refs__header_el r-bonus">
             Мой бонус
         </div>
-        <div class="x-refs__header_el r-date">
-            Дата
-        </div>
     </section>
-    <section class="x-refs__section">
-        <div class="x-refs__section_el r-referral">
-            Nkmelnikov@hotmail.com
-        </div>
-        <div class="x-refs__section_el r-bonus">
-            -12 ETH (0.01 BTC    |   123.1231 tokens)
-        </div>
-        <div class="x-refs__section_el r-date">
-            18.02.2018
-        </div>
-    </section>
+    @foreach($data['referrals']['stat'] as $key => $refs)
+        <section class="x-refs__section">
+            <div class="x-refs__section_el r-referral">
+                {{ $key }}
+            </div>
+            <div class="x-refs__section_el r-bonus">
+                {{ $refs['token_sum'] }} {{ env('TOKEN_NAME') }}
+            </div>
+        </section>
+    @endforeach
+    @if(count($data['referrals']) > 1)
+        <section class="x-refs__footer">
+            <div class="x-refs__footer_el r-referral">
+                ИТОГО:
+            </div>
+            <div class="x-refs__footer_el r-bonus">
+                {{ $data['referrals']['tokens_total'] }} {{ env('TOKEN_NAME') }}
+            </div>
+        </section>
+    @endif
 
 </div>
 

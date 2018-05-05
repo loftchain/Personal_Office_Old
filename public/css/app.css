@@ -82,6 +82,7 @@
 .x-refs__bonus,
 .x-refs__header,
 .x-refs__section,
+.x-refs__footer,
 .modal-dialog form .modal-footer,
 .a1-body .a1-container__wp,
 .a2-body .a2-container__section #upload #drop ul,
@@ -10253,6 +10254,22 @@ button.close {
           justify-content: flex-start;
 }
 
+.r-wrapper {
+  margin: 40px auto !important;
+}
+
+.r-wrapper section .r-user-id {
+  width: 35px;
+}
+
+.r-wrapper section .r-wallet-to {
+  width: 400px;
+}
+
+.r-wrapper section .r-tokens {
+  width: 100px;
+}
+
 .header {
   margin: 0 15%;
   height: 100px;
@@ -11185,6 +11202,20 @@ button.close {
   width: 33.3%;
   color: black;
   font-size: 14px;
+  text-align: center;
+}
+
+.x-refs__footer {
+  border-bottom: 1px solid #1D52A7;
+  width: 750px;
+}
+
+.x-refs__footer_el {
+  padding: 20px 0;
+  width: 33.3%;
+  color: black;
+  font-size: 16px;
+  font-weight: 700;
   text-align: center;
 }
 

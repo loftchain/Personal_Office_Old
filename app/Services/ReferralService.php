@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Helpers\ICOAPI;
 use App\Models\Transactions;
 use App\Models\User;
+use App\Models\UserReferralFields;
 use App\Models\UserWalletFields;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -26,22 +27,70 @@ class ReferralService
 		$this->walletService = $walletService;
 	}
 
-	public function getReferralData(){
-		$referralData = [];
-
-		if(Auth::user()){
-			$myReferrals = User::where('referred_by', Auth::user()->id)->get();
-			foreach ($myReferrals as $mr){
-				$uwf = UserWalletFields::where('user_id', $mr->id)->get();
-				foreach ($uwf as $item){
-					if($item->type === 'from_to' || $item->type === 'to'){
-						$referralData['wallets_to'][] = $item['wallet'];
-					}
-				}
+	public function storeRefsToDb($referralData){
+		for ($i = 0; $i < count($referralData); $i++) {
+			if (!UserReferralFields::where('user_id', '=', Auth::user()->id)->exists()) {
+				UserReferralFields::create([
+					'user_id' =>  Auth::user()->id,
+					'wallet_to' => $referralData['wallets_to'][0],
+					'tokens'   => $referralData['tokens_total']
+				]);
 			}
 		}
+	}
 
-		Log::info($referralData);
+	public function getReferralData()
+	{
+		$referralData = [];
+		$total = 0;
+		if (Auth::user()->admin == 0) {
+			$myReferrals = User::where('referred_by', Auth::user()->id)->get();
+			//----------------------wallets_to-----------------
+			$myUwf = UserWalletFields::where('user_id', Auth::user()->id)->get();
+			foreach ($myUwf as $item) {
+				if ($item->type === 'from_to' || $item->type === 'to') {
+					$referralData['wallets_to'][] = $item['wallet'];
+				}
+			}
+			//------------------------------------------------
+
+			foreach ($myReferrals as $mr) {
+				//----------------------emails--------------------
+				$uwf = UserWalletFields::where('user_id', $mr->id)->get();
+				//------------------------------------------------
+
+				//----------------------wallets_from-----------------
+				foreach ($uwf as $item) {
+					if ($item->type === 'from_to' || $item->type === 'from') {
+						$referralData['stat'][$mr['email']]['wallets_from'][] = $item['wallet'];
+
+						//----------------------tokens---------------------
+						$transactions = Transactions::where('from', $item['wallet'])->get();
+						foreach ($transactions as $txs) {
+							if ($txs->status === 'true') {
+								$referralData['stat'][$mr['email']]['tokens'][] = $txs['amount_tokens'];
+								$token_sum = array_sum($referralData['stat'][$mr['email']]['tokens']);
+								$referralData['stat'][$mr['email']]['token_sum'] = $token_sum;
+							}
+						}
+					}
+				}
+				//------------------------------------------------
+			}
+			//----------------------token_sum---------------------
+
+			foreach ($referralData['stat'] as $item) {
+				$total += $item['token_sum'];
+			}
+
+
+		$referralData['tokens_total'] = $total;
+		//------------------------------------------------
+		$this->storeRefsToDb($referralData);
+
+		}
+
+		return $referralData;
 
 	}
 

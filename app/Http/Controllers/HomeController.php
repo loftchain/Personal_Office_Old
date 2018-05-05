@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserReferralFields;
 use App\Services\ReferralService;
 use App\Services\TransactionService;
 use App\Services\WidgetService;
@@ -99,6 +100,7 @@ class HomeController extends Controller
 	public function home(Request $request)
 	{
 		$user = User::find(Auth::id());
+		$adminReferrals = UserReferralFields::all();
 
 		$request->session()->forget('reset_password_email');
 		$data = [];
@@ -114,7 +116,8 @@ class HomeController extends Controller
 		$data['authenticated'] = Auth::check();
 		$data['confirmed'] = $user->confirmed;
 		$data['admin'] = $user->admin;
-		$this->referralService->getReferralData();
+		$data['referrals'] = $this->referralService->getReferralData();
+		$data['adminReferrals'] = $adminReferrals;
 
 
 		return view('home.home')->with('data', $data);
