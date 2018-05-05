@@ -7,6 +7,7 @@ use App\Mail\ConfirmRegistration;
 use App\Mail\ReturnToStep2;
 use App\Models\User;
 use App\Models\UserPersonalFields;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -44,6 +45,7 @@ class AdminController extends Controller
     {
 	    $user = User::find($user_id);
 	    $user->confirmed = 1;
+	    $user->confirmed_at = Carbon::now();
 	    $user->save();
 	    Mail::to($user->email)->send(new ConfirmRegistration());
 	    return response()->json(['confirmation_complete' => 'confirmation_complete']);

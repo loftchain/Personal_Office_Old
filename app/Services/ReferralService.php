@@ -79,10 +79,11 @@ class ReferralService
 			}
 			//----------------------token_sum---------------------
 
-			foreach ($referralData['stat'] as $item) {
-				$total += $item['token_sum'];
+			if(isset($referralData['stat'])){
+				foreach ($referralData['stat'] as $item) {
+					$total += $item['token_sum'];
+				}
 			}
-
 
 		$referralData['tokens_total'] = $total;
 		//------------------------------------------------

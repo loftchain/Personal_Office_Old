@@ -120,8 +120,10 @@ class TransactionService
 		$currentUserWallets = $this->walletService->getCurrentWallets();
 
 		foreach ($currentUserWallets as $wallet) {
-			$tx = Transactions::where('from', $wallet->wallet)->get();
-			$txData[] = ['wallet' => [$wallet->wallet, $wallet->currency], 'tx' => $tx];
+			if($wallet->type != 'to'){
+				$tx = Transactions::where('from', $wallet->wallet)->get();
+				$txData[] = ['wallet' => [$wallet->wallet, $wallet->currency], 'tx' => $tx];
+			}
 		}
 
 		return $txData;

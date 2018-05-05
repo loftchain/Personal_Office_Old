@@ -90,7 +90,7 @@
 			const currency = form.find('.currency');
 			const type = form.find('.type');
 
-			if(wa.userConfirmed === 1) {
+			if(wa.userConfirmed === '1') {
 				walletsData.currentWallets.forEach(function (wallet) {
 					switch (wallet.type) {
 						case 'from':

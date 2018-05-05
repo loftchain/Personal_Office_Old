@@ -22,16 +22,19 @@
             Мой бонус
         </div>
     </section>
-    @foreach($data['referrals']['stat'] as $key => $refs)
-        <section class="x-refs__section">
-            <div class="x-refs__section_el r-referral">
-                {{ $key }}
-            </div>
-            <div class="x-refs__section_el r-bonus">
-                {{ $refs['token_sum'] }} {{ env('TOKEN_NAME') }}
-            </div>
-        </section>
-    @endforeach
+    @if(isset($data['referrals']['stat']))
+        @foreach($data['referrals']['stat'] as $key => $refs)
+            <section class="x-refs__section">
+                <div class="x-refs__section_el r-referral">
+                    {{ $key }}
+                </div>
+                <div class="x-refs__section_el r-bonus">
+                    {{ $refs['token_sum'] }} {{ env('TOKEN_NAME') }}
+                </div>
+            </section>
+        @endforeach
+    @endif
+
     @if(count($data['referrals']) > 1)
         <section class="x-refs__footer">
             <div class="x-refs__footer_el r-referral">

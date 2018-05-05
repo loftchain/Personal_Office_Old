@@ -174,7 +174,7 @@
 	};
 
 	$(document).ready(() => {
-		if(wa.userConfirmed === 1) {
+		if(wa.userConfirmed === '1') {
 			txs.setTransactions()
 				.then((data) => txs.renderDesktopTx(data))
 				.then((data) => txs.renderMobileTx(data))
