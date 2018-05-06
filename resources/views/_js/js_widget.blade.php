@@ -10,14 +10,14 @@
 		currentStage: '{{ $data['period'][0] }}',
 		nextStage: '{{ $data['period'][1] }}',
 		_now: ('{{ $data['time'] }}') ? '{{ $data['time'] }}' : Math.floor(new Date().getTime() / 1000),
-		ethSoftCap: ('{{ $data['ethSoftCap']['currency'] }}'),
-		ethSoftCapUsd: ('{{ $data['ethSoftCap']['usd'] }}'),
-		ethSoftCapToken: ('{{ $data['ethSoftCap']['token'] }}'),
-		btcSoftCap: ('{{ $data['btcSoftCap']['currency'] }}'),
-		btcSoftCapUsd: ('{{ $data['btcSoftCap']['usd'] }}'),
-		btcSoftCapToken: ('{{ $data['btcSoftCap']['token'] }}'),
-		wholeSoftCapUsd: ('{{ $data['wholeSoftCap'][1] }}'),
-		wholeSoftCapToken: ('{{ $data['wholeSoftCap'][2] }}'),
+		ethCurrentAmount: ('{{ $data['ethCurrentAmount']['currency'] }}'),
+		ethCurrentAmountETH: ('{{ $data['ethCurrentAmount']['eth'] }}'),
+		ethCurrentAmountToken: ('{{ $data['ethCurrentAmount']['token'] }}'),
+		btcCurrentAmount: ('{{ $data['btcCurrentAmount']['currency'] }}'),
+		btcCurrentAmountETH: ('{{ $data['btcCurrentAmount']['eth'] }}'),
+		btcCurrentAmountToken: ('{{ $data['btcCurrentAmount']['token'] }}'),
+		totalCryptoAmountETH: ('{{ $data['totalCryptoAmount'][1] }}'),
+		totalCryptoAmountToken: ('{{ $data['totalCryptoAmount'][2] }}'),
 		currentStageTitle: $('.js__stage-name-title'),
 		preStageTitle: $('.js__stage-pre'),
 		icoStageTitle: $('.js__stage-ico'),
@@ -160,22 +160,22 @@
 			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 		},
 		setCapTexts() {
-			let tokenCap = Math.floor(w.wholeSoftCapToken);
-			let usdCap = Math.floor(w.wholeSoftCapUsd);
+			let tokenCap = Math.floor(w.totalCryptoAmountToken);
+			let usdCap = Math.floor(w.totalCryptoAmountETH);
 			w.capCryptoStart.text(w.numberWithSpaces(tokenCap) + ' ' + w.tokenName);
 			w.capCryptoEnd.text(w.numberWithSpaces(parseInt(w.tokenHardCap)) + ' ' + w.tokenName);
-			w.capFiatStart.text(w.numberWithSpaces(usdCap) + ' $');
-			w.capFiatEnd.text(w.numberWithSpaces(parseInt(w.usdHardCap)) + ' $');
+			w.capFiatStart.text(w.numberWithSpaces(usdCap) + ' ETH');
+			w.capFiatEnd.text(w.numberWithSpaces(parseInt(w.usdHardCap)) + ' ETH');
 		},
 
 		setSingleCurrencyTexts() {
-			let ethSoftCap = (Math.round(w.ethSoftCap * 100)/100).toFixed(2);
-			let btcSoftCap = (Math.round(w.btcSoftCap * 100)/100).toFixed(2);
-			w.currencyValue0.text(ethSoftCap);
-			w.currencyValue1.text(btcSoftCap);
+			let ethCurrentAmount = (Math.round(w.ethCurrentAmount * 100)/100).toFixed(2);
+			let btcCurrentAmount = (Math.round(w.btcCurrentAmount * 100)/100).toFixed(2);
+			w.currencyValue0.text(ethCurrentAmount);
+			w.currencyValue1.text(btcCurrentAmount);
 		},
 		setCapProgressWidth() {
-			let percent = Math.ceil((w.wholeSoftCapUsd)*100/parseInt(w.usdHardCap));
+			let percent = Math.ceil((w.totalCryptoAmountETH)*100/parseInt(w.usdHardCap));
 			w.totalInnerPercents.text(percent + ' %');
 			w.totalInnerProgress.css('width', percent + '%');
 		},

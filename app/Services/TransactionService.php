@@ -44,30 +44,28 @@ class TransactionService
 		return $closest;
 	}
 
-	public function countTokens($curs, $amount, $date, $currency, $tokenPrice)
+	public function countTokens($rates, $amount, $date, $currency, $tokenPrice)
 	{
 		$dateArr = [];
 		$tokenAmount = 0;
 
-		foreach ($curs as $c) {
-			if (!in_array($c->timestamp, $dateArr)) {
-				$dateArr[] = (int)$c->timestamp;
+		foreach ($rates as $r) {
+			if (!in_array($r->timestamp, $dateArr)) {
+				$dateArr[] = (int)$r->timestamp;
 			}
 		}
 
 		$closetDate = $this->getClosest((int)$date, $dateArr);
 
-		foreach ($curs as $c) {
-			if ((int)$c->timestamp == $closetDate) {
+		foreach ($rates as $r) {
+			if ((int)$r->timestamp == $closetDate) {
 				switch ($currency) {
 					case 'ETH':
-						if ($c->pair == 'ETH/USD') {
-							$tokenAmount = $amount * $c->price / $tokenPrice;
-						}
+						$tokenAmount = $amount * $tokenPrice;
 						break;
 					case 'BTC':
-						if ($c->pair == 'BTC/USD') {
-							$tokenAmount = $amount * $c->price / $tokenPrice;
+						if ($r->pair == 'BTC/ETH') {
+							$tokenAmount = $amount * $r->price * $tokenPrice;
 						}
 						break;
 				}
@@ -81,8 +79,8 @@ class TransactionService
 	{
 		$tx = $this->getTransactions();
 		$db = [];
-		$curs = $this->bonusService->getLatestCurrencies();
-		$tokenPrice = $this->bonusService->getTokenPrice();
+		$rates = $this->bonusService->getLatestCurrencies();
+		$stageInfo = $this->bonusService->getStageInfo();
 
 		foreach ($tx as $t) {
 			$txTimestamp = strtotime($t->date);
@@ -95,7 +93,7 @@ class TransactionService
 				'currency' => $t->currency,
 				'from' => $t->from,
 				'amount' => $t->amount,
-				'amount_tokens' => $this->countTokens($curs, $t->amount, $t->date, $t->currency, $tokenPrice),
+				'amount_tokens' => $this->countTokens($rates, $t->amount, $t->date, $t->currency, $stageInfo['tokenPriceInETH']),
 				'info' => $info,
 				'date' => $t->date
 			];

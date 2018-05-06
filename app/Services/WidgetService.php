@@ -30,10 +30,8 @@ class WidgetService
 
 	public function getCurrencyByPair($pair)
 	{
-
 		$currency = $this->bonusService->getLatestCurrencies();
 		$price = 0;
-
 		foreach ($currency as $c){
 			if ($c->pair == $pair) {
 				$price = $c->price;
@@ -44,21 +42,28 @@ class WidgetService
 
 	}
 
-	public function calcSoftCap($currency, $pair)
+	public function calcCurrentCryptoAmount($currency, $pair)
 	{
 		$tx = $this->getTx();
-		$amountCurrency = $amountUsd = $amountToken = 0;
+		$amountCurrency = 0;
+		$amountUsd = 0;
+		$amountToken = 0;
+		$stageInfo = $this->bonusService->getStageInfo();
 
 		foreach ($tx as $t) {
 			if ($t->currency == $currency) {
 				$amountCurrency += $t->amount;
 			}
 		}
-		$amountUsd = $amountCurrency * $this->getCurrencyByPair($pair);
-		$amountToken = $amountUsd / $this->bonusService->getTokenPrice();
 
-		return ['currency' => $amountCurrency, 'usd' => $amountUsd, 'token' => $amountToken];
+		$amountETH = ($currency == 'ETH') ? $amountCurrency : $amountCurrency * $this->getCurrencyByPair($pair);
+		$amountToken = $amountETH * $stageInfo['tokenPriceInETH'];
+		return ['currency' => $amountCurrency, 'eth' => $amountETH, 'token' => $amountToken];
 	}
+	public function getWholeCryptoAmount(){
+
+	}
+
 
 
 }

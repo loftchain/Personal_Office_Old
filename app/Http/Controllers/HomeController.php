@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\UserReferralFields;
 use App\Services\ReferralService;
 use App\Services\TransactionService;
+use App\Services\BonusService;
 use App\Services\WidgetService;
 use App\Services\WalletService;
 use App\Models\User;
@@ -24,13 +25,15 @@ class HomeController extends Controller
 	protected $walletService;
 	protected $transactionService;
 	protected $referralService;
+	protected $bonusService;
 
 
 	public function __construct(
 		WidgetService $widgetService,
 		WalletService $walletService,
 		TransactionService $transactionService,
-		ReferralService $referralService
+		ReferralService $referralService,
+		BonusService $bonusService
 	)
 	{
 		$this->middleware('valid', ['except' => ['welcome']]);
@@ -38,6 +41,7 @@ class HomeController extends Controller
 		$this->widgetService = $widgetService;
 		$this->transactionService = $transactionService;
 		$this->referralService = $referralService;
+		$this->bonusService = $bonusService;
 	}
 
 	public function get_period($time)
@@ -77,17 +81,20 @@ class HomeController extends Controller
 		return $currency;
 	}
 
+	protected function get_token_amount(){
+
+	}
 
 	public function welcome(Request $request)
 	{
 		$request->session()->forget('reset_password_email');
 		$data = [];
 		$time = is_numeric(Input::get('time')) ? Input::get('time') : time();
-		$data['btcSoftCap'] = $this->widgetService->calcSoftCap('BTC', 'BTC/USD');
-		$data['ethSoftCap'] = $this->widgetService->calcSoftCap('ETH', 'ETH/USD');
-		$data['wholeSoftCap'] = array_map(function () {
+		$data['btcCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('BTC', 'BTC/USD');
+		$data['ethCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('ETH', 'ETH/USD');
+		$data['totalCryptoAmount'] = array_map(function () {
 			return array_sum(func_get_args());
-		}, $data['btcSoftCap'], $data['ethSoftCap']);
+		}, $data['btcCurrentAmount'], $data['ethCurrentAmount']);
 		$data['period'] = $this->get_period($time);
 		$data['time'] = $time;
 		$data['authenticated'] = Auth::check();
@@ -105,13 +112,13 @@ class HomeController extends Controller
 		$request->session()->forget('reset_password_email');
 		$data = [];
 		$time = is_numeric(Input::get('time')) ? Input::get('time') : time();
-		$data['btcSoftCap'] = $this->widgetService->calcSoftCap('BTC', 'BTC/USD');
-		$data['ethSoftCap'] = $this->widgetService->calcSoftCap('ETH', 'ETH/USD');
-		$data['wholeSoftCap'] = array_map(function () {
+		$data['btcCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('BTC', 'BTC/ETH');
+		$data['ethCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('ETH', 'ETH/USD');
+		$data['totalCryptoAmount'] = array_map(function () {
 			return array_sum(func_get_args());
-		}, $data['btcSoftCap'], $data['ethSoftCap']);
+		}, $data['btcCurrentAmount'], $data['ethCurrentAmount']);
 
-		$data['period'] = $this->get_period($time);
+		$data['stageInfo'] = $this->bonusService->getStageInfo();
 		$data['time'] = $time;
 		$data['authenticated'] = Auth::check();
 		$data['confirmed'] = $user->confirmed;
