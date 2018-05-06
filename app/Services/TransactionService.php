@@ -44,6 +44,10 @@ class TransactionService
 		return $closest;
 	}
 
+	public function applyBonus($amount){
+
+	}
+
 	public function countTokens($rates, $amount, $date, $currency, $tokenPrice)
 	{
 		$dateArr = [];
