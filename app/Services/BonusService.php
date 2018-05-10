@@ -120,5 +120,4 @@ class BonusService
 		}
 		return $stageData;
 	}
-
 }

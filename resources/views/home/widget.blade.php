@@ -4,7 +4,7 @@
         <p class="js__stage-name-title">До конца ICO:</p>
         <div class="control-container">
           <div class="control-container__periods">
-            <div class="c c1">
+            <div class="c c1 c1-0">
                 <div class="x-progress c1__progress_pre-sale">
                     <div class="x-in x-progress__in_pre-sale"></div>
                     <span class="x-stage js__stage_pre-sale">Pre-Sale</span>
@@ -22,8 +22,8 @@
                     </div>
                 </div>
             </div>
-            <div class="c c1 c1-0">
-              <div class="x-progress c1-0__progress_ico1">
+            <div class="c c1 c1-1">
+              <div class="x-progress c1-1__progress_ico1">
                 <div class="x-in x-progress__in_ico1"></div>
                 <span class="x-stage js__stage_ico1">ICO 1</span>
                 <div class="x-progress_dates">
@@ -31,7 +31,7 @@
                   <span class="dates__end_ico1">21.02.18</span>
                 </div>
               </div>
-              <div class="x-progress c1-0__progress_ico2">
+              <div class="x-progress c1-1__progress_ico2">
                 <div class="x-in x-progress__in_ico2"></div>
                 <span class="x-stage js__stage_ico2">ICO 2</span>
                 <div class="x-progress_dates">
@@ -39,7 +39,7 @@
                   <span class="dates__end_ico2">21.02.18</span>
                 </div>
               </div>
-              <div class="x-progress c1-0__progress_ico3">
+              <div class="x-progress c1-1__progress_ico3">
                 <div class="x-in x-progress__in_ico3"></div>
                 <span class="x-stage js__stage-ico3">ICO 3</span>
                 <div class="x-progress_dates">
@@ -73,8 +73,13 @@
                     <div class="x-progress__in"></div>
                     <span class="x-progress__percents">55%</span>
                     <div class="x-progress__caps">
-                            <span class="js_eth_soft_cap">100 (soft cap)</span>
-                            <span class="js_eth_hard_cap">500 (hard cap)</span>
+                      <div>
+                        <span class="js_eth_currently_collected">555 ETH (total)</span>
+                      </div>
+                      <div>
+                        <span class="js_eth_soft_cap">100 (soft cap)</span>
+                        <span class="js_eth_hard_cap">500 (hard cap)</span>
+                      </div>
                     </div>
                 </div>
             </div>

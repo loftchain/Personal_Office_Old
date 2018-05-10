@@ -106,20 +106,23 @@ class HomeController extends Controller
 
 	public function home(Request $request)
 	{
+		$data = [];
 		$user = User::find(Auth::id());
 		$adminReferrals = UserReferralFields::all();
 
 		$request->session()->forget('reset_password_email');
-		$data = [];
 		$time = is_numeric(Input::get('time')) ? Input::get('time') : time();
+
 		$data['btcCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('BTC', 'BTC/ETH');
 		$data['ethCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('ETH', 'ETH/USD');
+
 		$data['totalCryptoAmount'] = array_map(function () {
 			return array_sum(func_get_args());
 		}, $data['btcCurrentAmount'], $data['ethCurrentAmount']);
 
+		Log::info($data['totalCryptoAmount']);
+
 		$data['stageInfo'] = $this->bonusService->getStageInfo();
-		Log::info($data['stageInfo']);
 		$data['time'] = $time;
 		$data['authenticated'] = Auth::check();
 		$data['confirmed'] = $user->confirmed;

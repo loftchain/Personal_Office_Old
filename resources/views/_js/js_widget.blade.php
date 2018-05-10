@@ -63,7 +63,7 @@
         hhName: $('.js__hh-name'),
         mmName: $('.js__mm-name'),
         
-        currentlyCollected_ETH: $('.js_eth_currently_collected'),
+        currentlyCollectedSpan_ETH: $('.js_eth_currently_collected'),
         softCapSpan_ETH: $('.js_eth_soft_cap'),
         hardCapSpan_ETH: $('.js_eth_hard_cap'),
         
@@ -75,69 +75,93 @@
         currencyValue1: $('.a1'),
         currencyName1: $('.n1'),
 
+        preProgressContainer: $('.c1-0'),
+        icoProgressContainer: $('.c1-1'),
+
         setStage() {
             switch (true) {
                 case w.currentStage === 'pre_sale':
                     w.currentStageTitle.text('До конца pre-ICO');
                     w.diffStage = w.endDate_preSale - w._now;
                     w.setInnerWidth('pre_sale');
+                    w.preProgressContainer.show();
+                    w.icoProgressContainer.hide();
                     break;
                 case w.currentStage === 'pre_ico':
                     w.currentStageTitle.text('До конца pre-ICO');
                     w.diffStage = w.endDate_preIco - w._now;
                     w.setInnerWidth('pre_ico');
+                    w.preProgressContainer.show();
+                    w.icoProgressContainer.hide();
                     break;
                 case w.currentStage === 'ico1':
                     w.currentStageTitle.text('До конца pre-ICO');
                     w.diffStage = w.endDate_ico1 - w._now;
                     w.setInnerWidth('ico1');
+                    w.preProgressContainer.hide();
+                    w.icoProgressContainer.show();
                     break;
                 case w.currentStage === 'ico2':
                     w.currentStageTitle.text('До конца pre-ICO');
                     w.diffStage = w.endDate_ico2 - w._now;
                     w.setInnerWidth('ico2');
+                    w.preProgressContainer.hide();
+                    w.icoProgressContainer.show();
                     break;
                 case w.currentStage === 'ico3':
                     w.currentStageTitle.text('До конца ICO');
                     w.diffStage = w.endDate_ico3 - w._now;
                     w.setInnerWidth('ico3');
+                    w.preProgressContainer.hide();
+                    w.icoProgressContainer.show();
                     break;
                 //------------------------------------------------------------------------------
                 case w.nextStage === 'pre_sale':
                     w.currentStageTitle.text('До начала Pre-Sale');
                     w.diffStage = w.startDate_preSale - w._now;
                     w.setInnerWidth('pre_sale_next');
+                    w.preProgressContainer.show();
+                    w.icoProgressContainer.hide();
                     break;
                 case w.nextStage === 'pre_ico':
                     w.currentStageTitle.text('До начала Pre-ICO');
                     w.diffStage = w.startDate_preIco - w._now;
                     w.setInnerWidth('pre_ico_next');
+                    w.preProgressContainer.show();
+                    w.icoProgressContainer.hide();
                     break;
                 case w.nextStage === 'ico1':
                     w.currentStageTitle.text('До начала ICO');
                     w.diffStage = w.startDate_ico1 - w._now;
                     w.setInnerWidth('ico1_next');
+                    w.preProgressContainer.hide();
+                    w.icoProgressContainer.show();
                     break;
                 case w.nextStage === 'ico2':
                     w.currentStageTitle.text('До начала ICO');
                     w.diffStage = w.startDate_ico2 - w._now;
                     w.setInnerWidth('ico2_next');
+                    w.preProgressContainer.hide();
+                    w.icoProgressContainer.show();
                     break;
                 case w.nextStage === 'ico3':
                     w.currentStageTitle.text('До начала ICO');
                     w.diffStage = w.startDate_ico3 - w._now;
                     w.setInnerWidth('ico3_next');
+                    w.preProgressContainer.hide();
+                    w.icoProgressContainer.show();
                     break;
                 case w.currentStage === 'finish':
                     w.diffStage = 0;
                     w.setInnerWidth('finish');
                     w.currentStageTitle.text('Распродажа закончена');
+                    w.preProgressContainer.hide();
+                    w.icoProgressContainer.hide();
                     break;
             }
         },
 
         setInnerWidth(stage) {
-            console.log(w.calcInnerWidth(w.startDate_preSale, w.endDate_preSale));
             switch (stage) {
                 case 'pre_sale':
                     w.innerProgress_preSale.css('width', 'calc(' + w.calcInnerWidth(w.startDate_preSale, w.endDate_preSale) + '% + 4px)');
@@ -289,7 +313,8 @@
         },
 
         setCapTexts() {
-            w.softCapSpan_ETH.text(w.softCapETH + ' ETH (soft cap)');
+            w.currentlyCollectedSpan_ETH.text(parseFloat(w.totalCryptoAmountETH).toFixed(2) + ' ETH (currently collected)');
+            w.softCapSpan_ETH.text(w.softCapETH + ' ETH (soft cap) ');
             w.hardCapSpan_ETH.text(w.hardCapETH + ' ETH (hard cap)');
         },
 

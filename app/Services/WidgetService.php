@@ -56,6 +56,7 @@ class WidgetService
 		}
 
 		$amountETH = ($currency == 'ETH') ? $amountCurrency : $amountCurrency * $this->getCurrencyByPair($pair);
+
 		$amountToken = $amountETH * $stageInfo['tokenPriceInETH'];
 		return ['currency' => $amountCurrency, 'eth' => $amountETH, 'token' => $amountToken];
 
