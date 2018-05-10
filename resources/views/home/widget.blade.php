@@ -73,14 +73,8 @@
                     <div class="x-progress__in"></div>
                     <span class="x-progress__percents">55%</span>
                     <div class="x-progress__caps">
-                        <div class="x-progress__caps_crypto">
-                            <span class="js_caps__start_crypto">123 123 TOK</span> of
-                            <span class="js_caps__end_crypto">9 422 000 TOK</span>
-                        </div>
-                        <div class="x-progress__caps_fiat">
-                            <span class="js_caps__start_fiat">10 000 USD</span> of
-                            <span class="js_caps__end_fiat">50 000 000 USD</span>
-                        </div>
+                            <span class="js_eth_soft_cap">100 (soft cap)</span>
+                            <span class="js_eth_hard_cap">500 (hard cap)</span>
                     </div>
                 </div>
             </div>

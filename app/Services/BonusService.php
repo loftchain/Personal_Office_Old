@@ -54,9 +54,10 @@ class BonusService
 
 	public function getStageInfo()
 	{
+		$time = is_numeric(Input::get('time')) ? Input::get('time') : time();
 		$stageData = [];
 		switch (true) {
-			case time() < env('PRE_SALE_START'):
+			case $time < env('PRE_SALE_START'):
 				$stageData = $this->setStageDetails(
 					null, 'pre_sale',
 					env('PRE_SALE_SOFT_CAP'), env('PRE_SALE_HARD_CAP'),
@@ -66,7 +67,7 @@ class BonusService
 					env('PRE_SALE_BONUS3'), env('PRE_SALE_BONUS4')
 				);
 				break;
-			case time() <= env('PRE_SALE_END'):
+			case $time <= env('PRE_SALE_END'):
 				$stageData = $this->setStageDetails(
 					'pre_sale', 'pre_ico',
 					env('PRE_SALE_SOFT_CAP'), env('PRE_SALE_HARD_CAP'),
@@ -76,7 +77,7 @@ class BonusService
 					env('PRE_SALE_BONUS3'), env('PRE_SALE_BONUS4')
 				);
 				break;
-			case time() > env('PRE_ICO_START') && time() <= env('PRE_ICO_END'):
+			case $time > env('PRE_ICO_START') && $time <= env('PRE_ICO_END'):
 				$stageData = $this->setStageDetails(
 					'pre_ico', 'ico1',
 					env('PRE_ICO_SOFT_CAP'), env('PRE_ICO_HARD_CAP'),
@@ -86,7 +87,7 @@ class BonusService
 					env('PRE_ICO_BONUS3'), env('PRE_ICO_BONUS4')
 				);
 				break;
-			case time() > env('ICO1_START') && time() <= env('ICO1_END'):
+			case $time > env('ICO1_START') && $time <= env('ICO1_END'):
 				$stageData = $this->setStageDetails(
 					'ico1', 'ico2',
 					env('ICO1_SOFT_CAP'), env('ICO1_HARD_CAP'),
@@ -96,7 +97,7 @@ class BonusService
 					env('ICO1_BONUS3'), env('ICO1_BONUS4')
 				);
 				break;
-			case time() > env('ICO2_START') && time() <= env('ICO2_END'):
+			case $time > env('ICO2_START') && $time <= env('ICO2_END'):
 				$stageData = $this->setStageDetails(
 					'ico2', 'ico3',
 					env('ICO2_SOFT_CAP'), env('ICO2_HARD_CAP'),
@@ -106,7 +107,7 @@ class BonusService
 					env('ICO2_BONUS3'), env('ICO2_BONUS4')
 				);
 				break;
-			case time() > env('ICO3_START') && time() <= env('ICO3_END'):
+			case $time > env('ICO3_START') && $time <= env('ICO3_END'):
 				$stageData = $this->setStageDetails(
 					'ico3', 'finish',
 					env('ICO3_SOFT_CAP'), env('ICO3_HARD_CAP'),

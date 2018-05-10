@@ -1,19 +1,17 @@
 <script>
     let w = {
-        preSaleStart: '{{ env('PRE_SALE_START') }}',
-        preSaleEnd: '{{ env('PRE_SALE_END') }}',
+        tokenName: '{{ env('TOKEN_NAME') }}',
 
-        preIcoStart: '{{ env('PRE_ICO_START') }}',
-        preIcoEnd: '{{ env('PRE_ICO_END') }}',
-
-        ico1Start: '{{ env('ICO1_START') }}',
-        ico1End: '{{ env('ICO1_END') }}',
-
-        ico2Start: '{{ env('ICO2_START') }}',
-        ico2End: '{{ env('ICO2_END') }}',
-
-        ico3Start: '{{ env('ICO3_START') }}',
-        ico3End: '{{ env('ICO3_END') }}',
+        startDate_preSale: '{{ env('PRE_SALE_START') }}',
+        endDate_preSale: '{{ env('PRE_SALE_END') }}',
+        startDate_preIco: '{{ env('PRE_ICO_START') }}',
+        endDate_preIco: '{{ env('PRE_ICO_END') }}',
+        startDate_ico1: '{{ env('ICO1_START') }}',
+        endDate_ico1: '{{ env('ICO1_END') }}',
+        startDate_ico2: '{{ env('ICO2_START') }}',
+        endDate_ico2: '{{ env('ICO2_END') }}',
+        startDate_ico3: '{{ env('ICO3_START') }}',
+        endDate_ico3: '{{ env('ICO3_END') }}',
 
         tokenPriceInETH: '{{ $data['stageInfo']['tokenPriceInETH'] }}',
         softCapETH: '{{ $data['stageInfo']['softCapETH'] }}',
@@ -37,14 +35,26 @@
         totalCryptoAmountToken: ('{{ $data['totalCryptoAmount'][2] }}'),
 
         currentStageTitle: $('.js__stage-name-title'),
+
         preStageTitle: $('.js__stage_pre-sale'),
         icoStageTitle: $('.js__stage-pre-ico'),
-        preSaleStartDate: $('.dates__start_pre-sale'),
-        preSaleEndDate: $('.dates__end_pre-sale'),
-        preIcoStartDate: $('.dates__start_pre-ico'),
-        preIcoEndDate: $('.dates__end_pre-ico'),
-        preSaleInnerProgress: $('.x-progress__in_pre-sale'),
-        preIcoInnerProgress: $('.x-progress__in_pre-ico'),
+
+        startSpan_preSale: $('.dates__start_pre-sale'),
+        endSpan_preSale: $('.dates__end_pre-sale'),
+        startSpan_preIco: $('.dates__start_pre-ico'),
+        endSpan_preIco: $('.dates__end_pre-ico'),
+        startSpan_ico1: $('.dates__start_ico1'),
+        endSpan_ico1: $('.dates__end_ico1'),
+        startSpan_ico2: $('.dates__start_ico2'),
+        endSpan_ico2: $('.dates__end_ico2'),
+        startSpan_ico3: $('.dates__start_ico3'),
+        endSpan_ico3: $('.dates__end_ico3'),
+
+        innerProgress_preSale: $('.x-progress__in_pre-sale'),
+        innerProgress_preIco: $('.x-progress__in_pre-ico'),
+        innerProgress_ico1: $('.x-progress__in_ico1'),
+        innerProgress_ico2: $('.x-progress__in_ico2'),
+        innerProgress_ico3: $('.x-progress__in_ico3'),
 
         dd: $('.js__dd'),
         hh: $('.js__hh'),
@@ -52,12 +62,14 @@
         ddName: $('.js__dd-name'),
         hhName: $('.js__hh-name'),
         mmName: $('.js__mm-name'),
-        capCryptoStart: $('.js_caps__start_crypto'),
-        capCryptoEnd: $('.js_caps__end_crypto'),
-        capFiatStart: $('.js_caps__start_fiat'),
-        capFiatEnd: $('.js_caps__end_fiat'),
+        
+        currentlyCollected_ETH: $('.js_eth_currently_collected'),
+        softCapSpan_ETH: $('.js_eth_soft_cap'),
+        hardCapSpan_ETH: $('.js_eth_hard_cap'),
+        
         totalInnerProgress: $('.x-progress__in'),
         totalInnerPercents: $('.x-progress__percents'),
+        
         currencyValue0: $('.a0'),
         currencyName0: $('.n0'),
         currencyValue1: $('.a1'),
@@ -67,54 +79,54 @@
             switch (true) {
                 case w.currentStage === 'pre_sale':
                     w.currentStageTitle.text('До конца pre-ICO');
-                    w.diffStage = w.preSaleEnd - w._now;
-                    w.setInnerWidth('pre_ico');
+                    w.diffStage = w.endDate_preSale - w._now;
+                    w.setInnerWidth('pre_sale');
                     break;
                 case w.currentStage === 'pre_ico':
                     w.currentStageTitle.text('До конца pre-ICO');
-                    w.diffStage = w.preIcoEnd - w._now;
+                    w.diffStage = w.endDate_preIco - w._now;
                     w.setInnerWidth('pre_ico');
                     break;
                 case w.currentStage === 'ico1':
                     w.currentStageTitle.text('До конца pre-ICO');
-                    w.diffStage = w.ico1End - w._now;
-                    w.setInnerWidth('pre_ico');
+                    w.diffStage = w.endDate_ico1 - w._now;
+                    w.setInnerWidth('ico1');
                     break;
                 case w.currentStage === 'ico2':
                     w.currentStageTitle.text('До конца pre-ICO');
-                    w.diffStage = w.ico2End - w._now;
-                    w.setInnerWidth('pre_ico');
+                    w.diffStage = w.endDate_ico2 - w._now;
+                    w.setInnerWidth('ico2');
                     break;
                 case w.currentStage === 'ico3':
                     w.currentStageTitle.text('До конца ICO');
-                    w.diffStage = w.ico3End - w._now;
-                    w.setInnerWidth('ico');
+                    w.diffStage = w.endDate_ico3 - w._now;
+                    w.setInnerWidth('ico3');
                     break;
- //------------------------------------------------------------------------------
+                //------------------------------------------------------------------------------
                 case w.nextStage === 'pre_sale':
                     w.currentStageTitle.text('До начала Pre-Sale');
-                    w.diffStage = w.preSaleStart - w._now;
-                    w.setInnerWidth('pre_ico_next');
+                    w.diffStage = w.startDate_preSale - w._now;
+                    w.setInnerWidth('pre_sale_next');
                     break;
                 case w.nextStage === 'pre_ico':
                     w.currentStageTitle.text('До начала Pre-ICO');
-                    w.diffStage = w.preIcoStart - w._now;
+                    w.diffStage = w.startDate_preIco - w._now;
                     w.setInnerWidth('pre_ico_next');
                     break;
                 case w.nextStage === 'ico1':
                     w.currentStageTitle.text('До начала ICO');
-                    w.diffStage = w.ico1Start - w._now;
-                    w.setInnerWidth('ico_next');
+                    w.diffStage = w.startDate_ico1 - w._now;
+                    w.setInnerWidth('ico1_next');
                     break;
                 case w.nextStage === 'ico2':
                     w.currentStageTitle.text('До начала ICO');
-                    w.diffStage = w.ico2Start - w._now;
-                    w.setInnerWidth('ico_next');
+                    w.diffStage = w.startDate_ico2 - w._now;
+                    w.setInnerWidth('ico2_next');
                     break;
                 case w.nextStage === 'ico3':
                     w.currentStageTitle.text('До начала ICO');
-                    w.diffStage = w.ico3Start - w._now;
-                    w.setInnerWidth('ico_next');
+                    w.diffStage = w.startDate_ico3 - w._now;
+                    w.setInnerWidth('ico3_next');
                     break;
                 case w.currentStage === 'finish':
                     w.diffStage = 0;
@@ -122,6 +134,96 @@
                     w.currentStageTitle.text('Распродажа закончена');
                     break;
             }
+        },
+
+        setInnerWidth(stage) {
+            console.log(w.calcInnerWidth(w.startDate_preSale, w.endDate_preSale));
+            switch (stage) {
+                case 'pre_sale':
+                    w.innerProgress_preSale.css('width', 'calc(' + w.calcInnerWidth(w.startDate_preSale, w.endDate_preSale) + '% + 4px)');
+                    w.innerProgress_preIco.css('width', '0');
+                    w.innerProgress_ico1.css('width', '0');
+                    w.innerProgress_ico2.css('width', '0');
+                    w.innerProgress_ico3.css('width', '0');
+                    break;
+                case 'pre_ico':
+                    w.innerProgress_preSale.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_preIco.css('width', 'calc(' + w.calcInnerWidth(w.startDate_preIco, w.endDate_preIco) + '% + 4px)');
+                    w.innerProgress_ico1.css('width', '0');
+                    w.innerProgress_ico2.css('width', '0');
+                    w.innerProgress_ico3.css('width', '0');
+                    break;
+                case 'ico1':
+                    w.innerProgress_preSale.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_preIco.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_ico1.css('width', 'calc(' + w.calcInnerWidth(w.startDate_ico1, w.endDate_ico1) + '% + 4px)');
+                    w.innerProgress_ico2.css('width', '0');
+                    w.innerProgress_ico3.css('width', '0');
+                    break;
+                case 'ico2':
+                    w.innerProgress_preSale.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_preIco.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_ico1.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_ico2.css('width', 'calc(' + w.calcInnerWidth(w.startDate_ico2, w.endDate_ico2) + '% + 4px)');
+                    w.innerProgress_ico3.css('width', '0');
+                    break;
+                case 'ico3':
+                    w.innerProgress_preSale.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_preIco.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_ico1.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_ico2.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_ico3.css('width', 'calc(' + w.calcInnerWidth(w.startDate_ico3, w.endDate_ico3) + '% + 4px)');
+                    break;
+//-------------------------------------------------------------------------------------------------------------------------------------
+                case 'pre_sale_next':
+                    w.innerProgress_preSale.css('width', '0');
+                    w.innerProgress_preIco.css('width', '0');
+                    w.innerProgress_ico1.css('width', '0');
+                    w.innerProgress_ico2.css('width', '0');
+                    w.innerProgress_ico3.css('width', '0');
+                    break;
+                case 'pre_ico_next':
+                    w.innerProgress_preSale.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_preIco.css('width', '0');
+                    w.innerProgress_ico1.css('width', '0');
+                    w.innerProgress_ico2.css('width', '0');
+                    w.innerProgress_ico3.css('width', '0');
+                    break;
+                case 'ico1_next':
+                    w.innerProgress_preSale.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_preIco.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_ico1.css('width', '0');
+                    w.innerProgress_ico2.css('width', '0');
+                    w.innerProgress_ico3.css('width', '0');
+                    break;
+                case 'ico2_next':
+                    w.innerProgress_preSale.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_preIco.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_ico1.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_ico2.css('width', '0');
+                    w.innerProgress_ico3.css('width', '0');
+                    break;
+                case 'ico3_next':
+                    w.innerProgress_preSale.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_preIco.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_ico1.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_ico2.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_ico3.css('width', '0');
+                    break;
+                case 'finish':
+                    w.innerProgress_preSale.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_preIco.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_ico1.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_ico2.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_ico3.css('width', 'calc(100% + 4px)');
+                    break;
+            }
+        },
+
+        calcInnerWidth(start, end) {
+            let wholePeriodInDays = Math.floor(w.daysInUTC(end - start));
+            let currentPeriodInDays = Math.floor(w.daysInUTC(w._now - start));
+            return Math.floor(currentPeriodInDays * 100 / wholePeriodInDays);
         },
 
         addZero(num) {
@@ -170,52 +272,25 @@
         },
 
         setTimeThreshold() {
-            w.preSaleStartDate.text(w.getSmallDate(w.preIcoStart));
-            w.preSaleEndDate.text(w.getSmallDate(w.preIcoEnd));
-            w.preIcoStartDate.text(w.getSmallDate(w.icoStart));
-            w.preIcoEndDate.text(w.getSmallDate(w.icoEnd));
+            w.startSpan_preSale.text(w.getSmallDate(w.startDate_preSale));
+            w.endSpan_preSale.text(w.getSmallDate(w.endDate_preSale));
+            w.startSpan_preIco.text(w.getSmallDate(w.startDate_preIco));
+            w.endSpan_preIco.text(w.getSmallDate(w.endDate_preIco));
+            w.startSpan_ico1.text(w.getSmallDate(w.startDate_ico1));
+            w.endSpan_ico1.text(w.getSmallDate(w.endDate_ico1));
+            w.startSpan_ico2.text(w.getSmallDate(w.startDate_ico2));
+            w.endSpan_ico2.text(w.getSmallDate(w.endDate_ico2));
+            w.startSpan_ico3.text(w.getSmallDate(w.startDate_ico3));
+            w.endSpan_ico3.text(w.getSmallDate(w.endDate_ico3));
         },
 
-        setInnerWidth(stage) {
-            switch (stage) {
-                case 'pre_ico':
-                    w.preSaleInnerProgress.css('width', 'calc(' + w.calcInnerWidth(w.preIcoStart, w.preIcoEnd) + '% + 4px)');
-                    w.preIcoInnerProgress.css('width', '0');
-                    break;
-                case 'ico':
-                    w.preSaleInnerProgress.css('width', 'calc(100% + 4px)');
-                    w.preIcoInnerProgress.css('width', 'calc(' + w.calcInnerWidth(w.preIcoStart, w.preIcoEnd) + '% + 4px)');
-                    break;
-                case 'pre_ico_next':
-                    w.preSaleInnerProgress.css('width', '0');
-                    w.preIcoInnerProgress.css('width', '0');
-                    break;
-                case 'ico_next':
-                    w.preSaleInnerProgress.css('width', 'calc(100% + 4px)');
-                    w.preIcoInnerProgress.css('width', '0');
-                    break;
-                case 'finish':
-                    w.preSaleInnerProgress.css('width', 'calc(100% + 4px)');
-                    w.preIcoInnerProgress.css('width', 'calc(100% + 4px)');
-                    break;
-            }
-        },
-
-        calcInnerWidth(start, end) {
-            let wholePeriodInDays = Math.floor(w.daysInUTC(end - start));
-            let currentPeriodInDays = Math.floor(w.daysInUTC(w._now - start));
-            return Math.floor(currentPeriodInDays * 100 / wholePeriodInDays);
-        },
         numberWithSpaces(x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
         },
+
         setCapTexts() {
-            let tokenCap = Math.floor(w.totalCryptoAmountToken);
-            let usdCap = Math.floor(w.totalCryptoAmountETH);
-            w.capCryptoStart.text(w.numberWithSpaces(tokenCap) + ' ' + w.tokenName);
-            w.capCryptoEnd.text(w.numberWithSpaces(parseInt(w.tokenHardCap)) + ' ' + w.tokenName);
-            w.capFiatStart.text(w.numberWithSpaces(usdCap) + ' ETH');
-            w.capFiatEnd.text(w.numberWithSpaces(parseInt(w.usdHardCap)) + ' ETH');
+            w.softCapSpan_ETH.text(w.softCapETH + ' ETH (soft cap)');
+            w.hardCapSpan_ETH.text(w.hardCapETH + ' ETH (hard cap)');
         },
 
         setSingleCurrencyTexts() {
@@ -224,8 +299,9 @@
             w.currencyValue0.text(ethCurrentAmount);
             w.currencyValue1.text(btcCurrentAmount);
         },
+
         setCapProgressWidth() {
-            let percent = Math.ceil((w.totalCryptoAmountETH) * 100 / parseInt(w.usdHardCap));
+            let percent = Math.ceil((w.totalCryptoAmountETH) * 100 / parseInt(w.hardCapETH));
             w.totalInnerPercents.text(percent + ' %');
             w.totalInnerProgress.css('width', percent + '%');
         },
@@ -233,6 +309,7 @@
         logb: function (number, base) {
             return Math.log(number) / Math.log(base);
         }
+
     };
 
     $(document).ready(() => {

@@ -119,6 +119,7 @@ class HomeController extends Controller
 		}, $data['btcCurrentAmount'], $data['ethCurrentAmount']);
 
 		$data['stageInfo'] = $this->bonusService->getStageInfo();
+		Log::info($data['stageInfo']);
 		$data['time'] = $time;
 		$data['authenticated'] = Auth::check();
 		$data['confirmed'] = $user->confirmed;

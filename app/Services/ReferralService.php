@@ -28,13 +28,15 @@ class ReferralService
 	}
 
 	public function storeRefsToDb($referralData){
-		for ($i = 0; $i < count($referralData); $i++) {
-			if (!UserReferralFields::where('user_id', '=', Auth::user()->id)->exists()) {
-				UserReferralFields::create([
-					'user_id' =>  Auth::user()->id,
-					'wallet_to' => $referralData['wallets_to'][0],
-					'tokens'   => $referralData['tokens_total']
-				]);
+		if(isset($referralData['wallets_to'][0])){
+			for ($i = 0; $i < count($referralData); $i++) {
+				if (!UserReferralFields::where('user_id', '=', Auth::user()->id)->exists()) {
+					UserReferralFields::create([
+						'user_id' =>  Auth::user()->id,
+						'wallet_to' => $referralData['wallets_to'][0],
+						'tokens'   => $referralData['tokens_total']
+					]);
+				}
 			}
 		}
 	}
