@@ -140,7 +140,8 @@
 .x-widget .widget-part .control-container .c,
 .x-widget .widget-part .control-container .c1,
 .x-widget .widget-part .control-container .c2,
-.x-widget__top .c1 .x-progress_dates,
+.x-widget__top .control-container__periods .c1 .x-progress_dates,
+.x-widget__top .control-container__periods .c1-0 .x-progress_dates,
 .x-widget__bot .x-progress__caps,
 .x-widget .c2__cur,
 .x-wallets__buttons,
@@ -10604,6 +10605,10 @@ button.close {
   width: 60%;
 }
 
+.x-widget .widget-part .control-container .c1:first-child {
+  margin-bottom: 40px;
+}
+
 .x-widget .widget-part .control-container .c1 .x-progress {
   height: 46px;
   border: 2px solid lightgray;
@@ -10616,7 +10621,20 @@ button.close {
   width: 30%;
 }
 
-.x-widget__top .c1 .x-in {
+.x-widget__top .control-container__periods {
+  width: 70%;
+}
+
+.x-widget__top .control-container__periods .c1 {
+  width: 86% !important;
+}
+
+.x-widget__top .control-container__periods .c1__progress_pre-sale,
+.x-widget__top .control-container__periods .c1__progress_pre-ico {
+  width: 48%;
+}
+
+.x-widget__top .control-container__periods .c1 .x-in {
   background: #FE4E02;
   background: -webkit-gradient(left top, right top, color-stop(0%, #FE4E02), color-stop(100%, #9C0A49));
   background: -webkit-gradient(linear, left top, right top, from(#FE4E02), to(#9C0A49));
@@ -10629,15 +10647,15 @@ button.close {
   left: -2px;
 }
 
-.x-widget__top .c1 .x-progress__in_pre {
+.x-widget__top .control-container__periods .c1 .x-progress__in_pre-sale {
   width: calc(100% + 4px);
 }
 
-.x-widget__top .c1 .x-progress__in_ico {
+.x-widget__top .control-container__periods .c1 .x-progress__in_pre-ico {
   width: 50%;
 }
 
-.x-widget__top .c1 .x-stage {
+.x-widget__top .control-container__periods .c1 .x-stage {
   position: absolute;
   margin: 10px auto;
   left: 0;
@@ -10651,27 +10669,84 @@ button.close {
   letter-spacing: 1px;
 }
 
-.x-widget__top .c1 .x-progress_dates {
+.x-widget__top .control-container__periods .c1 .x-progress_dates {
   width: 100%;
   position: absolute;
   bottom: -25px;
 }
 
-.x-widget__top .c1 .x-progress_dates span {
+.x-widget__top .control-container__periods .c1 .x-progress_dates span {
   font-size: 14px;
   color: #4b4b4b;
   font-weight: 300;
 }
 
-.x-widget__top .c1__progress_pre {
+.x-widget__top .control-container__periods .c1__progress_pre {
   width: 35%;
 }
 
-.x-widget__top .c1__progress_ico {
+.x-widget__top .control-container__periods .c1__progress_ico {
   width: 60%;
 }
 
-.x-widget .c2 .d {
+.x-widget__top .control-container__periods .c1-0 {
+  width: 86% !important;
+}
+
+.x-widget__top .control-container__periods .c1-0__progress_ico1,
+.x-widget__top .control-container__periods .c1-0__progress_ico2,
+.x-widget__top .control-container__periods .c1-0__progress_ico3 {
+  width: 30%;
+}
+
+.x-widget__top .control-container__periods .c1-0 .x-in {
+  background: #FE4E02;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #FE4E02), color-stop(100%, #9C0A49));
+  background: -webkit-gradient(linear, left top, right top, from(#FE4E02), to(#9C0A49));
+  background: linear-gradient(to right, #FE4E02 0%, #9C0A49 100%);
+  height: calc(100% + 4px);
+  border-radius: 5px;
+  z-index: 9;
+  position: absolute;
+  top: -2px;
+  left: -2px;
+}
+
+.x-widget__top .control-container__periods .c1-0 .x-progress__in_pre-sale {
+  width: calc(100% + 4px);
+}
+
+.x-widget__top .control-container__periods .c1-0 .x-progress__in_pre-ico {
+  width: 50%;
+}
+
+.x-widget__top .control-container__periods .c1-0 .x-stage {
+  position: absolute;
+  margin: 10px auto;
+  left: 0;
+  right: 0;
+  color: white;
+  text-align: center;
+  z-index: 10;
+  font-size: 18px;
+  font-weight: 700;
+  text-shadow: 0px 0px 1px black;
+  letter-spacing: 1px;
+}
+
+.x-widget__top .control-container__periods .c1-0 .x-progress_dates {
+  width: 100%;
+  position: absolute;
+  bottom: -25px;
+}
+
+.x-widget__top .control-container__periods .c1-0 .x-progress_dates span {
+  font-size: 14px;
+  color: #4b4b4b;
+  font-weight: 300;
+}
+
+.x-widget__top .control-container .c2 .d {
   height: 46px;
   width: 28%;
   border: 2px solid lightgray;
@@ -10679,7 +10754,7 @@ button.close {
   position: relative;
 }
 
-.x-widget .c2 .d .t {
+.x-widget__top .control-container .c2 .d .t {
   font-family: 'VT323', monospace;
   position: absolute;
   margin: 0 auto;
@@ -10692,7 +10767,7 @@ button.close {
   color: #9C0A49;
 }
 
-.x-widget .c2 .d__name {
+.x-widget__top .control-container .c2 .d__name {
   position: absolute;
   margin: 0 auto;
   left: 0;

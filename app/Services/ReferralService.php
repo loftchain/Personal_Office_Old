@@ -78,8 +78,8 @@ class ReferralService
 				//------------------------------------------------
 			}
 			//----------------------token_sum---------------------
-
 			if(isset($referralData['stat'])){
+
 				foreach ($referralData['stat'] as $item) {
 					$total += $item['token_sum'];
 				}
@@ -90,7 +90,6 @@ class ReferralService
 		$this->storeRefsToDb($referralData);
 
 		}
-
 		return $referralData;
 
 	}

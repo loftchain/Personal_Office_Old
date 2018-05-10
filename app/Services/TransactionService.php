@@ -44,15 +44,38 @@ class TransactionService
 		return $closest;
 	}
 
-	public function applyBonus($amount){
+	public function appliedBonus($amountETH){
 
+		$stageInfo = $this->bonusService->getStageInfo();
+		$discount = 0;
+
+		switch(true){
+			case $amountETH >= env('BONUS_THRESHOLD1') && $amountETH < env('BONUS_THRESHOLD2'):
+				$discount = $stageInfo['bonus1'];
+				break;
+			case $amountETH >= env('BONUS_THRESHOLD2') && $amountETH < env('BONUS_THRESHOLD3'):
+				$discount = $stageInfo['bonus2'];
+				break;
+			case $amountETH >= env('BONUS_THRESHOLD3') && $amountETH < env('BONUS_THRESHOLD4'):
+				$discount = $stageInfo['bonus3'];
+				break;
+			case $amountETH >= env('BONUS_THRESHOLD4'):
+				$discount = $stageInfo['bonus4'];
+				break;
+		}
+			return $discount/100;
+	}
+
+	public function sumBonusAndTokens($tokenAmount, $amountETH){
+		$discount = $this->appliedBonus($amountETH);
+		$bonus = $tokenAmount * $discount;
+		return $tokenAmount + $bonus;
 	}
 
 	public function countTokens($rates, $amount, $date, $currency, $tokenPrice)
 	{
 		$dateArr = [];
-		$tokenAmount = 0;
-
+		$totalTokenAmount = 0;
 		foreach ($rates as $r) {
 			if (!in_array($r->timestamp, $dateArr)) {
 				$dateArr[] = (int)$r->timestamp;
@@ -61,22 +84,26 @@ class TransactionService
 
 		$closetDate = $this->getClosest((int)$date, $dateArr);
 
+
 		foreach ($rates as $r) {
 			if ((int)$r->timestamp == $closetDate) {
 				switch ($currency) {
 					case 'ETH':
 						$tokenAmount = $amount * $tokenPrice;
+						$totalTokenAmount = $this->sumBonusAndTokens($tokenAmount, $amount);
 						break;
 					case 'BTC':
-						if ($r->pair == 'BTC/ETH') {
-							$tokenAmount = $amount * $r->price * $tokenPrice;
+						if ($r->pair === 'BTC/ETH') {
+							$amountETH = $amount * $r->price;
+							$tokenAmount = $amountETH * $tokenPrice;
+							$totalTokenAmount = $this->sumBonusAndTokens($tokenAmount, $amountETH);
 						}
 						break;
 				}
 			}
 		}
 
-		return round($tokenAmount, 2);
+		return round($totalTokenAmount, 2);
 	}
 
 	public function storeTx()

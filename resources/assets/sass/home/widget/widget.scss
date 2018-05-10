@@ -31,6 +31,10 @@
         width: 60%;
         @extend %fsb;
 
+        &:first-child{
+          margin-bottom: 40px;
+        }
+
         .x-progress {
           height: 46px;
           border: 2px solid lightgray;
@@ -48,82 +52,134 @@
   }
 
   &__top {
-      .c1 {
-        .x-in {
-          @include internal-filling();
-        }
+    .control-container{
 
-        .x-progress__in_pre {
-          width: calc(100% + 4px);
+      &__periods{
+        width: 70%;
 
+        .c1 {
+          width: 86%!important;
 
-        }
+          &__progress_pre-sale, &__progress_pre-ico{
+            width: 48%;
+          }
 
-        .x-progress__in_ico {
-          width: 50%;
-        }
+          .x-in {
+            @include internal-filling();
+          }
 
-        .x-stage {
-          @include internal-filling-number();
-        }
+          .x-progress__in_pre-sale {
+            width: calc(100% + 4px);
+          }
 
-        .x-progress_dates {
-          width: 100%;
-          @extend %fsb;
-          position: absolute;
-          bottom: -25px;
+          .x-progress__in_pre-ico {
+            width: 50%;
+          }
 
-          span {
-            font-size: 14px;
-            color: $gray2;
-            font-weight: 300;
+          .x-stage {
+            @include internal-filling-number();
+          }
+
+          .x-progress_dates {
+            width: 100%;
+            @extend %fsb;
+            position: absolute;
+            bottom: -25px;
+
+            span {
+              font-size: 14px;
+              color: $gray2;
+              font-weight: 300;
+            }
+          }
+
+          &__progress_pre {
+            width: 35%
+          }
+
+          &__progress_ico {
+            width: 60%
           }
         }
 
-      &__progress_pre {
-        width: 35%
+        .c1-0 {
+          width: 86%!important;
+
+
+          &__progress_ico1,
+          &__progress_ico2,
+          &__progress_ico3 {
+            width: 30%;
+          }
+
+          .x-in {
+            @include internal-filling();
+          }
+
+          .x-progress__in_pre-sale {
+            width: calc(100% + 4px);
+          }
+
+          .x-progress__in_pre-ico {
+            width: 50%;
+          }
+
+          .x-stage {
+            @include internal-filling-number();
+          }
+
+          .x-progress_dates {
+            width: 100%;
+            @extend %fsb;
+            position: absolute;
+            bottom: -25px;
+
+            span {
+              font-size: 14px;
+              color: $gray2;
+              font-weight: 300;
+            }
+          }
+        }
       }
 
-      &__progress_ico {
-        width: 60%
+      .c2 {
+        .d {
+          height: 46px;
+          width: 28%;
+          border: 2px solid lightgray;
+          border-radius: 5px;
+          position: relative;
+
+          .t {
+            font-family: 'VT323', monospace;
+            position: absolute;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            font-size: 48px;
+            line-height: 42px;
+            font-weight: 300;
+            text-align: center;
+            color: $main2;
+          }
+
+          &__name {
+            position: absolute;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            bottom: -25px;
+            text-align: center;
+            color: #A3A3A3;
+            font-size: 16px;
+          }
+        }
       }
+
     }
-
   }
 
-  .c2 {
-    .d {
-      height: 46px;
-      width: 28%;
-      border: 2px solid lightgray;
-      border-radius: 5px;
-      position: relative;
-
-      .t {
-        font-family: 'VT323', monospace;
-        position: absolute;
-        margin: 0 auto;
-        left: 0;
-        right: 0;
-        font-size: 48px;
-        line-height: 42px;
-        font-weight: 300;
-        text-align: center;
-        color: $main2;
-      }
-
-      &__name {
-        position: absolute;
-        margin: 0 auto;
-        left: 0;
-        right: 0;
-        bottom: -25px;
-        text-align: center;
-        color: #A3A3A3;
-        font-size: 16px;
-      }
-    }
-  }
 
   &__bot {
     .x-progress {
