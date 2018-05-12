@@ -2,8 +2,7 @@
   @extend %fsb;
   padding:0 15%;
   height:100px;
-  border-bottom: 2px solid $x-dash-to;
-  @include x-dashboard-gradient(white,$x-dash-to);
+  border-bottom: 1px solid #071831;
 
 
   &__info{
@@ -11,12 +10,17 @@
     align-items: flex-start;
     text-align: left;
     width:320px;
+
+    &_who{
+      color: $white;
+    }
+
     span{
       margin:5px 0;
     }
 
     &_tokens{
-      color:$main2;
+      color:$main1;
       font-weight: 700;
     }
 
@@ -29,14 +33,14 @@
       border-bottom: none!important;
       li{
         &.active a{
-          color:$main2!important;
+          color:$main1!important;
         }
 
         a{
           font-size: 18px;
           font-weight: 700;
           text-transform: uppercase;
-          color:$gray1;
+          color:$dark-blue;
           border: none!important;
           background: transparent!important;
           letter-spacing: 1px;
@@ -127,7 +131,6 @@
       }
 
     }
-
   }
 
 }

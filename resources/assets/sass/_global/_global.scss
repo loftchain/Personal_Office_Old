@@ -10,9 +10,15 @@ body{
   font-family: 'SF Display', sans-serif!important;
   min-height: 100vh;
   z-index: 2;
+  background: #041123; /* Old browsers */
+  background: -moz-linear-gradient(top, #041123 0%, #0b2144 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #041123 0%,#0b2144 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #041123 0%,#0b2144 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#041123', endColorstr='#0b2144',GradientType=0 ); /* IE6-9 */
 }
 .x-body{
-  background: white;
+
+
   width:750px;
   margin: 0 auto;
   min-height: 768px;

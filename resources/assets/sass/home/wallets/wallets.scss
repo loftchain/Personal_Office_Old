@@ -35,12 +35,13 @@
 
     a {
       text-decoration: none;
-      color: $almost-black;
+      color: $white;
 
       .button {
         span {
           margin-left: 10px;
           font-size: 16px;
+          color: $white;
 
           @media #{$mobile} {
             white-space: nowrap;
@@ -95,6 +96,7 @@
       }
 
       label {
+        color: $white;
         width: 295px;
         margin-right: 5px;
         font-weight: 400;
@@ -108,13 +110,16 @@
         margin: 2px;
         width: 450px;
         height: 50px;
-        border: 1px solid $gray4;
+        border: 1px solid $dark-blue;
         border-radius: 5px;
         outline: none;
         padding-left: 10px;
+        background: transparent;
+        color: $main2;
 
         &:focus {
-          border: 1px solid $main2;
+          border: 1px solid $main1;
+          color: $main1;
         }
 
         @media #{$mobile} {
@@ -187,7 +192,7 @@
 
   &__text {
     width: 100%;
-    //display: none;
+    color: $white;
 
     @media #{$mobile} {
       width: 100%;
@@ -226,7 +231,8 @@
 
     .pay-to-us-wallet {
       @extend %fc;
-      border: 1px solid #E0E0E0;
+      border: 1px solid $dark-blue;
+      border-radius: 5px;
       height: 100px;
 
       @media #{$mobile545} {
