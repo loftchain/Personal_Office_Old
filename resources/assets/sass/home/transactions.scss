@@ -20,7 +20,6 @@
     @media #{$mobile} {
       display: none;
     }
-    //
   }
 
   &__mobile{
@@ -37,8 +36,8 @@
         width: 100vw;
 
         .accordion {
-          background-color: #eee;
-          color: #444;
+          background-color: $dark-blue;
+          color: $white;
           cursor: pointer;
           padding: 18px;
           width: 100%;
@@ -49,13 +48,9 @@
           transition: 0.4s;
         }
 
-        .active, .accordion:hover {
-          background-color: #ccc;
-        }
-
         .accordion:after {
           content: '\002B';
-          color: #777;
+          color: $white;
           font-weight: bold;
           float: right;
           margin-left: 5px;
@@ -67,10 +62,12 @@
 
         .panel {
           width: 100%;
-          background-color: white;
+          background-color: $dark-blue;
           max-height: 0;
           overflow: hidden;
           transition: max-height 0.2s ease-out;
+          border-radius: 0;
+          color: $white;
 
           section{
             span{
@@ -100,6 +97,10 @@
 
                 &.mtd-to{
                   word-break: break-all;
+
+                  @media #{$mobile} {
+                   font-size: 10px;
+                  }
                 }
               }
             }
@@ -117,11 +118,11 @@
 
 
     &_wallet, &_wallet-mob {
-      border: 1px solid $gray4;
+      border: 1px solid $main1;
       border-radius: 25px;
       padding: 10px 20px;
       margin: 10px 0;
-      color: $almost-black;
+      color: $white;
       text-decoration: none;
 
       &.active{
@@ -148,7 +149,7 @@
       border-bottom: 1px solid $gray4;
 
       .th {
-        color: $almost-black;
+        color: $white;
         font-weight: 700;
         font-size: 20px;
         width: 150px;
@@ -167,18 +168,19 @@
           width: 100%;
           @extend %fsb;
           text-align: center;
-          border-bottom: 1px solid $gray4;
+          border-bottom: 1px solid $white;
 
           .td {
             padding: 10px 0;
             width: 150px;
+            color: $white;
 
             &.td-currency, &.td-date{
               font-size: 11px;
             }
 
             &.td-to {
-              color: $main2;
+              color: $main3;
               font-size: 12px;
               padding: 10px 25px;
             }
@@ -198,7 +200,7 @@
               }
 
               a {
-                color: $main2;
+                color: $main3;
               }
             }
           }

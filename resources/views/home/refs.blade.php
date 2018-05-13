@@ -11,8 +11,10 @@
         <span class="big-five-span">5.00%</span></div>
     <div class="x-refs__input-container">
         <label for="refLink">Ссылка на вашу реферальную программу:</label>
-        <input type="text" name="refLink" id="refLink" readonly="readonly" value="{{url('/').'/?ref='.Auth::user()->token}}">
-        <img class="r-copy-click" src="{{ asset('img/copy.png') }}" alt="copy">
+        <div class="input-holder">
+          <input type="text" name="refLink" id="refLink" readonly="readonly" value="{{url('/').'/?ref='.Auth::user()->token}}">
+          <img class="r-copy-click" src="{{ asset('img/copy.png') }}" alt="copy">
+        </div>
     </div>
     <section class="x-refs__header">
         <div class="x-refs__header_el r-referral">

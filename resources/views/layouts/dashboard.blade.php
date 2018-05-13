@@ -2,7 +2,7 @@
     @if (Auth::check())
         <div class="x-dashboard__info">
             <span class="x-dashboard__info_who"> @lang('home/home.logged_in_as'): {{ obfuscate_email(Auth::user()->email) }}</span>
-            <span class="x-dashboard__info_tokens">12.212312 TOK</span>
+            <span class="x-dashboard__info_tokens">12.212312 {{ env('TOKEN_NAME') }}</span>
         </div>
         <div class="x-dashboard__tabs">
             <ul class="nav nav-tabs">

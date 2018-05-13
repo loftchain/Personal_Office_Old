@@ -24,9 +24,9 @@
 @import "./home/widget/widget";
 @import "./home/widget/widget.mobile";
 
-@import "./home/wallets/wallets";
-
-@import "./referrals/referrals";
+@import "./home/wallets";
+@import "./home/referrals";
+@import "./home/transactions";
 
 @import "./modals/modals";
 @import "./modals/modals.mobile";
@@ -43,4 +43,3 @@
 @import "./reset_password/reset_password";
 @import "./reset_password/reset_password.mobile";
 
-@import "home/transactions/transactions";
