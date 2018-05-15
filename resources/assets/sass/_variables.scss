@@ -82,6 +82,14 @@ $noDesktop: '(max-width: 1024px)';
   letter-spacing: 1px;
 }
 
+@mixin main-gradient($from, $to){
+  background: $from; /* Old browsers */
+  background: -moz-linear-gradient(top, $from 0%, $to 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, $from 0%,$to 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, $from 0%,$to 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#041123', endColorstr='#0b2144',GradientType=0 ); /* IE6-9 */
+}
+
 
 %fc {
   display: flex;

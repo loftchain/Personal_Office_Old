@@ -1,6 +1,5 @@
 <script>
 
-
 	let wa = {
 		userAuthenticated: '{{ $data['authenticated'] }}',
 		userConfirmed: '{{ $data['confirmed'] }}',

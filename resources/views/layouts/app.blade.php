@@ -10,7 +10,7 @@
     </head>
     <body>
     @include('layouts.cloak')
-        <div id=x-app">
+        <div id="x-app">
             @include('layouts.header')
             @yield('content')
             @include('layouts.footer')
