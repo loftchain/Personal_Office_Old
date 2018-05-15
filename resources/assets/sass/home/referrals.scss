@@ -43,12 +43,14 @@
   &__input-container{
     margin-top: 20px;
     width: 750px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
 
     @media #{$mobile} {
-      display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
       width: 100%;
     }
 

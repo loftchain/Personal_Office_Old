@@ -2,10 +2,19 @@
   width: 100%;
   margin-bottom: 50px;
 
+  @media #{$mobile} {
+    padding: 0 50px
+  }
+
   .widget-part {
     @extend %fcc;
     align-items: flex-start;
     margin: 10px 0 10px 0;
+
+    @media #{$mobile} {
+      align-items: center;
+      margin-bottom: 60px;
+    }
 
     p {
       font-size: 18px;
@@ -14,12 +23,21 @@
       text-transform: uppercase;
       letter-spacing: .5px;
       margin-bottom: 20px;
+
+      @media #{$mobile} {
+        font-size: 15px;
+      }
     }
 
     .control-container {
       width: 100%;
       @extend %fsb;
       align-items: flex-start;
+
+      @media #{$mobile} {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
 
       .c {
         @extend %fsb;
@@ -31,6 +49,16 @@
         width: 60%;
         @extend %fsb;
 
+        @media #{$mobile} {
+          width: 100%;
+          margin-bottom: 40px;
+        }
+
+        @media #{$mobile545} {
+          justify-content: center;
+          margin-bottom: 20px;
+        }
+
         &:first-child{
           margin-bottom: 40px;
         }
@@ -41,12 +69,27 @@
           background: url("/img/x-progress-background.png");
           border-radius: 5px;
           position: relative;
+
+          @media #{$mobile545} {
+            width: 270px;
+            margin-bottom: 40px;
+          }
+        }
+      }
+
+      .c1-0 {
+        @media #{$desktop} {
+          width: 86%;
         }
       }
 
       .c2{
         width: 30%;
         @extend %fsb;
+
+        @media #{$mobile} {
+          width: 225px;
+        }
       }
     }
   }
@@ -58,10 +101,20 @@
         width: 70%;
 
         .c1 {
-          width: 86%!important;
-
           &__progress_pre-sale, &__progress_pre-ico{
             width: 48%;
+          }
+
+          &__progress_pre-sale{
+            @media #{$mobile} {
+              width: 157.5px;
+            }
+          }
+
+          &__progress_pre-ico{
+            @media #{$mobile} {
+              width: 270px;
+            }
           }
 
           .x-in {
@@ -103,9 +156,6 @@
         }
 
         .c1-1 {
-          width: 86%!important;
-
-
           &__progress_ico1,
           &__progress_ico2,
           &__progress_ico3 {
@@ -202,6 +252,11 @@
         font-size: 14px;
         color: $gray2;
         font-weight: 300;
+
+        @media #{$mobile545} {
+          flex-direction: column;
+          bottom: -45px;
+        }
 
         div{
 

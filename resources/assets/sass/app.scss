@@ -15,23 +15,16 @@
 @import "./admin/referrals";
 
 @import "./header/header";
-@import "./header/header.mobile";
 
-@import "./home/dashboard/dashboard";
-@import "./home/dashboard/dashboard.mobile";
-
-@import "./home/widget/widget";
-@import "./home/widget/widget.mobile";
-
+@import "./home/dashboard";
+@import "./home/widget";
 @import "./home/wallets";
 @import "./home/referrals";
 @import "./home/transactions";
 
 @import "./modals/modals";
-@import "./modals/modals.mobile";
 
 @import "modals/register/register";
-@import "modals/register/register.mobile";
 
 @import "./agreement/agreement1/agreement1";
 @import "./agreement/agreement1/agreement1.mobile";

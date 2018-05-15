@@ -1,5 +1,8 @@
 <script>
-
+    String.prototype.trunc = String.prototype.trunc ||
+        function (n) {
+            return (this.length > n) ? this.substr(0, n - 1) + '...' : this;
+        };
 	let wa = {
 		userAuthenticated: '{{ $data['authenticated'] }}',
 		userConfirmed: '{{ $data['confirmed'] }}',
@@ -91,16 +94,18 @@
 
 			if(wa.userConfirmed === '1') {
 				walletsData.currentWallets.forEach(function (wallet) {
-					switch (wallet.type) {
+            let wallet_val = ($(window).width() > 555) ? wallet.wallet : wallet.wallet.trunc(20);
+
+            switch (wallet.type) {
 						case 'from':
 							if (currency.val() === wallet.currency) {
-								_this.val(wallet.wallet);
+								_this.val(wallet_val);
 								wa.showDescription(wallet.currency);
 							}
 							break;
 						default:
 							if (type.val() === wallet.type) {
-								_this.val(wallet.wallet);
+								_this.val(wallet_val);
 								wa.showDescription(wallet.currency);
 							}
 							break;

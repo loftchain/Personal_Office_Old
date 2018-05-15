@@ -4,15 +4,34 @@
   height:100px;
   border-bottom: 1px solid #071831;
 
+  @media (max-width:1367px){
+      padding: 0 5%;
+  }
+
+  @media #{$mobile}{
+    position: relative;
+    padding: 10px;
+    border-bottom: transparent;
+  }
+
+  &.auth{
+    @media #{$mobile} {
+      height:200px;
+      align-items: flex-start;
+    }
+  }
 
   &__info{
     @extend %fcc;
     align-items: flex-start;
     text-align: left;
-    width:320px;
 
     &_who{
       color: $white;
+
+      @media #{$mobile} {
+        word-break: break-all;
+      }
     }
 
     span{
@@ -28,9 +47,22 @@
 
   &__tabs{
     @extend %fc;
-    min-width:320px;
+
+    @media #{$mobile} {
+      position: absolute;
+      top: 120px;
+      left:0;
+      right: 0;
+      margin: 0 auto;
+    }
+
     ul{
+      display: flex;
       border-bottom: none!important;
+
+      @media #{$mobile} {
+      }
+
       li{
         &.active a{
           color:$main1!important;
@@ -44,18 +76,19 @@
           border: none!important;
           background: transparent!important;
           letter-spacing: 1px;
+
+          @media #{$mobile} {
+            font-size: 12px;
+          }
         }
-
       }
-
     }
-
   }
 
   &__options{
     @extend %fcc;
     align-items: flex-end;
-    width:320px;
+
     a{
       margin:5px 0;
       color:$gray1;
@@ -82,6 +115,10 @@
     width:100%;
     @extend %fsb;
 
+    @media #{$mobile} {
+      justify-content: space-around;
+    }
+
     .x-register-link{
       color:$main2;
       font-size: 16px;
@@ -90,6 +127,11 @@
       padding: 10px 50px;
       border-radius: 25px;
       text-decoration: none;
+
+      @media #{$mobile} {
+        font-size: 14px;
+        padding: 8px 30px;
+      }
 
       &:hover{
         cursor:pointer;

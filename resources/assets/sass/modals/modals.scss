@@ -3,6 +3,13 @@
   border: transparent;
   border-radius: 5px;
 
+  @media #{$mobile} {
+    width: 95%;
+    min-width: 310px;
+    max-width: 400px;
+    margin: 15px auto;
+  }
+
   .modal-content{
     @include main-gradient(#041123, #0b2144);
     color: $white;
