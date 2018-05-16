@@ -1,25 +1,41 @@
 .a-body {
   @extend %fcc;
   margin-top: 40px;
+  color: $white;
+
   p {
     font-size: 16px;
     font-weight: 700;
     text-transform: uppercase;
-    color: $almost-black;
+    color: $white;
     letter-spacing: 1px;
+
+    @media #{$mobile} {
+      text-align: center;
+    }
   }
   .a-container {
     margin-top: 20px;
     width: 750px;
     @extend %fcc;
 
+    @media #{$mobile} {
+      width: 100%;
+      padding: 0 10px;
+    }
+
     &__crumbs {
+      @media #{$mobile} {
+        display: none;
+      }
+
       ul {
         @extend %fsb;
         width: 750px;
         padding: 0;
         height: 70px;
-        border-bottom: 2px solid $gray4;
+        border-bottom: 2px solid $main4;
+
         li {
           position: relative;
           list-style-type: none;
@@ -35,18 +51,18 @@
             width: 25px;
             height: 25px;
             @include x-gradient($main1, $main2)
-
           }
-
         }
-
       }
-
     }
 
     article {
       margin: 40px 0;
       text-align: justify;
+
+      @media #{$mobile} {
+        //margin: 0;
+      }
     }
   }
 }
@@ -56,12 +72,18 @@
     &__wp{
       @extend %fc;
       text-decoration: none;
+
       div{
         @extend %fcc;
         align-items: flex-start;
         width:250px;
         margin-left: 30px;
-        color: $almost-black;
+        color:  $white;
+
+        @media #{$mobile} {
+          width:auto;
+        }
+
         .title{
           font-weight: 700;
         }
@@ -78,7 +100,7 @@
       ul{
         li:not(:first-child){
           &:after{
-            background: $gray5;
+            background: $main4;
           }
         }
       }
@@ -88,6 +110,12 @@
       width: 550px;
       margin-top: 50px;
       @extend %fsb;
+
+      @media #{$mobile} {
+        width: 100%;
+        flex-direction: column;
+      }
+
       button{
         outline: none;
         border: none;
@@ -100,23 +128,31 @@
       }
 
       a{
-        border: 1px solid $gray2;
+        border: 1px solid $main1;
         border-radius: 25px;
         margin-left: 40px;
         padding: 15px 40px;
-        color: black;
+        color:$white;
         font-weight: 700;
         text-decoration: none;
+
         &:hover{
-          background: $gray4;
+          background: $main2;
           border: 1px solid transparent;
         }
 
+        @media #{$mobile} {
+          margin-top: 20px;
+          margin-left: 0;
+        }
       }
 
+      button, a{
+        @media #{$mobile} {
+          font-size: 14px;
+          padding: 10px 20px;
+        }
+      }
     }
-
   }
-
-
 }

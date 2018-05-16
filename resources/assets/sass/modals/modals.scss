@@ -11,7 +11,7 @@
   }
 
   .modal-content{
-    @include main-gradient(#041123, #0b2144);
+    @include main-gradient($main5, $main6);
     color: $white;
   }
 

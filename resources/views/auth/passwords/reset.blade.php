@@ -18,7 +18,7 @@
       <input type="password" name="password_confirmation" class="my-input password-input">
       <div class="error-message error-message2 password not_equal"></div>
 
-      <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
+      <div class="g-recaptcha" data-theme="dark" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
       <div class="error-message error-message3 error-message-captcha g-recaptcha-response"></div>
       <button type="submit" class="login-btn reusable-btn"> <i class="small-spinner fa fa-circle-o-notch fa-spin fa-lg fa-fw"></i> @lang('home/password_recovery_fields.confirm_n_enter_btn')  </button>
     </form>

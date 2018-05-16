@@ -2,15 +2,23 @@
 
 @section('content')
 
-    @include('layouts.dashboard')
-    <div class="x-body tab-content">
-            <div id="home" class="tab-pane fade in active">
-                @include('home.widget')
-                @include('home.wallet')
-            </div>
-            <div id="transactions" class="tab-pane fade">
-                @include('home.transactions')
-            </div>
-    </div>
+    <main class="w-container">
+      <div class="w-container-signUp">
+        <a type="button" class="x-register-link" data-toggle="modal" data-target="#m-signUp">
+          @lang('app.sign_up')
+        </a>
+      </div>
+      <div class="w-container-signIn">
+        <a type="button" class="x-login-link" data-toggle="modal" data-target="#m-signIn">
+          @lang('app.sign_in')
+        </a>
+        <a type="button" class="x-forgot-link" data-toggle="modal" data-target="#m-forgot">
+          @lang('home/home.forgot_pwd')
+        </a>
+      </div>
+    </main>
 
+    @include('modals.register')
+    @include('modals.login')
+    @include('modals.send_password_reset_emails')
 @endsection

@@ -37,7 +37,6 @@ class AdminController extends Controller
 			$_user['doc_img_path'] = $up->doc_img_path;
 			$users[] = $_user;
 		}
-
 		return $users;
 	}
 

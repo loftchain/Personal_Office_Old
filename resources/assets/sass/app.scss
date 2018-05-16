@@ -10,6 +10,7 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 @import "~hamburgers/_sass/hamburgers/hamburgers";
+@import "./welcome/welcome";
 
 @import "./admin/confirmation";
 @import "./admin/referrals";
@@ -26,11 +27,8 @@
 
 @import "modals/register/register";
 
-@import "./agreement/agreement1/agreement1";
-@import "./agreement/agreement1/agreement1.mobile";
-
-@import "./agreement/agreement2/agreement2";
-@import "./agreement/agreement2/agreement2.mobile";
+@import "./agreement/agreement1";
+@import "./agreement/agreement2";
 
 @import "./reset_password/reset_password";
 @import "./reset_password/reset_password.mobile";

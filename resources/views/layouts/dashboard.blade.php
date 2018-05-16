@@ -23,23 +23,20 @@
         </div>
     @else
         <div class="x-dashboard__guest">
-            <a type="button" class="x-register-link" data-toggle="modal" data-target="#m-signUp">
-                @lang('app.sign_up')
-            </a>
-            <div class="right-box">
-                <a type="button" class="x-login-link" data-toggle="modal" data-target="#m-signIn">
-                    <img src="{{ asset('img/login.png') }}" alt="sign in">
-                    @lang('app.sign_in')
-                </a>
-                <a type="button" class="x-forgot-link" data-toggle="modal" data-target="#m-forgot">
-                    @lang('home/home.forgot_pwd')
-                </a>
-            </div>
+            {{--<a type="button" class="x-register-link" data-toggle="modal" data-target="#m-signUp">--}}
+                {{--@lang('app.sign_up')--}}
+            {{--</a>--}}
+            {{--<div class="right-box">--}}
+                {{--<a type="button" class="x-login-link" data-toggle="modal" data-target="#m-signIn">--}}
+                    {{--<img src="{{ asset('img/login.png') }}" alt="sign in">--}}
+                    {{--@lang('app.sign_in')--}}
+                {{--</a>--}}
+                {{--<a type="button" class="x-forgot-link" data-toggle="modal" data-target="#m-forgot">--}}
+                    {{--@lang('home/home.forgot_pwd')--}}
+                {{--</a>--}}
+            {{--</div>--}}
         </div>
     @endif
 </section>
-@include('modals.register')
-@include('modals.login')
-@include('modals.send_password_reset_emails')
 @include('modals.change_email')
 @include('modals.change_password')
