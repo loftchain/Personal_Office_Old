@@ -11609,6 +11609,7 @@ button.close {
   width: 100%;
   text-align: center;
   margin-top: 30px;
+  color: #A3A3A3;
 }
 
 .x-transaction__no-tx-msg {
@@ -11881,7 +11882,7 @@ button.close {
 }
 
 .modal-dialog .modal-header {
-  border-bottom: 1px solid #A3A3A3;
+  border-bottom: 1px solid #041123;
 }
 
 .modal-dialog .modal-header button {
@@ -11930,7 +11931,7 @@ button.close {
 
 .modal-dialog form .modal-footer {
   width: 100%;
-  border-top: 1px solid #A3A3A3;
+  border-top: 1px solid #041123;
 }
 
 .modal-dialog form .modal-footer button {
