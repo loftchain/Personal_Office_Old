@@ -81,38 +81,6 @@ class HomeController extends Controller
 		return $currency;
 	}
 
-	protected function get_token_amount(){
-
-	}
-
-	public function welcome(Request $request)
-	{
-		$data = [];
-//		$user = User::find(Auth::id());
-		$adminReferrals = UserReferralFields::all();
-
-		$request->session()->forget('reset_password_email');
-		$time = is_numeric(Input::get('time')) ? Input::get('time') : time();
-
-		$data['btcCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('BTC', 'BTC/ETH');
-		$data['ethCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('ETH', 'ETH/USD');
-
-		$data['totalCryptoAmount'] = array_map(function () {
-			return array_sum(func_get_args());
-		}, $data['btcCurrentAmount'], $data['ethCurrentAmount']);
-
-		$data['stageInfo'] = $this->bonusService->getStageInfo();
-		$data['time'] = $time;
-//		$data['authenticated'] = Auth::check();
-//		$data['confirmed'] = $user->confirmed;
-//		$data['admin'] = $user->admin;
-//		$data['referrals'] = $this->referralService->getReferralData();
-		$data['adminReferrals'] = $adminReferrals;
-
-		return view('home.welcome')->with('data', $data);
-
-	}
-
 	public function home(Request $request)
 	{
 		$data = [];
@@ -125,10 +93,19 @@ class HomeController extends Controller
 		$data['btcCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('BTC', 'BTC/ETH');
 		$data['ethCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('ETH', 'ETH/USD');
 
+//----------------------------------------------------
+		$data['ethCurrentAmount']['currency'] = 0;
+		$data['ethCurrentAmount']['eth'] = 0;
+		$data['btcCurrentAmount']['currency'] = 0;
+		$data['btcCurrentAmount']['eth'] = 0;
+		//TODO: set real wallets, and delete this
 		$data['totalCryptoAmount'] = array_map(function () {
 			return array_sum(func_get_args());
 		}, $data['btcCurrentAmount'], $data['ethCurrentAmount']);
 
+		Log::info($data['totalCryptoAmount']);
+		Log::info($data['ethCurrentAmount']);
+		Log::info($data['btcCurrentAmount']);
 		$data['stageInfo'] = $this->bonusService->getStageInfo();
 		$data['time'] = $time;
 		$data['authenticated'] = Auth::check();
@@ -137,9 +114,13 @@ class HomeController extends Controller
 		$data['referrals'] = $this->referralService->getReferralData();
 		$data['adminReferrals'] = $adminReferrals;
 
-
 		return view('home.home')->with('data', $data);
 
+	}
+
+	public function welcome()
+	{
+		return view('home.welcome');
 	}
 
 }
