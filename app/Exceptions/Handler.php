@@ -76,7 +76,6 @@ class Handler extends ExceptionHandler
 			'country' => '**country: **' . $user_fields['country'],
 			'ip' => '**ip: **' . $_SERVER['REMOTE_ADDR'],
 			'user_agent' => '**user_agent: **' . $request->header('User-Agent'),
-			'time' => '**time: **' . date("H:i d.m.y"),
 			'**-----------------------------------------------------------------------------------------------------------**',
 		];
 
