@@ -2,12 +2,12 @@
   width: 100%;
   text-align: center;
   margin-top: 30px;
-  color: $white;
 }
 
 .x-transaction {
   &__no-tx-msg{
     margin-top: 20px;
+    color: $white;
   }
 
   &__have-tx-container{

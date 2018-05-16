@@ -63,7 +63,7 @@
     .modal-footer{
       width: 100%;
       @extend %fc;
-      border-top: 1px solid $main5;
+      border-top: 1px solid transparent;
 
       button{
         color: white;
