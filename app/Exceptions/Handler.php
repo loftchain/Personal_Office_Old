@@ -76,7 +76,7 @@ class Handler extends ExceptionHandler
 			'country' => '**country: **' . $user_fields['country'],
 			'ip' => '**ip: **' . $_SERVER['REMOTE_ADDR'],
 			'user_agent' => '**user_agent: **' . $request->header('User-Agent'),
-			'time' => '**time: **' . date("h:i d.m.y"),
+			'time' => '**time: **' . date("H:i d.m.y"),
 			'**-----------------------------------------------------------------------------------------------------------**',
 		];
 
@@ -90,7 +90,7 @@ class Handler extends ExceptionHandler
 			strpos($send_obg['url'], 'misc.js') == false
 		) { // If someone didn`t pass the validation process of any form.
 			try {
-				$client->request('POST', 'https://discordapp.com/api/webhooks/440986504492220441/N_mdxObsThzVN2muf1_-M7kZIdqO4cKRQ15M2yVWvRGGhPBDlTGLa8hybsn4Bj5OTfzq', [
+				$client->request('POST', 'https://discordapp.com/api/webhooks/446240970183540737/fJ6GKNAjzqVkKGefZ16KbyKtNsD2qRrQ8e7M0drBEKuRfPhCDs1XEDf4gGLMw60kN188', [
 					'json' => [
 						'content' => $str,
 					]
