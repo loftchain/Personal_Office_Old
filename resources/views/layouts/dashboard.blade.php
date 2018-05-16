@@ -21,21 +21,6 @@
             <a type="button" class="x-dashboard__options_email" data-toggle="modal" data-target="#m-ch-email">@lang('home/home.change_email')</a>
             <a type="button" class="x-dashboard__options_password" data-toggle="modal" data-target="#m-ch-pwd">@lang('home/home.change_password')</a>
         </div>
-    @else
-        <div class="x-dashboard__guest">
-            {{--<a type="button" class="x-register-link" data-toggle="modal" data-target="#m-signUp">--}}
-                {{--@lang('app.sign_up')--}}
-            {{--</a>--}}
-            {{--<div class="right-box">--}}
-                {{--<a type="button" class="x-login-link" data-toggle="modal" data-target="#m-signIn">--}}
-                    {{--<img src="{{ asset('img/login.png') }}" alt="sign in">--}}
-                    {{--@lang('app.sign_in')--}}
-                {{--</a>--}}
-                {{--<a type="button" class="x-forgot-link" data-toggle="modal" data-target="#m-forgot">--}}
-                    {{--@lang('home/home.forgot_pwd')--}}
-                {{--</a>--}}
-            {{--</div>--}}
-        </div>
     @endif
 </section>
 @include('modals.change_email')
