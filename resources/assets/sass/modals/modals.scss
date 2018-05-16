@@ -3,10 +3,25 @@
   border: transparent;
   border-radius: 5px;
 
+  @media #{$mobile} {
+    width: 95%;
+    min-width: 310px;
+    max-width: 400px;
+    margin: 15px auto;
+  }
+
+  .modal-content{
+    @include main-gradient($main5, $main6);
+    color: $white;
+  }
+
 
   .modal-header{
+    border-bottom: 1px solid $main5;
+
     button{
       outline:none;
+      color: $white;
     }
   }
   form{
@@ -26,8 +41,9 @@
         height:50px;
         padding-left: 15px;
         outline: none;
-        border: 1px solid $gray4;
+        border: 1px solid $dark-blue;
         border-radius: 5px;
+        background: transparent;
 
         &.isError {
           border: 1px solid $validationError !important;
@@ -47,6 +63,7 @@
     .modal-footer{
       width: 100%;
       @extend %fc;
+      border-top: 1px solid transparent;
 
       button{
         color: white;

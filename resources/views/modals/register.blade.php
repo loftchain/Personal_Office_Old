@@ -14,7 +14,7 @@
                     <label for="password" class="x-label r-label password-label">@lang('auth/register.create_password')</label>
                     <input id="password" type="password" name="password" class="x-input password-input">
                     <div class="error-message error-message1 password"></div>
-                    <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
+                    <div class="g-recaptcha" data-theme="dark" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
                     <div class="error-message error-message3 error-message-captcha g-recaptcha-response"></div>
                 <div class="modal-footer">
                   <button type="submit" class="modal-btn process-register">

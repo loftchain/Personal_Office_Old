@@ -2,49 +2,64 @@
 //  width:50px;
 //  height:50px;
 //}
-html{
-  font-family: 'SF Display', sans-serif!important;
+html {
+  font-family: 'SF Display', sans-serif !important;
 }
-body{
-  position:relative!important;
-  font-family: 'SF Display', sans-serif!important;
+
+body {
+  position: relative !important;
+  font-family: 'SF Display', sans-serif !important;
   min-height: 100vh;
   z-index: 2;
+  @include main-gradient($main5, $main6);
+
 }
-.x-body{
-  background: white;
-  width:750px;
+
+.x-body {
+  width: 750px;
   margin: 0 auto;
   min-height: 768px;
 
   @media #{$mobile} {
-    #home{
+    width: auto;
+    height: calc(100vh + 158px / 2);
+  }
+
+  @media #{$mobile480} {
+    height: 1500px;
+  }
+
+  #home {
+    @media #{$mobile} {
       width: 100%;
     }
   }
 }
 
+footer {
+  height:250px;
+  width: 100%;
+  z-index: 1;
 
-footer{
-  //position: fixed;
-  //bottom: 0;
-  width:100%;
-  z-index:1;
+  @media #{$mobile} {
+    height:100px;
+  }
 
-  img{
-    max-width: 100%;
+  img {
+    width: 100%;
+    height: 100%;
   }
 }
 
-.cloak{
+.cloak {
   @extend %fc;
   position: absolute;
   width: 100%;
   height: 100vh;
   z-index: 9999;
-  top:0;
+  top: 0;
   left: 0;
-  background: white;
+  @include main-gradient($main5, $main6);
 }
 
 .fade {
@@ -52,41 +67,50 @@ footer{
   z-index: 1;
 }
 
-.fade.in{
+.fade.in {
   z-index: 2;
 }
-.modal-backdrop.fade.in{
+
+.modal-backdrop.fade.in {
   z-index: 1040;
 }
 
-.modal.fade.in{
+.modal.fade.in {
   z-index: 1050;
 }
 
 .spinner {
   width: 60px;
   height: 60px;
-  background-color: #333;
+  background-color: $main1;
 
   -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
   animation: sk-rotateplane 1.2s infinite ease-in-out;
 }
 
 @-webkit-keyframes sk-rotateplane {
-  0% { -webkit-transform: perspective(120px) }
-  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
-  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+  0% {
+    -webkit-transform: perspective(120px)
+  }
+  50% {
+    -webkit-transform: perspective(120px) rotateY(180deg)
+  }
+  100% {
+    -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg)
+  }
 }
 
 @keyframes sk-rotateplane {
   0% {
     transform: perspective(120px) rotateX(0deg) rotateY(0deg);
     -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
-  } 50% {
-      transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-      -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
-    } 100% {
-        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-        -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-      }
+  }
+  50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+  }
+  100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
 }

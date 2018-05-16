@@ -1,0 +1,175 @@
+.x-refs{
+  width: 750px;
+  @extend %fcc;
+  margin-top: 20px;
+  font-weight: 500;
+  color: $white;
+
+  @media #{$mobile} {
+    width: 100vw;
+  }
+
+  &__article{
+
+    @media #{$mobile} {
+      padding: 0 10%;
+    }
+  }
+
+  &__bonus{
+    @extend %fc;
+    justify-content: flex-start;
+    margin-top: 20px;
+    width: 750px;
+
+    @media #{$mobile} {
+      padding: 0 10%;
+      width: 100%;
+    }
+
+    .ref-bonus-text{
+      margin-right: 20px;
+    }
+
+    .big-five-span{
+      font-size: 36px;
+      font-weight: 700;
+      background: -webkit-linear-gradient($main1, $main2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  &__input-container{
+    margin-top: 20px;
+    width: 750px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    @media #{$mobile} {
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+    }
+
+    label {
+      width: 310px;
+      font-weight: 500;
+    }
+
+    .input-holder{
+      position: relative;
+      width: 435px;
+
+      @media #{$mobile} {
+        width: 90%;
+      }
+
+      input {
+        padding-left: 15px;
+        height: 40px;
+        width: 435px;
+        border: 1px solid $dark-blue;
+        border-radius: 5px;
+        background: transparent;
+        color: $main2;
+
+        @media #{$mobile} {
+          width: 100%;
+        }
+
+        @media #{$mobile360} {
+          font-size: 13px;
+        }
+
+        &:focus{
+          border: 1px solid $main1;
+        }
+      }
+
+      img{
+        position: absolute;
+        top: 9px;
+        right: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__header {
+    @extend %fc;
+    margin-top: 30px;
+    border-bottom: 1px solid $dark-blue;
+    border-top: 1px solid $dark-blue;
+    width: 750px;
+
+    @media #{$mobile} {
+      width: 100%;
+    }
+
+      &_el{
+      padding: 15px 0;
+      width: 45%;
+      color: $white;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+
+      @media #{$mobile} {
+        font-size: 16px;
+        padding: 10px 0;
+      }
+    }
+  }
+
+
+  &__section {
+    @extend %fc;
+    border-bottom: 1px solid $dark-blue;
+    width: 750px;
+
+    @media #{$mobile} {
+      width: 100%;
+    }
+
+    &_el{
+      padding: 20px 0;
+      width: 45%;
+      color: $white;
+      font-size: 14px;
+      text-align: center;
+
+      @media #{$mobile} {
+        font-size: 12px;
+        padding: 10px 0;
+      }
+    }
+
+  }
+
+  &__footer {
+    @extend %fc;
+    border-bottom: 1px solid $dark-blue;
+    width: 750px;
+
+    @media #{$mobile} {
+      width: 100%;
+    }
+
+    &_el{
+      padding: 20px 0;
+      width:45%;
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      color: $main3;
+
+      @media #{$mobile} {
+        font-size: 12px;
+        padding: 10px 0;
+      }
+    }
+  }
+}

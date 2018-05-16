@@ -2,24 +2,42 @@
   width: 100%;
   margin-bottom: 50px;
 
+  @media #{$mobile} {
+    padding: 0 50px
+  }
+
   .widget-part {
     @extend %fcc;
     align-items: flex-start;
     margin: 10px 0 10px 0;
 
+    @media #{$mobile} {
+      align-items: center;
+      margin-bottom: 60px;
+    }
+
     p {
       font-size: 18px;
       font-weight: 700;
-      color: $almost-black;
+      color: $white;
       text-transform: uppercase;
       letter-spacing: .5px;
       margin-bottom: 20px;
+
+      @media #{$mobile} {
+        font-size: 15px;
+      }
     }
 
     .control-container {
       width: 100%;
       @extend %fsb;
       align-items: flex-start;
+
+      @media #{$mobile} {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
 
       .c {
         @extend %fsb;
@@ -31,22 +49,47 @@
         width: 60%;
         @extend %fsb;
 
+        @media #{$mobile} {
+          width: 100%;
+          margin-bottom: 40px;
+        }
+
+        @media #{$mobile545} {
+          justify-content: center;
+          margin-bottom: 20px;
+        }
+
         &:first-child{
           margin-bottom: 40px;
         }
 
         .x-progress {
           height: 46px;
-          border: 2px solid lightgray;
+          border: 1px solid $main1;
           background: url("/img/x-progress-background.png");
           border-radius: 5px;
           position: relative;
+
+          @media #{$mobile545} {
+            width: 270px;
+            margin-bottom: 40px;
+          }
+        }
+      }
+
+      .c1-0 {
+        @media #{$desktop} {
+          width: 86%;
         }
       }
 
       .c2{
         width: 30%;
         @extend %fsb;
+
+        @media #{$mobile} {
+          width: 225px;
+        }
       }
     }
   }
@@ -58,10 +101,20 @@
         width: 70%;
 
         .c1 {
-          width: 86%!important;
-
           &__progress_pre-sale, &__progress_pre-ico{
             width: 48%;
+          }
+
+          &__progress_pre-sale{
+            @media #{$mobile} {
+              width: 157.5px;
+            }
+          }
+
+          &__progress_pre-ico{
+            @media #{$mobile} {
+              width: 270px;
+            }
           }
 
           .x-in {
@@ -69,7 +122,7 @@
           }
 
           .x-progress__in_pre-sale {
-            width: calc(100% + 4px);
+            width: calc(100% + 2px);
           }
 
           .x-progress__in_pre-ico {
@@ -88,7 +141,7 @@
 
             span {
               font-size: 14px;
-              color: $gray2;
+              color: $white;
               font-weight: 300;
             }
           }
@@ -103,9 +156,6 @@
         }
 
         .c1-1 {
-          width: 86%!important;
-
-
           &__progress_ico1,
           &__progress_ico2,
           &__progress_ico3 {
@@ -136,7 +186,7 @@
 
             span {
               font-size: 14px;
-              color: $gray2;
+              color: $white;
               font-weight: 300;
             }
           }
@@ -147,7 +197,7 @@
         .d {
           height: 46px;
           width: 28%;
-          border: 2px solid lightgray;
+          border: 1px solid $main1;
           border-radius: 5px;
           position: relative;
 
@@ -161,7 +211,7 @@
             line-height: 42px;
             font-weight: 300;
             text-align: center;
-            color: $main2;
+            color: $main3;
           }
 
           &__name {
@@ -171,7 +221,7 @@
             right: 0;
             bottom: -25px;
             text-align: center;
-            color: #A3A3A3;
+            color: $white;
             font-size: 16px;
           }
         }
@@ -202,6 +252,18 @@
         font-size: 14px;
         color: $gray2;
         font-weight: 300;
+
+        @media #{$mobile545} {
+          flex-direction: column;
+          bottom: -45px;
+        }
+
+        div{
+
+          span{
+            color: $white;
+          }
+        }
       }
     }
   }

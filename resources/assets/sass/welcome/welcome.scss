@@ -1,0 +1,40 @@
+.w-container {
+  height: calc(100vh - 350px);
+  @extend %fc;
+
+  @media #{$mobile} {
+    height: calc(100vh - 200px);
+  }
+
+  div{
+    padding: 15px;
+
+    @media #{$mobile} {
+      min-width: 150px;
+    }
+  }
+
+  &-signUp{
+    border-right:1px solid $main1;
+  }
+
+  &-signIn{
+    position: relative;
+  }
+
+  a {
+    font-size: 24px;
+    color: $main1;
+    cursor: pointer;
+
+    &.x-forgot-link{
+      color: $white;
+      font-size: 14px;
+      white-space:nowrap;
+      position: absolute;
+      bottom: 0;
+      left: 15px;
+
+    }
+  }
+}

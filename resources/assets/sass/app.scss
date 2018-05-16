@@ -6,41 +6,30 @@
 @import "fonts";
 @import "variables";
 @import "./_global/global";
-@import "./_global/global.mobile";
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 @import "~hamburgers/_sass/hamburgers/hamburgers";
+@import "./welcome/welcome";
 
 @import "./admin/confirmation";
 @import "./admin/referrals";
 
 @import "./header/header";
-@import "./header/header.mobile";
 
-@import "./home/dashboard/dashboard";
-@import "./home/dashboard/dashboard.mobile";
-
-@import "./home/widget/widget";
-@import "./home/widget/widget.mobile";
-
-@import "./home/wallets/wallets";
-
-@import "./referrals/referrals";
+@import "./home/dashboard";
+@import "./home/widget";
+@import "./home/wallets";
+@import "./home/referrals";
+@import "./home/transactions";
 
 @import "./modals/modals";
-@import "./modals/modals.mobile";
 
 @import "modals/register/register";
-@import "modals/register/register.mobile";
 
-@import "./agreement/agreement1/agreement1";
-@import "./agreement/agreement1/agreement1.mobile";
-
-@import "./agreement/agreement2/agreement2";
-@import "./agreement/agreement2/agreement2.mobile";
+@import "./agreement/agreement1";
+@import "./agreement/agreement2";
 
 @import "./reset_password/reset_password";
 @import "./reset_password/reset_password.mobile";
 
-@import "home/transactions/transactions";

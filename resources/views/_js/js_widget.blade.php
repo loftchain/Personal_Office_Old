@@ -164,39 +164,39 @@
         setInnerWidth(stage) {
             switch (stage) {
                 case 'pre_sale':
-                    w.innerProgress_preSale.css('width', 'calc(' + w.calcInnerWidth(w.startDate_preSale, w.endDate_preSale) + '% + 4px)');
+                    w.innerProgress_preSale.css('width', 'calc(' + w.calcInnerWidth(w.startDate_preSale, w.endDate_preSale) + '% + 2px)');
                     w.innerProgress_preIco.css('width', '0');
                     w.innerProgress_ico1.css('width', '0');
                     w.innerProgress_ico2.css('width', '0');
                     w.innerProgress_ico3.css('width', '0');
                     break;
                 case 'pre_ico':
-                    w.innerProgress_preSale.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_preIco.css('width', 'calc(' + w.calcInnerWidth(w.startDate_preIco, w.endDate_preIco) + '% + 4px)');
+                    w.innerProgress_preSale.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_preIco.css('width', 'calc(' + w.calcInnerWidth(w.startDate_preIco, w.endDate_preIco) + '% + 2px)');
                     w.innerProgress_ico1.css('width', '0');
                     w.innerProgress_ico2.css('width', '0');
                     w.innerProgress_ico3.css('width', '0');
                     break;
                 case 'ico1':
-                    w.innerProgress_preSale.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_preIco.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_ico1.css('width', 'calc(' + w.calcInnerWidth(w.startDate_ico1, w.endDate_ico1) + '% + 4px)');
+                    w.innerProgress_preSale.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_preIco.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_ico1.css('width', 'calc(' + w.calcInnerWidth(w.startDate_ico1, w.endDate_ico1) + '% + 2px)');
                     w.innerProgress_ico2.css('width', '0');
                     w.innerProgress_ico3.css('width', '0');
                     break;
                 case 'ico2':
-                    w.innerProgress_preSale.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_preIco.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_ico1.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_ico2.css('width', 'calc(' + w.calcInnerWidth(w.startDate_ico2, w.endDate_ico2) + '% + 4px)');
+                    w.innerProgress_preSale.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_preIco.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_ico1.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_ico2.css('width', 'calc(' + w.calcInnerWidth(w.startDate_ico2, w.endDate_ico2) + '% + 2px)');
                     w.innerProgress_ico3.css('width', '0');
                     break;
                 case 'ico3':
-                    w.innerProgress_preSale.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_preIco.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_ico1.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_ico2.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_ico3.css('width', 'calc(' + w.calcInnerWidth(w.startDate_ico3, w.endDate_ico3) + '% + 4px)');
+                    w.innerProgress_preSale.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_preIco.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_ico1.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_ico2.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_ico3.css('width', 'calc(' + w.calcInnerWidth(w.startDate_ico3, w.endDate_ico3) + '% + 2px)');
                     break;
 //-------------------------------------------------------------------------------------------------------------------------------------
                 case 'pre_sale_next':
@@ -207,39 +207,39 @@
                     w.innerProgress_ico3.css('width', '0');
                     break;
                 case 'pre_ico_next':
-                    w.innerProgress_preSale.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_preSale.css('width', 'calc(100% + 2px)');
                     w.innerProgress_preIco.css('width', '0');
                     w.innerProgress_ico1.css('width', '0');
                     w.innerProgress_ico2.css('width', '0');
                     w.innerProgress_ico3.css('width', '0');
                     break;
                 case 'ico1_next':
-                    w.innerProgress_preSale.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_preIco.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_preSale.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_preIco.css('width', 'calc(100% + 2px)');
                     w.innerProgress_ico1.css('width', '0');
                     w.innerProgress_ico2.css('width', '0');
                     w.innerProgress_ico3.css('width', '0');
                     break;
                 case 'ico2_next':
-                    w.innerProgress_preSale.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_preIco.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_ico1.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_preSale.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_preIco.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_ico1.css('width', 'calc(100% + 2px)');
                     w.innerProgress_ico2.css('width', '0');
                     w.innerProgress_ico3.css('width', '0');
                     break;
                 case 'ico3_next':
-                    w.innerProgress_preSale.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_preIco.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_ico1.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_ico2.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_preSale.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_preIco.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_ico1.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_ico2.css('width', 'calc(100% + 2px)');
                     w.innerProgress_ico3.css('width', '0');
                     break;
                 case 'finish':
-                    w.innerProgress_preSale.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_preIco.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_ico1.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_ico2.css('width', 'calc(100% + 4px)');
-                    w.innerProgress_ico3.css('width', 'calc(100% + 4px)');
+                    w.innerProgress_preSale.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_preIco.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_ico1.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_ico2.css('width', 'calc(100% + 2px)');
+                    w.innerProgress_ico3.css('width', 'calc(100% + 2px)');
                     break;
             }
         },

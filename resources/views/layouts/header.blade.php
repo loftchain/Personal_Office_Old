@@ -1,15 +1,14 @@
 <header>
     <section class="header">
         <div class="header__logo">
-            <img src="{{ asset('img/temp-logo.png') }}" alt="Logo">
+            <img src="https://leadrex.io/img/logo.svg" alt="Logo">
         </div>
         <div class="header__links">
             <ul>
-                <li><a target="_blank" href="#">@lang('header/header.wp')</a></li>
-                <li><a target="_blank" href="#">@lang('header/header.about')</a></li>
-                <li><a target="_blank" href="#">@lang('header/header.roadmap')</a></li>
-                <li><a target="_blank" href="#">@lang('header/header.advantage')</a></li>
-                <li><a target="_blank" href="#">@lang('header/header.faq')</a></li>
+                <li><a target="_blank" href="https://leadrex.io/#brain">Что такое Leadrex</a></li>
+                <li><a target="_blank" href="https://leadrex.io/#doc">Документация</a></li>
+                <li><a target="_blank" href="https://leadrex.io/#team">Команда</a></li>
+                <li><a target="_blank" href="https://leadrex.io/#map">Дорожная карта</a></li>
             </ul>
         </div>
         <div class="header__lang">
