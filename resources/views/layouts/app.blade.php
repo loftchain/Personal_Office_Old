@@ -9,7 +9,10 @@
         @include('layouts.links')
     </head>
     <body>
-    @include('layouts.cloak')
+    @if(env('APP_ENV') != 'local')
+      @include('_js.js_ya_metrix')
+    @endif
+      @include('layouts.cloak')
         <div id="x-app">
             @include('layouts.header')
             @yield('content')
