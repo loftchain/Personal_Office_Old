@@ -12054,6 +12054,23 @@ button.close {
   text-align: justify;
 }
 
+.a1-body {
+  margin-top: 0;
+  height: calc(100vh - 350px);
+}
+
+@media (max-width: 768px) {
+  .a1-body {
+    height: calc(100vh - 200px);
+  }
+}
+
+@media (max-width: 545px) {
+  .a1-body {
+    height: auto;
+  }
+}
+
 .a1-body .a1-container__wp {
   text-decoration: none;
 }

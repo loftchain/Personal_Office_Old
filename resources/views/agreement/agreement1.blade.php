@@ -21,7 +21,7 @@
             степени обуславливает создание форм развития. Товарищи! укрепление и развитие
             структуры влечет за собой процесс внедрения и модернизации форм развития.
         </article>
-        <a target="_blank" class="a1-container__wp" href="https://imigize.io/wp/en/">
+        <a target="_blank" class="a1-container__wp" href="{{ 'files/wp_'.App::getLocale().'.pdf' }}">
             <img src="{{ asset('img/pdf.png') }}" alt="">
             <div>
                 <span class="title">@lang('app.white_book')</span>

@@ -119,7 +119,10 @@ class AgreementController extends Controller
 		}
 
 
-		$this->send_registered_notification();
+		if(env('APP_ENV') != 'local'){
+			$this->send_registered_notification();
+		}
+
 		return response()->json(['goto3' => 'goto3']);
 
 	}
