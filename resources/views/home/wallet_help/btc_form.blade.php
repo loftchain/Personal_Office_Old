@@ -2,28 +2,24 @@
     {{ csrf_field() }}
     <input id="cur1" name="currency" class="currency" type="hidden" value="BTC">
     <input id="type1" name="type" class="type" type="hidden" value="from">
-    <label for="wallet1">Я собираюсь известировать в <b>Bitcoin</b> с</label>
+    <label for="wallet1">@lang('_home/wallet.btcInvest_label')</label>
     <button class="add-wallet-btn" type="button"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></button>
     <input id="wallet1" name="wallet" class="w-input x-input" type="text" data-status="nonActive" disabled>
     <div class="error-message error-message0 wallet"></div>
-    <button class="sbmt-wallet-btn" type="submit">save</button>
+    <button class="sbmt-wallet-btn" type="submit">@lang('_home/wallet.save_btn')</button>
 </form>
 
 <form action="{{ route('store_wallet') }}" class="w-form" method="POST" id="form2">
     {{ csrf_field() }}
     <input id="cur2" name="currency" class="currency" type="hidden" value="ETH">
     <input id="type2" name="type" class="type" type="hidden" value="to">
-    <label for="wallet2">Я хочу получить токены <b>ERC20</b> в кошелек <b>ETH</b></label>
+    <label for="wallet2">@lang('_home/wallet.btcEthTokenGet_label')</label>
     <button class="add-wallet-btn" type="button"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></button>
     <input id="wallet2" name="wallet" class="w-input x-input" type="text" data-status="nonActive" disabled>
     <div class="error-message error-message0 wallet"></div>
-    <button class="sbmt-wallet-btn" type="submit">save</button>
+    <button class="sbmt-wallet-btn" type="submit">@lang('_home/wallet.save_btn')</button>
 </form>
 
 <div class="description-container BTC" data-currency="BTC">
-    @if(\Illuminate\Support\Facades\Auth::check())
-        <p class="no-wallet BTC">Для инвестирования, пожалуйста, добавьте кошелёк BTC</p>
-    @else
-        <p class="no-wallet ETH">Для участия в программе, пожалуйста, зарегистрируйтесь</p>
-    @endif
+  <p class="no-wallet BTC">@lang('_home/wallet.addWalletForInvest_p') BTC</p>
 </div>
