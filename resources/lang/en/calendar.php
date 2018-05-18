@@ -1,20 +1,6 @@
 <?php
 
 return array(
-  'home' => 'Home',
-  'team' => 'Team',
-  'whitepaper' => 'Whitepaper',
-  'crowdsale_terms' => 'Crowdsale Terms',
-  'faq' => 'FAQ',
-  'referrals' => 'Referrals',
-  'support' => 'Support',
-  'cabinet' => 'cabinet',
-  'my_prof_crowd' => 'My profile & crowdsale',
-  'sign_in' => 'Sign in ',
-  'sign_up' => 'Sign up',
-  'white_book' => 'White paper',
-
-
   'january' => 'January',
   'february' => 'February',
   'march' => 'March',

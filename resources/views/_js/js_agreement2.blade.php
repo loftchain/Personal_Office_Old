@@ -136,9 +136,4 @@
 			$('.a2-form__sbmt-btn').prop('disabled', true);
 		}
 	});
-
-	$('.trashcan-btn').click(() => {
-		console.log(11111);
-
-	})
 </script>

@@ -25,8 +25,8 @@
 			return new Promise(function (resolve, reject) {
 				if (data.length > 0) {
 					data.forEach((user, index) => {
-						let sbmtBtn = `<button type="submit" data-id="${user.id}" class="confirm-user-btn">confirm</button>`;
-						let rts2Btn = `<button type="submit" data-id="${user.id}" class="rts2-user-btn">return to KYC</button>`;
+						let sbmtBtn = `<button type="submit" data-id="${user.id}" class="confirm-user-btn">@lang('admin/confirmation.confirm_js')</button>`;
+						let rts2Btn = `<button type="submit" data-id="${user.id}" class="rts2-user-btn">@lang('admin/confirmation.returnToKYC_js')</button>`;
 						let userDom = `
                             <section id="a-w__s${index}" class="a-wrapper__section">
                                 <div class="a-wrapper__section_el a-id">${user.id}</div>
@@ -73,7 +73,7 @@
 							success: data => {
 								$('.users-wrapper').empty();
 								main();
-								$.notify('Пользователь был подтверждён', {
+								$.notify('@lang('admin/confirmation.userConfirmed_js')', {
 									type: 'success'
 								});
 							},
@@ -96,7 +96,7 @@
 							dataType: 'json',
 							success: data => {
 								$('.users-wrapper').empty();
-								$.notify('Пользователь был сброшен до шага заполнения KYC', {
+								$.notify('@lang('admin/confirmation.userCanceled_js')', {
 									type: 'info'
 								});
 								main();

@@ -18,8 +18,8 @@
             <form id="upload" method="post" action="{{ route('store_documents') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div id="drop">
-                    <span>Перетащите изображение документа сюда<br> (принимаемые форматы: jpg, jpeg, png, svg, pdf, zip, rar)</span>
-                    <a>Загрузить</a>
+                    <span>@lang('agreement/agreement.loadDocs_span')</span>
+                    <a>@lang('agreement/agreement.loadDocs_btn')</a>
                     <input type="file" name="upl" multiple />
                     <ul class="doc-container"></ul>
                 </div>

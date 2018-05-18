@@ -18,11 +18,13 @@ return [
 	'changeEmail_title' => 'Изменение Email адреса',
 	'currentEmail_label' => 'Текущий Email',
 	'newEmail_label' => 'Новый Email',
+	'emailChanged_js' => 'Email был успешно изменён.',
 
 	//change password
 	'changePassword_title' => 'Изменение Email адреса',
 	'changePasswordCurrent_emailLabel' => 'Ваш Email',
 	'changePasswordNew_label' => 'Текущий пароль',
 	'newPassword_label' => 'Новый пароль',
+	'pwdChanged_js' => 'Пароль был успешно изменён.',
 
 ];

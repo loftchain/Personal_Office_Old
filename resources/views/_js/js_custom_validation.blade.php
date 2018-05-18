@@ -80,7 +80,7 @@
                     localStorage.setItem('success_login', '+');
                     break;
                 case !$.isEmptyObject(data.success_reset_email_sent):
-                    v.showNotification('На Ваш адрес было отправлено письмо с дальнейшими инструкциями по восстановлению пароля.');
+                    v.showNotification('@lang('auth/resetPwd.letterSent_js')');
                     v.closeModal();
                     break;
                 case !$.isEmptyObject(data.success_reset_pwd):
@@ -89,11 +89,11 @@
                     break;
                 case !$.isEmptyObject(data.success_changed_email):
                     v.closeModal();
-                    v.showNotification('Email был успешно изменён.', 'success');
+                    v.showNotification('@lang('modals/modals.emailChanged_js')', 'success');
                     break;
                 case !$.isEmptyObject(data.success_changed_pwd):
                     v.closeModal();
-                    v.showNotification('Пароль был успешно изменён.', 'success');
+                    v.showNotification('@lang('modals/modals.pwdChanged_js')', 'success');
                     break;
                 case !$.isEmptyObject(data.goto2):
                     window.location.replace("{{ route('root') . '/agreement2' }}");
@@ -102,33 +102,23 @@
                     window.location.replace("{{ route('root') }}");
                     break;
                 case !$.isEmptyObject(data.wallet_added):
-                    v.showNotification('Кошелёк был добавлен', 'success');
+                    v.showNotification('@lang('home/wallet.added_js')', 'success');
                     if(typeof wa !== 'undefined'){
 	                    wa.exitEditMode(_this.children('.w-input'));
 	                    wa.showDescription(data.currency);
                     }
 	                break;
 	            case !$.isEmptyObject(data.wallet_edited):
-		            v.showNotification('Кошелёк был изменён', 'success');
+		            v.showNotification('@lang('home/wallet.edited_js')', 'success');
 		            if(typeof wa !== 'undefined'){
 			            wa.exitEditMode(_this.children('.w-input'));
 		            }
 		            break;
 	            case !$.isEmptyObject(data.confirmation_complete):
-		            {{--$.ajax({--}}
-			            {{--method: "GET",--}}
-			            {{--url: `{{ route('confirm_view', $data['users'] ) }}`,--}}
-			            {{--dataType: 'html',--}}
-			            {{--success: res => {--}}
-			            {{--},--}}
-			            {{--error: data => {--}}
-				            {{--wa.ajaxErrorMessage(data)--}}
-			            {{--}--}}
-		            {{--});--}}
-		            v.showNotification('Пользователь был подтверждён', 'success');
+		            v.showNotification('@lang('admin/confirmation.userConfirmed_js')', 'success');
 		            break;
                 default:
-                    console.log('success default');
+                    console.log('js_custom_validation.blade.php default switch state');
                     break;
             }
         },
