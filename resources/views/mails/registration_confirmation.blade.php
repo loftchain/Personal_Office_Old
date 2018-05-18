@@ -22,18 +22,6 @@
         max-width:480px !important;
         width:100% !important;
       }
-
-      .rightColumnContent{
-        font-size:16px !important;
-        line-height:125% !important;
-      }
-
-      .c-btn{
-        height: 25px;
-        width: 100px;
-        background: #440b3f;
-        color: #A3A3A3;
-      }
     }
   </style>
 </head>
@@ -44,10 +32,10 @@
     <tr>
       <td align="center" valign="top" width="50%" class="templateColumnContainer">
           <img src="https://leadrex.io/img/leadrex-logo.png" width="280" style="max-width:280px;" class="columnImage">
-          <h1 style="color: #A3A3A3;">Добро пожаловать в LeadRex</h1>
-          <p style="color: #A3A3A3;">Ваш аккаунт был успешно подтверждён</p>
+          <h1 style="color: #A3A3A3;">@lang('mails/mails.welcome')</h1>
+          <p style="color: #A3A3A3;">@lang('mails/mails.confirmed')</p>
           <a style="text-decoration: none; padding: 5px 15px; cursor: pointer; border-radius: 5px; background: #440b3f; color: #A3A3A3;" href="{{ env('APP_URL') }}">
-            Начать инвестирование
+            @lang('mails/mails.startInvesting')
           </a>
       </td>
     </tr>

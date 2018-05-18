@@ -96,7 +96,7 @@
 					$(`#${item.wallet[0]}`).prepend(td);
 				})
 			} else {
-				let noWalletMsg = '<h4 class="no-tx-yet-msg">По данному кошельку транзакций ещё нет</h4>';
+				let noWalletMsg = '<h4 class="no-tx-yet-msg">@lang("_home/tx.noTxOnThisWallet_js")</h4>';
 				$(`#${item.wallet[0]}`).append(noWalletMsg);
 			}
 		},
@@ -150,7 +150,7 @@
 					$(`#${item.wallet[0]}-mob`).prepend(mobSection);
 				});
 			} else {
-				let noWalletMsg = '<h4 class="no-tx-yet-msg">По данному кошельку транзакций ещё нет</h4>';
+				let noWalletMsg = '<h4 class="no-tx-yet-msg">@lang("_home/tx.noTxOnThisWallet_js")</h4>';
 				$(`#${item.wallet[0]}-mob`).append(noWalletMsg);
 			}
 		},
