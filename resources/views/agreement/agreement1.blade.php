@@ -2,36 +2,28 @@
 
 @section('content')
 <div class="a-body a1-body">
-    <p>@lang('home/agreement1.agreement_with_conditions_title')</p>
+    <p>@lang('agreement/agreement.a1Title_p')</p>
     <div class="a-container a1-container">
         <div class="a-container__crumbs a1-container__crumbs">
             <ul>
-                <li>@lang('home/agreement1.agreement_with_conditions')</li>
-                <li>@lang('home/agreement1.personal_information')</li>
-                <li>@lang('home/agreement1.pay_in')</li>
+                <li>@lang('agreement/agreement.crumbsConditions_li')</li>
+                <li>@lang('agreement/agreement.crumbsPersonal_li')</li>
+                <li>@lang('agreement/agreement.crumbsPay_li')</li>
             </ul>
         </div>
         <article>
-            {{--@lang('home/agreement1.readme_big_text')--}}
-            <b>Поздравляем с успешной регистрацией!</b> Для того, чтобы продолжить, пожалуйста, ознакомьтесь
-            с белой книгой и согласитесь с её условиями .дальнейшее развитие
-            различных форм деятельности
-            позволяет оценить значение систем массового участия. Идейные соображения высшего
-            порядка, а также дальнейшее развитие различных форм деятельности в значительной
-            степени обуславливает создание форм развития. Товарищи! укрепление и развитие
-            структуры влечет за собой процесс внедрения и модернизации форм развития.
+            @lang('agreement/agreement.congrats_article')
         </article>
         <a target="_blank" class="a1-container__wp" href="{{ 'files/wp_'.App::getLocale().'.pdf' }}">
             <img src="{{ asset('img/pdf.png') }}" alt="">
             <div>
-                <span class="title">@lang('app.white_book')</span>
-                <span class="name">Правила пользования.pdf</span>
+                <span class="title">@lang('agreement/agreement.whiteBook_span')</span>
             </div>
         </a>
         <form id="agreement1Form" class="a1-container__btns" method="POST" action="{{ route('goToAgreement2') }}">
             {{ csrf_field() }}
-            <button class="reusable-btn approve-btn" type="submit">@lang('home/agreement1.agreed_confirm')</button>
-            <a class="another-option-btn" href="{{ route('logout') }}">@lang('home/agreement1.other')</a>
+            <button class="reusable-btn approve-btn" type="submit">@lang('agreement/agreement.agreedConfirm_btn')</button>
+            <a class="another-option-btn" href="{{ route('logout') }}">@lang('agreement/agreement.other_a')</a>
         </form>
     </div>
 

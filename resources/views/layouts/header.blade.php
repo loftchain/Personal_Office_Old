@@ -5,10 +5,10 @@
         </div>
         <div class="header__links">
             <ul>
-                <li><a target="_blank" href="https://leadrex.io/#brain">Что такое Leadrex</a></li>
-                <li><a target="_blank" href="https://leadrex.io/#doc">Документация</a></li>
-                <li><a target="_blank" href="https://leadrex.io/#team">Команда</a></li>
-                <li><a target="_blank" href="https://leadrex.io/#map">Дорожная карта</a></li>
+                <li><a target="_blank" href="https://leadrex.io/#brain">@lang('layouts/header.link1_li')</a></li>
+                <li><a target="_blank" href="https://leadrex.io/#doc">@lang('layouts/header.link2_li')</a></li>
+                <li><a target="_blank" href="https://leadrex.io/#team">@lang('layouts/header.link3_li')</a></li>
+                <li><a target="_blank" href="https://leadrex.io/#map">@lang('layouts/header.link4_li')</a></li>
             </ul>
         </div>
         <div class="header__lang">

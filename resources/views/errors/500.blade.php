@@ -2,4 +2,5 @@
 
 @section('title', 'Error')
 
-@section('message', 'Whoops, looks like something went wrong. Code: 500')
+@section('message', __('errors/errors.500'))
+
