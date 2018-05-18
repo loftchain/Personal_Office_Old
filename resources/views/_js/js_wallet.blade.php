@@ -43,7 +43,7 @@
 						_this.val('');
 						break;
 					case wa.userConfirmed === '0':
-						v.showNotification('Пожалуйста дождитесь подтверждения от админимстратора. Вам на почту будет выслано письмо с подтверждением.');
+						v.showNotification('@lang('_home/wallet.waitAdmin_js')');
 						break;
 				}
 			});

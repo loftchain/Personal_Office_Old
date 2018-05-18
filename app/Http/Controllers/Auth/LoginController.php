@@ -43,11 +43,11 @@ class LoginController extends Controller
 		}
 
 		if (!$user) {
-			return response()->json(['failed' => __('auth.not_found')]);
+			return response()->json(['failed' => __('modals/modals.userNotFound_LoginController')]);
 		}
 
 		if (!$passwordIsVerified) {
-			return response()->json(['pwd_not_match' => __('controller/changeEmail.pwd_not_match')]);
+			return response()->json(['pwd_not_match' => __('modals/modals.PwdNotMatch_ChangePasswordController')]);
 		}
 
 		$this->guard()->login($user);

@@ -55,19 +55,18 @@ class ChangePasswordController extends Controller
 
 		if ($validator->fails()) {
 			return response()->json(['validation_error' => $validator->errors()]);
-
 		}
 
 		if (!$passwordIsVerified) {
-			return response()->json(['pwd_not_match' => Lang::get('controller/changeEmail.pwd_not_match')]);
+			return response()->json(['pwd_not_match' => Lang::get('modals/modals.PwdNotMatch_ChangePasswordController')]);
 		}
 
 		if ($input['email'] != $user->email && strlen($user->email) > 6) {
-			return response()->json(['not_your_email' => Lang::get('controller/changeEmail.not_yours')]);
+			return response()->json(['not_your_email' => Lang::get('modals/modals.NotYourEmail_ChangePasswordController')]);
 		}
 
 		if (trim(strtolower($input['password1'])) == trim(strtolower($input['password2']))) {
-			return response()->json(['not_equal' => Lang::get('controller/changePassword.not_equal')]);
+			return response()->json(['not_equal' => Lang::get('modals/modals.ShouldNotBeEqual_ChangePasswordController')]);
 		}
 
 		$request->user()->fill([
@@ -75,7 +74,7 @@ class ChangePasswordController extends Controller
 		])->save();
 
 		$this->change_pwd_history_make($input['password1'], $input['password2']);
-		return response()->json(['success_changed_pwd' => Lang::get('controller/changePassword.success')]);
+		return response()->json(['success_changed_pwd' => 'good']);
 	}
 }
 

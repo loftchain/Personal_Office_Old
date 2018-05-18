@@ -16,9 +16,7 @@
         </article>
         <a target="_blank" class="a1-container__wp" href="{{ 'files/wp_'.App::getLocale().'.pdf' }}">
             <img src="{{ asset('img/pdf.png') }}" alt="">
-            <div>
-                <span class="title">@lang('agreement/agreement.whiteBook_span')</span>
-            </div>
+            <span class="title">@lang('agreement/agreement.whiteBook_span')</span>
         </a>
         <form id="agreement1Form" class="a1-container__btns" method="POST" action="{{ route('goToAgreement2') }}">
             {{ csrf_field() }}

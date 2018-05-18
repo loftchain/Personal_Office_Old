@@ -30,7 +30,7 @@ trait SendsPasswordResetEmails
 		}
 
 		if (!$user){
-			return response()->json(['failed'=>trans('auth.not_found')]);
+			return response()->json(['failed'=> __('auth.not_found')]);
 		}
 
 		$response = $this->broker()->sendResetLink($request->only('email'));

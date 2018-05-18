@@ -80,10 +80,10 @@ class RegisterController extends Controller
 			$this->reg_history_make($user);
 		}
 		catch(\Exception $e){
-			Log::info('Something went wront while login this user.');
+			Log::info('Something went wrong while register this user.');
 		}
 
-		return response()->json(['success_register' => Lang::get('controller/register.pwd_sent')]);
+		return response()->json(['success_register' => 'good']);
 	}
 
 	protected function guard()

@@ -57,12 +57,13 @@ trait ResetsPasswords
 		}
 
 		if ($request['email'] != $request->session()->get('reset_password_email')) {
-			return response()->json(['reset_email_not_match' => 'reset email does not match']);
+			return response()->json(['reset_email_not_match' => __('auth/resetPwd.emailDontMatch_ResetPasswordsTrait')]);
 		}
 
 		if ($request['password'] != $request['password_confirmation']) {
-			return response()->json(['not_equal' => 'passwords are not equal']);
+			return response()->json(['not_equal' => __('auth/resetPwd.pwdNotEqual_ResetPasswordsTrait')]);
 		}
+
 		$old_password = $user->password;
 		$user->password = Hash::make($request['password']);
 		$user->setRememberToken(Str::random(60));

@@ -83,27 +83,18 @@
       @extend %fc;
       text-decoration: none;
 
-      div{
-        @extend %fcc;
-        align-items: flex-start;
-        width:250px;
-        margin-left: 30px;
-        color:  $white;
-
-        @media #{$mobile} {
-          width:auto;
-        }
-
-        .title{
-          font-weight: 700;
-        }
-
-        .name{
-          color: $gray1;
-        }
-
+      img{
+        margin-right: 20px;
       }
 
+      .title{
+        font-weight: 500;
+        color: $main4;
+
+        &:hover{
+          color: $main4;
+        }
+      }
     }
 
     &__crumbs{
