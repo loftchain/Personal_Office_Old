@@ -67,6 +67,16 @@
   }
 }
 .a1-body {
+  margin-top:0;
+  height: calc(100vh - 350px);
+
+  @media #{$mobile} {
+    height: calc(100vh - 200px);
+  }
+
+  @media #{$mobile545} {
+    height: auto;
+  }
 
   .a1-container {
     &__wp{
