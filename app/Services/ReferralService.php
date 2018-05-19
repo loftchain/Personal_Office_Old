@@ -81,9 +81,11 @@ class ReferralService
 			}
 			//----------------------token_sum---------------------
 			if(isset($referralData['stat'])){
-
+				Log::info($referralData['stat']);
 				foreach ($referralData['stat'] as $item) {
-					$total += $item['token_sum'];
+					if(isset($item['tokens'])) {
+						$total += $item['token_sum'];
+					}
 				}
 			}
 

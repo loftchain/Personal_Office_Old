@@ -21,6 +21,7 @@
     </section>
     @if(isset($data['referrals']['stat']))
         @foreach($data['referrals']['stat'] as $key => $refs)
+          @if(isset($refs['token_sum']))
             <section class="x-refs__section">
                 <div class="x-refs__section_el r-referral">
                     {{ $key }}
@@ -29,6 +30,7 @@
                     {{ $refs['token_sum'] }} {{ env('TOKEN_NAME') }}
                 </div>
             </section>
+          @endif
         @endforeach
     @endif
 

@@ -103,9 +103,6 @@ class HomeController extends Controller
 			return array_sum(func_get_args());
 		}, $data['btcCurrentAmount'], $data['ethCurrentAmount']);
 
-		Log::info($data['totalCryptoAmount']);
-		Log::info($data['ethCurrentAmount']);
-		Log::info($data['btcCurrentAmount']);
 		$data['stageInfo'] = $this->bonusService->getStageInfo();
 		$data['time'] = $time;
 		$data['authenticated'] = Auth::check();

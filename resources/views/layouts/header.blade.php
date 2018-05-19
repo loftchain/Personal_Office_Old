@@ -1,7 +1,9 @@
 <header>
     <section class="header">
         <div class="header__logo">
+          <a class="header__logo_link" href="https://leadrex.io/">
             <img src="https://leadrex.io/img/logo.svg" alt="Logo">
+          </a>
         </div>
         <div class="header__links">
             <ul>
