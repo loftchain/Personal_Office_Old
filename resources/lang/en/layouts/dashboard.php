@@ -1,14 +1,14 @@
-<?php
+﻿<?php
 
 return [
 		//registration_confirmation.blade
-		'loggedInAs' => 'Вы вошли как',
-		'сonfirmation' => 'Инфо(подтвердить)',
-		'referrals' => 'Реферралы',
+		'loggedInAs' => 'You are loged in as',
+		'сonfirmation' => 'Information(confirm)',
+		'referrals' => 'Referrals',
 		'ico' => 'ICO',
-		'myTx' => 'мои транзакции',
-		'myRefs' => 'мои рефералы',
-		'logOut' => 'Выход',
-		'changeEmail' => 'Изменить Email',
-		'changePassword' => 'Изменить пароль',
+		'myTx' => 'my transactions',
+		'myRefs' => 'people I referred',
+		'logOut' => 'Log out',
+		'changeEmail' => 'Change Email',
+		'changePassword' => 'Change password',
 ];

@@ -1,13 +1,13 @@
-<?php
+﻿<?php
 
 return [
-	'ref_article' => 'Наш smart-контракт предусматривает реферальную программу.
-        За каждую транзакцию пользователя, которого вы пригласите, вы будете получать бонус.
-        Все реферальные выплаты начнут производиться в течении 30 дней после завершения основных
-        этапов ICO на протяжении 3 месяцев равными долями.',
-	'referralBonus_span' => 'Реферальный бонус',
-	'refLink_label' => 'Ссылка на вашу реферальную программу:',
-	'refReferral_div' => 'Реферал',
-	'refBonus_div' => 'Бонус',
-	'total_div' => 'Итого:',
+	'ref_article' => 'Our smart contract includes a referral program.
+        You will receive a bonus for each transaction of a user you refer.
+        All referral payments will be made in no less than 30 days after the end of main
+        stages of the ICO for 3 month, in equal shares.',
+	'referralBonus_span' => 'Referral bonus',
+	'refLink_label' => 'Your referral link:',
+	'refReferral_div' => 'Referred person',
+	'refBonus_div' => 'Bonus',
+	'total_div' => 'Total:',
 ];

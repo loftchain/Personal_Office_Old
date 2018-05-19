@@ -1,7 +1,7 @@
-<?php
+﻿<?php
 
 return [
-	'signUp_a' => 'Регистрация ',
-	'signIn_a' => 'Вход',
-	'forgotPwd_a' => 'Забыли пароль?',
+	'signUp_a' => 'Registration ',
+	'signIn_a' => 'Log in',
+	'forgotPwd_a' => 'Forgot password?',
 ];

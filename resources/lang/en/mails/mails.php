@@ -1,8 +1,8 @@
-<?php
+﻿<?php
 
 return [
 	//registration_confirmation.blade
-	'welcome' => 'Добро пожаловать в личный кабинет инвестора',
-	'confirmed' => 'Ваш аккаунт был успешно подтверждён администрацией сайта',
-	'startInvesting' => 'Начать инвестирование',
+	'welcome' => 'Welcome to your investor`s personal cabinet',
+	'confirmed' => 'Your account was successfully confirmed by the administration',
+	'startInvesting' => 'Start investing',
 ];

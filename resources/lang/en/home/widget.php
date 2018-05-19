@@ -1,11 +1,11 @@
-<?php
+﻿<?php
 
 return [
-	'beforeEnd_js' => 'До конца ',
-	'beforeStart_js' => 'До начала ',
-	'crowdSaleFinished_js' => 'Распродажа закончена',
-	'currentlyCollected_js' => 'собрано',
-	'days_span' => 'дни',
-	'hours_span' => 'часы',
-	'minutes_span' => 'минуты',
+	'beforeEnd_js' => 'Until the end of ',
+	'beforeStart_js' => 'Until the start of ',
+	'crowdSaleFinished_js' => 'Sale closed',
+	'currentlyCollected_js' => 'raised',
+	'days_span' => 'days',
+	'hours_span' => 'hours',
+	'minutes_span' => 'minutes',
 ];

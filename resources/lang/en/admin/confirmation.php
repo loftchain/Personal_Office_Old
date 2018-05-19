@@ -1,19 +1,19 @@
-<?php
+﻿<?php
 
 return [
 
-	'registeredAt' => 'заре-ан в',
-	'name' => 'имя',
-	'address' => 'адресс',
-	'phone' => 'телефон',
-	'bDay' => 'др',
-	'nationality' => 'национальность',
-	'source' => 'источник<br>доходов',
-	'docs' => 'документы',
-	'confirmed' => 'подтверждён?',
-	'confirm_js' => 'подтвердить',
-	'returnToKYC_js' => 'вернуть на KYC',
-	'userConfirmed_js' => 'Пользователь был подтверждён',
-	'userCanceled_js' => 'Пользователь был сброшен до шага заполнения KYC',
+	'registeredAt' => 'registered at',
+	'name' => 'name',
+	'address' => 'address',
+	'phone' => 'phone',
+	'bDay' => 'DoB',
+	'nationality' => 'nationality',
+	'source' => 'source<br>of funds',
+	'docs' => 'ID',
+	'confirmed' => 'confirmed?',
+	'confirm_js' => 'confirm',
+	'returnToKYC_js' => 'return to KYC',
+	'userConfirmed_js' => 'The user was confirmed',
+	'userCanceled_js' => 'The user was returned to filling in KYC information',
 
 ];

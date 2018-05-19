@@ -1,14 +1,14 @@
-<?php
+﻿<?php
 
 return [
 
-  'resetPwd_title' => 'Восстановление пароля',
-  'resetPwdEmail_label' => 'Ваш Email',
-  'createNewPwd_label' => 'Придумайте новый пароль',
-  'confirmNewPassword_label' => 'Подтвердите новый пароль',
-  'confirmEnter_btn' => 'Подтвердить и войти',
-  'letterSent_js' => 'На Ваш адрес было отправлено письмо с дальнейшими инструкциями по восстановлению пароля.',
-  'emailDontMatch_ResetPasswordsTrait' => 'Email не совпадает с тем, на который было выслано письмо',
-  'pwdNotEqual_ResetPasswordsTrait' => 'Пароли должны быть одинаковыми',
+  'resetPwd_title' => 'Password reset',
+  'resetPwdEmail_label' => 'Your Email',
+  'createNewPwd_label' => 'Enter new password',
+  'confirmNewPassword_label' => 'Confirm new password',
+  'confirmEnter_btn' => 'Confirm and login',
+  'letterSent_js' => 'An email was sent to your address with instructions on how to reset your password.',
+  'emailDontMatch_ResetPasswordsTrait' => 'Email does not match the one a letter was sent to',
+  'pwdNotEqual_ResetPasswordsTrait' => 'Passwords don`t match',
 
 ];

@@ -1,8 +1,8 @@
-<?php
+﻿<?php
 
 return [
 
-	'wallet' => 'Кошелёк',
-	'token' => 'Токены',
+	'wallet' => 'Wallet',
+	'token' => 'Tokens',
 
 ];
