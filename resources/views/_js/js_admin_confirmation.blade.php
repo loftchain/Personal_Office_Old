@@ -51,11 +51,13 @@
 						if (user.confirmed === 0) {
 							$(`#cbc${index}`).append(sbmtBtn, rts2Btn);
 						}
-
-						user.doc_img_path.forEach((img, i) => {
-							let imgPath = `<a target="_blank" href="${img}">#${i + 1}</a>`;
-							$(`#docWrap${index}`).append(imgPath);
-						})
+						
+						if(user.doc_img_path){
+                user.doc_img_path.forEach((img, i) => {
+                    let imgPath = `<a target="_blank" href="${img}">#${i + 1}</a>`;
+                    $(`#docWrap${index}`).append(imgPath);
+                })
+            }
 					})
 				}
 				resolve(data);
