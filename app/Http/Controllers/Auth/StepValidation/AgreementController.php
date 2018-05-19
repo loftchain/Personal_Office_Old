@@ -118,11 +118,9 @@ class AgreementController extends Controller
 			$userPersonalField->save();
 		}
 
-
 		if(env('APP_ENV') != 'local'){
 			$this->send_registered_notification();
 		}
-
 		return response()->json(['goto3' => 'goto3']);
 
 	}
@@ -150,15 +148,14 @@ class AgreementController extends Controller
 			if ($userPersonalField === null) {
 				UserPersonalFields::create([
 					'user_id' => Auth::id(),
-					'doc_img_path' => [env('APP_URL') . '/uploads/' . $fileName]
+					'doc_img_path' => ['admin/getFile/' . $fileName]
 				]);
 			} else {
 				$docArr = $userPersonalField->doc_img_path;
-				$docArr[] = env('APP_URL') . '/uploads/' . $fileName;
+				$docArr[] = 'admin/getFile/' . $fileName;
 				$userPersonalField->doc_img_path = $docArr;
 				$userPersonalField->save();
 			}
-
 		}
 
 		echo '{"status":"error"}';

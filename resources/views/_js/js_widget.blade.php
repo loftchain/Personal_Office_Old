@@ -81,35 +81,35 @@
         setStage() {
             switch (true) {
                 case w.currentStage === 'pre_sale':
-                    w.currentStageTitle.text('{{ __('_home/widget.beforeEnd_js') }} pre-Sale');
+                    w.currentStageTitle.text('{{ __('home/widget.beforeEnd_js') }} pre-Sale');
                     w.diffStage = w.endDate_preSale - w._now;
                     w.setInnerWidth('pre_sale');
                     w.preProgressContainer.show();
                     w.icoProgressContainer.hide();
                     break;
                 case w.currentStage === 'pre_ico':
-                    w.currentStageTitle.text('{{ __('_home/widget.beforeEnd_js') }} pre-ICO');
+                    w.currentStageTitle.text('{{ __('home/widget.beforeEnd_js') }} pre-ICO');
                     w.diffStage = w.endDate_preIco - w._now;
                     w.setInnerWidth('pre_ico');
                     w.preProgressContainer.show();
                     w.icoProgressContainer.hide();
                     break;
                 case w.currentStage === 'ico1':
-                    w.currentStageTitle.text('{{ __('_home/widget.beforeEnd_js') }} ICO 1');
+                    w.currentStageTitle.text('{{ __('home/widget.beforeEnd_js') }} ICO 1');
                     w.diffStage = w.endDate_ico1 - w._now;
                     w.setInnerWidth('ico1');
                     w.preProgressContainer.hide();
                     w.icoProgressContainer.show();
                     break;
                 case w.currentStage === 'ico2':
-                    w.currentStageTitle.text('{{ __('_home/widget.beforeEnd_js') }} ICO 2');
+                    w.currentStageTitle.text('{{ __('home/widget.beforeEnd_js') }} ICO 2');
                     w.diffStage = w.endDate_ico2 - w._now;
                     w.setInnerWidth('ico2');
                     w.preProgressContainer.hide();
                     w.icoProgressContainer.show();
                     break;
                 case w.currentStage === 'ico3':
-                    w.currentStageTitle.text('{{ __('_home/widget.beforeEnd_js') }} ICO 3');
+                    w.currentStageTitle.text('{{ __('home/widget.beforeEnd_js') }} ICO 3');
                     w.diffStage = w.endDate_ico3 - w._now;
                     w.setInnerWidth('ico3');
                     w.preProgressContainer.hide();
@@ -117,35 +117,35 @@
                     break;
                 //------------------------------------------------------------------------------
                 case w.nextStage === 'pre_sale':
-                    w.currentStageTitle.text('{{ __('_home/widget.beforeStart_js') }} pre-Sale');
+                    w.currentStageTitle.text('{{ __('home/widget.beforeStart_js') }} pre-Sale');
                     w.diffStage = w.startDate_preSale - w._now;
                     w.setInnerWidth('pre_sale_next');
                     w.preProgressContainer.show();
                     w.icoProgressContainer.hide();
                     break;
                 case w.nextStage === 'pre_ico':
-                    w.currentStageTitle.text('{{ __('_home/widget.beforeStart_js') }} pre-ICO');
+                    w.currentStageTitle.text('{{ __('home/widget.beforeStart_js') }} pre-ICO');
                     w.diffStage = w.startDate_preIco - w._now;
                     w.setInnerWidth('pre_ico_next');
                     w.preProgressContainer.show();
                     w.icoProgressContainer.hide();
                     break;
                 case w.nextStage === 'ico1':
-                    w.currentStageTitle.text('{{ __('_home/widget.beforeStart_js') }} ICO 1');
+                    w.currentStageTitle.text('{{ __('home/widget.beforeStart_js') }} ICO 1');
                     w.diffStage = w.startDate_ico1 - w._now;
                     w.setInnerWidth('ico1_next');
                     w.preProgressContainer.hide();
                     w.icoProgressContainer.show();
                     break;
                 case w.nextStage === 'ico2':
-                    w.currentStageTitle.text('{{ __('_home/widget.beforeStart_js') }} ICO 2');
+                    w.currentStageTitle.text('{{ __('home/widget.beforeStart_js') }} ICO 2');
                     w.diffStage = w.startDate_ico2 - w._now;
                     w.setInnerWidth('ico2_next');
                     w.preProgressContainer.hide();
                     w.icoProgressContainer.show();
                     break;
                 case w.nextStage === 'ico3':
-                    w.currentStageTitle.text('{{ __('_home/widget.beforeStart_js') }} ICO 3');
+                    w.currentStageTitle.text('{{ __('home/widget.beforeStart_js') }} ICO 3');
                     w.diffStage = w.startDate_ico3 - w._now;
                     w.setInnerWidth('ico3_next');
                     w.preProgressContainer.hide();
@@ -154,7 +154,7 @@
                 case w.currentStage === 'finish':
                     w.diffStage = 0;
                     w.setInnerWidth('finish');
-                    w.currentStageTitle.text('{{ __('_home/widget.crowdSaleFinished_js') }}');
+                    w.currentStageTitle.text('{{ __('home/widget.crowdSaleFinished_js') }}');
                     w.preProgressContainer.hide();
                     w.icoProgressContainer.hide();
                     break;
@@ -313,7 +313,7 @@
         },
 
         setCapTexts() {
-            w.currentlyCollectedSpan_ETH.text(parseFloat(w.totalCryptoAmountETH).toFixed(2) + ' ETH ({{ __('_home/widget.currentlyCollected_js') }})');
+            w.currentlyCollectedSpan_ETH.text(parseFloat(w.totalCryptoAmountETH).toFixed(2) + ' ETH ({{ __('home/widget.currentlyCollected_js') }})');
             w.softCapSpan_ETH.text(w.softCapETH + ' ETH (soft cap) ');
             w.hardCapSpan_ETH.text(w.hardCapETH + ' ETH (hard cap)');
         },

@@ -52,15 +52,15 @@
           <div class="c c2">
               <div class="d d1">
                   <span class="t js__dd">12</span>
-                  <span class="d__name js__dd-name">@lang('_home/widget.days_span')</span>
+                  <span class="d__name js__dd-name">@lang('home/widget.days_span')</span>
               </div>
               <div class="d d2">
                   <span class="t js__hh">18</span>
-                  <span class="d__name js__hh-name">@lang('_home/widget.hours_span')</span>
+                  <span class="d__name js__hh-name">@lang('home/widget.hours_span')</span>
               </div>
               <div class="d d3">
                   <span class="t js__mm">59</span>
-                  <span class="d__name js__mm-name">@lang('_home/widget.minutes_span')</span>
+                  <span class="d__name js__mm-name">@lang('home/widget.minutes_span')</span>
               </div>
           </div>
         </div>

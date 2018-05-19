@@ -77,4 +77,5 @@ Route::group(['middleware' =>  ['admin']], function(){
 	Route::get('/admin/return_to_step2/{user_id}', 'Admin\AdminController@return_to_step2')->name('return_to_step2');
 	Route::get('/admin/confirm_view/{data}', 'Admin\AdminController@confirm_view')->name('confirm_view');
 	Route::get('/admin/get_user_info', 'Admin\AdminController@get_user_info')->name('get_user_info');
+	Route::get('/admin/getFile/{fileName}', 'Admin\AdminController@getFile')->name('getFile');
 });

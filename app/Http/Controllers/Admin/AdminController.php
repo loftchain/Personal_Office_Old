@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -57,6 +58,11 @@ class AdminController extends Controller
 		$user->save();
 		Mail::to($user->email)->send(new ReturnToStep2());
 		return response()->json(['returned_to_step2' => 'returned_to_step2']);
+	}
+
+	public function getFile($fileName)
+	{
+		return Storage::download('uploads/'. $fileName);
 	}
 
 	public function confirm_view($data)

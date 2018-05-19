@@ -43,7 +43,7 @@
 						_this.val('');
 						break;
 					case wa.userConfirmed === '0':
-						v.showNotification('@lang('_home/wallet.waitAdmin_js')');
+						v.showNotification('@lang('home/wallet.waitAdmin_js')');
 						break;
 				}
 			});

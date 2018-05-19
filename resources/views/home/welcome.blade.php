@@ -5,15 +5,15 @@
     <main class="w-container">
       <div class="w-container-signUp">
         <a type="button" class="x-register-link" data-toggle="modal" data-target="#m-signUp">
-          @lang('_home/welcome.signUp_a')
+          @lang('home/welcome.signUp_a')
         </a>
       </div>
       <div class="w-container-signIn">
         <a type="button" class="x-login-link" data-toggle="modal" data-target="#m-signIn">
-          @lang('_home/welcome.sign_in')
+          @lang('home/welcome.signIn_a')
         </a>
         <a type="button" class="x-forgot-link" data-toggle="modal" data-target="#m-forgot">
-          @lang('_home/welcome.forgot_pwd')
+          @lang('home/welcome.forgotPwd_a')
         </a>
       </div>
     </main>

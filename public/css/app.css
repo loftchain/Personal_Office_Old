@@ -100,6 +100,7 @@
           align-items: center;
 }
 
+.a-wrapper section .a-confirm-btn,
 .x-dashboard__info,
 .x-dashboard__options,
 .x-dashboard__guest .right-box,
@@ -10235,7 +10236,7 @@ button.close {
 }
 
 .a-wrapper section .a-registered-at {
-  width: 90px;
+  width: 70px;
   font-size: 12px;
 }
 
@@ -10292,14 +10293,19 @@ button.close {
 .a-wrapper section .a-confirm-btn {
   border: transparent !important;
   margin-left: 10px;
+  font-size: 10px;
 }
 
 .a-wrapper section .a-confirm-btn button {
   border: transparent !important;
-  word-break: break-all;
+  white-space: nowrap;
   margin-right: 2px;
   background: #4b4b4b;
   color: white;
+}
+
+.a-wrapper section .a-confirm-btn button:first-child {
+  margin-bottom: 3px;
 }
 
 .a-wrapper section .a-confirm-btn .confirm-user-btn:hover {
@@ -10319,7 +10325,7 @@ button.close {
 .a-wrapper__header_el {
   text-align: center;
   font-weight: 500;
-  font-size: 14px !important;
+  font-size: 12px !important;
   background: #adabab;
   color: white;
 }
@@ -10328,6 +10334,14 @@ button.close {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+}
+
+.a-confirmed1 {
+  color: #27ae60;
+}
+
+.a-confirmed0 {
+  color: #CF0032;
 }
 
 .r-wrapper {

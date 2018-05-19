@@ -24,7 +24,7 @@
     }
 
     .a-registered-at{
-      width: 90px;
+      width: 70px;
       font-size: 12px;
     }
 
@@ -80,15 +80,22 @@
     }
 
     .a-confirm-btn{
+      @extend %fcc;
       border: transparent!important;
       margin-left: 10px;
+      font-size: 10px;
+
 
       button{
         border: transparent!important;
-        word-break: break-all;
+        white-space: nowrap;
         margin-right: 2px;
         background: $gray2;
         color: white;
+
+        &:first-child{
+          margin-bottom: 3px;
+        }
       }
 
       .confirm-user-btn{
@@ -103,22 +110,18 @@
         }
       }
     }
-
-
   }
 
   &__header {
     @extend %fsb;
     justify-content: flex-start;
 
-
     &_el {
       text-align: center;
       font-weight: 500;
-      font-size: 14px!important;
+      font-size: 12px!important;
       background: $gray6;
       color: white;
-
     }
   }
 
@@ -128,7 +131,14 @@
 
     &_el {
 
-
     }
   }
+}
+
+.a-confirmed1{
+  color: $status-green;
+}
+
+.a-confirmed0{
+  color: $status-red;
 }
