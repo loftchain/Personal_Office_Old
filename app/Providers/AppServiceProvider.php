@@ -20,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
     {
         if (env('APP_ENV') != 'local') {
             error_reporting(0);
+		        ini_set('display_errors', 0);
+		        ini_set('display_startup_errors', 0);
         }
 
       Schema::defaultStringLength(191);

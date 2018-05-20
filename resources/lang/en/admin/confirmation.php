@@ -15,5 +15,6 @@ return [
 	'returnToKYC_js' => 'return to KYC',
 	'userConfirmed_js' => 'The user was confirmed',
 	'userCanceled_js' => 'The user was returned to filling in KYC information',
-
+	'yes' => 'Yes',
+	'no' => 'No',
 ];
