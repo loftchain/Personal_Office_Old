@@ -8,4 +8,5 @@ return [
 	'days_span' => 'дни',
 	'hours_span' => 'часы',
 	'minutes_span' => 'минуты',
+	'raised' => 'Внесено',
 ];

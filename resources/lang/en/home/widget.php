@@ -8,4 +8,5 @@ return [
 	'days_span' => 'days',
 	'hours_span' => 'hours',
 	'minutes_span' => 'minutes',
+	'raised' => 'raised',
 ];

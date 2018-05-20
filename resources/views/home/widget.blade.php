@@ -66,7 +66,7 @@
         </div>
 </div>
     <div class="widget-part x-widget__bot">
-        <p>внесено:</p>
+        <p>@lang('home/widget.raised')</p>
         <div class="control-container">
             <div class="c c1">
                 <div class="x-progress">

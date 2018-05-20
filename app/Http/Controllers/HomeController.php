@@ -92,13 +92,6 @@ class HomeController extends Controller
 
 		$data['btcCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('BTC', 'BTC/ETH');
 		$data['ethCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('ETH', 'ETH/USD');
-
-//----------------------------------------------------
-		$data['ethCurrentAmount']['currency'] = 0;
-		$data['ethCurrentAmount']['eth'] = 0;
-		$data['btcCurrentAmount']['currency'] = 0;
-		$data['btcCurrentAmount']['eth'] = 0;
-		//TODO: set real wallets, and delete this
 		$data['totalCryptoAmount'] = array_map(function () {
 			return array_sum(func_get_args());
 		}, $data['btcCurrentAmount'], $data['ethCurrentAmount']);
