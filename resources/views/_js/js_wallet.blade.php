@@ -33,6 +33,9 @@
 
 			addBtn.click(() => {
 				switch (true) {
+          case Date.now() < w.startDate_preSale * 1000:
+              v.showNotification('@lang('home/wallet.waitUntilStart_js')');
+              break;
 					case wa.userConfirmed === '1' && wa.userAuthenticated === '1':
 						_this.prop('disabled', false);
 						setTimeout(() => {
@@ -45,6 +48,7 @@
 					case wa.userConfirmed === '0':
 						v.showNotification('@lang('home/wallet.waitAdmin_js')');
 						break;
+
 				}
 			});
 
