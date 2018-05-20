@@ -2,8 +2,8 @@
 
 return [
 	//1
-	'a1Title_p' => 'I agree to the conditions of the white paper',
-	'crumbsConditions_li' => 'Agree to the conditions',
+	'a1Title_p' => 'Conditions of the white paper',
+	'crumbsConditions_li' => 'White paper conditions',
 	'crumbsPersonal_li' => 'Personal information',
 	'crumbsPay_li' => 'Payment in BTC/ETH, tokens',
 	'congrats_article' => '<b>Congratulations on successful registration!</b> To continue, please read the white paper and agree to the proposed conditions.',

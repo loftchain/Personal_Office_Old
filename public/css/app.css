@@ -12070,17 +12070,12 @@ button.close {
 .a1-body {
   margin-top: 0;
   height: calc(100vh - 350px);
+  min-height: 418px;
 }
 
 @media (max-width: 768px) {
   .a1-body {
     height: calc(100vh - 200px);
-  }
-}
-
-@media (max-width: 545px) {
-  .a1-body {
-    height: auto;
   }
 }
 
@@ -12383,6 +12378,7 @@ button.close {
 .reset-body {
   color: #A3A3A3;
   height: calc(100vh - 350px);
+  min-height: 768px;
 }
 
 @media (max-width: 768px) {
