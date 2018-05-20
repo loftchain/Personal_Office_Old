@@ -70,7 +70,7 @@ class ReferralService
 						$transactions = Transactions::where('from', $item['wallet'])->get();
 						foreach ($transactions as $txs) {
 							if ($txs->status === 'true') {
-								$referralData['stat'][$mr['email']]['tokens'][] = $txs['amount_tokens'];
+								$referralData['stat'][$mr['email']]['tokens'][] = $txs['amount_tokens'] * 0.05;  //5%
 								$token_sum = array_sum($referralData['stat'][$mr['email']]['tokens']);
 								$referralData['stat'][$mr['email']]['token_sum'] = $token_sum;
 							}
@@ -81,7 +81,6 @@ class ReferralService
 			}
 			//----------------------token_sum---------------------
 			if(isset($referralData['stat'])){
-				Log::info($referralData['stat']);
 				foreach ($referralData['stat'] as $item) {
 					if(isset($item['tokens'])) {
 						$total += $item['token_sum'];
