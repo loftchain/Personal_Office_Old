@@ -42,7 +42,6 @@ class WidgetService
 
 	public function calcCurrentCryptoAmount($currency, $pair)
 	{
-
 		$tx = $this->getTx();
 		$amountCurrency = 0;
 		$amountUsd = 0;
@@ -56,10 +55,7 @@ class WidgetService
 		}
 
 		$amountETH = ($currency == 'ETH') ? $amountCurrency : $amountCurrency * $this->getCurrencyByPair($pair);
-
 		$amountToken = $amountETH * $stageInfo['tokenPriceInETH'];
 		return ['currency' => $amountCurrency, 'eth' => $amountETH, 'token' => $amountToken];
-
 	}
-
 }

@@ -1,8 +1,10 @@
+<?php $myTokens = app('App\Services\WalletService')->getMyTokens() ?>
+
 <section class="x-dashboard {{ Auth::check() ? 'auth' : 'guest' }}">
     @if (Auth::check())
         <div class="x-dashboard__info">
             <span class="x-dashboard__info_who"> @lang('layouts/dashboard.loggedInAs'): {{ obfuscate_email(Auth::user()->email) }}</span>
-            <span class="x-dashboard__info_tokens">0 {{ env('TOKEN_NAME') }}</span>
+            <span class="x-dashboard__info_tokens">{{ $myTokens }} {{ env('TOKEN_NAME') }}</span>
         </div>
         <div class="x-dashboard__tabs">
             <ul class="nav nav-tabs">
