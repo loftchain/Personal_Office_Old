@@ -10,22 +10,12 @@
 <script src="{{ asset('js/jquery.ui.widget.js') }}"></script>
 @include('_js.js_loader_cloak')
 
-
-@if(\Illuminate\Support\Facades\Route::current()->getName() == 'home'
- OR \Illuminate\Support\Facades\Route::current()->getName() == 'welcome')
-    @include('_js.js_widget')
-@endif
-
-
 @if(isset($data) && \Illuminate\Support\Facades\Route::current()->getName() == 'home')
+    @include('_js.js_widget')
     @include('_js.js_wallet')
     @include('_js.js_transaction')
     @include('_js.js_admin_confirmation')
-    @if(\Illuminate\Support\Facades\Auth::check())
-
-    @endif
 @endif
 @include('_js.js_custom_validation')
-
 @include('_js.js_agreement2')
 @include('_js.js_referrals')
