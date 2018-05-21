@@ -25,7 +25,7 @@ class AdminController extends Controller
 	}
 
 	public function get_user_info(){
-		$usersPersonal = UserPersonalFields::where('user_id', '!=', Auth::id())->get();
+		$usersPersonal = UserPersonalFields::where('user_id', '!=', Auth::id())->orderBy('id', 'desc')->get();
 		$users = [];
 		foreach ($usersPersonal as $up) {
 			$_user = User::find($up->user_id);
