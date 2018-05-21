@@ -127,7 +127,6 @@ class AgreementController extends Controller
 
 	public function store_documents()
 	{
-		$user = User::find(Auth::id());
 		$allowed = array('png', 'jpg', 'jpeg', 'svg', 'gif', 'pdf', 'zip', 'rar');
 		if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
 
@@ -138,7 +137,7 @@ class AgreementController extends Controller
 				return;
 			}
 
-			$fileName = time() . '-' . $user->email . '-' . $_FILES['upl']['name'];
+			$fileName = time() . '-id=' . Auth::id().'-.'.$extension;
 
 			if (move_uploaded_file($_FILES['upl']['tmp_name'], env('UPLOAD_PATH') . $fileName)) {
 				echo '{"status":"success"}';
