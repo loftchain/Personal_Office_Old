@@ -13,7 +13,7 @@
     <p class="the-one-wallet"> @lang('home/wallet.singleWallet_p') {{ $currency }}: </p>
     <div class="pay-to-us-wallet">
         {{--<img--}}
-                {{--src="{{ asset('img/qr.png') }}"--}}
+                {{--src="{{ asset('img/'. env('HOME_WALLET_'.$currency) .'.jpg') }}"--}}
                 {{--alt="QR"--}}
                 {{--class="QR-code">--}}
         <span class="wallet-name">{{ $stageInfo['wallet'.$currency] }}</span>
