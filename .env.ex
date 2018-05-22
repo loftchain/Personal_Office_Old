@@ -148,6 +148,7 @@ ICO_BONUS4=20                   # %
 #----------------IPS------------------------
 
 SELF_API_URL=http://127.0.0.1:8001/
-OWNER_ID=1
-TOKEN_CAP=1422000
-USD_CAP=1000000
+OWNER_ID=2
+
+npm install -g vue-generate-component
+
