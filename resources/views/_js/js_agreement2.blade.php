@@ -32,7 +32,6 @@
 				// Append the file name and file size
 				let fileName = (data.files[0].name.length < 15) ? data.files[0].name : data.files[0].name.trunc(15);
 
-				console.log(fileName);
 				tpl.find('p').text(fileName)
 					.append('<i>' + formatFileSize(data.files[0].size) + '</i>');
 

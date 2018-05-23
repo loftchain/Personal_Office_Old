@@ -71,6 +71,7 @@ class AgreementController extends Controller
 		$send_obg = [
 			'user_id' => '**user_id: **' . $user['id'],
 			'email' => '**email: **' . $user['email'],
+			'ip' => '**IP: **'.$_SERVER['REMOTE_ADDR'],
 			'**-----------------------------------------------------------------------------------------------------------**',
 		];
 
