@@ -14,9 +14,8 @@
 
 	$(document).ready(() => {
 		r.refCopy.click(() => {
-			console.log(r.refLinkInput);
 			r.copyToClipboard();
-			$.notify('Ссылка скопирована', 'success');
+			$.notify('{{ __('home/refs.linkCopied_js') }}', 'success');
 			r.refLinkInput.focus();
 			r.refLinkInput.select();
 		});

@@ -12,10 +12,11 @@
     </ul>
     <p class="the-one-wallet"> @lang('home/wallet.singleWallet_p') {{ $currency }}: </p>
     <div class="pay-to-us-wallet">
-        {{--<img--}}
-                {{--src="{{ asset('img/'. env('HOME_WALLET_'.$currency) .'.jpg') }}"--}}
-                {{--alt="QR"--}}
-                {{--class="QR-code">--}}
+        <img
+                src="{{ asset('img/'. env('HOME_WALLET_'.$currency) .'.gif') }}"
+                alt="QR"
+                class="QR-code">
         <span class="wallet-name">{{ $stageInfo['wallet'.$currency] }}</span>
+        <img data-currency="{{ $currency }}" class="w-copy-click w-copy-click-{{ $currency }}" src="{{ asset('img/wallet-copy.png') }}" alt="copy">
     </div>
 </div>

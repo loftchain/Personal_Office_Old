@@ -10,4 +10,5 @@ return [
 	'refReferral_div' => 'Referred person',
 	'refBonus_div' => 'Bonus',
 	'total_div' => 'Total:',
+	'linkCopied_js' => 'The link was copied to the clipboard',
 ];

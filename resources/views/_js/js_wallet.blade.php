@@ -15,6 +15,16 @@
         wInput: $('.w-input'),
         errorMessage: $('.error-message'),
 
+        copyToClipboard(_this) {
+            let parent = _this.parent();
+            let walletName = parent.children('.wallet-name');
+            let $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val(walletName.text()).select();
+            document.execCommand("copy");
+            $temp.remove();
+        },
+
         ajaxErrorMessage(data) {
             console.log(`Error: Something wrong with ajax call ${data.errors}`);
         },
@@ -142,7 +152,6 @@
     //--------------------------------------
 
     $(document).ready(() => {
-
         wa.wInput.each(function () {
             wa.editMode($(this));
 
@@ -156,5 +165,18 @@
                 wa.switchCheckBox($(this));
             })
         });
+
+        setTimeout(() => {
+            wa.wCopyImg = $('.w-copy-click');
+            
+            wa.wCopyImg.each(function(){
+               $(this).click(() => {
+                    wa.copyToClipboard($(this));
+                    $.notify('{{ __('home/wallet.walletCopied_js') }}', 'success');
+                });
+            });
+
+
+        }, 3000);
     });
 </script>

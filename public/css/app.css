@@ -11388,13 +11388,13 @@ button.close {
   }
 }
 
-.x-wallets__text .pay-to-us-wallet img {
-  width: 50px;
-  height: 50px;
+.x-wallets__text .pay-to-us-wallet .QR-code {
+  width: 75px;
+  height: 75px;
 }
 
 @media (max-width: 545px) {
-  .x-wallets__text .pay-to-us-wallet img {
+  .x-wallets__text .pay-to-us-wallet .QR-code {
     margin-bottom: 10px;
   }
 }
@@ -11412,6 +11412,11 @@ button.close {
   margin-bottom: 0;
   word-break: break-all;
   text-align: center;
+}
+
+.x-wallets__text .pay-to-us-wallet .w-copy-click {
+  margin-left: 10px;
+  cursor: pointer;
 }
 
 .x-refs {

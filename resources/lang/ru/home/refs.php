@@ -10,4 +10,5 @@ return [
 	'refReferral_div' => 'Реферал',
 	'refBonus_div' => 'Бонус',
 	'total_div' => 'Итого:',
+	'linkCopied_js' => 'Ссылка скопирована в буфер обмена',
 ];

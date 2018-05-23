@@ -20,4 +20,5 @@ return [
 	'waitUntilStart_js' => 'Please wait until crowdsale starts',
 	'added_js' => 'Wallet added',
 	'edited_js' => 'Wallet changed',
+	'walletCopied_js' => 'The wallet was copied to the clipboard',
 ];
