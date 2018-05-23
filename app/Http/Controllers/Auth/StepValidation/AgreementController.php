@@ -71,7 +71,7 @@ class AgreementController extends Controller
 		$send_obg = [
 			'user_id' => '**user_id: **' . $user['id'],
 			'email' => '**email: **' . $user['email'],
-			'ip' => '**IP: **'.$_SERVER['REMOTE_ADDR'],
+			'ip' => '**IP: **' . $_SERVER['REMOTE_ADDR'],
 			'**-----------------------------------------------------------------------------------------------------------**',
 		];
 
@@ -91,9 +91,6 @@ class AgreementController extends Controller
 
 	public function store_personal_data(Request $request)
 	{
-		$user = User::find(Auth::id());
-		$userPersonalField = UserPersonalFields::where('user_id', Auth::id())->first();
-
 		$input = $request->all();
 		$validator = $this->validator($input);
 
@@ -101,29 +98,25 @@ class AgreementController extends Controller
 			return response()->json(['validation_error' => $validator->errors()]);
 		}
 
-		if ($userPersonalField === null) {
-			$this->create($input)->toArray();
-			$user->valid_step = 3;
-			$user->valid_at = Carbon::now();
-			$user->save();
-		} else {
-			$userPersonalField->name_surname = $request['name_surname'];
-			$userPersonalField->permanent_address = $request['permanent_address'];
-			$userPersonalField->contact_number = $request['contact_number'];
-			$userPersonalField->date_place_birth = $request['date_place_birth'];
-			$userPersonalField->nationality = $request['nationality'];
-			$userPersonalField->source_of_funds = $request['source_of_funds'];
-			$user->valid_step = 3;
-			$user->valid_at = Carbon::now();
-			$user->save();
-			$userPersonalField->save();
-		}
+		$userPersonalField = UserPersonalFields::where('user_id', Auth::id())->first();
+		$userPersonalField->name_surname = $request['name_surname'];
+		$userPersonalField->permanent_address = $request['permanent_address'];
+		$userPersonalField->telegram = $request['telegram'];
+		$userPersonalField->emergency_email = $request['emergency_email'];
+		$userPersonalField->contact_number = $request['contact_number'];
+		$userPersonalField->date_place_birth = $request['date_place_birth'];
+		$userPersonalField->nationality = $request['nationality'];
+		$userPersonalField->source_of_funds = $request['source_of_funds'];
+		$user = User::find(Auth::id());
+		$user->valid_step = 3;
+		$user->valid_at = Carbon::now();
+		$user->save();
+		$userPersonalField->save();
 
-		if(env('APP_ENV') != 'local'){
+		if (env('APP_ENV') != 'local') {
 			$this->send_registered_notification();
 		}
 		return response()->json(['goto3' => 'goto3']);
-
 	}
 
 	public function store_documents()
@@ -132,14 +125,12 @@ class AgreementController extends Controller
 		if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
 
 			$extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
-
 			if (!in_array(strtolower($extension), $allowed)) {
 				echo '{"status":"error"}';
 				return;
 			}
 
-			$fileName = time() . '-id=' . Auth::id().'-.'.$extension;
-
+			$fileName = time() . '-id=' . Auth::id() . '-.' . $extension;
 			if (move_uploaded_file($_FILES['upl']['tmp_name'], env('UPLOAD_PATH') . $fileName)) {
 				echo '{"status":"success"}';
 			}
