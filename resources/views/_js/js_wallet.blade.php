@@ -165,18 +165,18 @@
                 wa.switchCheckBox($(this));
             })
         });
-
-        setTimeout(() => {
-            wa.wCopyImg = $('.w-copy-click');
-            
-            wa.wCopyImg.each(function(){
-               $(this).click(() => {
-                    wa.copyToClipboard($(this));
-                    $.notify('{{ __('home/wallet.walletCopied_js') }}', 'success');
-                });
-            });
-
-
-        }, 3000);
     });
+
+    $(window).on('load', () => {
+        wa.wCopyImg = $('.w-copy-click');
+
+        wa.wCopyImg.each(function(){
+            $(this).click(() => {
+                wa.copyToClipboard($(this));
+                $.notify('{{ __('home/wallet.walletCopied_js') }}', 'success');
+            });
+        });
+    });
+
+
 </script>
