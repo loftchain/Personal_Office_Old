@@ -19,3 +19,4 @@
 @include('_js.js_custom_validation')
 @include('_js.js_agreement2')
 @include('_js.js_referrals')
+@include('_js.js_jivochat')
