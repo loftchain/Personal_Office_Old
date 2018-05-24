@@ -49,8 +49,10 @@ class WidgetService
 		$stageInfo = $this->bonusService->getStageInfo();
 
 		foreach ($tx as $t) {
-			if ($t->currency == $currency) {
-				$amountCurrency += $t->amount;
+			if($t->status == 'true'){
+				if ($t->currency == $currency) {
+					$amountCurrency += $t->amount;
+				}
 			}
 		}
 
