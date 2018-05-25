@@ -33,6 +33,7 @@
         btcCurrentAmountToken: ('{{ $data['btcCurrentAmount']['token'] }}'),
         totalCryptoAmountETH: ('{{ $data['totalCryptoAmount'][1] }}'),
         totalCryptoAmountToken: ('{{ $data['totalCryptoAmount'][2] }}'),
+        totalCryptoAmountUSD: ('{{ $data['totalCryptoAmountUSD'] }}'),
 
         currentStageTitle: $('.js__stage-name-title'),
 
@@ -74,6 +75,8 @@
         currencyName0: $('.n0'),
         currencyValue1: $('.a1'),
         currencyName1: $('.n1'),
+        currencyValue2: $('.a2'),
+        currencyName2: $('.n2'),
 
         preProgressContainer: $('.c1-0'),
         icoProgressContainer: $('.c1-1'),
@@ -313,7 +316,11 @@
         },
 
         setCapTexts() {
-            w.currentlyCollectedSpan_ETH.text(parseFloat(w.totalCryptoAmountETH).toFixed(2) + ' ETH ({{ __('home/widget.currentlyCollected_js') }})');
+            let totalCryptoAmount_eth = +(parseFloat(w.totalCryptoAmountETH).toFixed(2));
+            let totalFiatAmount_eth = +(parseFloat(w.totalCryptoAmountUSD).toFixed(2));
+            let total_eth = +(totalCryptoAmount_eth + totalFiatAmount_eth);
+
+            w.currentlyCollectedSpan_ETH.text(total_eth + ' ETH ({{ __('home/widget.currentlyCollected_js') }})');
             w.softCapSpan_ETH.text(w.softCapETH + ' ETH (soft cap) ');
             w.hardCapSpan_ETH.text(w.hardCapETH + ' ETH (hard cap)');
         },
@@ -326,7 +333,11 @@
         },
 
         setCapProgressWidth() {
-            let percent = Math.ceil((w.totalCryptoAmountETH) * 100 / parseInt(w.hardCapETH));
+            let totalCryptoAmount_eth = +(parseFloat(w.totalCryptoAmountETH).toFixed(2));
+            let totalFiatAmount_eth = +(parseFloat(w.totalCryptoAmountUSD).toFixed(2));
+            let total_eth = +(totalCryptoAmount_eth + totalFiatAmount_eth);
+
+            let percent = Math.ceil(total_eth * 100 / parseInt(w.hardCapETH));
             w.totalInnerPercents.text(percent + ' %');
             w.totalInnerProgress.css('width', percent + '%');
         },

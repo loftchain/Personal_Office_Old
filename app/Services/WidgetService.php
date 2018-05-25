@@ -48,6 +48,7 @@ class WidgetService
 		$amountToken = 0;
 		$stageInfo = $this->bonusService->getStageInfo();
 
+
 		foreach ($tx as $t) {
 			if($t->status == 'true'){
 				if ($t->currency == $currency) {
@@ -59,5 +60,11 @@ class WidgetService
 		$amountETH = ($currency == 'ETH') ? $amountCurrency : $amountCurrency * $this->getCurrencyByPair($pair);
 		$amountToken = $amountETH * $stageInfo['tokenPriceInETH'];
 		return ['currency' => $amountCurrency, 'eth' => $amountETH, 'token' => $amountToken];
+	}
+
+	public function recountFiatToETH(){
+		$ethUsd = $this->getCurrencyByPair('ETH/USD');
+		$convertedValue = env('INVESTED_IN_USD') / $ethUsd;
+		return $convertedValue;
 	}
 }

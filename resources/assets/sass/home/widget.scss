@@ -79,12 +79,12 @@
 
       .c1-0 {
         @media #{$desktop} {
-          width: 86%;
+          width: 92%;
         }
       }
 
       .c2{
-        width: 30%;
+        width: 35%;
         @extend %fsb;
 
         @media #{$mobile} {
@@ -98,7 +98,7 @@
     .control-container{
 
       &__periods{
-        width: 70%;
+        width: 65%;
 
         .c1 {
           &__progress_pre-sale, &__progress_pre-ico{
@@ -268,18 +268,20 @@
     }
   }
   .c2 {
+
     &__cur {
+      margin-top: 3px;
       @extend %fsb;
 
       img {
-        height: 40px;
+        height: 30px;
       }
 
       .text-box {
         margin-left: 10px;
         @extend %fcc;
         align-items: flex-start;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 500;
         color: #A3A3A3;
       }

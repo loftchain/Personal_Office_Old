@@ -10843,12 +10843,12 @@ button.close {
 
 @media only screen and (min-width: 1025px) {
   .x-widget .widget-part .control-container .c1-0 {
-    width: 86%;
+    width: 92%;
   }
 }
 
 .x-widget .widget-part .control-container .c2 {
-  width: 30%;
+  width: 35%;
 }
 
 @media (max-width: 768px) {
@@ -10858,7 +10858,7 @@ button.close {
 }
 
 .x-widget__top .control-container__periods {
-  width: 70%;
+  width: 65%;
 }
 
 .x-widget__top .control-container__periods .c1__progress_pre-sale,
@@ -11073,8 +11073,12 @@ button.close {
   color: #A3A3A3;
 }
 
+.x-widget .c2__cur {
+  margin-top: 3px;
+}
+
 .x-widget .c2__cur img {
-  height: 40px;
+  height: 30px;
 }
 
 .x-widget .c2__cur .text-box {
@@ -11082,7 +11086,7 @@ button.close {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   color: #A3A3A3;
 }
