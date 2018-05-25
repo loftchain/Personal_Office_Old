@@ -157,4 +157,10 @@ class TransactionService
 
 		return $txData;
 	}
+
+	public function getDataForAdminTx()
+	{
+		$tx = Transactions::all();
+		return $tx;
+	}
 }

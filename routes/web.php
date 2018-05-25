@@ -60,6 +60,7 @@ Route::get('/getDataForMyTx', 'TransactionController@getDataForMyTx')->name('get
 Route::get('/getTxDesktopView', 'TransactionController@getTxDesktopView')->name('getTxDesktopView');
 Route::get('/getTdDesktop', 'TransactionController@getTdDesktop')->name('getTdDesktop');
 Route::get('/getTxMobileView', 'TransactionController@getTxMobileView')->name('getTxMobileView');
+Route::get('/getDataForAdminTx', 'TransactionController@getDataForAdminTx')->name('getDataForAdminTx');
 //-----------------------------------------------------------------------------------
 
 //------------------------Language---------------------------------------------------

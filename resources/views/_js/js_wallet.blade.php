@@ -58,8 +58,6 @@
                         addBtn.hide();
                         _this.val('');
                         break;
-
-
                 }
             });
 
@@ -170,7 +168,7 @@
     $(window).on('load', () => {
         wa.wCopyImg = $('.w-copy-click');
 
-        wa.wCopyImg.each(function(){
+        wa.wCopyImg.each(function () {
             $(this).click(() => {
                 wa.copyToClipboard($(this));
                 $.notify('{{ __('home/wallet.walletCopied_js') }}', 'success');

@@ -1,19 +1,27 @@
+import axios
+    from 'axios';
+
 export default {
-  name: 'tx-info',
-  components: {}, 
-  props: [],
-  data () {
-    return {
+    name: 'tx-info',
+    components: {},
+    props: [],
+    data() {
+        return {
+            adminTxData: []
+        }
+    },
+    created() {
+        axios.get('/getDataForAdminTx')
+            .then(res => {
+                this.adminTxData = res;
+                console.log(this.adminTxData);
+            })
+    },
 
-    }
-  },
-  computed: {
+    mounted() {
 
-  },
-  mounted () {
+    },
+    computed: {},
 
-  },
-  methods: {
-
-  }
+    methods: {}
 }
