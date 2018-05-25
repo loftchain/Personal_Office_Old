@@ -29,7 +29,7 @@
           @include('home.wallet_help.btc_form')
       </div>
       <div id="USD" class="tab-pane fade">
-        @include('home.wallet_help.btc_form')
+        @include('home.wallet_help.usd_form')
       </div>
 
   </div>

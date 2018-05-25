@@ -111,4 +111,8 @@ class WalletController extends Controller
 		return view('home.wallet_help.description')->with('currency', $currency);
 	}
 
+	public function send_usd_proposal(){
+		
+	}
+
 }
