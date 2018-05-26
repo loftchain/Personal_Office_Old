@@ -320,7 +320,7 @@
             let totalFiatAmount_eth = +(parseFloat(w.totalCryptoAmountUSD).toFixed(2));
             let total_eth = +(totalCryptoAmount_eth + totalFiatAmount_eth);
 
-            w.currentlyCollectedSpan_ETH.text(total_eth + ' ETH ({{ __('home/widget.currentlyCollected_js') }})');
+            w.currentlyCollectedSpan_ETH.text(total_eth.toFixed(2) + ' ETH ({{ __('home/widget.currentlyCollected_js') }})');
             w.softCapSpan_ETH.text(w.softCapETH + ' ETH (soft cap) ');
             w.hardCapSpan_ETH.text(w.hardCapETH + ' ETH (hard cap)');
         },
