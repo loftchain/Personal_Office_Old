@@ -6,6 +6,7 @@ return [
 	'eth_label' => 'Please enter <b>Ethereum wallet for investing and receiving</b> ERC20 standard tokens.',
 	'btcInvest_label' => 'Enter <b>Bitcoin</b> wallet ',
 	'btcEthTokenGet_label' => 'Enter <b>Ethereum wallet for receiving</b> ERC20 standard tokens.',
+	'usdAmount_label' => 'Enter amount of <b>USD</b> investment',
 	'save_btn' => 'save',
 	'addWalletForInvest_p' => 'To begin investing, please add a wallet',
 	'date_span' => 'Date',
@@ -21,4 +22,7 @@ return [
 	'added_js' => 'Wallet added',
 	'edited_js' => 'Wallet changed',
 	'walletCopied_js' => 'The wallet was copied to the clipboard',
+	'sendUsdRequest_btn' => 'Send request',
+	'requestWasSent_js' => 'Your request was sent to administration',
+	'adminWillCoordinate_article' => 'For investing in USD, please fill in the fields and send request.<br>Administration will contact you as soon as possible and coordinate further actions.',
 ];

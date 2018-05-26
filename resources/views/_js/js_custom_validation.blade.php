@@ -108,6 +108,9 @@
 	                    wa.showDescription(data.currency);
                     }
 	                break;
+                case !$.isEmptyObject(data.usd_request_sent):
+                    v.showNotification('@lang('home/wallet.requestWasSent_js')', 'success');
+                    break;
 	            case !$.isEmptyObject(data.wallet_edited):
 		            v.showNotification('@lang('home/wallet.edited_js')', 'success');
 		            if(typeof wa !== 'undefined'){

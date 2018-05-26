@@ -14,6 +14,9 @@
         wForm: $('.w-form'),
         wInput: $('.w-input'),
         errorMessage: $('.error-message'),
+        wallet3_input: $('#wallet3'),
+        usdAmount_input: $('#usdAmount'),
+        sendUsdRequest_btn: $('.sbmt-usd-amount-btn'),
 
         copyToClipboard(_this) {
             let parent = _this.parent();
@@ -146,6 +149,32 @@
                     wa.ajaxErrorMessage(data)
                 }
             });
+        },
+
+        sendRequestControl(){
+            if(!wa.wallet3_input.val() || !wa.usdAmount_input.val()) {
+                wa.sendUsdRequest_btn.prop('disabled', true);
+            }
+
+            wa.wallet3_input.on('input', () => {
+                if(wa.wallet3_input.val().length > 0 && wa.usdAmount_input.val().length > 0) {
+                    wa.sendUsdRequest_btn.prop('disabled', false);
+                }
+
+                if(!wa.wallet3_input.val() || !wa.usdAmount_input.val()) {
+                    wa.sendUsdRequest_btn.prop('disabled', true);
+                }
+            });
+
+            wa.usdAmount_input.on('input', () => {
+                if(wa.wallet3_input.val().length > 0 && wa.usdAmount_input.val().length > 0) {
+                    wa.sendUsdRequest_btn.prop('disabled', false);
+                }
+
+                if(!wa.wallet3_input.val() || !wa.usdAmount_input.val()) {
+                    wa.sendUsdRequest_btn.prop('disabled', true);
+                }
+            });
         }
     };
 
@@ -168,6 +197,10 @@
     });
 
     $(window).on('load', () => {
+
+
+        wa.sendRequestControl();
+
         wa.wCopyImg = $('.w-copy-click');
 
         wa.wCopyImg.each(function(){

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendFiatRequest;
 use App\Models\User;
+use App\Models\UserPersonalFields;
 use App\Services\WalletService;
 use App\Services\WidgetService;
 use GuzzleHttp\Client;
@@ -13,6 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
@@ -84,24 +87,23 @@ class WalletController extends Controller
 	  return response()->json(['wallet_added' => 'Wallet was successfully added', 'currency' => $wallet->currency]);
   }
 
-	public function edit_wallet(Request $request) {
-		$validator = Validator::make($request->all(), [
-			'wallet' => 'required|string|min:25|max:45|unique:user_wallet_fields',
-		]);
-
-		if ($validator->fails()) {
-			return response()->json(['validation_error'=>$validator->errors()]);
-		}
-
-		$wallet = UserWalletFields::where('type', $request['type'])->where('active', '1')->first();
-	    $wallet->wallet = $request['wallet'];
-		$wallet->save();
-
-		return response()->json(['wallet_edited' => 'Wallet was successfully edited']);
-	}
+//	public function edit_wallet(Request $request) {
+//		$validator = Validator::make($request->all(), [
+//			'wallet' => 'required|string|min:25|max:45|unique:user_wallet_fields',
+//		]);
+//
+//		if ($validator->fails()) {
+//			return response()->json(['validation_error'=>$validator->errors()]);
+//		}
+//
+//		$wallet = UserWalletFields::where('type', $request['type'])->where('active', '1')->first();
+//	  $wallet->wallet = $request['wallet'];
+//		$wallet->save();
+//
+//		return response()->json(['wallet_edited' => 'Wallet was successfully edited']);
+//	}
 
   public function current_wallets(Request $request){
-
 	$user = User::find(Auth::id());
 	$walletData = ($user->confirmed == '1') ? $this->walletService->getCurrentWallets() : '';
     return response()->json(['currentWallets' => $walletData]);
@@ -111,8 +113,25 @@ class WalletController extends Controller
 		return view('home.wallet_help.description')->with('currency', $currency);
 	}
 
-	public function send_usd_proposal(){
-		
+	public function send_usd_proposal(Request $request){
+
+		$user = User::find(Auth::id());
+		$userPersonal = UserPersonalFields::where('user_id', Auth::id())->first();
+		$wallet = UserWalletFields::where('user_id', Auth::id())->where('type', 'to')->first();
+
+		$mailData = [
+			'email' => $user->email,
+			'name' => $userPersonal->name_surname,
+			'address' => $userPersonal->permanent_address,
+			'phone' => $userPersonal->contact_number,
+			'sourceOfFunds' => $userPersonal->source_of_funds,
+			'wallet' => $wallet->wallet,
+			'amount' => $request['usdAmount'],
+		];
+
+		Mail::to(env('OWNER_EMAIL'))->send(new SendFiatRequest($mailData));
+		return response()->json(['usd_request_sent' => 'good']);
+
 	}
 
 }

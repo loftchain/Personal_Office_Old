@@ -50,9 +50,9 @@ Route::group(['middleware' =>  ['agreement2']], function(){
 //------------------------Wallet-----------------------------------------------------
 Route::post('/store_wallet', 'WalletController@store_wallet')->name('store_wallet');
 Route::post('/edit_wallet', 'WalletController@edit_wallet')->name('edit_wallet');
+Route::get('/send_usd_proposal', 'WalletController@send_usd_proposal')->name('send_usd_proposal');
 Route::get('/current_wallets', 'WalletController@current_wallets')->name('current_wallets');
 Route::get('/description_view/{currency}', 'WalletController@description_view')->name('description_view');
-Route::get('/send_usd_proposal', 'WalletController@send_usd_proposal')->name('send_usd_proposal');
 //-----------------------------------------------------------------------------------
 
 //------------------------Transaction------------------------------------------------
