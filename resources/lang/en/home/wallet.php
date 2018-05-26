@@ -24,5 +24,5 @@ return [
 	'walletCopied_js' => 'The wallet was copied to the clipboard',
 	'sendUsdRequest_btn' => 'Send request',
 	'requestWasSent_js' => 'Your request was sent to administration',
-	'adminWillCoordinate_article' => 'For investing in USD, please fill in the fields and send request.<br>Administration will contact you as soon as possible and coordinate further actions.',
+	'adminWillCoordinate_article' => 'For investing in USD, please add and save ETH wallet, then fill in your invest amount and send request.<br>Administration will contact you as soon as possible and coordinate further actions.',
 ];
