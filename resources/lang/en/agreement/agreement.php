@@ -24,4 +24,6 @@ return [
 	'loadDocs_span' => 'Drag and drop the image of your ID<br> (accepted formats: jpg, jpeg, png, svg, pdf, zip, rar)',
 	'loadDocs_btn' => 'Upload',
 	'save_btn' => 'Save',
+	'agreeWithTerms_label' => 'I consent to the processing of my personal data',
+	'agreeWithDispatch_label' => 'I agree that tokens transfer will take place a month after the end of the ICO',
 ];

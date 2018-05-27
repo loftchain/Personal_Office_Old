@@ -12367,7 +12367,13 @@ button.close {
   right: 0;
   left: 0;
   margin: 0 auto;
-  bottom: -110px;
+  bottom: -130px;
+}
+
+@media (max-width: 768px) {
+  .a2-body .a2-container__section .a2-form .check-box-container {
+    bottom: -155px;
+  }
 }
 
 .a2-body .a2-container__section .a2-form .check-box-container div {

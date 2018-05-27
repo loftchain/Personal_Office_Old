@@ -168,8 +168,12 @@
           right: 0;
           left: 0;
           margin: 0 auto;
-          bottom: -110px;
+          bottom: -130px;
           @extend %fcc;
+
+          @media #{$mobile} {
+            bottom: -155px;
+          }
 
           div {
             @extend %fc;
