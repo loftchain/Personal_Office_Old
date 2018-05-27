@@ -18,6 +18,7 @@
         usdAmount_input: $('#usdAmount'),
         sendUsdRequest_btn: $('.sbmt-usd-amount-btn'),
         dispatch_checkbox: $('.dispatch-checkbox'),
+        loaderSpinner: $('.small-spinner'),
 
         copyToClipboard(_this) {
             let parent = _this.parent();
@@ -198,6 +199,10 @@
             $(this).click(() => {
                 wa.switchCheckBox($(this));
             })
+        });
+
+        wa.sendUsdRequest_btn.click(() => {
+          wa.loaderSpinner.fadeIn('slow');
         });
     });
 

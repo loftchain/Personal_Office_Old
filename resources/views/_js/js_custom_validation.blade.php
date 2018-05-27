@@ -42,10 +42,10 @@
                         }
                         _this.children('.error-message.' + key).html(v.exclamation + value[0]);
 
-	                    if (_this.children().children('.error-message.' + key).prev().hasClass('x-input')) {
-		                    _this.children().children('.error-message.' + key).prev().addClass('isError');
-	                    }
-	                    _this.children().children('.error-message.' + key).html(v.exclamation + value[0]);
+                        if (_this.children().children('.error-message.' + key).prev().hasClass('x-input')) {
+                            _this.children().children('.error-message.' + key).prev().addClass('isError');
+                        }
+                        _this.children().children('.error-message.' + key).html(v.exclamation + value[0]);
                     });
                     v.hideSpinner();
                     break;
@@ -103,23 +103,24 @@
                     break;
                 case !$.isEmptyObject(data.wallet_added):
                     v.showNotification('@lang('home/wallet.added_js')', 'success');
-                    if(typeof wa !== 'undefined'){
-	                    wa.exitEditMode(_this.children('.w-input'));
-	                    wa.showDescription(data.currency);
+                    if (typeof wa !== 'undefined') {
+                        wa.exitEditMode(_this.children('.w-input'));
+                        wa.showDescription(data.currency);
                     }
-	                break;
+                    break;
                 case !$.isEmptyObject(data.usd_request_sent):
                     v.showNotification('@lang('home/wallet.requestWasSent_js')', 'success');
+                    v.hideSpinner();
                     break;
-	            case !$.isEmptyObject(data.wallet_edited):
-		            v.showNotification('@lang('home/wallet.edited_js')', 'success');
-		            if(typeof wa !== 'undefined'){
-			            wa.exitEditMode(_this.children('.w-input'));
-		            }
-		            break;
-	            case !$.isEmptyObject(data.confirmation_complete):
-		            v.showNotification('@lang('admin/confirmation.userConfirmed_js')', 'success');
-		            break;
+                case !$.isEmptyObject(data.wallet_edited):
+                    v.showNotification('@lang('home/wallet.edited_js')', 'success');
+                    if (typeof wa !== 'undefined') {
+                        wa.exitEditMode(_this.children('.w-input'));
+                    }
+                    break;
+                case !$.isEmptyObject(data.confirmation_complete):
+                    v.showNotification('@lang('admin/confirmation.userConfirmed_js')', 'success');
+                    break;
                 default:
                     console.log('js_custom_validation.blade.php default switch state');
                     break;

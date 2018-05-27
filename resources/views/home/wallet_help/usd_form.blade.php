@@ -23,7 +23,10 @@
     <label for="dispatch" class="dispatch-label">@lang('agreement/agreement.agreeWithDispatch_label')</label>
     <input type="checkbox" id="dispatch" class="dispatch-checkbox" name="terms">
   </div>
-  <button class="sbmt-usd-amount-btn" type="submit">@lang('home/wallet.sendUsdRequest_btn')</button>
+  <button class="sbmt-usd-amount-btn" type="submit">
+    <i class="small-spinner fa fa-circle-o-notch fa-spin fa-lg fa-fw"></i>
+    @lang('home/wallet.sendUsdRequest_btn')
+  </button>
 </form>
 
 

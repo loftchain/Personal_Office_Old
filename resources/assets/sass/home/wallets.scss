@@ -239,6 +239,13 @@
           &:disabled{
             background: $white;
           }
+
+          .small-spinner{
+            position: absolute;
+            left: 30px;
+            top: 15.5px;
+            display: none;
+          }
         }
       }
     }
