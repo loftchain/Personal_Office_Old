@@ -11369,7 +11369,7 @@ button.close {
 
 .x-wallets__form form button.sbmt-usd-amount-btn .small-spinner {
   position: absolute;
-  left: 30px;
+  left: 12px;
   top: 15.5px;
   display: none;
 }
