@@ -113,7 +113,7 @@
 	});
 
 	$(document).ready(() => {
-		if ($('.doc-container').is(':empty') || !$('.terms-checkbox').is(':checked') || !$('.dispatch-checkbox').is(':checked')) {
+		if ($('.doc-container').is(':empty') || !$('.terms-checkbox').is(':checked')) {
 			$('.a2-form__sbmt-btn').prop('disabled', true);
 		} else {
 			$('.a2-form__sbmt-btn').prop('disabled', false);
@@ -121,7 +121,7 @@
 	});
 
 	$('.doc-container').change(function () {
-		if (!$(this).is(':empty') && $('.terms-checkbox').is(':checked') && $('.dispatch-checkbox').is(':checked')) {
+		if (!$(this).is(':empty') && $('.terms-checkbox').is(':checked')) {
 			$('.a2-form__sbmt-btn').prop('disabled', false);
 		} else {
 			$('.a2-form__sbmt-btn').prop('disabled', true);
@@ -129,18 +129,11 @@
 	});
 
 	$('.terms-checkbox').change(function () {
-      if (!$('.doc-container').is(':empty') && $(this).is(':checked') && $('.dispatch-checkbox').is(':checked')) {
+      if (!$('.doc-container').is(':empty') && $(this).is(':checked')) {
           $('.a2-form__sbmt-btn').prop('disabled', false);
       } else {
           $('.a2-form__sbmt-btn').prop('disabled', true);
       }
   });
 
-  $('.dispatch-checkbox').change(function () {
-      if (!$('.doc-container').is(':empty') && $(this).is(':checked') && $('.dispatch-checkbox').is(':checked')) {
-          $('.a2-form__sbmt-btn').prop('disabled', false);
-      } else {
-          $('.a2-form__sbmt-btn').prop('disabled', true);
-      }
-  });
 </script>

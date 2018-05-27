@@ -24,5 +24,5 @@ return [
 	'walletCopied_js' => 'The wallet was copied to the clipboard',
 	'sendUsdRequest_btn' => 'Send request',
 	'requestWasSent_js' => 'Your request was sent to administration',
-	'adminWillCoordinate_article' => 'We accept Visa, Mastercard, American Express, Discover and Diners Club payments from customers worldwide.<br>For investing in USD, please add and save ETH wallet, then fill in your invest amount and send request.<br>Administration will contact you as soon as possible and coordinate further actions.',
+	'adminWillCoordinate_article' => '<li>We accept Visa, Mastercard, American Express, Discover and Diners Club payments from customers worldwide.</li><li>For investing in USD, please add and save ETH wallet, then fill in your invest amount and send request.</li><li>Administration will contact you as soon as possible and coordinate further actions.</li>',
 ];

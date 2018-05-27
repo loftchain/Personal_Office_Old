@@ -68,10 +68,6 @@
                         <label for="terms" class="">@lang('agreement/agreement.agreeWithTerms_label')</label>
                         <input type="checkbox" id="terms" class="terms-checkbox" name="terms">
                     </div>
-                    <div>
-                        <label for="dispatch" class="">@lang('agreement/agreement.agreeWithDispatch_label')</label>
-                        <input type="checkbox" id="dispatch" class="dispatch-checkbox" name="terms">
-                    </div>
                     <button type="submit" class="a2-form__sbmt-btn">@lang('agreement/agreement.save_btn')</button>
                 </div>
             </form>

@@ -1,5 +1,7 @@
 <article>
-  @lang('home/wallet.adminWillCoordinate_article')
+  <ul>
+    @lang('home/wallet.adminWillCoordinate_article')
+  </ul>
 </article>
 
 <form action="{{ route('store_wallet') }}" class="w-form" method="POST" id="form3">
@@ -17,6 +19,10 @@
   {{ csrf_field() }}
   <label for="usdAmount">@lang('home/wallet.usdAmount_label')</label>
   <input id="usdAmount" name="usdAmount" type="number" value="$">
+  <div class="dispatch-container">
+    <label for="dispatch" class="dispatch-label">@lang('agreement/agreement.agreeWithDispatch_label')</label>
+    <input type="checkbox" id="dispatch" class="dispatch-checkbox" name="terms">
+  </div>
   <button class="sbmt-usd-amount-btn" type="submit">@lang('home/wallet.sendUsdRequest_btn')</button>
 </form>
 

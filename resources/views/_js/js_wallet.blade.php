@@ -17,6 +17,7 @@
         wallet3_input: $('#wallet3'),
         usdAmount_input: $('#usdAmount'),
         sendUsdRequest_btn: $('.sbmt-usd-amount-btn'),
+        dispatch_checkbox: $('.dispatch-checkbox'),
 
         copyToClipboard(_this) {
             let parent = _this.parent();
@@ -151,27 +152,31 @@
             });
         },
 
-        sendRequestControl(){
-            if(!wa.wallet3_input.val() || !wa.usdAmount_input.val()) {
+        sendRequestControl() {
+            if (!wa.wallet3_input.val() || !wa.usdAmount_input.val() || !wa.dispatch_checkbox.is(':checked')) {
                 wa.sendUsdRequest_btn.prop('disabled', true);
             }
 
             wa.wallet3_input.on('input', () => {
-                if(wa.wallet3_input.val().length > 0 && wa.usdAmount_input.val().length > 0) {
+                if (wa.wallet3_input.val().length > 0 && wa.usdAmount_input.val().length > 0 && wa.dispatch_checkbox.is(':checked')) {
                     wa.sendUsdRequest_btn.prop('disabled', false);
-                }
-
-                if(!wa.wallet3_input.val() || !wa.usdAmount_input.val()) {
+                } else {
                     wa.sendUsdRequest_btn.prop('disabled', true);
                 }
             });
 
             wa.usdAmount_input.on('input', () => {
-                if(wa.wallet3_input.val().length > 0 && wa.usdAmount_input.val().length > 0) {
+                if (wa.wallet3_input.val().length > 0 && wa.usdAmount_input.val().length > 0 && wa.dispatch_checkbox.is(':checked')) {
                     wa.sendUsdRequest_btn.prop('disabled', false);
+                } else {
+                    wa.sendUsdRequest_btn.prop('disabled', true);
                 }
+            });
 
-                if(!wa.wallet3_input.val() || !wa.usdAmount_input.val()) {
+            wa.dispatch_checkbox.change(function () {
+                if (wa.wallet3_input.val().length > 0 && wa.usdAmount_input.val().length > 0 && wa.dispatch_checkbox.is(':checked')) {
+                    wa.sendUsdRequest_btn.prop('disabled', false);
+                } else {
                     wa.sendUsdRequest_btn.prop('disabled', true);
                 }
             });
@@ -203,7 +208,7 @@
 
         wa.wCopyImg = $('.w-copy-click');
 
-        wa.wCopyImg.each(function(){
+        wa.wCopyImg.each(function () {
             $(this).click(() => {
                 wa.copyToClipboard($(this));
                 $.notify('{{ __('home/wallet.walletCopied_js') }}', 'success');

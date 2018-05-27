@@ -30,10 +30,10 @@
   <br><br>
   <table style="margin:20px 0; padding:20px 0;" width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#041123" id="templateColumns">
     <tr>
-      <td align="center" valign="top" width="50%" class="templateColumnContainer">
+      <td align="left" valign="top" width="50%" class="templateColumnContainer">
         <img src="https://leadrex.io/img/leadrex-logo.png" width="280" style="max-width:280px;" class="columnImage">
         <h1>Новый запрос на инвестирование в USD</h1>
-        <p>Почта: {{ $mailData['email'] }}</p>
+        <p style="color: white;">Почта: {{ $mailData['email'] }}</p>
         <p>Имя: {{ $mailData['name'] }}</p>
         <p>Адрес: {{ $mailData['address'] }}</p>
         <p>Телефон: {{ $mailData['phone'] }}</p>

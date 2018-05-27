@@ -80,6 +80,11 @@
       font-size: 16px;
       font-weight: 500;
       border-bottom: 1px solid $white;
+      padding: 5px 0;
+
+      @media #{$mobile} {
+        padding:3%;
+      }
     }
 
     p {
@@ -115,6 +120,11 @@
           font-size: 13px;
           font-weight: 500;
         }
+
+        &.dispatch-label{
+          width: auto;
+          height: auto;
+        }
       }
 
       input {
@@ -144,6 +154,16 @@
         &.isError {
           border: 1px solid $validationError;
         }
+
+        &.dispatch-checkbox{
+          width: auto;
+          height: auto;
+        }
+      }
+
+      .dispatch-container{
+        position: absolute;
+        top: 90px;
       }
 
       .error-message {
@@ -201,7 +221,7 @@
 
         &.sbmt-usd-amount-btn {
           position: absolute;
-          top:100px;
+          top:150px;
           left:0;
           right:0;
           margin: 0 auto;
