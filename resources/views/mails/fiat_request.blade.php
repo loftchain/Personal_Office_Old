@@ -28,18 +28,17 @@
 <body style="margin:0; padding:0; color: #A3A3A3; font-family: 'Roboto', sans-serif; background-color:#041123">
 <center>
   <br><br>
-  <table style="margin:20px 0; padding:20px 0;" width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#041123" id="templateColumns">
+  <table style="margin:20px 0; padding:20px 0;" width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#a3a3a3" id="templateColumns">
     <tr>
       <td align="left" valign="top" width="50%" class="templateColumnContainer">
-        <img src="https://leadrex.io/img/leadrex-logo.png" width="280" style="max-width:280px;" class="columnImage">
-        <h1>Новый запрос на инвестирование в USD</h1>
-        <p style="color: white;">Почта: {{ $mailData['email'] }}</p>
-        <p>Имя: {{ $mailData['name'] }}</p>
-        <p>Адрес: {{ $mailData['address'] }}</p>
-        <p>Телефон: {{ $mailData['phone'] }}</p>
-        <p>Источник доходов: {{ $mailData['sourceOfFunds'] }}</p>
-        <p>Кошелёк ETH: {{ $mailData['wallet'] }}</p>
-        <p>Размер инвестиции: {{ $mailData['amount']}} $</p>
+        <h1 style="color: black;">Новый запрос на инвестирование в USD</h1>
+        <p style="color: black;">Почта: {{ $mailData['email'] }}</p>
+        <p style="color: black;">Имя: {{ $mailData['name'] }}</p>
+        <p style="color: black;">Адрес: {{ $mailData['address'] }}</p>
+        <p style="color: black;">Телефон: {{ $mailData['phone'] }}</p>
+        <p style="color: black;">Источник доходов: {{ $mailData['sourceOfFunds'] }}</p>
+        <p style="color: black;">Кошелёк ETH: {{ $mailData['wallet'] }}</p>
+        <p style="color: black;">Размер инвестиции: {{ $mailData['amount']}} $</p>
       </td>
     </tr>
   </table>
