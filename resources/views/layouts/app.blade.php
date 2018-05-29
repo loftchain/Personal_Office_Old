@@ -11,6 +11,7 @@
     <body>
     @if(env('APP_ENV') != 'local')
       @include('_js.js_ya_metrix')
+      @include('_js.js_jivochat')
     @endif
       @include('layouts.cloak')
         <div id="x-app">

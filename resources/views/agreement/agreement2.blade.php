@@ -65,7 +65,7 @@
                 </div>
                 <div class="check-box-container">
                     <div>
-                        <label for="terms" class=""> Даю согласие на обработку моих персональных данных</label>
+                        <label for="terms" class="">@lang('agreement/agreement.agreeWithTerms_label')</label>
                         <input type="checkbox" id="terms" class="terms-checkbox" name="terms">
                     </div>
                     <button type="submit" class="a2-form__sbmt-btn">@lang('agreement/agreement.save_btn')</button>

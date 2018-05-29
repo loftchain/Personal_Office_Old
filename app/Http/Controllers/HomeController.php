@@ -89,13 +89,13 @@ class HomeController extends Controller
 
 		$request->session()->forget('reset_password_email');
 		$time = is_numeric(Input::get('time')) ? Input::get('time') : time();
-
 		$data['btcCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('BTC', 'BTC/ETH');
 		$data['ethCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('ETH', 'ETH/USD');
 		$data['totalCryptoAmount'] = array_map(function () {
 			return array_sum(func_get_args());
 		}, $data['btcCurrentAmount'], $data['ethCurrentAmount']);
 
+		$data['totalCryptoAmountUSD'] = $this->widgetService->recountFiatToETH();
 		$data['stageInfo'] = $this->bonusService->getStageInfo();
 		$data['time'] = $time;
 		$data['authenticated'] = Auth::check();

@@ -10843,12 +10843,12 @@ button.close {
 
 @media only screen and (min-width: 1025px) {
   .x-widget .widget-part .control-container .c1-0 {
-    width: 86%;
+    width: 92%;
   }
 }
 
 .x-widget .widget-part .control-container .c2 {
-  width: 30%;
+  width: 35%;
 }
 
 @media (max-width: 768px) {
@@ -10858,7 +10858,7 @@ button.close {
 }
 
 .x-widget__top .control-container__periods {
-  width: 70%;
+  width: 65%;
 }
 
 .x-widget__top .control-container__periods .c1__progress_pre-sale,
@@ -11073,8 +11073,12 @@ button.close {
   color: #A3A3A3;
 }
 
+.x-widget .c2__cur {
+  margin-top: 3px;
+}
+
 .x-widget .c2__cur img {
-  height: 40px;
+  height: 30px;
 }
 
 .x-widget .c2__cur .text-box {
@@ -11082,7 +11086,7 @@ button.close {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   color: #A3A3A3;
 }
@@ -11184,6 +11188,21 @@ button.close {
           justify-content: flex-start;
 }
 
+.x-wallets__form article {
+  width: 100%;
+  color: #A3A3A3;
+  font-size: 16px;
+  font-weight: 500;
+  border-bottom: 1px solid #A3A3A3;
+  padding: 5px 0;
+}
+
+@media (max-width: 768px) {
+  .x-wallets__form article {
+    padding: 3%;
+  }
+}
+
 .x-wallets__form p {
   text-align: left;
 }
@@ -11228,6 +11247,11 @@ button.close {
   }
 }
 
+.x-wallets__form form label.dispatch-label {
+  width: auto;
+  height: auto;
+}
+
 .x-wallets__form form input {
   margin: 2px;
   width: 450px;
@@ -11259,6 +11283,16 @@ button.close {
 
 .x-wallets__form form input.isError {
   border: 1px solid #ff443a;
+}
+
+.x-wallets__form form input.dispatch-checkbox {
+  width: auto;
+  height: auto;
+}
+
+.x-wallets__form form .dispatch-container {
+  position: absolute;
+  top: 90px;
 }
 
 .x-wallets__form form .error-message {
@@ -11306,6 +11340,38 @@ button.close {
   height: auto;
   color: #9C0A49;
   padding: 5px;
+}
+
+.x-wallets__form form button.sbmt-usd-amount-btn {
+  position: absolute;
+  top: 150px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  width: 200px;
+  height: 45px;
+  outline: none;
+  border: none;
+  border-radius: 25px;
+  text-decoration: none;
+  background: #FE6601;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #FE6601), color-stop(100%, #9C0A49));
+  background: -webkit-gradient(linear, left top, right top, from(#FE6601), to(#9C0A49));
+  background: linear-gradient(to right, #FE6601 0%, #9C0A49 100%);
+}
+
+.x-wallets__form form button.sbmt-usd-amount-btn:disabled {
+  background: #A3A3A3;
+}
+
+.x-wallets__form form button.sbmt-usd-amount-btn .small-spinner {
+  position: absolute;
+  left: 12px;
+  top: 15.5px;
+  display: none;
 }
 
 .x-wallets__form .description-container {

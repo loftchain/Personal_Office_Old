@@ -129,10 +129,11 @@
 	});
 
 	$('.terms-checkbox').change(function () {
-		if (!$('.doc-container').is(':empty') && $(this).is(':checked')) {
-			$('.a2-form__sbmt-btn').prop('disabled', false);
-		} else {
-			$('.a2-form__sbmt-btn').prop('disabled', true);
-		}
-	});
+      if (!$('.doc-container').is(':empty') && $(this).is(':checked')) {
+          $('.a2-form__sbmt-btn').prop('disabled', false);
+      } else {
+          $('.a2-form__sbmt-btn').prop('disabled', true);
+      }
+  });
+
 </script>

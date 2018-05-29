@@ -149,6 +149,8 @@ ICO_BONUS4=20                   # %
 
 SELF_API_URL=http://127.0.0.1:8001/
 OWNER_ID=2
+OWNER_EMAIL=info@leadrex.io
+INVESTED_IN_USD=15000
 
 npm install -g vue-generate-component
 

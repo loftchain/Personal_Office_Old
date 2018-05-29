@@ -13,6 +13,12 @@
               <span>Bitcoin (BTC)</span>
           </div>
       </a>
+      <a class="switch-wallet-link USD" data-toggle="tab" href="#USD">
+        <div class="button">
+          <img class="checkbox-img" src="{{ asset('img/empty-checkbox.png') }}" alt="">
+          <span>Fiat (USD)</span>
+        </div>
+      </a>
   </div>
   <div class="x-wallets__form">
 
@@ -21,6 +27,9 @@
       </div>
       <div id="BTC" class="tab-pane fade">
           @include('home.wallet_help.btc_form')
+      </div>
+      <div id="USD" class="tab-pane fade">
+        @include('home.wallet_help.usd_form')
       </div>
 
   </div>

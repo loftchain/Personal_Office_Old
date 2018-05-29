@@ -14,6 +14,11 @@
         wForm: $('.w-form'),
         wInput: $('.w-input'),
         errorMessage: $('.error-message'),
+        wallet3_input: $('#wallet3'),
+        usdAmount_input: $('#usdAmount'),
+        sendUsdRequest_btn: $('.sbmt-usd-amount-btn'),
+        dispatch_checkbox: $('.dispatch-checkbox'),
+        loaderSpinner: $('.small-spinner'),
 
         copyToClipboard(_this) {
             let parent = _this.parent();
@@ -144,6 +149,36 @@
                     wa.ajaxErrorMessage(data)
                 }
             });
+        },
+
+        sendRequestControl() {
+            if (!wa.wallet3_input.val() || !wa.usdAmount_input.val() || !wa.dispatch_checkbox.is(':checked')) {
+                wa.sendUsdRequest_btn.prop('disabled', true);
+            }
+
+            wa.wallet3_input.on('input', () => {
+                if (wa.wallet3_input.val().length > 0 && wa.usdAmount_input.val().length > 0 && wa.dispatch_checkbox.is(':checked')) {
+                    wa.sendUsdRequest_btn.prop('disabled', false);
+                } else {
+                    wa.sendUsdRequest_btn.prop('disabled', true);
+                }
+            });
+
+            wa.usdAmount_input.on('input', () => {
+                if (wa.wallet3_input.val().length > 0 && wa.usdAmount_input.val().length > 0 && wa.dispatch_checkbox.is(':checked')) {
+                    wa.sendUsdRequest_btn.prop('disabled', false);
+                } else {
+                    wa.sendUsdRequest_btn.prop('disabled', true);
+                }
+            });
+
+            wa.dispatch_checkbox.change(function () {
+                if (wa.wallet3_input.val().length > 0 && wa.usdAmount_input.val().length > 0 && wa.dispatch_checkbox.is(':checked')) {
+                    wa.sendUsdRequest_btn.prop('disabled', false);
+                } else {
+                    wa.sendUsdRequest_btn.prop('disabled', true);
+                }
+            });
         }
     };
 
@@ -163,9 +198,17 @@
                 wa.switchCheckBox($(this));
             })
         });
+
+        wa.sendUsdRequest_btn.click(() => {
+          wa.loaderSpinner.fadeIn('slow');
+        });
     });
 
     $(window).on('load', () => {
+
+
+        wa.sendRequestControl();
+
         wa.wCopyImg = $('.w-copy-click');
 
         wa.wCopyImg.each(function () {
