@@ -1,15 +1,27 @@
 <section class="tx-info">
   <div class="tx-container">
-	  <div class="a-wrapper__section_el a-id">${user.id}</div>
-	  <div class="a-wrapper__section_el a-email">${user.email}</div>
-	  <div class="a-wrapper__section_el a-registered-at">${user.created_at}</div>
-	  <div class="a-wrapper__section_el a-ip">${user.ip_token}</div>
-	  <div class="a-wrapper__section_el a-name">${user.name_surname}</div>
-	  <div class="a-wrapper__section_el a-address">${user.permanent_address}</div>
-	  <div class="a-wrapper__section_el a-phone">${user.contact_number}</div>
-	  <div class="a-wrapper__section_el a-birth">${user.date_place_birth}</div>
-	  <div class="a-wrapper__section_el a-nationality">${user.nationality}</div>
-	  <div class="a-wrapper__section_el a-funds">${user.source_of_funds}</div>
+	  <header>
+		  <div class="tx-container__el a-id">id</div>
+		  <div class="tx-container__el a-email">currency</div>
+		  <div class="tx-container__el a-registered-at">amount</div>
+		  <div class="tx-container__el a-ip">amount_tokens</div>
+		  <div class="tx-container__el a-name">status</div>
+		  <div class="tx-container__el a-address">from</div>
+		  <div class="tx-container__el a-phone">tx-id</div>
+		  <div class="tx-container__el a-birth">info</div>
+		  <div class="tx-container__el a-nationality">date</div>
+	  </header>
+	  <main v-for="item in adminTxData">
+		  <div class="tx-container__el a-id">{{ item.id }}</div>
+		  <div class="tx-container__el a-email">{{ item.currency }}</div>
+		  <div class="tx-container__el a-registered-at">{{ item.amount }}</div>
+		  <div class="tx-container__el a-ip">{{ item.amount_tokens }}</div>
+		  <div class="tx-container__el a-name">{{ item.status }}</div>
+		  <div class="tx-container__el a-address">{{ item.from }}</div>
+		  <div class="tx-container__el a-phone">{{ item.transaction_id }}</div>
+		  <div class="tx-container__el a-birth">{{ item.info }}</div>
+		  <div class="tx-container__el a-nationality">{{ item.date }}</div>
+	  </main>
   </div>
 </section>
 

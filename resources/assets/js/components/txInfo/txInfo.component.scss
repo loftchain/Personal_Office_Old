@@ -1,6 +1,25 @@
 .tx-info {
-  h1{
-    color: white;
+  .tx-container{
 
+    header{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      div{
+
+      }
+    }
+
+    main{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    &__el{
+
+    }
   }
 }
