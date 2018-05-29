@@ -7,6 +7,7 @@ use App\Mail\ConfirmRegistration;
 use App\Mail\ReturnToStep2;
 use App\Models\User;
 use App\Models\UserPersonalFields;
+use App\Services\TransactionService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,8 +20,10 @@ use Illuminate\Support\Facades\Storage;
 class AdminController extends Controller
 {
 
-	public function __construct()
+	protected $txService;
+	public function __construct(TransactionService $txService)
 	{
+		$this->txService = $txService;
 		$this->middleware('auth');
 	}
 
@@ -70,5 +73,9 @@ class AdminController extends Controller
 	public function confirm_view($data)
 	{
 		return view('admin.confirmation')->with('data', $data);
+	}
+
+	public function getDataForAdminTx(){
+		return $this->txService->getDataForAdminTx();
 	}
 }

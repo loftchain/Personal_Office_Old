@@ -42,8 +42,4 @@ class TransactionController extends Controller
 		return $txData;
 	}
 
-	public function getDataForAdminTx(){
-		return $this->getDataForAdminTx();
-	}
-
 }

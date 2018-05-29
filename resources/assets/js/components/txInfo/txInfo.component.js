@@ -1,5 +1,4 @@
-import axios
-    from 'axios';
+import axios from 'axios';
 
 export default {
     name: 'tx-info',
@@ -11,11 +10,7 @@ export default {
         }
     },
     created() {
-        axios.get('/getDataForAdminTx')
-            .then(res => {
-                this.adminTxData = res;
-                console.log(this.adminTxData);
-            })
+        this.loadTransactions();
     },
 
     mounted() {
@@ -23,5 +18,13 @@ export default {
     },
     computed: {},
 
-    methods: {}
+    methods: {
+        loadTransactions(){
+            axios.get('/getDataForAdminTx')
+                .then(res => {
+                    this.adminTxData = res.data;
+                    console.log(this.adminTxData);
+                })
+        }
+    }
 }
