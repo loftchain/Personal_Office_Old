@@ -1,25 +1,95 @@
+@import "../../../sass/variables";
+
 .tx-info {
+  width: 100%;
+  margin-left:-22%;
+
   .tx-container{
 
+    .bonus-wrapper{
+      width: 220px;
+
+      @extend %fcc;
+
+      &__top{
+        width: 220px;
+        text-align: center;
+        background: #0b9e87;
+      }
+
+      &__bot{
+        width: 220px;
+        @extend %fsb
+      }
+    }
+
+    &__el{
+      text-align: center;
+      border: 1px solid #1b6d85;
+      color:$white;
+
+      &.id{
+        width: 30px;
+      }
+
+      &.currency{
+        width: 55px;
+      }
+
+      &.amount{
+        width: 110px;
+      }
+
+      &.amount_tokens{
+        width: 110px;
+      }
+
+      &.status{
+        width: 70px;
+      }
+
+      &.from{
+        width: 300px;
+      }
+
+      &.info{
+        width: 100px;
+      }
+
+      &.date{
+        width: 200px;
+      }
+
+      &.white-list{
+        width: 110px;
+      }
+
+      &.referral{
+        width: 110px;
+      }
+    }
+
     header{
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @extend %fc;
+      background: #1b6d85;
 
       div{
-
+        color: white;
       }
     }
 
     main{
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @extend %fc;
 
+      div{
+        height: 30px;
+
+        &.from{
+          font-size: 12px;
+        }
+      }
     }
 
-    &__el{
 
-    }
   }
 }

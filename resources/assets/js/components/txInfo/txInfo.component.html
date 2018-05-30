@@ -1,26 +1,41 @@
 <section class="tx-info">
+
   <div class="tx-container">
 	  <header>
-		  <div class="tx-container__el a-id">id</div>
-		  <div class="tx-container__el a-email">currency</div>
-		  <div class="tx-container__el a-registered-at">amount</div>
-		  <div class="tx-container__el a-ip">amount_tokens</div>
-		  <div class="tx-container__el a-name">status</div>
-		  <div class="tx-container__el a-address">from</div>
-		  <div class="tx-container__el a-phone">tx-id</div>
-		  <div class="tx-container__el a-birth">info</div>
-		  <div class="tx-container__el a-nationality">date</div>
+		  <div class="tx-container__el id">id</div>
+		  <div class="tx-container__el currency">currency</div>
+		  <div class="tx-container__el amount">amount</div>
+		  <div class="tx-container__el amount_tokens">amount_tokens</div>
+		  <div class="tx-container__el status">status</div>
+		  <div class="tx-container__el from">from</div>
+		  <div class="tx-container__el info">info</div>
+		  <div class="tx-container__el date">date</div>
+		  <div class="bonus-wrapper">
+
+			  <div class="bonus-wrapper__top">
+				  <div class="bonus-wrapper__top_text">
+					  Бонус
+				  </div>
+			  </div>
+			  <div class="bonus-wrapper__bot">
+				  <div class="tx-container__el white-list">white-list</div>
+				  <div class="tx-container__el referral">referral</div>
+			  </div>
+
+		  </div>
+
 	  </header>
 	  <main v-for="item in adminTxData">
-		  <div class="tx-container__el a-id">{{ item.id }}</div>
-		  <div class="tx-container__el a-email">{{ item.currency }}</div>
-		  <div class="tx-container__el a-registered-at">{{ item.amount }}</div>
-		  <div class="tx-container__el a-ip">{{ item.amount_tokens }}</div>
-		  <div class="tx-container__el a-name">{{ item.status }}</div>
-		  <div class="tx-container__el a-address">{{ item.from }}</div>
-		  <div class="tx-container__el a-phone">{{ item.transaction_id }}</div>
-		  <div class="tx-container__el a-birth">{{ item.info }}</div>
-		  <div class="tx-container__el a-nationality">{{ item.date }}</div>
+		  <div class="tx-container__el id">{{ item.id }}</div>
+		  <div class="tx-container__el currency">{{ item.currency }}</div>
+		  <div class="tx-container__el amount">{{ item.amount }}</div>
+		  <div class="tx-container__el amount_tokens">{{ item.amount_tokens }}</div>
+		  <div class="tx-container__el status">{{ item.status }}</div>
+		  <div class="tx-container__el from">{{ item.from }}</div>
+		  <div class="tx-container__el info">{{ item.info }}</div>
+		  <div class="tx-container__el date">{{ item.date }}</div>
+		  <div class="tx-container__el white-list">white-list bonus</div>
+		  <div class="tx-container__el referral">referral bonus</div>
 	  </main>
   </div>
 </section>
