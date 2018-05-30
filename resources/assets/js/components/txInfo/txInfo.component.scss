@@ -27,6 +27,7 @@
       text-align: center;
       border: 1px solid #1b6d85;
       color:$white;
+      @extend %fc;
 
       &.id{
         width: 30px;
