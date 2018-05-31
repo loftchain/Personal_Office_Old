@@ -60,7 +60,6 @@ class AdminController extends Controller
 		$user->valid_step = 2;
 		$user->save();
 		UserPersonalFields::where('user_id', $user_id)->delete();
-
 		Mail::to($user->email)->send(new ReturnToStep2());
 		return response()->json(['returned_to_step2' => 'returned_to_step2']);
 	}

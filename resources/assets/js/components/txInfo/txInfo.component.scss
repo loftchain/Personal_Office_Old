@@ -30,7 +30,7 @@
       @extend %fc;
 
       &.id{
-        width: 30px;
+        width: 55px;
       }
 
       &.currency{
@@ -38,7 +38,7 @@
       }
 
       &.amount{
-        width: 110px;
+        width: 55px;
       }
 
       &.amount_tokens{
@@ -68,6 +68,14 @@
       &.referral{
         width: 110px;
       }
+
+      &.tx-successful{
+        color: $status-green;
+      }
+
+      &.tx-failed{
+        color: $status-red;
+      }
     }
 
     header{
@@ -90,7 +98,6 @@
         }
       }
     }
-
-
   }
 }
+

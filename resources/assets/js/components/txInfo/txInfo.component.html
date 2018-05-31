@@ -2,7 +2,7 @@
 
   <div class="tx-container">
 	  <header>
-		  <div class="tx-container__el id">id</div>
+		  <div class="tx-container__el id">user id</div>
 		  <div class="tx-container__el currency">currency</div>
 		  <div class="tx-container__el amount">amount</div>
 		  <div class="tx-container__el amount_tokens">amount_tokens</div>
@@ -28,14 +28,15 @@
 	  <main v-for="item in adminTxData">
 		  <div class="tx-container__el id">{{ item.id }}</div>
 		  <div class="tx-container__el currency">{{ item.currency }}</div>
-		  <div class="tx-container__el amount">{{ item.amount }}</div>
+		  <div class="tx-container__el amount">{{ item.amount.toFixed(2) }}</div>
 		  <div class="tx-container__el amount_tokens">{{ item.amount_tokens }}</div>
-		  <div class="tx-container__el status">{{ item.status }}</div>
+		  <div :class="{ 'tx-successful': item.status == 'true' , 'tx-failed': item.status == 'false'  }" class="tx-container__el status">{{ item.status }}</div>
 		  <div class="tx-container__el from">{{ item.from }}</div>
-		  <div class="tx-container__el info">{{ item.info }}</div>
+		  <div class="tx-container__el info">
+			  <a :href="'https://' + item.info + '/tx/' + item.transaction_id">{{ item.info }}</a></div>
 		  <div class="tx-container__el date">{{ item.date }}</div>
-		  <div class="tx-container__el white-list">white-list bonus</div>
-		  <div class="tx-container__el referral">referral bonus</div>
+		  <div class="tx-container__el white-list">{{ item.white_list_bonus }}</div>
+		  <div class="tx-container__el referral">{{ item.tokens }}</div>
 	  </main>
   </div>
 </section>
