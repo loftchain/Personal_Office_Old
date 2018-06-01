@@ -43636,7 +43636,37 @@ var render = function() {
             [_vm._v("date")]
           ),
           _vm._v(" "),
-          _vm._m(0)
+          _c("div", { staticClass: "bonus-wrapper" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "bonus-wrapper__bot" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "tx-container__el white-list",
+                  on: {
+                    click: function($event) {
+                      _vm.sort("white_list_bonus")
+                    }
+                  }
+                },
+                [_vm._v("white-list")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "tx-container__el referral",
+                  on: {
+                    click: function($event) {
+                      _vm.sort("tokens")
+                    }
+                  }
+                },
+                [_vm._v("referral")]
+              )
+            ])
+          ])
         ]),
         _vm._v(" "),
         _vm._l(_vm.sortedItems, function(item) {
@@ -43709,13 +43739,6 @@ var render = function() {
         })
       ],
       2
-    ),
-    _vm._v(
-      "\n\tdebug: sort=" +
-        _vm._s(_vm.currentSort) +
-        ", dir=" +
-        _vm._s(_vm.currentSortDir) +
-        "\n"
     )
   ])
 }
@@ -43724,21 +43747,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "bonus-wrapper" }, [
-      _c("div", { staticClass: "bonus-wrapper__top" }, [
-        _c("div", { staticClass: "bonus-wrapper__top_text" }, [
-          _vm._v("\n\t\t\t\t\t  Бонус\n\t\t\t\t  ")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "bonus-wrapper__bot" }, [
-        _c("div", { staticClass: "tx-container__el white-list" }, [
-          _vm._v("white-list")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "tx-container__el referral" }, [
-          _vm._v("referral")
-        ])
+    return _c("div", { staticClass: "bonus-wrapper__top" }, [
+      _c("div", { staticClass: "bonus-wrapper__top_text" }, [
+        _vm._v("\n\t\t\t\t\t  Бонус\n\t\t\t\t  ")
       ])
     ])
   }

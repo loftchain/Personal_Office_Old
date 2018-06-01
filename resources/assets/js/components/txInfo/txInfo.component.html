@@ -18,8 +18,8 @@
 				  </div>
 			  </div>
 			  <div class="bonus-wrapper__bot">
-				  <div class="tx-container__el white-list">white-list</div>
-				  <div class="tx-container__el referral">referral</div>
+				  <div class="tx-container__el white-list" @click="sort('white_list_bonus')">white-list</div>
+				  <div class="tx-container__el referral" @click="sort('tokens')">referral</div>
 			  </div>
 
 		  </div>
@@ -39,6 +39,5 @@
 		  <div class="tx-container__el referral">{{ item.tokens }}</div>
 	  </main>
   </div>
-	debug: sort={{currentSort}}, dir={{currentSortDir}}
 </section>
 
