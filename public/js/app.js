@@ -42974,7 +42974,7 @@ exports = module.exports = __webpack_require__(41)(false);
 
 
 // module
-exports.push([module.i, "\n.tx-info .tx-container__el[data-v-8a11ee28], .tx-info .tx-container header[data-v-8a11ee28], .tx-info .tx-container main[data-v-8a11ee28] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.tx-info .tx-container .bonus-wrapper[data-v-8a11ee28] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.tx-info .tx-container .bonus-wrapper__bot[data-v-8a11ee28] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n@-webkit-keyframes sk-foldCubeAngle-data-v-8a11ee28 {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n@keyframes sk-foldCubeAngle-data-v-8a11ee28 {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n.tx-info[data-v-8a11ee28] {\n  width: 100%;\n  margin-left: -22%;\n}\n.tx-info .tx-container .bonus-wrapper[data-v-8a11ee28] {\n    width: 220px;\n}\n.tx-info .tx-container .bonus-wrapper__top[data-v-8a11ee28] {\n      width: 220px;\n      text-align: center;\n      background: #0b9e87;\n}\n.tx-info .tx-container .bonus-wrapper__bot[data-v-8a11ee28] {\n      width: 220px;\n}\n.tx-info .tx-container__el[data-v-8a11ee28] {\n    text-align: center;\n    border: 1px solid #1b6d85;\n    color: #A3A3A3;\n}\n.tx-info .tx-container__el.id[data-v-8a11ee28] {\n      width: 55px;\n}\n.tx-info .tx-container__el.currency[data-v-8a11ee28] {\n      width: 55px;\n}\n.tx-info .tx-container__el.amount[data-v-8a11ee28] {\n      width: 55px;\n}\n.tx-info .tx-container__el.amount_tokens[data-v-8a11ee28] {\n      width: 110px;\n}\n.tx-info .tx-container__el.status[data-v-8a11ee28] {\n      width: 70px;\n}\n.tx-info .tx-container__el.from[data-v-8a11ee28] {\n      width: 300px;\n}\n.tx-info .tx-container__el.info[data-v-8a11ee28] {\n      width: 100px;\n}\n.tx-info .tx-container__el.date[data-v-8a11ee28] {\n      width: 200px;\n}\n.tx-info .tx-container__el.white-list[data-v-8a11ee28] {\n      width: 110px;\n}\n.tx-info .tx-container__el.referral[data-v-8a11ee28] {\n      width: 110px;\n}\n.tx-info .tx-container__el.tx-successful[data-v-8a11ee28] {\n      color: #27ae60;\n}\n.tx-info .tx-container__el.tx-failed[data-v-8a11ee28] {\n      color: #CF0032;\n}\n.tx-info .tx-container header[data-v-8a11ee28] {\n    background: #1b6d85;\n}\n.tx-info .tx-container header div[data-v-8a11ee28] {\n      color: white;\n}\n.tx-info .tx-container main div[data-v-8a11ee28] {\n    height: 30px;\n}\n.tx-info .tx-container main div.from[data-v-8a11ee28] {\n      font-size: 12px;\n}\n", ""]);
+exports.push([module.i, "\n.tx-info .tx-container__el[data-v-8a11ee28], .tx-info .tx-container header[data-v-8a11ee28], .tx-info .tx-container main[data-v-8a11ee28] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.tx-info .tx-container .bonus-wrapper[data-v-8a11ee28], .tx-info .tx-container main div.from[data-v-8a11ee28] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.tx-info .tx-container .bonus-wrapper__bot[data-v-8a11ee28] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n@-webkit-keyframes sk-foldCubeAngle-data-v-8a11ee28 {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n@keyframes sk-foldCubeAngle-data-v-8a11ee28 {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n.tx-info[data-v-8a11ee28] {\n  width: 100%;\n  margin-left: -22%;\n}\n.tx-info .tx-container .bonus-wrapper[data-v-8a11ee28] {\n    width: 220px;\n}\n.tx-info .tx-container .bonus-wrapper__top[data-v-8a11ee28] {\n      width: 220px;\n      text-align: center;\n      background: #0b9e87;\n}\n.tx-info .tx-container .bonus-wrapper__bot[data-v-8a11ee28] {\n      width: 220px;\n}\n.tx-info .tx-container__el[data-v-8a11ee28] {\n    text-align: center;\n    border: 1px solid #1b6d85;\n    color: #A3A3A3;\n}\n.tx-info .tx-container__el.id[data-v-8a11ee28] {\n      width: 55px;\n}\n.tx-info .tx-container__el.currency[data-v-8a11ee28] {\n      width: 55px;\n}\n.tx-info .tx-container__el.amount[data-v-8a11ee28] {\n      width: 55px;\n}\n.tx-info .tx-container__el.amount_tokens[data-v-8a11ee28] {\n      width: 110px;\n}\n.tx-info .tx-container__el.status[data-v-8a11ee28] {\n      width: 70px;\n}\n.tx-info .tx-container__el.from[data-v-8a11ee28] {\n      width: 320px;\n}\n.tx-info .tx-container__el.info[data-v-8a11ee28] {\n      width: 100px;\n}\n.tx-info .tx-container__el.date[data-v-8a11ee28] {\n      width: 200px;\n}\n.tx-info .tx-container__el.white-list[data-v-8a11ee28] {\n      width: 110px;\n}\n.tx-info .tx-container__el.referral[data-v-8a11ee28] {\n      width: 110px;\n}\n.tx-info .tx-container__el.tx-successful[data-v-8a11ee28] {\n      color: #27ae60;\n}\n.tx-info .tx-container__el.tx-failed[data-v-8a11ee28] {\n      color: #CF0032;\n}\n.tx-info .tx-container__el.not-in-white-list[data-v-8a11ee28] {\n      color: #525252;\n}\n.tx-info .tx-container header[data-v-8a11ee28] {\n    background: #1b6d85;\n}\n.tx-info .tx-container header div[data-v-8a11ee28] {\n      color: white;\n      cursor: pointer;\n}\n.tx-info .tx-container main div[data-v-8a11ee28] {\n    height: 40px;\n}\n.tx-info .tx-container main div.from[data-v-8a11ee28] {\n      font-size: 12px;\n}\n", ""]);
 
 // exports
 
@@ -43447,7 +43447,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: [],
     data: function data() {
         return {
-            adminTxData: []
+            adminTxData: [],
+            currentSort: 'date',
+            currentSortDir: 'desc'
         };
     },
     created: function created() {
@@ -43455,15 +43457,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {},
 
-    computed: {},
+    computed: {
+        sortedItems: function sortedItems() {
+            var _this = this;
+
+            return this.adminTxData.sort(function (a, b) {
+                var modifier = 1;
+                if (_this.currentSortDir === 'desc') modifier = -1;
+                if (a[_this.currentSort] < b[_this.currentSort]) return -1 * modifier;
+                if (a[_this.currentSort] > b[_this.currentSort]) return 1 * modifier;
+                return 0;
+            });
+        }
+    },
 
     methods: {
         loadTransactions: function loadTransactions() {
-            var _this = this;
+            var _this2 = this;
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/getDataForAdminTx').then(function (res) {
-                _this.countWhiteListBonus(res.data);
-                console.log(_this.adminTxData);
+                _this2.countWhiteListBonus(res.data);
+                console.log(_this2.adminTxData);
             });
         },
         countWhiteListBonus: function countWhiteListBonus(array) {
@@ -43492,6 +43506,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     }
                 }
             }
+        },
+
+
+        sort: function sort(s) {
+            if (s === this.currentSort) {
+                this.currentSortDir = this.currentSortDir === 'asc' ? 'desc' : 'asc';
+            }
+            this.currentSort = s;
         }
     }
 });
@@ -43509,9 +43531,115 @@ var render = function() {
       "div",
       { staticClass: "tx-container" },
       [
-        _vm._m(0),
+        _c("header", [
+          _c(
+            "div",
+            {
+              staticClass: "tx-container__el id",
+              on: {
+                click: function($event) {
+                  _vm.sort("id")
+                }
+              }
+            },
+            [_vm._v("user id")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "tx-container__el currency",
+              on: {
+                click: function($event) {
+                  _vm.sort("currency")
+                }
+              }
+            },
+            [_vm._v("currency")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "tx-container__el amount",
+              on: {
+                click: function($event) {
+                  _vm.sort("amount")
+                }
+              }
+            },
+            [_vm._v("amount")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "tx-container__el amount_tokens",
+              on: {
+                click: function($event) {
+                  _vm.sort("amount_tokens")
+                }
+              }
+            },
+            [_vm._v("amount_tokens")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "tx-container__el status",
+              on: {
+                click: function($event) {
+                  _vm.sort("status")
+                }
+              }
+            },
+            [_vm._v("status")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "tx-container__el from",
+              on: {
+                click: function($event) {
+                  _vm.sort("from")
+                }
+              }
+            },
+            [_vm._v("from/to")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "tx-container__el info",
+              on: {
+                click: function($event) {
+                  _vm.sort("info")
+                }
+              }
+            },
+            [_vm._v("info")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "tx-container__el date",
+              on: {
+                click: function($event) {
+                  _vm.sort("date")
+                }
+              }
+            },
+            [_vm._v("date")]
+          ),
+          _vm._v(" "),
+          _vm._m(0)
+        ]),
         _vm._v(" "),
-        _vm._l(_vm.adminTxData, function(item) {
+        _vm._l(_vm.sortedItems, function(item) {
           return _c("main", [
             _c("div", { staticClass: "tx-container__el id" }, [
               _vm._v(_vm._s(item.id))
@@ -43542,7 +43670,8 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { staticClass: "tx-container__el from" }, [
-              _vm._v(_vm._s(item.from))
+              _c("span", [_vm._v(_vm._s(item.from))]),
+              item.to ? _c("span", [_vm._v(_vm._s(item.to))]) : _vm._e()
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "tx-container__el info" }, [
@@ -43561,9 +43690,17 @@ var render = function() {
               _vm._v(_vm._s(item.date))
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "tx-container__el white-list" }, [
-              _vm._v(_vm._s(item.white_list_bonus))
-            ]),
+            _c(
+              "div",
+              {
+                staticClass: "tx-container__el white-list",
+                class: {
+                  "not-in-white-list":
+                    item.white_list_bonus == "not in white-list"
+                }
+              },
+              [_vm._v(_vm._s(item.white_list_bonus))]
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "tx-container__el referral" }, [
               _vm._v(_vm._s(item.tokens))
@@ -43572,6 +43709,13 @@ var render = function() {
         })
       ],
       2
+    ),
+    _vm._v(
+      "\n\tdebug: sort=" +
+        _vm._s(_vm.currentSort) +
+        ", dir=" +
+        _vm._s(_vm.currentSortDir) +
+        "\n"
     )
   ])
 }
@@ -43580,42 +43724,20 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("header", [
-      _c("div", { staticClass: "tx-container__el id" }, [_vm._v("user id")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "tx-container__el currency" }, [
-        _vm._v("currency")
+    return _c("div", { staticClass: "bonus-wrapper" }, [
+      _c("div", { staticClass: "bonus-wrapper__top" }, [
+        _c("div", { staticClass: "bonus-wrapper__top_text" }, [
+          _vm._v("\n\t\t\t\t\t  Бонус\n\t\t\t\t  ")
+        ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "tx-container__el amount" }, [_vm._v("amount")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "tx-container__el amount_tokens" }, [
-        _vm._v("amount_tokens")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "tx-container__el status" }, [_vm._v("status")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "tx-container__el from" }, [_vm._v("from")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "tx-container__el info" }, [_vm._v("info")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "tx-container__el date" }, [_vm._v("date")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "bonus-wrapper" }, [
-        _c("div", { staticClass: "bonus-wrapper__top" }, [
-          _c("div", { staticClass: "bonus-wrapper__top_text" }, [
-            _vm._v("\n\t\t\t\t\t  Бонус\n\t\t\t\t  ")
-          ])
+      _c("div", { staticClass: "bonus-wrapper__bot" }, [
+        _c("div", { staticClass: "tx-container__el white-list" }, [
+          _vm._v("white-list")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "bonus-wrapper__bot" }, [
-          _c("div", { staticClass: "tx-container__el white-list" }, [
-            _vm._v("white-list")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "tx-container__el referral" }, [
-            _vm._v("referral")
-          ])
+        _c("div", { staticClass: "tx-container__el referral" }, [
+          _vm._v("referral")
         ])
       ])
     ])

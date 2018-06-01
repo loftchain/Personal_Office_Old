@@ -50,7 +50,7 @@
       }
 
       &.from{
-        width: 300px;
+        width: 320px;
       }
 
       &.info{
@@ -76,6 +76,10 @@
       &.tx-failed{
         color: $status-red;
       }
+
+      &.not-in-white-list{
+        color: #525252
+      }
     }
 
     header{
@@ -84,6 +88,7 @@
 
       div{
         color: white;
+        cursor: pointer;
       }
     }
 
@@ -91,9 +96,10 @@
       @extend %fc;
 
       div{
-        height: 30px;
+        height: 40px;
 
         &.from{
+          @extend %fcc;
           font-size: 12px;
         }
       }

@@ -165,8 +165,10 @@ class TransactionService
 		$adminTxData = DB::table('transactions')
 			->select('transactions.status','transactions.currency',
 				'transactions.from', 'transactions.amount',
-				'transactions.amount_tokens', 'transactions.info', 'transactions.transaction_id',
-				'transactions.date', 'user_wallet_fields.type', 'user_wallet_fields.wallet', 'users.id', 'white-list.email', 'user_referral_fields.tokens')
+				'transactions.amount_tokens', 'transactions.info',
+				'transactions.transaction_id', 'transactions.date',
+				'user_wallet_fields.type', 'user_wallet_fields.wallet',
+				'users.id', 'white-list.email', 'user_referral_fields.tokens')
 			->leftJoin('user_wallet_fields','user_wallet_fields.wallet','=','transactions.from')
 			->leftJoin('users','users.id','=','user_wallet_fields.user_id')
 			->leftJoin('user_referral_fields','users.id','=','user_referral_fields.user_id')
@@ -177,15 +179,10 @@ class TransactionService
 		foreach ($adminTxData as $k => $tx){
 			if($tx->currency == 'BTC'){
 				$transaction = UserWalletFields::where('user_id', $tx->id)->where('type', 'to')->first();
-				$tx = (array)$tx;
-				$tx['to'] = $transaction->wallet;
-				$tx = (object)$tx;
-				$adminTxData[] = $tx;
-				unset($adminTxData[$k]);
+				$adminTxData[$k]->to = $transaction->wallet;
 			}
 		}
 
-		Log::info($adminTxData[0]);
 		return $adminTxData;
 
 	}
