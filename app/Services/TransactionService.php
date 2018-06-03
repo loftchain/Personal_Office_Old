@@ -5,7 +5,9 @@ namespace App\Services;
 use App\Helpers\ICOAPI;
 use App\Models\Transactions;
 use App\Models\UserWalletFields;
+use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\HomeController;
@@ -154,7 +156,34 @@ class TransactionService
 				$txData[] = ['wallet' => [$wallet->wallet, $wallet->currency], 'tx' => $tx];
 			}
 		}
-
 		return $txData;
+	}
+
+	public function getDataForAdminTx()
+	{
+
+		$adminTxData = DB::table('transactions')
+			->select('transactions.status','transactions.currency',
+				'transactions.from', 'transactions.amount',
+				'transactions.amount_tokens', 'transactions.info',
+				'transactions.transaction_id', 'transactions.date',
+				'user_wallet_fields.type', 'user_wallet_fields.wallet',
+				'users.id', 'white-list.email', 'user_referral_fields.tokens')
+			->leftJoin('user_wallet_fields','user_wallet_fields.wallet','=','transactions.from')
+			->leftJoin('users','users.id','=','user_wallet_fields.user_id')
+			->leftJoin('user_referral_fields','users.id','=','user_referral_fields.user_id')
+			->leftJoin('white-list','white-list.email','=','users.email')
+			->get();
+
+
+		foreach ($adminTxData as $k => $tx){
+			if($tx->currency == 'BTC'){
+				$transaction = UserWalletFields::where('user_id', $tx->id)->where('type', 'to')->first();
+				$adminTxData[$k]->to = $transaction->wallet;
+			}
+		}
+
+		return $adminTxData;
+
 	}
 }

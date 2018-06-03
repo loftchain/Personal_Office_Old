@@ -7,6 +7,7 @@ use App\Mail\ConfirmRegistration;
 use App\Mail\ReturnToStep2;
 use App\Models\User;
 use App\Models\UserPersonalFields;
+use App\Services\TransactionService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,8 +20,10 @@ use Illuminate\Support\Facades\Storage;
 class AdminController extends Controller
 {
 
-	public function __construct()
+	protected $txService;
+	public function __construct(TransactionService $txService)
 	{
+		$this->txService = $txService;
 		$this->middleware('auth');
 	}
 
@@ -57,7 +60,6 @@ class AdminController extends Controller
 		$user->valid_step = 2;
 		$user->save();
 		UserPersonalFields::where('user_id', $user_id)->delete();
-
 		Mail::to($user->email)->send(new ReturnToStep2());
 		return response()->json(['returned_to_step2' => 'returned_to_step2']);
 	}
@@ -70,5 +72,9 @@ class AdminController extends Controller
 	public function confirm_view($data)
 	{
 		return view('admin.confirmation')->with('data', $data);
+	}
+
+	public function getDataForAdminTx(){
+		return $this->txService->getDataForAdminTx();
 	}
 }

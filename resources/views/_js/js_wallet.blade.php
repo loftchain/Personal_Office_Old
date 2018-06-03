@@ -63,8 +63,6 @@
                         addBtn.hide();
                         _this.val('');
                         break;
-
-
                 }
             });
 

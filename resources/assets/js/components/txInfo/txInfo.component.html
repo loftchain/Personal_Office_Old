@@ -1,5 +1,43 @@
-
 <section class="tx-info">
-  <h1>tx-info Component</h1>
+
+  <div class="tx-container">
+	  <header>
+		  <div class="tx-container__el id" @click="sort('id')">user id</div>
+		  <div class="tx-container__el currency" @click="sort('currency')">currency</div>
+		  <div class="tx-container__el amount" @click="sort('amount')">amount</div>
+		  <div class="tx-container__el amount_tokens" @click="sort('amount_tokens')">amount_tokens</div>
+		  <div class="tx-container__el status" @click="sort('status')">status</div>
+		  <div class="tx-container__el from" @click="sort('from')">from/to</div>
+		  <div class="tx-container__el info" @click="sort('info')">info</div>
+		  <div class="tx-container__el date" @click="sort('date')">date</div>
+		  <div class="bonus-wrapper">
+
+			  <div class="bonus-wrapper__top">
+				  <div class="bonus-wrapper__top_text">
+					  Бонус
+				  </div>
+			  </div>
+			  <div class="bonus-wrapper__bot">
+				  <div class="tx-container__el white-list" @click="sort('white_list_bonus')">white-list</div>
+				  <div class="tx-container__el referral" @click="sort('tokens')">referral</div>
+			  </div>
+
+		  </div>
+
+	  </header>
+	  <main v-for="item in sortedItems">
+		  <div class="tx-container__el id">{{ item.id }}</div>
+		  <div class="tx-container__el currency">{{ item.currency }}</div>
+		  <div class="tx-container__el amount">{{ item.amount.toFixed(2) }}</div>
+		  <div class="tx-container__el amount_tokens">{{ item.amount_tokens }}</div>
+		  <div :class="{ 'tx-successful': item.status == 'true' , 'tx-failed': item.status == 'false' }" class="tx-container__el status">{{ item.status }}</div>
+		  <div class="tx-container__el from"><span>{{ item.from }}</span><span v-if="item.to">{{ item.to }}</span></div>
+		  <div class="tx-container__el info">
+			  <a :href="'https://' + item.info + '/tx/' + item.transaction_id">{{ item.info }}</a></div>
+		  <div class="tx-container__el date">{{ item.date }}</div>
+		  <div :class="{ 'not-in-white-list': item.white_list_bonus == 'not in white-list'  }" class="tx-container__el white-list">{{ item.white_list_bonus }}</div>
+		  <div class="tx-container__el referral">{{ item.tokens }}</div>
+	  </main>
+  </div>
 </section>
 

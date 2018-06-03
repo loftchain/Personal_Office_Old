@@ -79,4 +79,6 @@ Route::group(['middleware' =>  ['admin']], function(){
 	Route::get('/admin/confirm_view/{data}', 'Admin\AdminController@confirm_view')->name('confirm_view');
 	Route::get('/admin/get_user_info', 'Admin\AdminController@get_user_info')->name('get_user_info');
 	Route::get('/admin/getFile/{fileName}', 'Admin\AdminController@getFile')->name('getFile');
+	Route::get('/getDataForAdminTx', 'Admin\AdminController@getDataForAdminTx')->name('getDataForAdminTx');
+
 });

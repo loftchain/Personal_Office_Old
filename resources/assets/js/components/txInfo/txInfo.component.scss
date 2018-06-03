@@ -1,3 +1,109 @@
-.tx-info {
+@import "../../../sass/variables";
 
+.tx-info {
+  width: 100%;
+  margin-left:-22%;
+
+  .tx-container{
+
+    .bonus-wrapper{
+      width: 220px;
+
+      @extend %fcc;
+
+      &__top{
+        width: 220px;
+        text-align: center;
+        background: #0b9e87;
+      }
+
+      &__bot{
+        width: 220px;
+        @extend %fsb
+      }
+    }
+
+    &__el{
+      text-align: center;
+      border: 1px solid #1b6d85;
+      color:$white;
+      @extend %fc;
+
+      &.id{
+        width: 55px;
+      }
+
+      &.currency{
+        width: 55px;
+      }
+
+      &.amount{
+        width: 55px;
+      }
+
+      &.amount_tokens{
+        width: 110px;
+      }
+
+      &.status{
+        width: 70px;
+      }
+
+      &.from{
+        width: 320px;
+      }
+
+      &.info{
+        width: 100px;
+      }
+
+      &.date{
+        width: 200px;
+      }
+
+      &.white-list{
+        width: 110px;
+      }
+
+      &.referral{
+        width: 110px;
+      }
+
+      &.tx-successful{
+        color: $status-green;
+      }
+
+      &.tx-failed{
+        color: $status-red;
+      }
+
+      &.not-in-white-list{
+        color: #525252
+      }
+    }
+
+    header{
+      @extend %fc;
+      background: #1b6d85;
+
+      div{
+        color: white;
+        cursor: pointer;
+      }
+    }
+
+    main{
+      @extend %fc;
+
+      div{
+        height: 40px;
+
+        &.from{
+          @extend %fcc;
+          font-size: 12px;
+        }
+      }
+    }
+  }
 }
+
