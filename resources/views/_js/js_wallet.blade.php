@@ -36,7 +36,7 @@
 
         switchCheckBox(_this) {
             wa.checkboxImg.attr('src', '{{ asset('img/empty-checkbox.png') }}');
-            _this[0].childNodes[1].childNodes[1].src = '{{ asset('img/checked-checkbox.png') }}';
+            $(_this).children('.button').children('.checkbox-img').prop('src', '{{ asset('img/checked-checkbox.png') }}');
         },
 
         editMode(_this) { //input

@@ -270,18 +270,17 @@
   .c2 {
 
     &__cur {
-      margin-top: 3px;
       @extend %fsb;
 
       img {
-        height: 30px;
+        height: 35px;
       }
 
       .text-box {
         margin-left: 10px;
         @extend %fcc;
         align-items: flex-start;
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 500;
         color: #A3A3A3;
       }
