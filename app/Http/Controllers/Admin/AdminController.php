@@ -32,14 +32,16 @@ class AdminController extends Controller
 		$users = [];
 		foreach ($usersPersonal as $up) {
 			$_user = User::find($up->user_id);
-			$_user['name_surname'] = $up->name_surname;
-			$_user['permanent_address'] = $up->permanent_address;
-			$_user['contact_number'] = $up->contact_number;
-			$_user['date_place_birth'] = $up->date_place_birth;
-			$_user['nationality'] = $up->nationality;
-			$_user['source_of_funds'] = $up->source_of_funds;
-			$_user['doc_img_path'] = $up->doc_img_path;
-			$users[] = $_user;
+			if($_user->confirmed != 1) {
+				$_user['name_surname'] = $up->name_surname;
+				$_user['permanent_address'] = $up->permanent_address;
+				$_user['contact_number'] = $up->contact_number;
+				$_user['date_place_birth'] = $up->date_place_birth;
+				$_user['nationality'] = $up->nationality;
+				$_user['source_of_funds'] = $up->source_of_funds;
+				$_user['doc_img_path'] = $up->doc_img_path;
+				$users[] = $_user;
+			}
 		}
 		return $users;
 	}

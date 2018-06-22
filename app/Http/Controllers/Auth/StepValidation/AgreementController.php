@@ -126,7 +126,7 @@ class AgreementController extends Controller
 
 			$extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
 			if (!in_array(strtolower($extension), $allowed)) {
-				echo '{"status":"error"}';
+				Log::info('Extension of uploaded files does not match');
 				return;
 			}
 
@@ -149,7 +149,8 @@ class AgreementController extends Controller
 			}
 		}
 
-		echo '{"status":"error"}';
+		Log::info('something went wrong with uploading photos');
+
 		return;
 	}
 }
