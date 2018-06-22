@@ -9,10 +9,9 @@
         <div class="x-dashboard__tabs">
             <ul class="nav nav-tabs">
                 @if($data['admin'] == 1)
-                <li class="active"> <a data-toggle="tab" href="#adminTxInfo">tx info</a> </li>
-
-                <li > <a data-toggle="tab" href="#adminConfirmation">@lang('layouts/dashboard.сonfirmation')</a></li>
-                    <li> <a data-toggle="tab" href="#adminReferrals">@lang('layouts/dashboard.referrals')</a> </li>
+                <li class="active" > <a data-toggle="tab" href="#adminConfirmation">@lang('layouts/dashboard.сonfirmation')</a></li>
+                <li> <a data-toggle="tab" href="#adminTxInfo">tx info</a> </li>
+                <li> <a data-toggle="tab" href="#adminReferrals">@lang('layouts/dashboard.referrals')</a> </li>
                 @else
                     <li class="active"> <a data-toggle="tab" href="#home">@lang('layouts/dashboard.ico')</a> </li>
                     <li> <a data-toggle="tab" href="#transactions">@lang('layouts/dashboard.myTx')</a> </li>

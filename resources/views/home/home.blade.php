@@ -5,12 +5,11 @@
     @include('layouts.dashboard')
     <div id="xBody" class="x-body tab-content">
         @if($data['admin'] == 1)
-
-            <div id="adminTxInfo" class="tab-pane fade in active">
-              @include('admin.txInfo')
+            <div id="adminConfirmation" class="tab-pane fade in active">
+              @include('admin.confirmation')
             </div>
-            <div id="adminConfirmation" class="tab-pane fade">
-                @include('admin.confirmation')
+            <div id="adminTxInfo" class="tab-pane fade">
+              @include('admin.txInfo')
             </div>
             <div id="adminReferrals" class="tab-pane fade">
                 @include('admin.referrals')
