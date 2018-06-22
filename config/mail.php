@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'ShowRoom Support Team'),
+        'address' => env('MAIL_FROM_ADDRESS', 'support@loftchain.io'),
+        'name' => env('MAIL_FROM_NAME', 'LeadRex Support Team'),
     ],
 
     /*
