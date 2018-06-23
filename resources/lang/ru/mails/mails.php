@@ -1,7 +1,8 @@
 <?php
 
 return [
-		//registration_confirmation.blade
+		'confirmation_subject' => 'Подтверждение',
+		'return_subject' => 'Возврат на форму KYC',
 		'welcome' => 'Добро пожаловать в личный кабинет инвестора',
 		'confirmed' => 'Ваш аккаунт был успешно подтверждён администрацией сайта',
 		'startInvesting' => 'Начать инвестирование',
