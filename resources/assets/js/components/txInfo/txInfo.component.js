@@ -36,7 +36,6 @@ export default {
             axios.get('/getDataForAdminTx')
                 .then(res => {
                     this.countWhiteListBonus(res.data);
-                    console.log(this.adminTxData);
                 })
         },
 

@@ -43634,7 +43634,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/getDataForAdminTx').then(function (res) {
                 _this2.countWhiteListBonus(res.data);
-                console.log(_this2.adminTxData);
             });
         },
         countWhiteListBonus: function countWhiteListBonus(array) {

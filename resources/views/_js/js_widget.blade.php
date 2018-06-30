@@ -327,7 +327,6 @@
         setSingleCurrencyTexts() {
             let ethCurrentAmount = (Math.round(w.ethCurrentAmount * 100) / 100).toFixed(2);
             let btcCurrentAmount = (Math.round(w.btcCurrentAmount * 100) / 100).toFixed(2);
-            console.log(typeof parseInt({{ env('INVESTED_IN_ETH') }}) );
             w.currencyValue0.text(+(ethCurrentAmount) + parseInt({{ env('INVESTED_IN_ETH') }}));
             w.currencyValue1.text(btcCurrentAmount);
         },
