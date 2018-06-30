@@ -143,6 +143,7 @@
 .x-widget .widget-part .control-container .c2,
 .x-widget__top .control-container__periods .c1 .x-progress_dates,
 .x-widget__top .control-container__periods .c1-1 .x-progress_dates,
+.x-widget__bot .title-container,
 .x-widget__bot .x-progress__caps,
 .x-widget .c2__cur,
 .x-wallets__buttons,
@@ -11016,6 +11017,10 @@ button.close {
   text-align: center;
   color: #A3A3A3;
   font-size: 16px;
+}
+
+.x-widget__bot .title-container {
+  width: 100%;
 }
 
 .x-widget__bot .x-progress {

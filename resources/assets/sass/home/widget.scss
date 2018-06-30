@@ -232,6 +232,12 @@
 
 
   &__bot {
+
+    .title-container{
+      width: 100%;
+      @extend %fsb;
+    }
+
     .x-progress {
       width:100%;
 

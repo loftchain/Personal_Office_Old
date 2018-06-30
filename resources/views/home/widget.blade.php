@@ -66,7 +66,10 @@
         </div>
 </div>
     <div class="widget-part x-widget__bot">
-        <p>@lang('home/widget.raised')</p>
+        <div class="title-container">
+          <p class="title-container_1">@lang('home/widget.raised')</p>
+          <p class="title-container_2">@lang('home/widget.total')</p>
+        </div>
         <div class="control-container">
             <div class="c c1">
                 <div class="x-progress">
@@ -88,7 +91,7 @@
                 <div class="c2__cur">
                     <img class="c2__cur_img0" src="{{ asset('img/Ethereum.png') }}" alt="">
                     <div class="tb0 text-box">
-                        <span class="a0 amount">70</span>
+                        <span class="a0 amount">{{ number_format(env('INVESTED_IN_ETH'), 0, '.', ' ') }}</span>
                         <span class="n0 name">ETH</span>
                     </div>
                 </div>

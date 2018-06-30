@@ -12,17 +12,16 @@
         endDate_ico2: '{{ env('ICO2_END') }}',
         startDate_ico3: '{{ env('ICO3_START') }}',
         endDate_ico3: '{{ env('ICO3_END') }}',
+        walletETH: '{{ env('HOME_WALLET_ETH') }}',
+        walletBTC: '{{ env('HOME_WALLET_BTC') }}',
 
         tokenPriceInETH: '{{ $data['stageInfo']['tokenPriceInETH'] }}',
         softCapETH: '{{ $data['stageInfo']['softCapETH'] }}',
         hardCapETH: '{{ $data['stageInfo']['hardCapETH'] }}',
-        softCapToken: '{{ $data['stageInfo']['softCapToken'] }}',
-        hardCapToken: '{{ $data['stageInfo']['hardCapToken'] }}',
         minPayment: '{{ $data['stageInfo']['minPayment'] }}',
         currentStage: '{{ $data['stageInfo']['currentStage'] }}',
         nextStage: '{{ $data['stageInfo']['nextStage'] }}',
-        walletETH: '{{ $data['stageInfo']['walletETH'] }}',
-        walletBTC: '{{ $data['stageInfo']['walletBTC'] }}',
+
 
         _now: ('{{ $data['time'] }}') ? '{{ $data['time'] }}' : Math.floor(new Date().getTime() / 1000),
         ethCurrentAmount: ('{{ $data['ethCurrentAmount']['currency'] }}'),
@@ -318,7 +317,7 @@
         setCapTexts() {
             let totalCryptoAmount_eth = +(parseFloat(w.totalCryptoAmountETH).toFixed(2));
             let totalFiatAmount_eth = +(parseFloat(w.totalCryptoAmountUSD).toFixed(2));
-            let total_eth = +(totalCryptoAmount_eth + totalFiatAmount_eth);
+            let total_eth = +(totalCryptoAmount_eth);
 
             w.currentlyCollectedSpan_ETH.text(total_eth.toFixed(2) + ' ETH ({{ __('home/widget.currentlyCollected_js') }})');
             w.softCapSpan_ETH.text(w.softCapETH + ' ETH (soft cap) ');
@@ -328,14 +327,15 @@
         setSingleCurrencyTexts() {
             let ethCurrentAmount = (Math.round(w.ethCurrentAmount * 100) / 100).toFixed(2);
             let btcCurrentAmount = (Math.round(w.btcCurrentAmount * 100) / 100).toFixed(2);
-            w.currencyValue0.text(ethCurrentAmount);
+            console.log(typeof parseInt({{ env('INVESTED_IN_ETH') }}) );
+            w.currencyValue0.text(+(ethCurrentAmount) + parseInt({{ env('INVESTED_IN_ETH') }}));
             w.currencyValue1.text(btcCurrentAmount);
         },
 
         setCapProgressWidth() {
             let totalCryptoAmount_eth = +(parseFloat(w.totalCryptoAmountETH).toFixed(2));
             let totalFiatAmount_eth = +(parseFloat(w.totalCryptoAmountUSD).toFixed(2));
-            let total_eth = +(totalCryptoAmount_eth + totalFiatAmount_eth);
+            let total_eth = +(totalCryptoAmount_eth);
 
             let percent = Math.ceil(total_eth * 100 / parseInt(w.hardCapETH));
             w.totalInnerPercents.text(percent + ' %');

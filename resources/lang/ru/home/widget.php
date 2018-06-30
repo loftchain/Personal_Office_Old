@@ -9,4 +9,5 @@ return [
 	'hours_span' => 'часы',
 	'minutes_span' => 'минуты',
 	'raised' => 'Внесено',
+	'total' => 'Всего',
 ];

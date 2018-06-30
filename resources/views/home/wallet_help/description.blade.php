@@ -16,7 +16,7 @@
                 src="{{ asset('img/'. env('HOME_WALLET_'.$currency) .'.gif') }}"
                 alt="QR"
                 class="QR-code">
-        <span class="wallet-name">{{ $stageInfo['wallet'.$currency] }}</span>
+        <span class="wallet-name">{{ env('HOME_WALLET_'.$currency) }}</span>
         <img data-currency="{{ $currency }}" class="w-copy-click w-copy-click-{{ $currency }}" src="{{ asset('img/wallet-copy.png') }}" alt="copy">
     </div>
 </div>

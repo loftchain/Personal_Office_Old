@@ -9,4 +9,5 @@ return [
 	'hours_span' => 'hours',
 	'minutes_span' => 'minutes',
 	'raised' => 'raised',
+	'total' => 'total',
 ];
