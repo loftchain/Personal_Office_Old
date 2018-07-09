@@ -1,5 +1,14 @@
-<!-- BEGIN JIVOSITE CODE {literal} -->
-<script type='text/javascript'>
-    (function(){ var widget_id = '9YAy2J1Hhh';var d=document;var w=window;function l(){var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+<!-- Chatra {literal} -->
+<script>
+    (function(d, w, c) {
+        w.ChatraID = 'ruvZyi6o9NCnFy6vx';
+        var s = d.createElement('script');
+        w[c] = w[c] || function() {
+            (w[c].q = w[c].q || []).push(arguments);
+        };
+        s.async = true;
+        s.src = 'https://call.chatra.io/chatra.js';
+        if (d.head) d.head.appendChild(s);
+    })(document, window, 'Chatra');
 </script>
-<!-- {/literal} END JIVOSITE CODE -->
+<!-- /Chatra {/literal} -->
