@@ -10,7 +10,7 @@
 </form>
 
 <div class="description-container ETH" data-currency="ETH">
-   <p class="no-wallet ETH">@lang('home/wallet.addWalletForInvest_p') ETH</p>
+   <p class="no-wallet ETH">@lang('home/wallet.addWalletForInvest_p') ETH @lang('home/wallet.addWalletForInvest_p_ETH')</p>
 </div>
 
 

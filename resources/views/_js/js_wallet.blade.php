@@ -109,7 +109,7 @@
             const form = _this.parent();
             const currency = form.find('.currency');
             const type = form.find('.type');
-
+            console.log(walletsData);
             if (wa.userConfirmed === '1') {
                 walletsData.currentWallets.forEach(function (wallet) {
                     let wallet_val = ($(window).width() > 555) ? wallet.wallet : wallet.wallet.trunc(20);
@@ -121,11 +121,20 @@
                                 wa.showDescription(wallet.currency);
                             }
                             break;
-                        default:
-                            if (type.val() === wallet.type) {
+                        case 'to':
+                            if (currency.val() === wallet.currency) {
                                 _this.val(wallet_val);
                                 wa.showDescription(wallet.currency);
                             }
+                            break;
+                        case 'from_to':
+                            if (currency.val() === wallet.currency && type.val() === wallet.type) {
+                                _this.val(wallet_val);
+                                wa.showDescription(wallet.currency);
+                            }
+                            break;
+                        default:
+                            
                             break;
                     }
                 });

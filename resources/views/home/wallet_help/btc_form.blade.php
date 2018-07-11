@@ -21,5 +21,5 @@
 </form>
 
 <div class="description-container BTC" data-currency="BTC">
-  <p class="no-wallet BTC">@lang('home/wallet.addWalletForInvest_p') BTC</p>
+  <p class="no-wallet BTC">@lang('home/wallet.addWalletForInvest_p') BTC & ETH @lang('home/wallet.addWalletForInvest_p_nonETH')</p>
 </div>

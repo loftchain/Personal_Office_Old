@@ -103,10 +103,10 @@
                     break;
                 case !$.isEmptyObject(data.wallet_added):
                     v.showNotification('@lang('home/wallet.added_js')', 'success');
-                    if (typeof wa !== 'undefined') {
-                        wa.exitEditMode(_this.children('.w-input'));
-                        wa.showDescription(data.currency);
-                    }
+                    // if (typeof wa !== 'undefined') {
+                    //     wa.exitEditMode(_this.children('.w-input'));
+                    //     wa.showDescription(data.currency);
+                    // }
                     break;
                 case !$.isEmptyObject(data.usd_request_sent):
                     v.showNotification('@lang('home/wallet.requestWasSent_js')', 'success');
