@@ -10,6 +10,7 @@
         <div class="a-wrapper__header_el a-birth">@lang('admin/confirmation.bDay')</div>
         <div class="a-wrapper__header_el a-nationality">@lang('admin/confirmation.nationality')</div>
         <div class="a-wrapper__header_el a-funds">@lang('admin/confirmation.source')</div>
+        <div class="a-wrapper__header_el a-promo">@lang('admin/confirmation.promo')</div>
         <div class="a-wrapper__header_el a-doc-wrapper">@lang('admin/confirmation.docs')</div>
         <div class="a-wrapper__header_el a-confirmed">@lang('admin/confirmation.confirmed')</div>
     </section>

@@ -34,13 +34,13 @@
                     <input id="name_surname" type="text" class="x-input" name="name_surname">
                     <div class="error-message error-message0 name_surname"></div>
 
-                    <label for="telegram" class=""> @lang('agreement/agreement.telegram_label')</label>
-                    <input id="telegram" type="text" class="x-input" name="telegram">
-                    <div class="error-message error-message1 telegram"></div>
+                    <label for="nationality" class=""> @lang('agreement/agreement.nationality_label')</label>
+                    <input id="nationality" type="text" class="x-input" name="nationality">
+                    <div class="error-message error-message6 nationality"></div>
 
-                    <label for="emergency_email" class=""> @lang('agreement/agreement.extraEmail_label')</label>
-                    <input id="emergency_email" type="text" class="x-input" name="emergency_email">
-                    <div class="error-message error-message2 emergency_email"></div>
+                    <label for="source_of_funds" class=""> @lang('agreement/agreement.sourceOfFunds_label')</label>
+                    <input id="source_of_funds" type="text" class="x-input" name="source_of_funds">
+                    <div class="error-message error-message7 source_of_funds"></div>
 
                     <label for="permanent_address" class=""> @lang('agreement/agreement.permAddress_label')</label>
                     <input id="permanent_address" type="text" class="x-input" name="permanent_address">
@@ -55,13 +55,13 @@
                     <input id="date_place_birth" type="text" class="x-input" name="date_place_birth">
                     <div class="error-message error-message5 date_place_birth"></div>
 
-                    <label for="nationality" class=""> @lang('agreement/agreement.nationality_label')</label>
-                    <input id="nationality" type="text" class="x-input" name="nationality">
-                    <div class="error-message error-message6 nationality"></div>
+                    <label for="telegram" class=""> @lang('agreement/agreement.telegram_label')</label>
+                    <input id="telegram" type="text" class="x-input" name="telegram">
+                    <div class="error-message error-message1 telegram"></div>
 
-                    <label for="source_of_funds" class=""> @lang('agreement/agreement.sourceOfFunds_label')</label>
-                    <input id="source_of_funds" type="text" class="x-input" name="source_of_funds">
-                    <div class="error-message error-message7 source_of_funds"></div>
+                    <label for="promo" class=""> @lang('agreement/agreement.promo_label')</label>
+                    <input id="promo" type="text" class="x-input" name="promo">
+                    <div class="error-message error-message2 emergency_email"></div>
                 </div>
                 <div class="check-box-container">
                     <div>

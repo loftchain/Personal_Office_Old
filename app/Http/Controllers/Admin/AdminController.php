@@ -42,6 +42,7 @@ class AdminController extends Controller
 				$_user['date_place_birth'] = $up->date_place_birth;
 				$_user['nationality'] = $up->nationality;
 				$_user['source_of_funds'] = $up->source_of_funds;
+				$_user['promo'] = $up->promo;
 				$_user['doc_img_path'] = $up->doc_img_path;
 				$users[] = $_user;
 		}

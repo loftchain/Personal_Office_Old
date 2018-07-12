@@ -102,7 +102,7 @@ class AgreementController extends Controller
 		$userPersonalField->name_surname = $request['name_surname'];
 		$userPersonalField->permanent_address = $request['permanent_address'];
 		$userPersonalField->telegram = $request['telegram'];
-		$userPersonalField->emergency_email = $request['emergency_email'];
+		$userPersonalField->promo = $request['promo'];
 		$userPersonalField->contact_number = $request['contact_number'];
 		$userPersonalField->date_place_birth = $request['date_place_birth'];
 		$userPersonalField->nationality = $request['nationality'];
