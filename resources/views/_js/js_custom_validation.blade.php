@@ -103,10 +103,22 @@
                     break;
                 case !$.isEmptyObject(data.wallet_added):
                     v.showNotification('@lang('home/wallet.added_js')', 'success');
-                    // if (typeof wa !== 'undefined') {
-                    //     wa.exitEditMode(_this.children('.w-input'));
-                    //     wa.showDescription(data.currency);
-                    // }
+                    if (typeof wa !== 'undefined') {
+                        wa.exitEditMode(_this.children('.w-input'));
+                        if(_this.children('.type') === 'to' && $('#wallet1').val() > 0){
+                            wa.showDescription('BTC');
+                        }
+
+                        if(_this.children('.type') === 'from' && $('#wallet2').val() > 0){
+
+                            wa.showDescription(data.currency);
+                        }
+
+                        if(_this.children('.type') === 'from_to'){
+                            wa.showDescription(data.currency);
+                        }
+
+                    }
                     break;
                 case !$.isEmptyObject(data.usd_request_sent):
                     v.showNotification('@lang('home/wallet.requestWasSent_js')', 'success');
