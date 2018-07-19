@@ -112,8 +112,6 @@
 
             if (wa.userConfirmed === '1') {
                 walletsData.currentWallets.forEach(function (wallet) {
-                    console.log(type.val());
-                    console.log(wallet.type);
                     let wallet_val = ($(window).width() > 555) ? wallet.wallet : wallet.wallet.trunc(20);
 
                     switch (wallet.type) {

@@ -89,6 +89,7 @@ class ReferralService
 			}
 
 		$referralData['tokens_total'] = $total;
+		Log::info($referralData);
 		//------------------------------------------------
 		$this->storeRefsToDb($referralData);
 

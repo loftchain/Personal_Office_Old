@@ -179,7 +179,9 @@ class TransactionService
 		foreach ($adminTxData as $k => $tx){
 			if($tx->currency == 'BTC'){
 				$transaction = UserWalletFields::where('user_id', $tx->id)->where('type', 'to')->first();
-				$adminTxData[$k]->to = $transaction->wallet;
+				if($transaction){
+					$adminTxData[$k]->to = $transaction->wallet;
+				}
 			}
 		}
 

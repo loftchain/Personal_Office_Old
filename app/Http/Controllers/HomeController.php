@@ -44,43 +44,6 @@ class HomeController extends Controller
 		$this->bonusService = $bonusService;
 	}
 
-	public function get_period($time)
-	{
-		$period = []; //current stage, next stage
-
-		switch (true) {
-			case $time >= env('PRE_ICO_START') && $time < env('PRE_ICO_END'):
-				$period = ['pre_ico', 'out'];
-				break;
-			case $time >= env('ICO_START') && $time < env('ICO_END'):
-				$period = ['ico', 'out'];
-				break;
-			case $time < env('PRE_ICO_START'):
-				$period = ['out', 'pre_ico'];
-				break;
-			case $time < env('ICO_START'):
-				$period = ['out', 'ico'];
-				break;
-			case $time > env('ICO_END'):
-				$period = ['out', 'finish'];
-				break;
-		}
-		return $period;
-	}
-
-	protected function get_currency_name($currency)
-	{
-		switch ($currency) {
-			case 'ETH':
-				$currency = 'Ethereum';
-				break;
-			case 'BTC':
-				$currency = 'Bitcoin';
-				break;
-		}
-		return $currency;
-	}
-
 	public function home(Request $request)
 	{
 		$data = [];
@@ -102,6 +65,7 @@ class HomeController extends Controller
 		$data['confirmed'] = $user->confirmed;
 		$data['admin'] = $user->admin;
 		$data['referrals'] = $this->referralService->getReferralData();
+//		Log::info($data['referrals']);
 		$data['adminReferrals'] = $adminReferrals;
 
 		return view('home.home')->with('data', $data);
