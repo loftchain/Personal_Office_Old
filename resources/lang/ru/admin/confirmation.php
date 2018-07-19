@@ -11,6 +11,7 @@ return [
 	'source' => 'источник<br>доходов',
 	'docs' => 'документы',
 	'confirmed' => 'подтверждён?',
+	'promo' => 'промо код',
 	'confirm_js' => 'подтвердить',
 	'returnToKYC_js' => 'вернуть на KYC',
 	'userConfirmed_js' => 'Пользователь был подтверждён',

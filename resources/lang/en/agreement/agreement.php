@@ -26,4 +26,5 @@ return [
 	'save_btn' => 'Save',
 	'agreeWithTerms_label' => 'I consent to the processing of my personal data',
 	'agreeWithDispatch_label' => 'I agree that tokens transfer will take place a month after the end of the ICO',
+	'promo_label' => 'Promo code',
 ];

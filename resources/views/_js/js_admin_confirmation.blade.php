@@ -25,6 +25,7 @@
 			return new Promise(function (resolve, reject) {
 				if (data.length > 0) {
 					data.forEach((user, index) => {
+
 						let sbmtBtn = `<button type="submit" data-id="${user.id}" class="confirm-user-btn">@lang('admin/confirmation.confirm_js')</button>`;
 						let rts2Btn = `<button type="submit" data-id="${user.id}" class="rts2-user-btn">@lang('admin/confirmation.returnToKYC_js')</button>`;
 						let confirmed = (user.confirmed == 0) ? `{{ __('admin/confirmation.no') }}` : `{{ __('admin/confirmation.yes') }}`;
@@ -40,6 +41,7 @@
                                 <div class="a-wrapper__section_el a-birth">${user.date_place_birth}</div>
                                 <div class="a-wrapper__section_el a-nationality">${user.nationality}</div>
                                 <div class="a-wrapper__section_el a-funds">${user.source_of_funds}</div>
+                                <div class="a-wrapper__section_el a-promo">${user.promo}</div>
                                 <div id="docWrap${index}" class="a-wrapper__section_el a-doc-wrapper"></div>
                                 <div class="a-wrapper__section_el a-confirmed a-confirmed${user.confirmed}">${confirmed}</div>
                                 <div id="cbc${index}" class="a-wrapper__section_el a-confirm-btn"></div>

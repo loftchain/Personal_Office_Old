@@ -118,7 +118,9 @@
                         case 'from':
                             if (currency.val() === wallet.currency) {
                                 _this.val(wallet_val);
-                                wa.showDescription(wallet.currency);
+                                if($('#wallet2').val().length > 0){
+                                    wa.showDescription('BTC');
+                                }
                             }
                             break;
                         default:
@@ -131,7 +133,9 @@
 
                                 if(wallet.type === 'to'){
                                     _this.val(wallet_val);
-                                    wa.showDescription(wallet.currency);
+                                    if($('#wallet1').val().length > 0){
+                                        wa.showDescription('BTC');
+                                    }
                                 }
 
                             }

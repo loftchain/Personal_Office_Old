@@ -11,6 +11,7 @@ return [
 	'source' => 'source<br>of funds',
 	'docs' => 'ID',
 	'confirmed' => 'confirmed?',
+	'promo' => 'promo code',
 	'confirm_js' => 'confirm',
 	'returnToKYC_js' => 'return to KYC',
 	'userConfirmed_js' => 'The user was confirmed',

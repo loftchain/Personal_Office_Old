@@ -21,7 +21,7 @@ class UserPersonalFields extends Authenticatable
 		'name_surname',
 		'phone',
 		'telegram',
-		'emergency_email',
+		'promo',
 		'permanent_address',
 		'contact_number',
 		'date_place_birth',
