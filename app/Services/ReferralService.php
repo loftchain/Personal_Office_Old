@@ -27,17 +27,50 @@ class ReferralService
 		$this->walletService = $walletService;
 	}
 
-	public function storeRefsToDb($referralData){
-		if(isset($referralData['wallets_to'][0])){
-			for ($i = 0; $i < count($referralData); $i++) {
-				if (!UserReferralFields::where('user_id', '=', Auth::user()->id)->exists()) {
-					UserReferralFields::create([
-						'user_id' =>  Auth::user()->id,
-						'wallet_to' => $referralData['wallets_to'][0],
-						'tokens'   => $referralData['tokens_total']
-					]);
+	public function storeRefsToDbForAdmin()
+	{
+		UserReferralFields::truncate();
+
+		$singleRefArray = [];
+		$referals = User::where('referred_by', '!=', null)->get();
+		foreach ($referals as $ref) {
+			$referredWallets = UserWalletFields::where('user_id', $ref->id)->get();
+			if ($referredWallets) {
+				foreach ($referredWallets as $rw) {
+					$transactions = Transactions::where('from', $rw->wallet)->get();
+					foreach ($transactions as $tx) {
+						if($tx) {
+							$singleRefArray[] =   ['ref_owner_id' => $ref->referred_by,
+																		 'refs' => [
+																		 	 'id' => $ref->id,
+																			 'tokens' => $tx->amount_tokens
+																		 ]
+																		];
+						}
+					}
 				}
 			}
+		}
+
+		$token_sum = 0;
+		foreach ($singleRefArray as $k => $v){
+			$id = $v['ref_owner_id'];
+			$result[$id][] = $v['refs']['tokens'];
+		}
+
+		foreach($result as $key => $value) {
+			$wallets = UserWalletFields::where('user_id', $key)->first();
+			if ($wallets->type === 'from_to' || $wallets->type === 'to') {
+				$finalReferralSumm[] = array('id' => $key, 'wallet' => $wallets->wallet, 'token_sum' => array_sum($value)*0.05);
+			}
+		}
+
+		foreach ($finalReferralSumm as $frs){
+			UserReferralFields::create([
+				'user_id' =>  $frs['id'],
+				'wallet_to' => $frs['wallet'],
+				'tokens'   => $frs['token_sum']
+			]);
 		}
 	}
 
@@ -80,18 +113,16 @@ class ReferralService
 				//------------------------------------------------
 			}
 			//----------------------token_sum---------------------
-			if(isset($referralData['stat'])){
+			if (isset($referralData['stat'])) {
 				foreach ($referralData['stat'] as $item) {
-					if(isset($item['tokens'])) {
+					if (isset($item['tokens'])) {
 						$total += $item['token_sum'];
 					}
 				}
 			}
 
-		$referralData['tokens_total'] = $total;
-		Log::info($referralData);
-		//------------------------------------------------
-		$this->storeRefsToDb($referralData);
+			$referralData['tokens_total'] = $total;
+			//------------------------------------------------
 
 		}
 		return $referralData;

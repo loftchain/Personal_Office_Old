@@ -10,20 +10,7 @@
 		  <div class="tx-container__el from" @click="sort('from')">from/to</div>
 		  <div class="tx-container__el info" @click="sort('info')">info</div>
 		  <div class="tx-container__el date" @click="sort('date')">date</div>
-		  <div class="bonus-wrapper">
-
-			  <div class="bonus-wrapper__top">
-				  <div class="bonus-wrapper__top_text">
-					  Бонус
-				  </div>
-			  </div>
-			  <div class="bonus-wrapper__bot">
-				  <div class="tx-container__el white-list" @click="sort('white_list_bonus')">white-list</div>
-				  <div class="tx-container__el referral" @click="sort('tokens')">referral</div>
-			  </div>
-
-		  </div>
-
+		  <div class="tx-container__el white-list" @click="sort('white_list_bonus')">white-list bonus</div>
 	  </header>
 	  <main v-for="item in sortedItems">
 		  <div class="tx-container__el id">{{ item.id }}</div>
@@ -36,7 +23,6 @@
 			  <a :href="'https://' + item.info + '/tx/' + item.transaction_id">{{ item.info }}</a></div>
 		  <div class="tx-container__el date">{{ item.date }}</div>
 		  <div :class="{ 'not-in-white-list': item.white_list_bonus == 'not in white-list'  }" class="tx-container__el white-list">{{ item.white_list_bonus }}</div>
-		  <div class="tx-container__el referral">{{ item.tokens }}</div>
 	  </main>
   </div>
 </section>
