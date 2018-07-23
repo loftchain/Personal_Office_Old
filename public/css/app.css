@@ -11716,6 +11716,7 @@ button.close {
 }
 
 .x-transaction__desktop {
+  font-size: 16px;
   margin: 0 auto;
   width: 750px;
 }
@@ -11890,10 +11891,11 @@ button.close {
 .x-transaction__table_head .th {
   color: #A3A3A3;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 18px;
   width: 150px;
   text-align: center;
   padding: 10px 0;
+  white-space: nowrap;
 }
 
 .x-transaction__table_body .tab-pane {
