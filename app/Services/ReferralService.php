@@ -52,7 +52,6 @@ class ReferralService
 			}
 		}
 
-		$token_sum = 0;
 		foreach ($singleRefArray as $k => $v){
 			$id = $v['ref_owner_id'];
 			$result[$id][] = $v['refs']['tokens'];
