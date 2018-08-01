@@ -10758,7 +10758,7 @@ button.close {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  margin: 10px 0 10px 0;
+  margin: 10px 0;
 }
 
 @media (max-width: 768px) {
@@ -10848,7 +10848,8 @@ button.close {
 }
 
 @media only screen and (min-width: 1025px) {
-  .x-widget .widget-part .control-container .c1-0 {
+  .x-widget .widget-part .control-container .c1-0,
+  .x-widget .widget-part .control-container .c1-1 {
     width: 92%;
   }
 }
@@ -11026,6 +11027,7 @@ button.close {
 
 .x-widget__bot .title-container {
   width: 100%;
+  margin-top: 30px;
 }
 
 .x-widget__bot .x-progress {

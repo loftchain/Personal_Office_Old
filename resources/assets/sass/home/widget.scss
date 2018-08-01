@@ -9,7 +9,7 @@
   .widget-part {
     @extend %fcc;
     align-items: flex-start;
-    margin: 10px 0 10px 0;
+    margin: 10px 0;
 
     @media #{$mobile} {
       align-items: center;
@@ -77,7 +77,7 @@
         }
       }
 
-      .c1-0 {
+      .c1-0, .c1-1 {
         @media #{$desktop} {
           width: 92%;
         }
@@ -235,6 +235,7 @@
 
     .title-container{
       width: 100%;
+      margin-top: 30px;
       @extend %fsb;
     }
 
