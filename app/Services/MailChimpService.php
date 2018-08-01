@@ -26,7 +26,7 @@ class MailChimpService
 				'to_name' => $email
 			];
 			$content = [
-				'html' => view($view)->render(), //this converts HTML to STRING
+				'html' => view($view)->render(), //->render() converts HTML to STRING ¯\_(ツ)_/¯
 			];
 
 			$campaign = $this->mailchimp->campaigns->create('regular', $options, $content);
@@ -38,5 +38,6 @@ class MailChimpService
 			Log::info('Error from MailChimp');
 			Log::info($e->getMessage());
 		}
+
 	}
 }
