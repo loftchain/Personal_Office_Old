@@ -2,7 +2,7 @@
   @extend %fsb;
   padding:0 15%;
   height:100px;
-  border-bottom: 1px solid #071831;
+  border-bottom: 1px solid #56CCF2;
 
   @media (max-width:1367px){
       padding: 0 5%;
@@ -66,16 +66,18 @@
       li{
         &.active a{
           color:$main1!important;
+          opacity: 1;
         }
 
         a{
           font-size: 18px;
           font-weight: 700;
           text-transform: uppercase;
-          color:$dark-blue;
+          color:$main7;
           border: none!important;
           background: transparent!important;
           letter-spacing: 1px;
+          opacity: .2;
 
           @media #{$mobile} {
             font-size: 12px;

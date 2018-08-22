@@ -71,7 +71,7 @@
         padding-left: 15px;
         height: 40px;
         width: 435px;
-        border: 1px solid $dark-blue;
+        border: 1px solid $main7;
         border-radius: 5px;
         background: transparent;
         color: $main2;
@@ -101,8 +101,8 @@
   &__header {
     @extend %fc;
     margin-top: 30px;
-    border-bottom: 1px solid $dark-blue;
-    border-top: 1px solid $dark-blue;
+    border-bottom: 1px solid $main7;
+    border-top: 1px solid $main7;
     width: 750px;
 
     @media #{$mobile} {
