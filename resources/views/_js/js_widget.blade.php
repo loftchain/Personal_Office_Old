@@ -317,7 +317,7 @@
         setCapTexts() {
             let totalCryptoAmount_eth = +(parseFloat(w.totalCryptoAmountETH).toFixed(2));
             let totalFiatAmount_eth = +(parseFloat(w.totalCryptoAmountUSD).toFixed(2));
-            let total_eth = +(totalCryptoAmount_eth) + totalFiatAmount_eth + parseInt({{ env('INVESTED_IN_ETH') }});
+            let total_eth = +(totalCryptoAmount_eth) + totalFiatAmount_eth + parseInt({{ env('INVESTED_IN_ETH') }}) + (parseInt({{ env('INVESTED_IN_BTC') }})*30);
 
             w.currentlyCollectedSpan_ETH.text(total_eth.toFixed(2) + ' ETH ({{ __('home/widget.currentlyCollected_js') }})');
             w.softCapSpan_ETH.text(w.softCapETH + ' ETH (soft cap) ');
@@ -328,13 +328,13 @@
             let ethCurrentAmount = (Math.round(w.ethCurrentAmount * 100) / 100).toFixed(2);
             let btcCurrentAmount = (Math.round(w.btcCurrentAmount * 100) / 100).toFixed(2);
             w.currencyValue0.text(+(ethCurrentAmount) + parseInt({{ env('INVESTED_IN_ETH') }}));
-            w.currencyValue1.text(btcCurrentAmount);
+            w.currencyValue1.text(+(btcCurrentAmount) + (parseInt({{ env('INVESTED_IN_BTC') }})));
         },
 
         setCapProgressWidth() {
             let totalCryptoAmount_eth = +(parseFloat(w.totalCryptoAmountETH).toFixed(2));
             let totalFiatAmount_eth = +(parseFloat(w.totalCryptoAmountUSD).toFixed(2));
-            let total_eth = +(totalCryptoAmount_eth) + totalFiatAmount_eth + parseInt({{ env('INVESTED_IN_ETH') }});
+            let total_eth = +(totalCryptoAmount_eth) + totalFiatAmount_eth + parseInt({{ env('INVESTED_IN_ETH') }}) + (parseInt({{ env('INVESTED_IN_BTC') }})*30);
 
             let percent = Math.ceil(total_eth * 100 / parseInt(w.hardCapETH));
             w.totalInnerPercents.text(percent + ' %');
