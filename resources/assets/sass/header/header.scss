@@ -1,3 +1,7 @@
+header{
+  //box-shadow: 1px 0px 5px $gray6;
+}
+
 .header {
   @extend %fsb;
   margin:0 15%;
@@ -60,10 +64,6 @@
     ul{
       @extend %fc;
       list-style: none;
-      margin:0;
-      padding: 0;
-      position: absolute;
-      bottom: 0;
 
       @media #{$noDesktop} {
         display: flex;
@@ -83,7 +83,7 @@
         }
 
         a{
-          color:$white;
+          color:$main8;
           text-decoration: none;
           padding: 5px 10px;
           white-space: nowrap;
@@ -108,8 +108,6 @@
     }
 
     a{
-      position: absolute;
-      bottom: 0;
       font-size: 18px;
       font-weight: 500;
       color:#E0E0E0;
@@ -130,7 +128,7 @@
     }
 
     .lang-switcher-rus.ru, .lang-switcher-eng.en{
-      color:$main1;
+      color:$main7;
     }
 
   }

@@ -1,10 +1,11 @@
-$main1: #6DD8DB;
+$main1: #56CCF2;
 $main2: #458ED3;
 $main3: #1d9fa7;
 $main4: #1D52A7;
-$main5: #2A3551;
-$main6: #2A3551;
+$main5: #FFF;
+$main6: #FFF;
 $main7: #56CCF2;
+$main8: #2D3857;
 $x-dash-to:#F2F2F2;
 $almost-black:#333333;
 $white: #A3A3A3;
@@ -124,7 +125,7 @@ $noDesktop: '(max-width: 1024px)';
 %title{
   font-size: 16px;
   font-weight: 700;
-  color: $white;
+  color: $main8;
   margin-bottom: 20px;
   text-transform: uppercase;
 }

@@ -188,7 +188,7 @@
 .x-wallets__text p {
   font-size: 16px;
   font-weight: 700;
-  color: #A3A3A3;
+  color: #2D3857;
   margin-bottom: 20px;
   text-transform: uppercase;
 }
@@ -304,12 +304,12 @@ body {
   font-family: 'SF Display', sans-serif !important;
   min-height: 100vh;
   z-index: 2;
-  background: #2A3551;
+  background: #FFF;
   /* Old browsers */
   /* FF3.6-15 */
   /* Chrome10-25,Safari5.1-6 */
-  background: -webkit-gradient(linear, left top, left bottom, from(#2A3551), to(#2A3551));
-  background: linear-gradient(to bottom, #2A3551 0%, #2A3551 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#FFF));
+  background: linear-gradient(to bottom, #FFF 0%, #FFF 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#041123', endColorstr='#0b2144',GradientType=0 );
   /* IE6-9 */
@@ -364,12 +364,12 @@ footer img {
   z-index: 9999;
   top: 0;
   left: 0;
-  background: #2A3551;
+  background: #FFF;
   /* Old browsers */
   /* FF3.6-15 */
   /* Chrome10-25,Safari5.1-6 */
-  background: -webkit-gradient(linear, left top, left bottom, from(#2A3551), to(#2A3551));
-  background: linear-gradient(to bottom, #2A3551 0%, #2A3551 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#FFF));
+  background: linear-gradient(to bottom, #FFF 0%, #FFF 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#041123', endColorstr='#0b2144',GradientType=0 );
   /* IE6-9 */
@@ -395,7 +395,7 @@ footer img {
 .spinner {
   width: 60px;
   height: 60px;
-  background-color: #6DD8DB;
+  background-color: #56CCF2;
   -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
   animation: sk-rotateplane 1.2s infinite ease-in-out;
 }
@@ -10191,7 +10191,7 @@ button.close {
 }
 
 .w-container-signUp {
-  border-right: 1px solid #6DD8DB;
+  border-right: 1px solid #56CCF2;
 }
 
 .w-container-signIn {
@@ -10200,7 +10200,7 @@ button.close {
 
 .w-container a {
   font-size: 24px;
-  color: #6DD8DB;
+  color: #56CCF2;
   cursor: pointer;
 }
 
@@ -10440,10 +10440,6 @@ button.close {
 
 .header__links ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  bottom: 0;
 }
 
 @media (max-width: 1024px) {
@@ -10478,7 +10474,7 @@ button.close {
 }
 
 .header__links ul li a {
-  color: #A3A3A3;
+  color: #2D3857;
   text-decoration: none;
   padding: 5px 10px;
   white-space: nowrap;
@@ -10500,8 +10496,6 @@ button.close {
 }
 
 .header__lang a {
-  position: absolute;
-  bottom: 0;
   font-size: 18px;
   font-weight: 500;
   color: #E0E0E0;
@@ -10525,7 +10519,7 @@ button.close {
 
 .header__lang .lang-switcher-rus.ru,
 .header__lang .lang-switcher-eng.en {
-  color: #6DD8DB;
+  color: #56CCF2;
 }
 
 .header__burger {
@@ -10566,7 +10560,8 @@ button.close {
 .x-dashboard {
   padding: 0 15%;
   height: 100px;
-  border-bottom: 1px solid #56CCF2;
+  -webkit-box-shadow: 1px 0 5px 0px #adabab inset;
+          box-shadow: 1px 0 5px 0px #adabab inset;
 }
 
 @media (max-width: 1367px) {
@@ -10600,7 +10595,7 @@ button.close {
 }
 
 .x-dashboard__info_who {
-  color: #A3A3A3;
+  color: #2D3857;
 }
 
 @media (max-width: 768px) {
@@ -10614,7 +10609,7 @@ button.close {
 }
 
 .x-dashboard__info_tokens {
-  color: #6DD8DB;
+  color: #56CCF2;
   font-weight: 700;
 }
 
@@ -10636,7 +10631,7 @@ button.close {
 }
 
 .x-dashboard__tabs ul li.active a {
-  color: #6DD8DB !important;
+  color: #56CCF2 !important;
   opacity: 1;
 }
 
@@ -10644,11 +10639,10 @@ button.close {
   font-size: 18px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #56CCF2;
+  color: #E0E0E0;
   border: none !important;
   background: transparent !important;
   letter-spacing: 1px;
-  opacity: .2;
 }
 
 @media (max-width: 768px) {
@@ -10665,7 +10659,7 @@ button.close {
 
 .x-dashboard__options a {
   margin: 5px 0;
-  color: #828282;
+  color: #2D3857;
   text-decoration: underline;
   white-space: nowrap;
 }
@@ -10775,7 +10769,7 @@ button.close {
 .x-widget .widget-part p {
   font-size: 18px;
   font-weight: 700;
-  color: #A3A3A3;
+  color: #2D3857;
   text-transform: uppercase;
   letter-spacing: .5px;
   margin-bottom: 20px;
@@ -10836,7 +10830,7 @@ button.close {
 
 .x-widget .widget-part .control-container .c1 .x-progress {
   height: 46px;
-  border: 1px solid #6DD8DB;
+  border: 1px solid #56CCF2;
   background: url("/img/x-progress-background.png");
   border-radius: 5px;
   position: relative;
@@ -10888,10 +10882,10 @@ button.close {
 }
 
 .x-widget__top .control-container__periods .c1 .x-in {
-  background: #6DD8DB;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #6DD8DB), color-stop(100%, #458ED3));
-  background: -webkit-gradient(linear, left top, right top, from(#6DD8DB), to(#458ED3));
-  background: linear-gradient(to right, #6DD8DB 0%, #458ED3 100%);
+  background: #56CCF2;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #56CCF2), color-stop(100%, #458ED3));
+  background: -webkit-gradient(linear, left top, right top, from(#56CCF2), to(#458ED3));
+  background: linear-gradient(to right, #56CCF2 0%, #458ED3 100%);
   height: calc(100% + 2px);
   border-radius: 5px;
   z-index: 9;
@@ -10930,7 +10924,7 @@ button.close {
 
 .x-widget__top .control-container__periods .c1 .x-progress_dates span {
   font-size: 14px;
-  color: #A3A3A3;
+  color: #828282;
   font-weight: 300;
 }
 
@@ -10949,10 +10943,10 @@ button.close {
 }
 
 .x-widget__top .control-container__periods .c1-1 .x-in {
-  background: #6DD8DB;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #6DD8DB), color-stop(100%, #458ED3));
-  background: -webkit-gradient(linear, left top, right top, from(#6DD8DB), to(#458ED3));
-  background: linear-gradient(to right, #6DD8DB 0%, #458ED3 100%);
+  background: #56CCF2;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #56CCF2), color-stop(100%, #458ED3));
+  background: -webkit-gradient(linear, left top, right top, from(#56CCF2), to(#458ED3));
+  background: linear-gradient(to right, #56CCF2 0%, #458ED3 100%);
   height: calc(100% + 2px);
   border-radius: 5px;
   z-index: 9;
@@ -10991,14 +10985,14 @@ button.close {
 
 .x-widget__top .control-container__periods .c1-1 .x-progress_dates span {
   font-size: 14px;
-  color: #A3A3A3;
+  color: #828282;
   font-weight: 300;
 }
 
 .x-widget__top .control-container .c2 .d {
   height: 46px;
   width: 28%;
-  border: 1px solid #6DD8DB;
+  border: 1px solid #56CCF2;
   border-radius: 5px;
   position: relative;
 }
@@ -11023,7 +11017,7 @@ button.close {
   right: 0;
   bottom: -25px;
   text-align: center;
-  color: #A3A3A3;
+  color: #828282;
   font-size: 16px;
 }
 
@@ -11038,10 +11032,10 @@ button.close {
 
 .x-widget__bot .x-progress__in {
   width: 50%;
-  background: #6DD8DB;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #6DD8DB), color-stop(100%, #458ED3));
-  background: -webkit-gradient(linear, left top, right top, from(#6DD8DB), to(#458ED3));
-  background: linear-gradient(to right, #6DD8DB 0%, #458ED3 100%);
+  background: #56CCF2;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #56CCF2), color-stop(100%, #458ED3));
+  background: -webkit-gradient(linear, left top, right top, from(#56CCF2), to(#458ED3));
+  background: linear-gradient(to right, #56CCF2 0%, #458ED3 100%);
   height: calc(100% + 2px);
   border-radius: 5px;
   z-index: 9;
@@ -11084,7 +11078,7 @@ button.close {
 }
 
 .x-widget__bot .x-progress__caps div span {
-  color: #A3A3A3;
+  color: #828282;
 }
 
 .x-widget .c2__cur {
@@ -11100,9 +11094,9 @@ button.close {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
-  color: #A3A3A3;
+  color: #828282;
 }
 
 .x-wallets {
@@ -11155,13 +11149,13 @@ button.close {
 
 .x-wallets__buttons a {
   text-decoration: none;
-  color: #A3A3A3;
+  color: #2D3857;
 }
 
 .x-wallets__buttons a .button span {
   margin-left: 10px;
   font-size: 16px;
-  color: #A3A3A3;
+  color: #2D3857;
 }
 
 @media (max-width: 768px) {
@@ -11248,7 +11242,7 @@ button.close {
 }
 
 .x-wallets__form form label {
-  color: #A3A3A3;
+  color: #2D3857;
   width: 295px;
   margin-right: 5px;
   font-weight: 400;
@@ -11275,12 +11269,12 @@ button.close {
   outline: none;
   padding-left: 10px;
   background: transparent;
-  color: #458ED3;
+  color: #2D3857;
 }
 
 .x-wallets__form form input:focus {
-  border: 1px solid #6DD8DB;
-  color: #6DD8DB;
+  border: 1px solid #56CCF2;
+  color: #56CCF2;
 }
 
 @media (max-width: 768px) {
@@ -11371,10 +11365,10 @@ button.close {
   border: none;
   border-radius: 25px;
   text-decoration: none;
-  background: #6DD8DB;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #6DD8DB), color-stop(100%, #458ED3));
-  background: -webkit-gradient(linear, left top, right top, from(#6DD8DB), to(#458ED3));
-  background: linear-gradient(to right, #6DD8DB 0%, #458ED3 100%);
+  background: #56CCF2;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #56CCF2), color-stop(100%, #458ED3));
+  background: -webkit-gradient(linear, left top, right top, from(#56CCF2), to(#458ED3));
+  background: linear-gradient(to right, #56CCF2 0%, #458ED3 100%);
 }
 
 .x-wallets__form form button.sbmt-usd-amount-btn:disabled {
@@ -11406,7 +11400,7 @@ button.close {
 
 .x-wallets__text {
   width: 100%;
-  color: #A3A3A3;
+  color: #828282;
 }
 
 @media (max-width: 768px) {
@@ -11540,7 +11534,7 @@ button.close {
 .x-refs__bonus .big-five-span {
   font-size: 36px;
   font-weight: 700;
-  background: -webkit-linear-gradient(#6DD8DB, #458ED3);
+  background: -webkit-linear-gradient(#56CCF2, #458ED3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -11611,7 +11605,7 @@ button.close {
 }
 
 .x-refs__input-container .input-holder input:focus {
-  border: 1px solid #6DD8DB;
+  border: 1px solid #56CCF2;
 }
 
 .x-refs__input-container .input-holder img {
@@ -11832,7 +11826,7 @@ button.close {
 .x-transaction__walletContainer_wallet-mob,
 .x-transaction .x-accordion__walletContainer_wallet,
 .x-transaction .x-accordion__walletContainer_wallet-mob {
-  border: 1px solid #6DD8DB;
+  border: 1px solid #56CCF2;
   border-radius: 25px;
   padding: 10px 20px;
   margin: 10px 0;
@@ -11844,10 +11838,10 @@ button.close {
 .x-transaction__walletContainer_wallet-mob.active,
 .x-transaction .x-accordion__walletContainer_wallet.active,
 .x-transaction .x-accordion__walletContainer_wallet-mob.active {
-  background: #6DD8DB;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #6DD8DB), color-stop(100%, #458ED3));
-  background: -webkit-gradient(linear, left top, right top, from(#6DD8DB), to(#458ED3));
-  background: linear-gradient(to right, #6DD8DB 0%, #458ED3 100%);
+  background: #56CCF2;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #56CCF2), color-stop(100%, #458ED3));
+  background: -webkit-gradient(linear, left top, right top, from(#56CCF2), to(#458ED3));
+  background: linear-gradient(to right, #56CCF2 0%, #458ED3 100%);
   color: white;
 }
 
@@ -11968,12 +11962,12 @@ button.close {
 }
 
 .modal-dialog .modal-content {
-  background: #2A3551;
+  background: #FFF;
   /* Old browsers */
   /* FF3.6-15 */
   /* Chrome10-25,Safari5.1-6 */
-  background: -webkit-gradient(linear, left top, left bottom, from(#2A3551), to(#2A3551));
-  background: linear-gradient(to bottom, #2A3551 0%, #2A3551 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#FFF));
+  background: linear-gradient(to bottom, #FFF 0%, #FFF 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#041123', endColorstr='#0b2144',GradientType=0 );
   /* IE6-9 */
@@ -11981,7 +11975,7 @@ button.close {
 }
 
 .modal-dialog .modal-header {
-  border-bottom: 1px solid #2A3551;
+  border-bottom: 1px solid #FFF;
 }
 
 .modal-dialog .modal-header button {
@@ -12044,10 +12038,10 @@ button.close {
   border-radius: 25px;
   text-decoration: none;
   position: relative;
-  background: #6DD8DB;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #6DD8DB), color-stop(100%, #458ED3));
-  background: -webkit-gradient(linear, left top, right top, from(#6DD8DB), to(#458ED3));
-  background: linear-gradient(to right, #6DD8DB 0%, #458ED3 100%);
+  background: #56CCF2;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #56CCF2), color-stop(100%, #458ED3));
+  background: -webkit-gradient(linear, left top, right top, from(#56CCF2), to(#458ED3));
+  background: linear-gradient(to right, #56CCF2 0%, #458ED3 100%);
 }
 
 .modal-dialog form .modal-footer button .small-spinner {
@@ -12142,10 +12136,10 @@ button.close {
   border-radius: 25px;
   width: 25px;
   height: 25px;
-  background: #6DD8DB;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #6DD8DB), color-stop(100%, #458ED3));
-  background: -webkit-gradient(linear, left top, right top, from(#6DD8DB), to(#458ED3));
-  background: linear-gradient(to right, #6DD8DB 0%, #458ED3 100%);
+  background: #56CCF2;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #56CCF2), color-stop(100%, #458ED3));
+  background: -webkit-gradient(linear, left top, right top, from(#56CCF2), to(#458ED3));
+  background: linear-gradient(to right, #56CCF2 0%, #458ED3 100%);
 }
 
 .a-body .a-container article {
@@ -12205,10 +12199,10 @@ button.close {
   outline: none;
   border: none;
   border-radius: 25px;
-  background: #6DD8DB;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #6DD8DB), color-stop(100%, #458ED3));
-  background: -webkit-gradient(linear, left top, right top, from(#6DD8DB), to(#458ED3));
-  background: linear-gradient(to right, #6DD8DB 0%, #458ED3 100%);
+  background: #56CCF2;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #56CCF2), color-stop(100%, #458ED3));
+  background: -webkit-gradient(linear, left top, right top, from(#56CCF2), to(#458ED3));
+  background: linear-gradient(to right, #56CCF2 0%, #458ED3 100%);
   padding: 15px 40px;
   color: white;
   font-size: 16px;
@@ -12216,7 +12210,7 @@ button.close {
 }
 
 .a1-body .a1-container__btns a {
-  border: 1px solid #6DD8DB;
+  border: 1px solid #56CCF2;
   border-radius: 25px;
   margin-left: 40px;
   padding: 15px 40px;
@@ -12432,10 +12426,10 @@ button.close {
   outline: none;
   border: none;
   border-radius: 25px;
-  background: #6DD8DB;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #6DD8DB), color-stop(100%, #458ED3));
-  background: -webkit-gradient(linear, left top, right top, from(#6DD8DB), to(#458ED3));
-  background: linear-gradient(to right, #6DD8DB 0%, #458ED3 100%);
+  background: #56CCF2;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #56CCF2), color-stop(100%, #458ED3));
+  background: -webkit-gradient(linear, left top, right top, from(#56CCF2), to(#458ED3));
+  background: linear-gradient(to right, #56CCF2 0%, #458ED3 100%);
   padding: 15px 40px;
   color: white;
   font-size: 16px;
@@ -12511,10 +12505,10 @@ button.close {
   outline: none;
   border: none;
   border-radius: 25px;
-  background: #6DD8DB;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #6DD8DB), color-stop(100%, #458ED3));
-  background: -webkit-gradient(linear, left top, right top, from(#6DD8DB), to(#458ED3));
-  background: linear-gradient(to right, #6DD8DB 0%, #458ED3 100%);
+  background: #56CCF2;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #56CCF2), color-stop(100%, #458ED3));
+  background: -webkit-gradient(linear, left top, right top, from(#56CCF2), to(#458ED3));
+  background: linear-gradient(to right, #56CCF2 0%, #458ED3 100%);
   padding: 15px 40px;
   color: white;
   font-size: 16px;

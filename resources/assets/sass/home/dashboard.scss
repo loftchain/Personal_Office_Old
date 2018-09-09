@@ -2,7 +2,7 @@
   @extend %fsb;
   padding:0 15%;
   height:100px;
-  border-bottom: 1px solid #56CCF2;
+  box-shadow: 1px 0 5px 0px $gray6 inset;
 
   @media (max-width:1367px){
       padding: 0 5%;
@@ -27,7 +27,7 @@
     text-align: left;
 
     &_who{
-      color: $white;
+      color: $main8;
 
       @media #{$mobile} {
         word-break: break-all;
@@ -73,11 +73,10 @@
           font-size: 18px;
           font-weight: 700;
           text-transform: uppercase;
-          color:$main7;
+          color:$gray4;
           border: none!important;
           background: transparent!important;
           letter-spacing: 1px;
-          opacity: .2;
 
           @media #{$mobile} {
             font-size: 12px;
@@ -93,7 +92,7 @@
 
     a{
       margin:5px 0;
-      color:$gray1;
+      color:$main8;
       text-decoration: underline;
       white-space: nowrap;
       &:hover{

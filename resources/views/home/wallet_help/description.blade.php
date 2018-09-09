@@ -7,8 +7,6 @@
           <li>@lang('home/wallet.setGas_li') 199 000</li>
         @endif
         <li>@lang('home/wallet.minimumPayment_li') {{ $stageInfo['minPayment'] }} ETH</li>
-        <li>@lang('home/wallet.pleaseDoNot_li')</li>
-        <li>@lang('home/wallet.pleaseEnsure_li')</li>
     </ul>
     <p class="the-one-wallet"> @lang('home/wallet.singleWallet_p') {{ $currency }}: </p>
     <div class="pay-to-us-wallet">

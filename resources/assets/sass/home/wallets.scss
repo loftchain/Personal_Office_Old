@@ -35,13 +35,13 @@
 
     a {
       text-decoration: none;
-      color: $white;
+      color: $main8;
 
       .button {
         span {
           margin-left: 10px;
           font-size: 16px;
-          color: $white;
+          color: $main8;
 
           @media #{$mobile} {
             white-space: nowrap;
@@ -112,7 +112,7 @@
       }
 
       label {
-        color: $white;
+        color: $main8;
         width: 295px;
         margin-right: 5px;
         font-weight: 400;
@@ -136,7 +136,7 @@
         outline: none;
         padding-left: 10px;
         background: transparent;
-        color: $main2;
+        color: $main8;
 
         &:focus {
           border: 1px solid $main1;
@@ -264,7 +264,7 @@
 
   &__text {
     width: 100%;
-    color: $white;
+    color: $gray1;
 
     @media #{$mobile} {
       width: 100%;
