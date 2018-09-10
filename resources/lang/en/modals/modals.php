@@ -35,4 +35,6 @@ return [
 	'ShouldNotBeEqual_ChangePasswordController' => 'New Password cannot be the same',
 	'PwdNotMatch_ChangePasswordController' => 'Wrong password',
 
+	//wallet
+	'copy' => 'Copy',
 ];

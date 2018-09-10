@@ -8,9 +8,7 @@
       @endif
       <li>@lang('home/wallet.minimumPayment_li') {{ $stageInfo['minPayment'] }} ETH</li>
   </ul>
-  <a type="button" class="x-wallets__text_unified-wallet-button" data-toggle="modal" data-target="#m-ch-email">@lang('home/wallet.singleWallet_p') {{ $currency }}</a>
+  <a type="button" class="x-wallets__text_unified-wallet-button" data-toggle="modal" data-target="#m-w-{{ $currency }}">@lang('home/wallet.singleWallet_p') {{ $currency }}</a>
 </div>
 
-@include('modals.ETH_customers_wallet')
-@include('modals.BTC_customers_wallet')
 

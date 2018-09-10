@@ -1,0 +1,38 @@
+.modal-wallet-dialog {
+  text-align: center;
+
+  .modal-wallet-header {
+    color: $main8;
+    padding-bottom: 0;
+  }
+
+  .modal-wallet-body{
+    padding-top: 0;
+    span{
+      color: $main8;
+    }
+  }
+  .modal-wallet-footer{
+    text-align: center;
+
+    .modal-wallet-copy-btn{
+      cursor:pointer;
+      @include x-gradient($main1, $main2);
+      color:  white;
+      border: 1px solid $main1;
+      border-radius: 25px;
+      padding: 10px 20px;
+      text-decoration: none;
+      transition: ease-in-out .2ms;
+
+      &:hover, &:active, &:hover, &:focus, &:focus-within, &:visited{
+        color: white;
+        @include x-gradient($main2, $main2);
+        border: 1px solid transparent;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+

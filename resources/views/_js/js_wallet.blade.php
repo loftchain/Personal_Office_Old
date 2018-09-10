@@ -21,13 +21,14 @@
         loaderSpinner: $('.small-spinner'),
 
         copyToClipboard(_this) {
-            let parent = _this.parent();
-            let walletName = parent.children('.wallet-name');
-            let $temp = $("<input>");
-            $("body").append($temp);
-            $temp.val(walletName.text()).select();
+            let walletName = _this.parent().prev().children('.wallet-name');
+            $(".modal-dialog").append($(`<input class="temp-input" value="${walletName.text()}">`));
+            let id = _this.parent().parent().parent().parent().prop('id');
+            console.log(id);
+            let temp = $('.temp-input');
+            temp.select();
             document.execCommand("copy");
-            $temp.remove();
+            temp.remove();
         },
 
         ajaxErrorMessage(data) {
@@ -222,7 +223,7 @@
 
         wa.sendRequestControl();
 
-        wa.wCopyImg = $('.w-copy-click');
+        wa.wCopyImg = $('.modal-wallet-copy-btn');
 
         wa.wCopyImg.each(function () {
             $(this).click(() => {

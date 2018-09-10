@@ -28,3 +28,5 @@
 </section>
 @include('modals.change_email')
 @include('modals.change_password')
+@include('modals.ETH_customers_wallet')
+@include('modals.BTC_customers_wallet')

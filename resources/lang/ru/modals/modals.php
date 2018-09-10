@@ -35,4 +35,7 @@ return [
 	'ShouldNotBeEqual_ChangePasswordController' => 'Пароли не должны совпадать',
 	'PwdNotMatch_ChangePasswordController' => 'Введённый пароль не совпадает с Вашим',
 
+	//wallet
+	'copy' => 'Копировать',
+
 ];

@@ -304,14 +304,13 @@
       text-decoration: none;
       transition: ease-in-out .2ms;
 
-      &:hover{
+      &:hover, &:active, &:hover, &:focus, &:focus-within, &:visited{
         color: white;
         @include x-gradient($main2, $main2);
-      }
-
-      &:active, &:hover, &:focus, &:focus-within, &:visited{
+        border: 1px solid transparent;
         text-decoration: none;
       }
+
     }
 
     p {

@@ -1,6 +1,6 @@
 <footer>
   <img src="{{asset('img/foot-wave.png')}}" alt="">
   <div class="developers">
-    <span>Developed by <a href="https://loftchain.io">LoftChain</a> team</span>
+    <span>@lang('layouts/footer.developed_span') <a href="https://loftchain.io">LoftChain</a></span>
   </div>
 </footer>

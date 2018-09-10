@@ -11442,19 +11442,18 @@ button.close {
   transition: ease-in-out .2ms;
 }
 
-.x-wallets__text_unified-wallet-button:hover {
-  color: white;
-  background: #458ED3;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #458ED3), color-stop(100%, #458ED3));
-  background: -webkit-gradient(linear, left top, right top, from(#458ED3), to(#458ED3));
-  background: linear-gradient(to right, #458ED3 0%, #458ED3 100%);
-}
-
+.x-wallets__text_unified-wallet-button:hover,
 .x-wallets__text_unified-wallet-button:active,
 .x-wallets__text_unified-wallet-button:hover,
 .x-wallets__text_unified-wallet-button:focus,
 .x-wallets__text_unified-wallet-button:focus-within,
 .x-wallets__text_unified-wallet-button:visited {
+  color: white;
+  background: #458ED3;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #458ED3), color-stop(100%, #458ED3));
+  background: -webkit-gradient(linear, left top, right top, from(#458ED3), to(#458ED3));
+  background: linear-gradient(to right, #458ED3 0%, #458ED3 100%);
+  border: 1px solid transparent;
   text-decoration: none;
 }
 
@@ -12097,6 +12096,57 @@ button.close {
 .modal-dialog .success-register .resend-btn:disabled {
   background: #BDBDBD;
   color: #828282;
+}
+
+.modal-wallet-dialog {
+  text-align: center;
+}
+
+.modal-wallet-dialog .modal-wallet-header {
+  color: #2D3857;
+  padding-bottom: 0;
+}
+
+.modal-wallet-dialog .modal-wallet-body {
+  padding-top: 0;
+}
+
+.modal-wallet-dialog .modal-wallet-body span {
+  color: #2D3857;
+}
+
+.modal-wallet-dialog .modal-wallet-footer {
+  text-align: center;
+}
+
+.modal-wallet-dialog .modal-wallet-footer .modal-wallet-copy-btn {
+  cursor: pointer;
+  background: #56CCF2;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #56CCF2), color-stop(100%, #458ED3));
+  background: -webkit-gradient(linear, left top, right top, from(#56CCF2), to(#458ED3));
+  background: linear-gradient(to right, #56CCF2 0%, #458ED3 100%);
+  color: white;
+  border: 1px solid #56CCF2;
+  border-radius: 25px;
+  padding: 10px 20px;
+  text-decoration: none;
+  -webkit-transition: ease-in-out .2ms;
+  transition: ease-in-out .2ms;
+}
+
+.modal-wallet-dialog .modal-wallet-footer .modal-wallet-copy-btn:hover,
+.modal-wallet-dialog .modal-wallet-footer .modal-wallet-copy-btn:active,
+.modal-wallet-dialog .modal-wallet-footer .modal-wallet-copy-btn:hover,
+.modal-wallet-dialog .modal-wallet-footer .modal-wallet-copy-btn:focus,
+.modal-wallet-dialog .modal-wallet-footer .modal-wallet-copy-btn:focus-within,
+.modal-wallet-dialog .modal-wallet-footer .modal-wallet-copy-btn:visited {
+  color: white;
+  background: #458ED3;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #458ED3), color-stop(100%, #458ED3));
+  background: -webkit-gradient(linear, left top, right top, from(#458ED3), to(#458ED3));
+  background: linear-gradient(to right, #458ED3 0%, #458ED3 100%);
+  border: 1px solid transparent;
+  text-decoration: none;
 }
 
 .a-body {
