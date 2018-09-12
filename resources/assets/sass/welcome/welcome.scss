@@ -15,7 +15,7 @@
   }
 
   &-signUp{
-    border-right:1px solid $main1;
+    border-right:1px solid $main4;
   }
 
   &-signIn{
@@ -24,11 +24,12 @@
 
   a {
     font-size: 24px;
-    color: $main1;
+    color: $main4;
     cursor: pointer;
 
     &.x-forgot-link{
-      color: $white;
+      color: $gray2;
+
       font-size: 14px;
       white-space:nowrap;
       position: absolute;

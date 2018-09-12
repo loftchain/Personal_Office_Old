@@ -2,7 +2,7 @@
   width: 100%;
   text-align: center;
   margin-top: 30px;
-  color: $white;
+  color: $gray1;
 }
 
 .x-transaction {
@@ -148,7 +148,7 @@
     &_head {
       @extend %fsb;
       text-align: center;
-      border-bottom: 1px solid $gray4;
+      border-bottom: 1px solid $gray1;
 
       .th {
         color: $white;

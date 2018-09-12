@@ -3,7 +3,7 @@
   @extend %fcc;
   margin-top: 20px;
   font-weight: 500;
-  color: $white;
+  color: $gray1;
 
   @media #{$mobile} {
     width: 100vw;
@@ -112,7 +112,7 @@
       &_el{
       padding: 15px 0;
       width: 45%;
-      color: $white;
+      color: $gray1;
       font-size: 24px;
       font-weight: bold;
       text-align: center;
@@ -151,7 +151,7 @@
 
   &__footer {
     @extend %fc;
-    border-bottom: 1px solid $dark-blue;
+    border-bottom: 1px solid $main1;
     width: 750px;
 
     @media #{$mobile} {

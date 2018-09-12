@@ -19,7 +19,7 @@
                   <input type="password" class="x-input" name="password">
                   <div class="error-message error-message2 password pwd_not_match"></div>
 
-                  <div class="g-recaptcha" data-theme="dark" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
+                  <div class="g-recaptcha" data-theme="default" data-sitekey="{{ env('RE_CAP_SITE') }}"></div>
                   <div class="error-message error-message3 error-message-captcha g-recaptcha-response"></div>
                 <div class="modal-footer">
                   <button type="submit" class="modal-btn">

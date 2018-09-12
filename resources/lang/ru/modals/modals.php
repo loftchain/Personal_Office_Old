@@ -26,7 +26,7 @@ return [
 	'EmailIsTaken_ChangeEmailController' => 'Новый Email уже кем-то используется',
 
 	//change password
-	'changePassword_title' => 'Изменение Email адреса',
+	'changePassword_title' => 'Изменение Пароля',
 	'changePasswordCurrent_emailLabel' => 'Ваш Email',
 	'changePasswordNew_label' => 'Текущий пароль',
 	'newPassword_label' => 'Новый пароль',

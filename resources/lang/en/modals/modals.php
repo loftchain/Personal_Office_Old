@@ -26,7 +26,7 @@ return [
 	'EmailIsTaken_ChangeEmailController' => 'New Email is already in use',
 
 	//change password
-	'changePassword_title' => 'Change Email',
+	'changePassword_title' => 'Change Password',
 	'changePasswordCurrent_emailLabel' => 'Your Email',
 	'changePasswordNew_label' => 'Current password',
 	'newPassword_label' => 'New password',
