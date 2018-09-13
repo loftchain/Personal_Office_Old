@@ -14,6 +14,7 @@ return [
   'change_btn' => 'Change',
   'send_btn' => 'Send',
   'userNotFound_LoginController' => 'Sorry, user not found',
+  'tooManyResets_LoginController' => 'Your account is temporary banned, due to many password resets.',
 
 	//change email
 	'changeEmail_title' => 'Change Email',

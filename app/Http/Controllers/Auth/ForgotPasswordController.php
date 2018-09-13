@@ -41,6 +41,10 @@ class ForgotPasswordController extends Controller
 			return response()->json(['failed'=> __('auth.not_found')]);
 		}
 
+		if ($user->reset_attempts > 4) {
+			return response()->json(['failed' => __('modals/modals.tooManyResets_LoginController')]);
+		}
+
 		$emailResponse = $this->unisenderService->sendEmail(
 			$request['email'],
 			__('mails/mails.resetPasswordSubject_controller'),

@@ -14,6 +14,8 @@ return [
   'change_btn' => 'Изменить',
   'send_btn' => 'Отправить',
   'userNotFound_LoginController' => 'Извините, пользователь не найден',
+	'tooManyResets_LoginController' => 'Аккаунт временно заблокирован, ввиду частых попыток сброса пароля.',
+
 
 	//change email
 	'changeEmail_title' => 'Изменение Email адреса',

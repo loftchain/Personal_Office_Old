@@ -67,11 +67,11 @@ class RegisterController extends Controller
 
 		$data = $this->create($input)->toArray();
 		$user = User::find($data['id']);
-		$user->token = str_random(10);
+		$user->token = str_random(60);
 		$user->ip_token = request()->ip()   ;
 		$user->password = bcrypt($data['password']);
 		$user->remember_token = str_random(60);
-		$user->reg_attempts = 1;
+		$user->reg_attempts += 1;
 		$user->valid_step = 1;
 		$user->save();
 

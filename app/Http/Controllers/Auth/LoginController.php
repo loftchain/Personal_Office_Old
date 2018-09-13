@@ -46,6 +46,10 @@ class LoginController extends Controller
 			return response()->json(['failed' => __('modals/modals.userNotFound_LoginController')]);
 		}
 
+		if ($user->reset_attempts > 4) {
+			return response()->json(['failed' => __('modals/modals.tooManyResets_LoginController')]);
+		}
+
 		if (!$passwordIsVerified) {
 			return response()->json(['pwd_not_match' => __('modals/modals.PwdNotMatch_ChangePasswordController')]);
 		}
