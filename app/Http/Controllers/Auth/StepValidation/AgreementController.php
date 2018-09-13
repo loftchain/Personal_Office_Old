@@ -29,38 +29,12 @@ class AgreementController extends Controller
 		$this->middleware('auth');
 	}
 
-	protected function create(array $data)
-	{
-		return UserPersonalFields::create([
-			'user_id' => Auth::id(),
-			'name_surname' => $data['name_surname'],
-			'telegram' => $data['telegram'],
-			'emergency_email' => $data['emergency_email'],
-			'permanent_address' => $data['permanent_address'],
-			'contact_number' => $data['contact_number'],
-			'date_place_birth' => $data['date_place_birth'],
-			'nationality' => $data['nationality'],
-			'source_of_funds' => $data['source_of_funds'],
-		]);
-	}
-
-	protected function validator(array $data)
-	{
-		return Validator::make($data, [
-			'name_surname' => 'required|string|max:255',
-			'permanent_address' => 'required|string|max:255',
-			'contact_number' => 'required|numeric',
-			'date_place_birth' => 'required|string|max:255',
-			'nationality' => 'required|string|max:255',
-			'source_of_funds' => 'required|string|max:255',
-		]);
-	}
-
 	public function goToAgreement2()
 	{
 		$user = User::find(Auth::id());
 		$user->valid_step = 2;
 		$user->save();
+		$this->send_registered_notification();
 		return response()->json(['goto2' => 'goto2']);
 	}
 
@@ -87,70 +61,5 @@ class AgreementController extends Controller
 		} catch (GuzzleException $e) {
 		}
 
-	}
-
-	public function store_personal_data(Request $request)
-	{
-		$input = $request->all();
-		$validator = $this->validator($input);
-
-		if ($validator->fails()) {
-			return response()->json(['validation_error' => $validator->errors()]);
-		}
-
-		$userPersonalField = UserPersonalFields::where('user_id', Auth::id())->first();
-		$userPersonalField->name_surname = $request['name_surname'];
-		$userPersonalField->permanent_address = $request['permanent_address'];
-		$userPersonalField->telegram = $request['telegram'];
-		$userPersonalField->promo = $request['promo'];
-		$userPersonalField->contact_number = $request['contact_number'];
-		$userPersonalField->date_place_birth = $request['date_place_birth'];
-		$userPersonalField->nationality = $request['nationality'];
-		$userPersonalField->source_of_funds = $request['source_of_funds'];
-		$user = User::find(Auth::id());
-		$user->valid_step = 3;
-		$user->valid_at = Carbon::now();
-		$user->save();
-		$userPersonalField->save();
-
-		if (env('APP_ENV') != 'local') {
-			$this->send_registered_notification();
-		}
-		return response()->json(['goto3' => 'goto3']);
-	}
-
-	public function store_documents()
-	{
-		$allowed = array('png', 'jpg', 'jpeg', 'svg', 'gif', 'pdf', 'zip', 'rar');
-		if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
-
-			$extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
-			if (!in_array(strtolower($extension), $allowed)) {
-				Log::info('Extension of uploaded files does not match');
-				return;
-			}
-
-			$fileName = time() . '-id=' . Auth::id() . '-.' . $extension;
-			if (move_uploaded_file($_FILES['upl']['tmp_name'], env('UPLOAD_PATH') . $fileName)) {
-				echo '{"status":"success"}';
-			}
-
-			$userPersonalField = UserPersonalFields::where('user_id', Auth::id())->first();
-			if ($userPersonalField === null) {
-				UserPersonalFields::create([
-					'user_id' => Auth::id(),
-					'doc_img_path' => ['admin/getFile/' . $fileName]
-				]);
-			} else {
-				$docArr = $userPersonalField->doc_img_path;
-				$docArr[] = 'admin/getFile/' . $fileName;
-				$userPersonalField->doc_img_path = $docArr;
-				$userPersonalField->save();
-			}
-		}
-
-		Log::info('something went wrong with uploading photos');
-
-		return;
 	}
 }

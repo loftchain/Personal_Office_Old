@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 Use Illuminate\Support\Facades\Log;
 use App\Models\User;
+
 class agreement1
 {
     /**
@@ -24,9 +25,6 @@ class agreement1
                 return redirect('logout');
                 break;
             case 2:
-                return redirect('agreement2');
-                break;
-            case 3:
                 return redirect('home');
                 break;
         }

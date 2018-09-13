@@ -7,6 +7,7 @@ use App\Models\UserHistoryFields;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -19,8 +20,13 @@ trait ResetsPasswords
 {
 	use RedirectsUsers;
 
-	public function showResetForm($token = null)
+	public function showResetForm(Request $request,$token = null)
 	{
+
+		if(Session::get('user_token') !== $request->segment(3)) {
+			return view('auth.passwords.token_expired');
+		}
+
 		return view('auth.passwords.reset')->with(['token' => $token]);
 	}
 
@@ -66,9 +72,10 @@ trait ResetsPasswords
 
 		$old_password = $user->password;
 		$user->password = Hash::make($request['password']);
-		$user->setRememberToken(Str::random(60));
+		$user->token = Str::random(60);
 		$user->save();
 
+		$request->session()->forget('user_token');
 		$this->forgot_history_make($user['id'], $old_password, $user->password);
 		event(new PasswordReset($user));
 		$this->guard()->login($user);

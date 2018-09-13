@@ -5,7 +5,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">@lang('modals/modals.resetPwd_title')</h4>
             </div>
-            <form id="emailForm" class="x-form"  method="POST" action="{{ route('password.email') }}">
+            <form id="emailForm" class="x-form"  method="POST" action="{{ route('sendResetLinkEmail') }}">
                     {{ csrf_field() }}
                     <label for="email" class="x-label email-label">@lang('modals/modals.resetPwd_label')</label>
                     <input type="text" name="email" class="x-input email-input user_not_found">

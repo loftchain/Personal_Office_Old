@@ -35,15 +35,17 @@ Route::post('/login', 'Auth\LoginController@login')->name('login');
 Route::any('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 //-----------------------------------------------------------------------------------
 
+//------------------------Forgot Your password---------------------------------------------
+Route::post('/sendResetLink', 'Auth\ForgotPasswordController@sendResetLinkEmailCustom')->name('sendResetLinkEmail');
+
+//-----------------------------------------------------------------------------------
+
 //------------------------StepValidation---------------------------------------------
 Route::post('/goToAgreement2', 'Auth\StepValidation\AgreementController@goToAgreement2')->name('goToAgreement2');
 Route::post('/store_personal_data', 'Auth\StepValidation\AgreementController@store_personal_data')->name('store_personal_data');
 Route::post('/store_documents', 'Auth\StepValidation\AgreementController@store_documents')->name('store_documents');
 Route::group(['middleware' =>  ['agreement1']], function(){
-	Route::get('/agreement1', 'Auth\StepValidation\Agreement1Controller@agreement1')->name('agreement1');
-});
-Route::group(['middleware' =>  ['agreement2']], function(){
-	Route::get('/agreement2', 'Auth\StepValidation\Agreement2Controller@agreement2')->name('agreement2');
+	Route::get('/agreement', 'Auth\StepValidation\Agreement1Controller@agreement1')->name('agreement1');
 });
 //-----------------------------------------------------------------------------------
 

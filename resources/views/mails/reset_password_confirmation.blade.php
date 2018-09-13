@@ -1,5 +1,6 @@
+<style>
   .wrapper {
-    background-color: rgb(16, 21, 28);
+    background-color: #fff;
     font-family: Arial sans-serif;
     display: block;
     flex-direction: column !important;
@@ -27,48 +28,49 @@
   .rect {
     margin: 0 auto;
     width: 60%;
-    background-color: rgb(22, 28, 38);
-    border: 1px solid rgb(84, 84, 84);
+    background-color: #fff;
+    text-align: center;
+    color: #000;
   }
 
   .rect div {
     line-height: 24px;
     padding: 40px 40px;
-    color: #ecf0f1;
     font-size: 18px;
   }
 
   .rect span a{
-    color: #f39c12;
+    color: #1D52A7;
     font-size: 16px;
   }
 
   .bottom {
+    text-align: center;
     margin: 0 auto;
-    width: 60%;
+    width: 100%;
     padding-left: 5%;
     padding-top: 2%;
-    font-size: 15px;
-    color: #999999;
+    font-size: 12px;
+    color: #4b4b4b;
   }
 </style>
 <div class="wrapper">
   <div class="img-container">
-    <img src="http://cryptob2b.io/logo/white_h.png"
-         alt="" border="0"/>
+    <img src="https://opnplatform.io/images/logo.svg" alt="" border="0"/>
   </div>
   <div class="rect">
-    <div>Good day <br><br>
-      {!! __('home/mails.reset_pwd') !!}
-      <br><br>
-      {!! __('home/mails.follow_link') !!}
-      <br><br>
-      <span><a href="{{env('APP_URL')}}/password/reset/{{$token}}">{{env('APP_URL')}}/password/reset/{{$token}}</a></span>
+    <div>
+      <h3>{!! __('mails/mails.followLink1_div') !!}
+        <a href="{{env('APP_URL')}}/password/reset/{{$user->token}}">
+          {!! __('mails/mails.followLink2_div') !!}
+        </a>
+        {!! __('mails/mails.followLink3_div') !!}
+      </h3>
     </div>
   </div>
 
   <div class="bottom">
-    <p>{!! __('home/mails.do_not_reply') !!}<br>
-      {!! __('home/mails.with_us') !!}</p>
+    <p>{!! __('mails/mails.doNotReply_p') !!}<br>
+      {!! __('mails/mails.contactUs_p') !!}</p>
   </div>
 </div>

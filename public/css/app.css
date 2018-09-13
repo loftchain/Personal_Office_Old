@@ -85,10 +85,7 @@
 .x-refs__section,
 .x-refs__footer,
 .modal-dialog form .modal-footer,
-.a1-body .a1-container-wrapper__wp,
-.a2-body .a2-container__section #upload #drop ul,
-.a2-body .a2-container__section #upload #drop ul li,
-.a2-body .a2-container__section .a2-form .check-box-container div {
+.a1-body .a1-container-wrapper__wp {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -113,7 +110,6 @@
 .modal-dialog form,
 .a-body,
 .a-body .a-container,
-.a2-body .a2-container__section .a2-form .check-box-container,
 .reset-body,
 .reset-body form {
   display: -webkit-box;
@@ -154,9 +150,7 @@
 .x-transaction__table_head,
 .x-transaction__table_body .tab-pane .td-container,
 .a1-body .a1-container-wrapper,
-.a1-body .a1-container__btns,
-.a2-body .a2-container__section,
-.a2-body .a2-container__section .a2-form {
+.a1-body .a1-container__btns {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -12295,226 +12289,12 @@ button.close {
   }
 }
 
-.a2-body .a2-container__article {
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.a2-body .a2-container__section {
-  padding-bottom: 10px;
-  width: 100%;
-  margin-bottom: 50px;
-}
-
-.a2-body .a2-container__section #upload {
-  width: 750px;
-  height: auto;
-  min-height: 120px;
-  border: 1px dashed #828282;
-  border-radius: 3px;
-}
-
-.a2-body .a2-container__section #upload #drop {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-}
-
-.a2-body .a2-container__section #upload #drop span {
-  font-size: 12px;
-  font-weight: 400;
-  color: #A3A3A3;
-}
-
-.a2-body .a2-container__section #upload #drop a {
-  background-color: #007a96;
-  padding: 12px 26px;
-  color: #fff;
-  font-size: 14px;
-  border-radius: 2px;
-  cursor: pointer;
-  display: inline-block;
-  margin-top: 12px;
-  line-height: 1;
-}
-
-.a2-body .a2-container__section #upload #drop a:hover {
-  background-color: #0986a3;
-}
-
-.a2-body .a2-container__section #upload #drop input {
-  display: none;
-}
-
-.a2-body .a2-container__section #upload #drop ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.a2-body .a2-container__section #upload #drop ul li {
-  padding: 15px;
-  height: 52px;
-  position: relative;
-  width: 230px;
-  background: #440b3f;
-  margin: 7px;
-  border-radius: 5px;
-}
-
-.a2-body .a2-container__section #upload #drop ul li.working span {
-  height: 16px;
-  background-position: 0 -12px;
-}
-
-.a2-body .a2-container__section #upload #drop ul li.error p {
-  color: red;
-}
-
-.a2-body .a2-container__section #upload #drop ul li input {
-  display: none;
-}
-
-.a2-body .a2-container__section #upload #drop ul li p {
-  width: 144px;
-  overflow: hidden;
-  white-space: nowrap;
-  color: #7f7f7f;
-  font-size: 12px;
-  font-weight: 400;
-  margin: 0;
-}
-
-.a2-body .a2-container__section #upload #drop ul li i {
-  font-weight: normal;
-  font-style: normal;
-  color: #7f7f7f;
-  display: block;
-}
-
-.a2-body .a2-container__section #upload #drop ul li span {
-  width: 20px;
-  height: 20px;
-  background: url("/img/trashcan.png") no-repeat;
-  background-size: contain;
-  cursor: pointer;
-}
-
-.a2-body .a2-container__section .a2-form {
-  width: 100%;
-  position: relative;
-}
-
-@media (max-width: 768px) {
-  .a2-body .a2-container__section .a2-form {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-}
-
-.a2-body .a2-container__section .a2-form .input-text-container {
-  width: 325px;
-}
-
-@media (max-width: 768px) {
-  .a2-body .a2-container__section .a2-form .input-text-container {
-    width: 100%;
-    max-width: 325px;
-    min-width: 290px;
-  }
-}
-
-.a2-body .a2-container__section .a2-form .input-text-container label {
-  display: block;
-  font-weight: 500;
-}
-
-.a2-body .a2-container__section .a2-form .input-text-container input {
-  display: block;
-  width: 100%;
-  height: 50px;
-  padding-left: 15px;
-  outline: none;
-  border: 1px solid #103163;
-  border-radius: 5px;
-  background: transparent;
-  margin: 0;
-}
-
-.a2-body .a2-container__section .a2-form .input-text-container input.isError {
-  border: 1px solid #ff443a !important;
-}
-
-.a2-body .a2-container__section .a2-form .input-text-container .error-message {
-  text-align: left;
-  width: 100%;
-  height: 25px;
-  color: #ff443a;
-}
-
-.a2-body .a2-container__section .a2-form .check-box-container {
-  position: absolute;
-  right: 0;
-  left: 0;
-  margin: 0 auto;
-  bottom: -110px;
-}
-
-.a2-body .a2-container__section .a2-form .check-box-container div {
-  margin-bottom: 20px;
-}
-
-.a2-body .a2-container__section .a2-form .check-box-container div label {
-  margin: 0 20px 0 0;
-  font-weight: 400;
-  color: #A3A3A3;
-}
-
-.a2-body .a2-container__section .a2-form .check-box-container div input {
-  margin: 0;
-}
-
-.a2-body .a2-container__section .a2-form .check-box-container .a2-form__sbmt-btn {
-  outline: none;
-  border: none;
-  border-radius: 25px;
-  background: #56CCF2;
-  background: -webkit-gradient(left top, right top, color-stop(0%, #56CCF2), color-stop(100%, #458ED3));
-  background: -webkit-gradient(linear, left top, right top, from(#56CCF2), to(#458ED3));
-  background: linear-gradient(to right, #56CCF2 0%, #458ED3 100%);
-  padding: 15px 40px;
-  color: white;
-  font-size: 16px;
-  white-space: nowrap;
-  width: 200px;
-  cursor: pointer;
-}
-
-.a2-body .a2-container__section .a2-form .check-box-container .a2-form__sbmt-btn:disabled,
-.a2-body .a2-container__section .a2-form .check-box-container .a2-form__sbmt-btn[disabled] {
-  background: #E0E0E0;
-  color: #828282;
-  cursor: not-allowed;
-}
-
-@media (max-width: 768px) {
-  .a2-body .a2-container__article {
-    margin: 40px 0 !important;
-  }
-}
-
-.a2-body .a2-container__crumbs ul li:last-child:after {
-  background: #1D52A7;
-}
-
 .reset-body {
-  color: #A3A3A3;
+  color: #4b4b4b;
   height: calc(100vh - 350px);
   min-height: 768px;
+  position: relative;
+  z-index: 2;
 }
 
 @media (max-width: 768px) {
@@ -12539,7 +12319,7 @@ button.close {
   width: 100%;
   height: 50px;
   outline: none;
-  border: 1px solid #103163;
+  border: 1px solid #56CCF2;
   border-radius: 5px;
   background: transparent;
   margin: 0;
@@ -12557,7 +12337,9 @@ button.close {
   text-align: center;
 }
 
-.reset-body form button {
+.reset-body button,
+.reset-body a {
+  position: relative;
   outline: none;
   border: none;
   border-radius: 25px;
@@ -12569,9 +12351,22 @@ button.close {
   color: white;
   font-size: 16px;
   white-space: nowrap;
+  text-decoration: none;
 }
 
-.reset-body form button .small-spinner {
+.reset-body button:hover,
+.reset-body a:hover {
+  background: #458ED3;
+  background: -webkit-gradient(left top, right top, color-stop(0%, #458ED3), color-stop(100%, #458ED3));
+  background: -webkit-gradient(linear, left top, right top, from(#458ED3), to(#458ED3));
+  background: linear-gradient(to right, #458ED3 0%, #458ED3 100%);
+}
+
+.reset-body button .small-spinner,
+.reset-body a .small-spinner {
+  position: absolute;
+  left: 10px;
+  top: 18.5px;
   display: none;
 }
 

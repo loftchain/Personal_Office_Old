@@ -8,4 +8,11 @@ return [
 	'startInvesting' => 'Start investing',
 	'returnToKyc_btn' => 'Pass KYC form again',
 	'returnToKyc_txt' => 'Administration of the site, returned you to the step of passing KYC. Perhaps, there were some problems during the uploading of files. Either the Administration found your information insufficient.',
+	//reset Email
+	'resetPasswordSubject_controller' => 'Forgot your password?',
+	'followLink1_div' => 'Please, follow the',
+	'followLink2_div' => ' link ',
+	'followLink3_div' => 'to reset your password',
+	'doNotReply_p' => 'Please, do not reply on this letter',
+	'contactUs_p' => 'You can contact us <a href="mailto:info@opnplatform.com">info@opnplatform.com</a>',
 ];

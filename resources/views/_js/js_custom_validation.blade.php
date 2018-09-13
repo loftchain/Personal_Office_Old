@@ -80,7 +80,11 @@
                     localStorage.setItem('success_login', '+');
                     break;
                 case !$.isEmptyObject(data.success_reset_email_sent):
-                    v.showNotification('@lang('auth/resetPwd.letterSent_js')');
+                    v.showNotification('@lang('auth/resetPwd.letterSent_js')', 'success');
+                    v.closeModal();
+                    break;
+                case !$.isEmptyObject(data.error_reset_email_sent):
+                    v.showNotification('@lang('auth/resetPwd.letterSentError_js')', 'danger');
                     v.closeModal();
                     break;
                 case !$.isEmptyObject(data.success_reset_pwd):
@@ -96,9 +100,6 @@
                     v.showNotification('@lang('modals/modals.pwdChanged_js')', 'success');
                     break;
                 case !$.isEmptyObject(data.goto2):
-                    window.location.replace("{{ route('root') . '/agreement2' }}");
-                    break;
-                case !$.isEmptyObject(data.goto3):
                     window.location.replace("{{ route('root') }}");
                     break;
                 case !$.isEmptyObject(data.wallet_added):
