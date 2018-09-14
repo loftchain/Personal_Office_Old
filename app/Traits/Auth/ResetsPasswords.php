@@ -72,7 +72,7 @@ trait ResetsPasswords
 
 		$old_password = $user->password;
 		$user->password = Hash::make($request['password']);
-		$user->token = Str::random(60);
+		$user->token = Str::random(15);
 		$user->reset_attempts += 1;
 		$user->save();
 

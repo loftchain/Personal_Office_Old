@@ -11,4 +11,6 @@ return [
 		'logOut' => 'Выход',
 		'changeEmail' => 'Изменить Email',
 		'changePassword' => 'Изменить пароль',
+		'changelly' => 'Обменный пункт',
+
 ];

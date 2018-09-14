@@ -11,4 +11,5 @@ return [
 		'logOut' => 'Log out',
 		'changeEmail' => 'Change Email',
 		'changePassword' => 'Change password',
+		'changelly' => 'Exchange',
 ];

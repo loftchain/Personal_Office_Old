@@ -25,6 +25,9 @@
             <div id="refs" class="tab-pane fade">
                 @include('home.refs')
             </div>
+            <div id="changelly" class="tab-pane fade">
+              @include('home.changelly')
+            </div>
         @endif
     </div>
 

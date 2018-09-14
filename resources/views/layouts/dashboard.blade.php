@@ -16,6 +16,7 @@
                     <li class="active"> <a data-toggle="tab" href="#home">@lang('layouts/dashboard.ico')</a> </li>
                     <li> <a data-toggle="tab" href="#transactions">@lang('layouts/dashboard.myTx')</a> </li>
                     <li> <a data-toggle="tab" href="#refs">@lang('layouts/dashboard.myRefs')</a> </li>
+                    <li> <a data-toggle="tab" href="#changelly">@lang('layouts/dashboard.changelly')</a> </li>
                 @endif
             </ul>
         </div>
