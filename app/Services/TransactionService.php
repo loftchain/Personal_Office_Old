@@ -52,17 +52,14 @@ class TransactionService
 		$discount = 0;
 
 		switch(true){
-			case $amountETH >= env('BONUS_THRESHOLD1') && $amountETH < env('BONUS_THRESHOLD2'):
-				$discount = $stageInfo['bonus1'];
+			case $amountETH < 10:
+				$discount = $stageInfo['bonus<10'];
 				break;
-			case $amountETH >= env('BONUS_THRESHOLD2') && $amountETH < env('BONUS_THRESHOLD3'):
-				$discount = $stageInfo['bonus2'];
+			case $amountETH >= 10 && $amountETH <= 100:
+				$discount = $stageInfo['bonus10-100'];
 				break;
-			case $amountETH >= env('BONUS_THRESHOLD3') && $amountETH < env('BONUS_THRESHOLD4'):
-				$discount = $stageInfo['bonus3'];
-				break;
-			case $amountETH >= env('BONUS_THRESHOLD4'):
-				$discount = $stageInfo['bonus4'];
+			case $amountETH > 100:
+				$discount = $stageInfo['bonus100+'];
 				break;
 		}
 			return $discount/100;
@@ -74,7 +71,7 @@ class TransactionService
 		return $tokenAmount + $bonus;
 	}
 
-	public function countTokens($rates, $amount, $date, $currency, $tokenPrice)
+	public function countTokens($rates, $amount, $date, $currency)
 	{
 		$dateArr = [];
 		$totalTokenAmount = 0;
@@ -84,25 +81,31 @@ class TransactionService
 			}
 		}
 
-		$closetDate = $this->getClosest((int)$date, $dateArr);
-
+		$closestDate = $this->getClosest((int)$date, $dateArr);
 
 		foreach ($rates as $r) {
-			if ((int)$r->timestamp == $closetDate) {
+//			if ((int)$r->timestamp == $closestDate) {
 				switch ($currency) {
 					case 'ETH':
-						$tokenAmount = $amount * $tokenPrice;
-						$totalTokenAmount = $this->sumBonusAndTokens($tokenAmount, $amount);
+						if ($r->pair === 'ETH/USD') {
+							$tokenAmount = $amount * $r->price;
+							$totalTokenAmount = $this->sumBonusAndTokens($tokenAmount, $amount);
+//							Log::info('eth '.$totalTokenAmount);
+						}
 						break;
 					case 'BTC':
 						if ($r->pair === 'BTC/ETH') {
+							$tokenAmount = $amount * $this->bonusService->getLatestCurrencies('BTC/USD', $date);
 							$amountETH = $amount * $r->price;
-							$tokenAmount = $amountETH * $tokenPrice;
 							$totalTokenAmount = $this->sumBonusAndTokens($tokenAmount, $amountETH);
+							Log::info('$amount '.$amount);
+							Log::info('$tokenAmount '.$tokenAmount);
+							Log::info('$amountETH '.$amountETH);
+							Log::info('$totalTokenAmount '.$totalTokenAmount);
 						}
 						break;
 				}
-			}
+//			}
 		}
 
 		return round($totalTokenAmount, 2);
@@ -113,8 +116,6 @@ class TransactionService
 		$tx = $this->getTransactions();
 		$db = [];
 		$rates = $this->bonusService->getLatestCurrencies();
-		$stageInfo = $this->bonusService->getStageInfo();
-
 		foreach ($tx as $t) {
 			$txTimestamp = strtotime($t->date);
 			$closest = null;
@@ -126,7 +127,7 @@ class TransactionService
 				'currency' => $t->currency,
 				'from' => $t->from,
 				'amount' => $t->amount,
-				'amount_tokens' => $this->countTokens($rates, $t->amount, $t->date, $t->currency, $stageInfo['tokenPriceInETH']),
+				'amount_tokens' => $this->countTokens($rates, $t->amount, $t->date, $t->currency),
 				'info' => $info,
 				'date' => $t->date
 			];

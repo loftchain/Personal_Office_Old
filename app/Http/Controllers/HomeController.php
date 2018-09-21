@@ -53,7 +53,7 @@ class HomeController extends Controller
 		$request->session()->forget('reset_password_email');
 		$time = is_numeric(Input::get('time')) ? Input::get('time') : time();
 		$data['btcCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('BTC', 'BTC/ETH');
-		$data['ethCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('ETH', 'ETH/USD');
+		$data['ethCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('ETH', 'USD/ETH');
 		$data['totalCryptoAmount'] = array_map(function () {
 			return array_sum(func_get_args());
 		}, $data['btcCurrentAmount'], $data['ethCurrentAmount']);
@@ -65,9 +65,8 @@ class HomeController extends Controller
 		$data['confirmed'] = $user->confirmed;
 		$data['admin'] = $user->admin;
 		$data['referrals'] = $this->referralService->getReferralData();
-//		Log::info($data['referrals']);
 		$data['adminReferrals'] = $adminReferrals;
-
+		$data['sn'] = $this->transactionService->storeTx();
 		return view('home.home')->with('data', $data);
 
 	}

@@ -15,12 +15,11 @@
         walletETH: '{{ env('HOME_WALLET_ETH') }}',
         walletBTC: '{{ env('HOME_WALLET_BTC') }}',
 
-        tokenPriceInETH: '{{ $data['stageInfo']['tokenPriceInETH'] }}',
-        softCapETH: '{{ $data['stageInfo']['softCapETH'] }}',
-        hardCapETH: '{{ $data['stageInfo']['hardCapETH'] }}',
-        minPayment: '{{ $data['stageInfo']['minPayment'] }}',
-        currentStage: '{{ $data['stageInfo']['currentStage'] }}',
-        nextStage: '{{ $data['stageInfo']['nextStage'] }}',
+        tokenPriceInETH: '1',
+        hardCapETH: '333333333',
+        minPayment: '1',
+        currentStage: '2',
+        nextStage: '3',
 
 
         _now: ('{{ $data['time'] }}') ? '{{ $data['time'] }}' : Math.floor(new Date().getTime() / 1000),

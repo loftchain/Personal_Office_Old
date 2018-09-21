@@ -48,7 +48,6 @@ class WidgetService
 		$amountToken = 0;
 		$stageInfo = $this->bonusService->getStageInfo();
 
-
 		foreach ($tx as $t) {
 			if($t->status == 'true'){
 				if ($t->currency == $currency) {
@@ -58,7 +57,7 @@ class WidgetService
 		}
 
 		$amountETH = ($currency == 'ETH') ? $amountCurrency : $amountCurrency * $this->getCurrencyByPair($pair);
-		$amountToken = $amountETH * $stageInfo['tokenPriceInETH'];
+		$amountToken = $amountETH;
 		return ['currency' => $amountCurrency, 'eth' => $amountETH, 'token' => $amountToken];
 	}
 

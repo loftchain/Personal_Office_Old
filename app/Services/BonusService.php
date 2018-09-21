@@ -24,87 +24,29 @@ class BonusService
 				return $item->price;
 			}
 		}
-
 		return $body;
 	}
 
-	public function setStageDetails($currentStage, $nextStage,
-	                                $softCapETH, $hardCapETH,
-	                                $tokenPrice, $minPayment,
-	                                $b1, $b2, $b3, $b4
-	)
-	{
-		$stageData['tokenPriceInETH'] = $tokenPrice;
-		$stageData['softCapETH'] = $softCapETH;
-		$stageData['hardCapETH'] = $hardCapETH;
-		$stageData['minPayment'] = $minPayment;
-		$stageData['currentStage'] = $currentStage;
-		$stageData['nextStage'] = $nextStage;
-		$stageData['bonus1'] = $b1;
-		$stageData['bonus2'] = $b2;
-		$stageData['bonus3'] = $b3;
-		$stageData['bonus4'] = $b4;
-		return $stageData;
-	}
 
 	public function getStageInfo()
 	{
 		$time = is_numeric(Input::get('time')) ? Input::get('time') : time();
 		$stageData = [];
 		switch (true) {
-			case $time < env('PRE_SALE_START'):
-				$stageData = $this->setStageDetails(
-					null, 'pre_sale',
-					env('PRE_SALE_SOFT_CAP'), env('PRE_SALE_HARD_CAP'),
-					env('PRE_SALE_TOKEN_PRICE'), env('PRE_SALE_MIN_PAY'),
-					env('PRE_SALE_BONUS1'), env('PRE_SALE_BONUS2'),
-					env('PRE_SALE_BONUS3'), env('PRE_SALE_BONUS4')
-				);
+			case $time <= env('1_BONUS_24h'):
+				$stageData = ['bonus<10' => 20, 'bonus10-100' => 22.5, 'bonus100+' => 25];
 				break;
-			case $time <= env('PRE_SALE_END'):
-				$stageData = $this->setStageDetails(
-					'pre_sale', 'pre_ico',
-					env('PRE_SALE_SOFT_CAP'), env('PRE_SALE_HARD_CAP'),
-					env('PRE_SALE_TOKEN_PRICE'), env('PRE_SALE_MIN_PAY'),
-					env('PRE_SALE_BONUS1'), env('PRE_SALE_BONUS2'),
-					env('PRE_SALE_BONUS3'), env('PRE_SALE_BONUS4')
-				);
+			case $time > env('1_BONUS_24h') && $time <= env('2_BONUS_1w'):
+				$stageData = ['bonus<10' => 15, 'bonus10-100' => 17.5, 'bonus100+' => 20];
 				break;
-			case $time > env('PRE_ICO_START') && $time <= env('PRE_ICO_END'):
-				$stageData = $this->setStageDetails(
-					'pre_ico', 'ico1',
-					env('PRE_ICO_SOFT_CAP'), env('PRE_ICO_HARD_CAP'),
-					env('PRE_ICO_TOKEN_PRICE'), env('PRE_ICO_MIN_PAY'),
-					env('PRE_ICO_BONUS1'), env('PRE_ICO_BONUS2'),
-					env('PRE_ICO_BONUS3'), env('PRE_ICO_BONUS4')
-				);
+			case $time > env('2_BONUS_1w') && $time <= env('3_BONUS_2w'):
+				$stageData = ['bonus<10' => 5, 'bonus10-100' => 7.5, 'bonus100+' => 10];
 				break;
-			case $time > env('ICO1_START') && $time <= env('ICO1_END'):
-				$stageData = $this->setStageDetails(
-					'ico1', 'ico2',
-					env('ICO1_SOFT_CAP'), env('ICO1_HARD_CAP'),
-					env('ICO1_TOKEN_PRICE'), env('ICO1_MIN_PAY'),
-					env('ICO_BONUS1'), env('ICO_BONUS2'),
-					env('ICO_BONUS3'), env('ICO_BONUS4')
-				);
+			case $time > env('3_BONUS_2w') && $time <= env('4_BONUS_3w'):
+				$stageData = ['bonus<10' => 1, 'bonus10-100' => 1, 'bonus100+' => 1];
 				break;
-			case $time > env('ICO2_START') && $time <= env('ICO2_END'):
-				$stageData = $this->setStageDetails(
-					'ico2', 'ico3',
-					env('ICO2_SOFT_CAP'), env('ICO2_HARD_CAP'),
-					env('ICO2_TOKEN_PRICE'), env('ICO2_MIN_PAY'),
-					env('ICO_BONUS1'), env('ICO_BONUS2'),
-					env('ICO_BONUS3'), env('ICO_BONUS4')
-				);
-				break;
-			case $time > env('ICO3_START') && $time <= env('ICO3_END'):
-				$stageData = $this->setStageDetails(
-					'ico3', 'finish',
-					env('ICO3_SOFT_CAP'), env('ICO3_HARD_CAP'),
-					env('ICO3_TOKEN_PRICE'), env('ICO3_MIN_PAY'),
-					env('ICO_BONUS1'), env('ICO_BONUS2'),
-					env('ICO_BONUS3'), env('ICO_BONUS4')
-				);
+			case $time > env('4_BONUS_3w') && $time <= env('ICO_END'):
+				$stageData = ['bonus<10' => 0, 'bonus10-100' => 0, 'bonus100+' => 0];
 				break;
 		}
 		return $stageData;

@@ -5,48 +5,14 @@
         <div class="control-container">
           <div class="control-container__periods">
             <div class="c c1 c1-0">
-                <div class="x-progress c1__progress_pre-sale">
-                    <div class="x-in x-progress__in_pre-sale"></div>
-                    <span class="x-stage js__stage_pre-sale">Pre-Sale</span>
+                <div class="x-progress c1__progress_ico">
+                    <div class="x-in x-progress__in_ico"></div>
+                    <span class="x-stage js__stage_ico">ICO</span>
                     <div class="x-progress_dates">
-                        <span class="dates__start_pre-sale">20.01.18</span>
-                        <span class="dates__end_pre-sale">21.02.18</span>
+                        <span class="dates__start_ico">01.10.18</span>
+                        <span class="dates__end_ico">31.12.18</span>
                     </div>
                 </div>
-                <div class="x-progress c1__progress_pre-ico">
-                    <div class="x-in x-progress__in_pre-ico"></div>
-                    <span class="x-stage js__stage-pre-ico">Pre-ICO</span>
-                    <div class="x-progress_dates">
-                        <span class="dates__start_pre-ico">20.03.18</span>
-                        <span class="dates__end_pre-ico">21.05.18</span>
-                    </div>
-                </div>
-            </div>
-            <div class="c c1 c1-1">
-              <div class="x-progress c1-1__progress_ico1">
-                <div class="x-in x-progress__in_ico1"></div>
-                <span class="x-stage js__stage_ico1">ICO 1</span>
-                <div class="x-progress_dates">
-                  <span class="dates__start_ico1">20.01.18</span>
-                  <span class="dates__end_ico1">21.02.18</span>
-                </div>
-              </div>
-              <div class="x-progress c1-1__progress_ico2">
-                <div class="x-in x-progress__in_ico2"></div>
-                <span class="x-stage js__stage_ico2">ICO 2</span>
-                <div class="x-progress_dates">
-                  <span class="dates__start_ico2">20.01.18</span>
-                  <span class="dates__end_ico2">21.02.18</span>
-                </div>
-              </div>
-              <div class="x-progress c1-1__progress_ico3">
-                <div class="x-in x-progress__in_ico3"></div>
-                <span class="x-stage js__stage-ico3">ICO 3</span>
-                <div class="x-progress_dates">
-                  <span class="dates__start_ico3">20.03.18</span>
-                  <span class="dates__end_ico3">21.05.18</span>
-                </div>
-              </div>
             </div>
           </div>
           <div class="c c2">
