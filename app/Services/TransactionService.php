@@ -168,12 +168,13 @@ class TransactionService
 				'transactions.from', 'transactions.amount',
 				'transactions.amount_tokens', 'transactions.info',
 				'transactions.transaction_id', 'transactions.date',
+				'transactions.transaction_id', 'transactions.date',
 				'user_wallet_fields.type', 'user_wallet_fields.wallet',
-				'users.id', 'white-list.email', 'user_referral_fields.tokens')
+				'users.id', 'whitelist.email', 'user_referral_fields.tokens')
 			->leftJoin('user_wallet_fields','user_wallet_fields.wallet','=','transactions.from')
 			->leftJoin('users','users.id','=','user_wallet_fields.user_id')
 			->leftJoin('user_referral_fields','users.id','=','user_referral_fields.user_id')
-			->leftJoin('white-list','white-list.email','=','users.email')
+			->leftJoin('whitelist','whitelist.email','=','users.email')
 			->get();
 
 
