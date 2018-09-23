@@ -8,6 +8,8 @@
 <script src="{{ asset('js/jquery.iframe-transport.js') }}"></script>
 <script src="{{ asset('js/jquery.knob.js') }}"></script>
 <script src="{{ asset('js/jquery.ui.widget.js') }}"></script>
+<script src="https://cdn.ethers.io/scripts/ethers-v3.min.js" charset="utf-8" type="text/javascript"></script>
+
 @include('_js.js_loader_cloak')
 
 @if(isset($data) && \Illuminate\Support\Facades\Route::current()->getName() == 'home')

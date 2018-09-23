@@ -1,6 +1,32 @@
 <section class="tx-info">
-
-  <div class="tx-container">
+	<div class="helpBar">
+		<div class="helpBar__buttons">
+			<button @click="prevPage">Previous</button>
+			<button @click="nextPage">Next</button>
+		</div>
+		<div class="helpBar__help-text">
+			<p v-model="currentPage">current page: {{ currentPage }}</p>
+			<p v-model="totalPages">total transactions: {{ totalPages }}</p>
+		</div>
+		<div class="helpBar__page-select">
+			<label for="pageQuantity">Number of elements on the page</label>
+			<select v-model="pageSize" name="pageQuantity" id="pageQuantity">
+				<option value="5">5</option>
+				<option value="10">10</option>
+				<option value="15">15</option>
+				<option value="20">20</option>
+				<option :value="totalPages">all, {{ totalPages }}</option>
+			</select>
+		</div>
+		<div class="helpBar__currency-checkboxes">
+			<ul>
+				<li v-for="currency in currencies">
+					<input type="checkbox" v-model="checkedCurrency" @click="checkBoxClick" v-bind:value="currency" checked/>  {{ currency }}
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="tx-container">
 	  <header>
 		  <div class="tx-container__el id" @click="sort('id')">user id</div>
 		  <div class="tx-container__el currency" @click="sort('currency')">currency</div>
@@ -17,12 +43,14 @@
 		  <div class="tx-container__el currency">{{ item.currency }}</div>
 		  <div class="tx-container__el amount">{{ item.amount.toFixed(2) }}</div>
 		  <div class="tx-container__el amount_tokens">{{ item.amount_tokens }}</div>
-		  <div :class="{ 'tx-successful': item.status == 'true' , 'tx-failed': item.status == 'false' }" class="tx-container__el status">{{ item.status }}</div>
+		  <div :class="{ 'tx-successful': item.status == 'true', 'tx-failed': item.status == 'false' }" class="tx-container__el status">{{ item.status }}</div>
 		  <div class="tx-container__el from"><span>{{ item.from }}</span><span v-if="item.to">{{ item.to }}</span></div>
 		  <div class="tx-container__el info">
-			  <a :href="'https://' + item.info + '/tx/' + item.transaction_id">{{ item.info }}</a></div>
+			  <a :href="'https://' + item.info + '/tx/' + item.transaction_id">{{ item.info }}</a>
+		  </div>
 		  <div class="tx-container__el date">{{ item.date }}</div>
 		  <div :class="{ 'not-in-white-list': item.white_list_bonus == 'not in white-list'  }" class="tx-container__el white-list">{{ item.white_list_bonus }}</div>
+		  <button v-if="item.info === 'blockchain.info'" @click="sendTokensToBTC" class="tx-container__el send-tokens">send tokens</button>
 	  </main>
   </div>
 </section>

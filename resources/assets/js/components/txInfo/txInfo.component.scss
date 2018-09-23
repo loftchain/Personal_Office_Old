@@ -2,27 +2,15 @@
 
 .tx-info {
   width: 100%;
-  margin-left:-22%;
+  margin-left:-12%;
+  margin-bottom: 40px;
+
+  .helpBar{
+    width: 1075px;
+    @extend %fsb;
+  }
 
   .tx-container{
-
-    .bonus-wrapper{
-      width: 220px;
-
-      @extend %fcc;
-
-      &__top{
-        width: 220px;
-        text-align: center;
-        background: #0b9e87;
-      }
-
-      &__bot{
-        width: 220px;
-        @extend %fsb
-      }
-    }
-
     &__el{
       text-align: center;
       border: 1px solid #1b6d85;
@@ -65,8 +53,13 @@
         width: 110px;
       }
 
-      &.referral{
-        width: 110px;
+      &.send-tokens{
+        width: 90px;
+        margin-left: 5px;
+        background: #1e6176;
+        color: white;
+        border: none;
+        cursor: pointer;
       }
 
       &.tx-successful{
@@ -78,13 +71,17 @@
       }
 
       &.not-in-white-list{
-        color: #525252
+        color: black;
       }
+
+
     }
 
     header{
       @extend %fc;
+      justify-content: flex-start;
       background: #1b6d85;
+      width: 1075px;
 
       div{
         color: white;
@@ -93,10 +90,13 @@
     }
 
     main{
+      width: 1200px;
       @extend %fc;
+      justify-content: flex-start;
 
       div{
         height: 40px;
+        color: $gray2;
 
         &.from{
           @extend %fcc;
