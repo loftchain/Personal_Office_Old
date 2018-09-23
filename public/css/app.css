@@ -11090,9 +11090,9 @@ button.close {
 }
 
 .x-widget .totalInvestedIcons {
-  -webkit-box-pack: right !important;
-      -ms-flex-pack: right !important;
-          justify-content: right !important;
+  -webkit-box-pack: end !important;
+      -ms-flex-pack: end !important;
+          justify-content: flex-end !important;
 }
 
 .x-widget .totalInvestedIcons .c2__cur:not(:first-child) {
