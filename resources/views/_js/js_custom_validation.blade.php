@@ -73,7 +73,7 @@
                     v.hideSpinner();
                     break;
                 case !$.isEmptyObject(data.success_register):
-                    window.location.replace("{{ route('root') . '/agreement1' }}");
+                    window.location.replace("{{ route('root') . '/agreement' }}");
                     break;
                 case !$.isEmptyObject(data.success_login):
                     window.location.replace("{{ route('root') . '/home' }}");

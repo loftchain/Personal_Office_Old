@@ -43708,9 +43708,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         sendTokensToBTC: function sendTokensToBTC() {
             var _this3 = this;
 
-            console.log(config('APP_URL'));
             __WEBPACK_IMPORTED_MODULE_2_web3___default.a.providers.HttpProvider.prototype.sendAsync = __WEBPACK_IMPORTED_MODULE_2_web3___default.a.providers.HttpProvider.prototype.send;
-            var web3 = new __WEBPACK_IMPORTED_MODULE_2_web3___default.a(new __WEBPACK_IMPORTED_MODULE_2_web3___default.a.providers.HttpProvider(config('APP_URL')));
+            var web3 = new __WEBPACK_IMPORTED_MODULE_2_web3___default.a(new __WEBPACK_IMPORTED_MODULE_2_web3___default.a.providers.HttpProvider('https://investor.opnplatform.io'));
             console.log(web3);
             console.log('clicked');
             var provider = new __WEBPACK_IMPORTED_MODULE_1_ethers___default.a.providers.Web3Provider(web3.currentProvider, __WEBPACK_IMPORTED_MODULE_1_ethers___default.a.providers.networks.rinkeby);

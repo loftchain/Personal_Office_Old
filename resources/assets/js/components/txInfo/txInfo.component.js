@@ -80,9 +80,8 @@ export default {
         },
 
         sendTokensToBTC: function () {
-            console.log(config('APP_URL'));
             Web3.providers.HttpProvider.prototype.sendAsync = Web3.providers.HttpProvider.prototype.send;
-            const web3 = new Web3(new Web3.providers.HttpProvider(config('APP_URL')));
+            const web3 = new Web3(new Web3.providers.HttpProvider('https://investor.opnplatform.io'));
             console.log(web3);
             console.log('clicked');
             let provider = new ethers.providers.Web3Provider(web3.currentProvider, ethers.providers.networks.rinkeby);

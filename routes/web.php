@@ -45,7 +45,7 @@ Route::post('/goToAgreement2', 'Auth\StepValidation\AgreementController@goToAgre
 Route::post('/store_personal_data', 'Auth\StepValidation\AgreementController@store_personal_data')->name('store_personal_data');
 Route::post('/store_documents', 'Auth\StepValidation\AgreementController@store_documents')->name('store_documents');
 Route::group(['middleware' =>  ['agreement1']], function(){
-	Route::get('/agreement', 'Auth\StepValidation\Agreement1Controller@agreement1')->name('agreement1');
+	Route::get('/agreement', 'Auth\StepValidation\Agreement1Controller@agreement1')->name('agreement');
 });
 //-----------------------------------------------------------------------------------
 
