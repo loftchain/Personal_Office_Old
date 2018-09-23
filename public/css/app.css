@@ -10791,7 +10791,7 @@ button.close {
 }
 
 .x-widget .widget-part .control-container .c1 {
-  width: 60%;
+  width: 62%;
 }
 
 @media (max-width: 768px) {
@@ -10829,11 +10829,9 @@ button.close {
   }
 }
 
-@media only screen and (min-width: 1025px) {
-  .x-widget .widget-part .control-container .c1-0,
-  .x-widget .widget-part .control-container .c1-1 {
-    width: 92%;
-  }
+.x-widget .widget-part .control-container .c1-0,
+.x-widget .widget-part .control-container .c1-1 {
+  width: 100%;
 }
 
 .x-widget .widget-part .control-container .c2 {
@@ -10847,7 +10845,13 @@ button.close {
 }
 
 .x-widget__top .control-container__periods {
-  width: 65%;
+  width: 62%;
+}
+
+@media (max-width: 768px) {
+  .x-widget__top .control-container__periods {
+    width: 100%;
+  }
 }
 
 .x-widget__top .control-container__periods .c1__progress_pre-sale,
@@ -10919,7 +10923,7 @@ button.close {
 }
 
 .x-widget__top .control-container__periods .c1__progress_ico {
-  width: 60%;
+  width: 100%;
 }
 
 .x-widget__top .control-container__periods .c1-1__progress_ico1,
@@ -11083,6 +11087,27 @@ button.close {
   font-size: 15px;
   font-weight: 500;
   color: #828282;
+}
+
+.x-widget .totalInvestedIcons {
+  -webkit-box-pack: right !important;
+      -ms-flex-pack: right !important;
+          justify-content: right !important;
+}
+
+.x-widget .totalInvestedIcons .c2__cur:not(:first-child) {
+  margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+  .x-widget .totalInvestedIcons {
+    -ms-flex-pack: distribute !important;
+        justify-content: space-around !important;
+  }
+
+  .x-widget .totalInvestedIcons .c2__cur {
+    margin-left: 0px !important;
+  }
 }
 
 .x-wallets {

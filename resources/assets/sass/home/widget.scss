@@ -45,7 +45,7 @@
       }
 
       .c1 {
-        width: 60%;
+        width: 62%;
         @extend %fsb;
 
         @media #{$mobile} {
@@ -77,9 +77,7 @@
       }
 
       .c1-0, .c1-1 {
-        @media #{$desktop} {
-          width: 92%;
-        }
+        width: 100%;
       }
 
       .c2{
@@ -97,7 +95,11 @@
     .control-container{
 
       &__periods{
-        width: 65%;
+        width: 62%;
+        
+        @media #{$mobile} {
+          width: 100%;
+        }
 
         .c1 {
           &__progress_pre-sale, &__progress_pre-ico{
@@ -150,7 +152,7 @@
           }
 
           &__progress_ico {
-            width: 60%
+            width: 100%
           }
         }
 
@@ -290,6 +292,26 @@
         font-size: 15px;
         font-weight: 500;
         color: $gray1;
+      }
+    }
+  }
+  
+  .totalInvestedIcons {
+    justify-content: right !important;
+    
+    .c2 {
+      &__cur:not(:first-child) {
+        margin-left: 10px;
+      }
+    }
+    
+    @media #{$mobile} {
+      justify-content: space-around !important;
+      
+      .c2 {
+        &__cur {
+          margin-left: 0px !important;
+        }
       }
     }
   }

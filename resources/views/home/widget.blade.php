@@ -53,7 +53,7 @@
                 </div>
             </div>
 
-            <div class="c c2">
+            <div class="c c2 totalInvestedIcons">
                 <div class="c2__cur">
                     <img class="c2__cur_img0" src="{{ asset('img/Ethereum.png') }}" alt="">
                     <div class="tb0 text-box">
@@ -68,13 +68,13 @@
                         <span class="n1 name">BTC</span>
                     </div>
                 </div>
-                <div class="c2__cur">
-                  <img class="c2__cur_img2" src="{{ asset('img/USD.png') }}" alt="">
-                  <div class="tb2 text-box">
-                    <span class="a2 amount">{{ number_format(env('INVESTED_IN_USD'), 0, '.', ' ') }}</span>
-                    <span class="n2 name">USD</span>
-                  </div>
-                </div>
+                {{--<div class="c2__cur">
+                    <img class="c2__cur_img2" src="{{ asset('img/USD.png') }}" alt="">
+                    <div class="tb2 text-box">
+                        <span class="a2 amount">{{ number_format(env('INVESTED_IN_USD'), 0, '.', ' ') }}</span>
+                        <span class="n2 name">USD</span>
+                    </div>
+                </div>--}}
             </div>
         </div>
     </div>
