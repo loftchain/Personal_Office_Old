@@ -31,6 +31,7 @@ class WidgetService
 	public function getCurrencyByPair($pair)
 	{
 		$currency = $this->bonusService->getLatestCurrencies();
+        
 		$price = 0;
 		foreach ($currency as $c) {
 			if ($c->pair == $pair) {
@@ -46,7 +47,6 @@ class WidgetService
 		$amountCurrency = 0;
 		$amountUsd = 0;
 		$amountToken = 0;
-		$stageInfo = $this->bonusService->getStageInfo();
 
 		foreach ($tx as $t) {
 			if($t->status == 'true'){
@@ -55,7 +55,7 @@ class WidgetService
 				}
 			}
 		}
-
+        
 		$amountETH = ($currency == 'ETH') ? $amountCurrency : $amountCurrency * $this->getCurrencyByPair($pair);
 		$amountToken = $amountETH;
 		return ['currency' => $amountCurrency, 'eth' => $amountETH, 'token' => $amountToken];

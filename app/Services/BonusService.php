@@ -48,6 +48,9 @@ class BonusService
 			case $time > env('4_BONUS_3w') && $time <= env('ICO_END'):
 				$stageData = ['bonus<10' => 0, 'bonus10-100' => 0, 'bonus100+' => 0];
 				break;
+            default:
+				$stageData = ['bonus<10' => 0, 'bonus10-100' => 0, 'bonus100+' => 0];
+				break;
 		}
 		return $stageData;
 	}
