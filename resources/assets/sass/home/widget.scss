@@ -297,7 +297,7 @@
   }
   
   .totalInvestedIcons {
-    justify-content: right !important;
+    justify-content: flex-end !important;
     
     .c2 {
       &__cur:not(:first-child) {
