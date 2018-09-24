@@ -49,51 +49,19 @@ class HomeController extends Controller
 	{
 		$data = [];
 		$user = User::find(Auth::id());
-		$adminReferrals = UserReferralFields::all();
 
 		$request->session()->forget('reset_password_email');
-		$time = is_numeric(Input::get('time')) ? Input::get('time') : time();
         
-        $currTime = \DateTime::createFromFormat('U', $time);
-        if ($currTime < \DateTime::createFromFormat('U', env('ICO_START'))) {
-            $data['stage'] = 0;
-            $data['timerBegin'] = 0;
-            $data['timerCurrent'] = $time;
-            $data['timerEnd'] = env('ICO_START');
-            $data['stageBegin'] = '';
-            $data['stageEnd'] = \DateTime::createFromFormat('U', env('ICO_START'))->format('d.m.Y');
-            $data['stageLabel'] = 'ICO';
-            $data['stageTitle'] = Lang::get('home/widget.beforeStart_js') . ' ' . $data['stageLabel'];
-        } else if ($currTime < \DateTime::createFromFormat('U', env('ICO_END'))) {
-            $data['stage'] = 1;
-            $data['timerBegin'] = env('ICO_START');
-            $data['timerCurrent'] = $time;
-            $data['timerEnd'] = env('ICO_END');
-            $data['stageBegin'] = \DateTime::createFromFormat('U', env('ICO_START'))->format('d.m.Y');
-            $data['stageEnd'] = \DateTime::createFromFormat('U', env('ICO_END'))->format('d.m.Y');
-            $data['stageLabel'] = 'ICO';
-            $data['stageTitle'] = Lang::get('home/widget.beforeEnd_js') . ' ' . $data['stageLabel'];
-        } else {
-            $data['stage'] = 2;
-            $data['timerBegin'] = 0;
-            $data['timerCurrent'] = 0;
-            $data['timerEnd'] = 0;
-            $data['stageBegin'] = '';
-            $data['stageEnd'] = '';
-            $data['stageLabel'] = 'ICO';
-            $data['stageTitle'] = Lang::get('home/widget.crowdSaleFinished_js');
-        }
-        
+		$data['time'] = is_numeric(Input::get('time')) ? Input::get('time') : time();
 		$data['btcCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('BTC', 'BTC/ETH');
 		$data['ethCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('ETH', 'ETH/ETH');
 		$data['totalUSDCollected'] = $data['btcCurrentAmount']['currency'] * $this->widgetService->getCurrencyByPair('BTC/USD') + $data['ethCurrentAmount']['currency'] * $this->widgetService->getCurrencyByPair('ETH/USD');
-		$data['stageInfo'] = $this->bonusService->getStageInfo();
-		$data['time'] = $time;
+        $data = array_merge($data, $this->bonusService->getStageInfo());
 		$data['authenticated'] = Auth::check();
 		$data['confirmed'] = $user->confirmed;
 		$data['admin'] = $user->admin;
 		$data['referrals'] = $this->referralService->getReferralData();
-		$data['adminReferrals'] = $adminReferrals;
+		$data['adminReferrals'] = UserReferralFields::all();
 		//$data['sn'] = $this->transactionService->storeTx(); //Пересчёт токенов, по сути, запускается при каждом входе на страницу /home. ЭТО ТОЧНО НЕОБХОДИМО?
 		return view('home.home')->with('data', $data);
 
