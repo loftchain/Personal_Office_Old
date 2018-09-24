@@ -10744,6 +10744,15 @@ button.close {
 }
 
 @media (max-width: 768px) {
+  .x-widget .widget-part.sale-end {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 768px) {
   .x-widget .widget-part {
     -webkit-box-align: center;
         -ms-flex-align: center;
@@ -10842,6 +10851,19 @@ button.close {
   .x-widget .widget-part .control-container .c2 {
     width: 225px;
   }
+}
+
+.x-widget__top.sale-end {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.x-widget__top.sale-end .js__stage-name-title {
+  margin: 0;
 }
 
 .x-widget__top .control-container__periods {

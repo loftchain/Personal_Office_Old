@@ -10,6 +10,13 @@
     align-items: flex-start;
     margin: 10px 0;
 
+    &.sale-end {
+      @media #{$mobile} {
+        align-items: center;
+        margin: 10px 0;
+      }
+    }
+    
     @media #{$mobile} {
       align-items: center;
       margin-bottom: 60px;
@@ -92,6 +99,15 @@
   }
 
   &__top {
+    &.sale-end {
+      justify-content: center;
+      align-items: center;
+      
+      .js__stage-name-title {
+        margin: 0;
+      }
+    }
+    
     .control-container{
 
       &__periods{

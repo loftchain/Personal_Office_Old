@@ -1,7 +1,7 @@
 <section class="x-widget">
-    @if($data['stage'] < 2)
-        <div class="widget-part x-widget__top">
-            <p class="js__stage-name-title">{{ $data['stageTitle'] }}:</p>
+    <div class="widget-part x-widget__top{{ $data['stage'] >= 2 ? ' sale-end' : '' }}">
+        <p class="js__stage-name-title">{{ $data['stageTitle'] . ($data['stage'] < 2 ? ':' : '') }}</p>
+        @if($data['stage'] < 2)
             <div class="control-container">
               <div class="control-container__periods">
                 <div class="c c1 c1-0">
@@ -30,8 +30,8 @@
                   </div>
               </div>
             </div>
-        </div>
-    @endif
+        @endif
+    </div>
     <div class="widget-part x-widget__bot">
         <div class="title-container">
           <p class="title-container_1">@lang('home/widget.raised')</p>
