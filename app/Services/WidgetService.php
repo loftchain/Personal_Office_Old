@@ -5,9 +5,10 @@ namespace App\Services;
 use App\Helpers\ICOAPI;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\HomeController;
-use GuzzleHttp\Client;
 use App\Services\BonusService;
+use GuzzleHttp\Client;
 
 
 class WidgetService
@@ -66,4 +67,15 @@ class WidgetService
 		$convertedValue = env('INVESTED_IN_USD') / $ethUsd;
 		return $convertedValue;
 	}
+    
+    public function getUserByWallet($wallet) {
+        $user = DB::table('users')
+            ->select('users.id', 'users.referred_by')
+            ->join('user_wallet_fields', 'user_wallet_fields.user_id', '=', 'users.id')
+            ->where('user_wallet_fields.wallet', '=', $wallet)
+            ->where('user_wallet_fields.type', 'like', '%from%')
+            ->first();
+        
+        return $user ?? null;
+    }
 }

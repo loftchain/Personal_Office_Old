@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Helpers\ICOAPI;
 use App\Models\Transactions;
 use App\Models\UserWalletFields;
+use App\Models\UserReferralFields;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,18 +14,19 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\HomeController;
 use GuzzleHttp\Client;
 use App\Services\BonusService;
-
+use App\Services\WidgetService;
 
 class TransactionService
 {
-
 	protected $bonusService;
 	protected $walletService;
+    protected $widgetService;
 
-	public function __construct(BonusService $bonusService, WalletService $walletService)
+	public function __construct(BonusService $bonusService, WalletService $walletService, WidgetService $widgetService)
 	{
 		$this->bonusService = $bonusService;
 		$this->walletService = $walletService;
+		$this->widgetService = $widgetService;
 	}
 
 	public function getTransactions()
@@ -71,7 +73,7 @@ class TransactionService
 		return $tokenAmount + $bonus;
 	}
 
-	public function countTokens($rates, $amount, $date, $currency)
+	public function countTokens($rates, $amount, $date, $currency, $wallet)
 	{
 		$dateArr = [];
 		$totalTokenAmount = 0;
@@ -107,6 +109,25 @@ class TransactionService
 				}
 //			}
 		}
+        
+        $user = $this->widgetService->getUserByWallet($wallet);
+        
+        if (isset($user->referred_by) && !empty($user->referred_by)) {
+            $urf = UserReferralFields::where('user_id', '=', $user->id)->first();
+            if (empty($urf)) {
+                $urf = new UserReferralFields;
+                $urf->user_id = $user->id;
+                $urf->wallet_to = $wallet;
+            }
+            
+            if (empty($urf->tokens_referred_by)) {
+                $urf->tokens_referred_by = 0;
+            }
+            
+            $urf->tokens_referred_by += $tokenAmount * env('BONUS_REFERRED_BY') / 100;
+            
+            $urf->save();
+        }
 
 		return round($totalTokenAmount, 2);
 	}
@@ -127,7 +148,7 @@ class TransactionService
 				'currency' => $t->currency,
 				'from' => $t->from,
 				'amount' => $t->amount,
-				'amount_tokens' => $this->countTokens($rates, $t->amount, $t->date, $t->currency),
+				'amount_tokens' => $this->countTokens($rates, $t->amount, $t->date, $t->currency, $t->from),
 				'info' => $info,
 				'date' => $t->date
 			];

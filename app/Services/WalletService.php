@@ -35,5 +35,4 @@ class WalletService
 		}
 		return $myTokenSum;
 	}
-
 }
