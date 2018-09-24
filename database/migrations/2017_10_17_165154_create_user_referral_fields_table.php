@@ -18,6 +18,7 @@ class CreateUserReferralFieldsTable extends Migration
         $table->integer('user_id')->unsigned()->nullable();
         $table->string('wallet_to')->nullable();
         $table->string('tokens')->nullable();
+        $table->double('tokens_referred_by')->nullable();
         $table->timestamps();
         $table->engine = 'InnoDB';
       });

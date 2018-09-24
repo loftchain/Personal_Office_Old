@@ -15,7 +15,7 @@ class UserReferralFields extends Authenticatable
      * @var array
      */
     protected $fillable = [
-      'user_id','wallet_to','tokens'
+      'user_id','wallet_to','tokens','tokens_referred_by'
     ];
 
     /**
