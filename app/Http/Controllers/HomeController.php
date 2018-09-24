@@ -94,7 +94,7 @@ class HomeController extends Controller
 		$data['admin'] = $user->admin;
 		$data['referrals'] = $this->referralService->getReferralData();
 		$data['adminReferrals'] = $adminReferrals;
-		$data['sn'] = $this->transactionService->storeTx();
+		//$data['sn'] = $this->transactionService->storeTx(); //Пересчёт токенов, по сути, запускается при каждом входе на страницу /home. ЭТО ТОЧНО НЕОБХОДИМО?
 		return view('home.home')->with('data', $data);
 
 	}
