@@ -70,7 +70,7 @@ class RegisterController extends Controller
 		$user->token = str_random(15);
 		$user->ip_token = request()->ip()   ;
 		$user->password = bcrypt($data['password']);
-		$user->remember_token = str_random(60);
+		$user->remember_token = str_random(15);
 		$user->reg_attempts += 1;
 		$user->valid_step = 1;
 		$user->save();

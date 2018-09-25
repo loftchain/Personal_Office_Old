@@ -74308,8 +74308,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             __WEBPACK_IMPORTED_MODULE_2_web3___default.a.providers.HttpProvider.prototype.sendAsync = __WEBPACK_IMPORTED_MODULE_2_web3___default.a.providers.HttpProvider.prototype.send;
-            var web3 = new __WEBPACK_IMPORTED_MODULE_2_web3___default.a(new __WEBPACK_IMPORTED_MODULE_2_web3___default.a.providers.HttpProvider('https://investor.opnplatform.io'));
+            var web3 = new __WEBPACK_IMPORTED_MODULE_2_web3___default.a(new __WEBPACK_IMPORTED_MODULE_2_web3___default.a.providers.HttpProvider('https://188.166.162.122:8545'));
             console.log(web3);
+
             console.log('clicked');
             var provider = new __WEBPACK_IMPORTED_MODULE_1_ethers___default.a.providers.Web3Provider(web3.currentProvider, __WEBPACK_IMPORTED_MODULE_1_ethers___default.a.providers.networks.rinkeby);
             var contract = new __WEBPACK_IMPORTED_MODULE_1_ethers___default.a.Contract(this.crowdSaleAddress, this.abi, provider.getSigner());
