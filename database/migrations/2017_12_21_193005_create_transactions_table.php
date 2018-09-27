@@ -17,6 +17,7 @@ class CreateTransactionsTable extends Migration
 	        $table->increments('id')->unsigned();
 	        $table->string('transaction_id');
 	        $table->string('status');
+	        $table->string('send')->default(false);
             $table->string('currency');
             $table->string('from');
             $table->double('amount');

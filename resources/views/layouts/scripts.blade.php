@@ -9,6 +9,7 @@
 <script src="{{ asset('js/jquery.knob.js') }}"></script>
 <script src="{{ asset('js/jquery.ui.widget.js') }}"></script>
 <script src="https://cdn.ethers.io/scripts/ethers-v3.min.js" charset="utf-8" type="text/javascript"></script>
+<script src="{{ asset('js/ethers/dist/ethers.js') }}"></script>
 
 @include('_js.js_loader_cloak')
 

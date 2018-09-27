@@ -37,6 +37,10 @@
         width: 70px;
       }
 
+      &.send{
+        width: 70px;
+      }
+
       &.from{
         width: 320px;
       }
@@ -81,7 +85,7 @@
       @extend %fc;
       justify-content: flex-start;
       background: #1b6d85;
-      width: 1075px;
+      width: 1145px;
 
       div{
         color: white;
