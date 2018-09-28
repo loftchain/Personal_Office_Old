@@ -1,8 +1,8 @@
 <main class="a-wrapper r-wrapper">
     <section class="a-wrapper__header">
         <div class="a-wrapper__header_el r-user-id">id</div>
-        <div class="a-wrapper__header_el r-wallet-to">@lang('admin/refs.wallet')</div>
-        <div class="a-wrapper__header_el r-tokens">@lang('admin/refs.token')</div>
+        <div class="a-wrapper__header_el r-wallet-to">{!! trans('admin/refs.wallet') !!}</div>
+        <div class="a-wrapper__header_el r-tokens">{!! trans('admin/refs.token') !!}</div>
     </section>
     @foreach($data['adminReferrals'] as $ar)
         <section class="a-wrapper__section">

@@ -1,5 +1,5 @@
 <section class="x-wallets">
-  <p class="x-wallets__title">@lang('home/wallet.goingToInvest_p')</p>
+  <p class="x-wallets__title">{!! trans('home/wallet.goingToInvest_p') !!}</p>
   <div class="x-wallets__buttons nav nav-tabs">
       <a class="switch-wallet-link BTC" data-toggle="tab" href="#ETH">
           <div class="button">
@@ -46,7 +46,7 @@
             });
 
             $('.add-wallet-btn').click(() => {
-                $.notify('{{ __('home/wallet.regToParticipate_js') }}', {
+                $.notify('{!! ('home/wallet.regToParticipate_js') !!}', {
                     type: 'info'
                 });
             });

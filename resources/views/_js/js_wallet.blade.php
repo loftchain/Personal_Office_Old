@@ -50,7 +50,7 @@
             addBtn.click(() => {
                 switch (true) {
                     case Date.now() < w.startDate_preSale * 1000:
-                        v.showNotification('@lang('home/wallet.waitUntilStart_js')');
+                        v.showNotification('{!! trans('home/wallet.waitUntilStart_js') !!}');
                         break;
                     case wa.userAuthenticated === '1':
                         _this.prop('disabled', false);
@@ -225,7 +225,7 @@
         wa.wCopyImg.each(function () {
             $(this).click(() => {
                 wa.copyToClipboard($(this));
-                $.notify('{{ __('home/wallet.walletCopied_js') }}', 'success');
+                $.notify('{!! trans('home/wallet.walletCopied_js')  !!}', 'success');
             });
         });
     });

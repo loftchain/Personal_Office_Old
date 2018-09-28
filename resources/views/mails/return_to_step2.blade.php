@@ -32,9 +32,9 @@
     <tr>
       <td align="center" valign="top" width="50%" class="templateColumnContainer">
         <img src="https://leadrex.io/img/leadrex-logo.png" width="280" style="max-width:280px;" class="columnImage">
-        <p style="color: #A3A3A3;">@lang('mails/mails.returnToKyc_txt')</p>
+        <p style="color: #A3A3A3;">{!! trans('mails/mails.returnToKyc_txt') !!}</p>
         <a style="text-decoration: none; padding: 5px 15px; cursor: pointer; border-radius: 5px; background: #440b3f; color: #A3A3A3;" href="{{ env('APP_URL') }}">
-          @lang('mails/mails.returnToKyc_btn')
+          {!! trans('mails/mails.returnToKyc_btn') !!}
         </a>
       </td>
     </tr>

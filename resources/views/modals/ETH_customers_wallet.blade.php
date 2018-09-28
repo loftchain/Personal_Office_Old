@@ -11,7 +11,7 @@
             </div>
             <div class="modal-footer modal-wallet-footer">
               <a class="modal-btn modal-wallet-copy-btn" data-dismiss="modal">
-                @lang('modals/modals.copy')
+                {!! trans('modals/modals.copy') !!}
               </a>
             </div>
         </div>

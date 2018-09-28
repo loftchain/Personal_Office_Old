@@ -32,10 +32,10 @@
     <tr>
       <td align="center" valign="top" width="50%" class="templateColumnContainer">
           <img src="https://leadrex.io/img/leadrex-logo.png" width="280" style="max-width:280px;" class="columnImage">
-          <h1 style="color: #A3A3A3;">@lang('mails/mails.welcome')</h1>
-          <p style="color: #A3A3A3;">@lang('mails/mails.confirmed')</p>
+          <h1 style="color: #A3A3A3;">{!! trans('mails/mails.welcome') !!}</h1>
+          <p style="color: #A3A3A3;">{!! trans('mails/mails.confirmed') !!}</p>
           <a style="text-decoration: none; padding: 5px 15px; cursor: pointer; border-radius: 5px; background: #440b3f; color: #A3A3A3;" href="{{ env('APP_URL') }}">
-            @lang('mails/mails.startInvesting')
+            {!! trans('mails/mails.startInvesting') !!}
           </a>
       </td>
     </tr>

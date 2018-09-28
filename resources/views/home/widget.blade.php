@@ -18,15 +18,15 @@
               <div class="c c2">
                   <div class="d d1">
                       <span class="t js__dd"></span>
-                      <span class="d__name js__dd-name">@lang('home/widget.days_span')</span>
+                      <span class="d__name js__dd-name">{!! trans('home/widget.days_span') !!}</span>
                   </div>
                   <div class="d d2">
                       <span class="t js__hh"></span>
-                      <span class="d__name js__hh-name">@lang('home/widget.hours_span')</span>
+                      <span class="d__name js__hh-name">{!! trans('home/widget.hours_span') !!}</span>
                   </div>
                   <div class="d d3">
                       <span class="t js__mm"></span>
-                      <span class="d__name js__mm-name">@lang('home/widget.minutes_span')</span>
+                      <span class="d__name js__mm-name">{!! trans('home/widget.minutes_span') !!}</span>
                   </div>
               </div>
             </div>
@@ -34,8 +34,8 @@
     </div>
     <div class="widget-part x-widget__bot">
         <div class="title-container">
-          <p class="title-container_1">@lang('home/widget.raised')</p>
-          <p class="title-container_2">@lang('home/widget.total')</p>
+          <p class="title-container_1">{!! trans('home/widget.raised') !!}</p>
+          <p class="title-container_2">{!! trans('home/widget.total') !!}</p>
         </div>
         <div class="control-container">
             <div class="c c1">

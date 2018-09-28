@@ -10,10 +10,10 @@
         </div>
         <div class="header__links">
             <ul>
-                <li><a target="_blank" href="https://opnplatform.io/#howworks">@lang('layouts/header.link1_li')</a></li>
-                <li><a target="_blank" href="https://opnplatform.io/#whitepapper">@lang('layouts/header.link2_li')</a></li>
-                <li><a target="_blank" href="https://opnplatform.io/#roadmap">@lang('layouts/header.link3_li')</a></li>
-                <li><a target="_blank" href="https://opnplatform.io/#team">@lang('layouts/header.link4_li')</a></li>
+                <li><a target="_blank" href="https://opnplatform.io/#howworks">{!! trans('layouts/header.link1_li') !!}</a></li>
+                <li><a target="_blank" href="https://opnplatform.io/#whitepapper">{!! trans('layouts/header.link2_li') !!}</a></li>
+                <li><a target="_blank" href="https://opnplatform.io/#roadmap">{!! trans('layouts/header.link3_li') !!}</a></li>
+                <li><a target="_blank" href="https://opnplatform.io/#team">{!! trans('layouts/header.link4_li') !!}</a></li>
             </ul>
         </div>
         <div class="header__lang">

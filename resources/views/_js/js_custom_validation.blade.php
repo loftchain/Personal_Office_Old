@@ -33,7 +33,7 @@
             switch (true) {
                 case !$.isEmptyObject(data.validation_error):
                     if (data.validation_error['g-recaptcha-response']) {
-                        data.validation_error['g-recaptcha-response'] = ['{{ __('validation.accepted') }}'];
+                        data.validation_error['g-recaptcha-response'] = ['{!! trans('validation.accepted') !!}'];
                     }
 
                     $.each(data.validation_error, (key, value) => {
@@ -80,11 +80,11 @@
                     localStorage.setItem('success_login', '+');
                     break;
                 case !$.isEmptyObject(data.success_reset_email_sent):
-                    v.showNotification('@lang('auth/resetPwd.letterSent_js')', 'success');
+                    v.showNotification('{!! trans('auth/resetPwd.letterSent_js') !!}', 'success');
                     v.closeModal();
                     break;
                 case !$.isEmptyObject(data.error_reset_email_sent):
-                    v.showNotification('@lang('auth/resetPwd.letterSentError_js')', 'danger');
+                    v.showNotification('{!! trans('auth/resetPwd.letterSentError_js') !!}', 'danger');
                     v.closeModal();
                     break;
                 case !$.isEmptyObject(data.success_reset_pwd):
@@ -93,17 +93,17 @@
                     break;
                 case !$.isEmptyObject(data.success_changed_email):
                     v.closeModal();
-                    v.showNotification('@lang('modals/modals.emailChanged_js')', 'success');
+                    v.showNotification('{!! trans('modals/modals.emailChanged_js') !!}', 'success');
                     break;
                 case !$.isEmptyObject(data.success_changed_pwd):
                     v.closeModal();
-                    v.showNotification('@lang('modals/modals.pwdChanged_js')', 'success');
+                    v.showNotification('{!! trans('modals/modals.pwdChanged_js') !!}', 'success');
                     break;
                 case !$.isEmptyObject(data.goto2):
                     window.location.replace("{{ route('root') }}");
                     break;
                 case !$.isEmptyObject(data.wallet_added):
-                    v.showNotification('@lang('home/wallet.added_js')', 'success');
+                    v.showNotification('{!! trans('home/wallet.added_js') !!}', 'success');
                     if (typeof wa !== 'undefined') {
                         wa.exitEditMode(_this.children('.w-input'));
                         if(_this.children('.type') === 'to' && $('#wallet1').val() > 0){
@@ -122,17 +122,17 @@
                     }
                     break;
                 case !$.isEmptyObject(data.usd_request_sent):
-                    v.showNotification('@lang('home/wallet.requestWasSent_js')', 'success');
+                    v.showNotification('{!! trans('home/wallet.requestWasSent_js') !!}', 'success');
                     v.hideSpinner();
                     break;
                 case !$.isEmptyObject(data.wallet_edited):
-                    v.showNotification('@lang('home/wallet.edited_js')', 'success');
+                    v.showNotification('{!! trans('home/wallet.edited_js') !!}', 'success');
                     if (typeof wa !== 'undefined') {
                         wa.exitEditMode(_this.children('.w-input'));
                     }
                     break;
                 case !$.isEmptyObject(data.confirmation_complete):
-                    v.showNotification('@lang('admin/confirmation.userConfirmed_js')', 'success');
+                    v.showNotification('{!! trans('admin/confirmation.userConfirmed_js') !!}', 'success');
                     break;
                 default:
                     console.log('js_custom_validation.blade.php default switch state');
@@ -207,10 +207,6 @@
             $(this).removeClass('isError');
             $(this).next().html('');
         }
-        // if ($(this).is(':valid')) {
-        //     $(this).removeClass('isError');
-        //     $(this).next().html('');
-        // }
     });
 
     v.form.each(v.ajax_form);

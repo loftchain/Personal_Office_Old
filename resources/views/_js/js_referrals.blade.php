@@ -56,7 +56,7 @@
 
 		r.refCopy.click(() => {
 			r.copyToClipboard();
-			$.notify('{{ __('home/refs.linkCopied_js') }}', 'success');
+			$.notify('{!! trans('home/refs.linkCopied_js') !!}', 'success');
 			r.refLinkInput.focus();
 			r.refLinkInput.select();
 		});

@@ -26,9 +26,9 @@
 				if (data.length > 0) {
 					data.forEach((user, index) => {
 
-						let sbmtBtn = `<button type="submit" data-id="${user.id}" class="confirm-user-btn">@lang('admin/confirmation.confirm_js')</button>`;
-						let rts2Btn = `<button type="submit" data-id="${user.id}" class="rts2-user-btn">@lang('admin/confirmation.returnToKYC_js')</button>`;
-						let confirmed = (user.confirmed == 0) ? `{{ __('admin/confirmation.no') }}` : `{{ __('admin/confirmation.yes') }}`;
+						let sbmtBtn = `<button type="submit" data-id="${user.id}" class="confirm-user-btn">{!! trans('admin/confirmation.confirm_js') !!}</button>`;
+						let rts2Btn = `<button type="submit" data-id="${user.id}" class="rts2-user-btn">{!! trans('admin/confirmation.returnToKYC_js') !!}</button>`;
+						let confirmed = (user.confirmed == 0) ? `{!! trans('admin/confirmation.no') !!}` : `{!! trans('admin/confirmation.yes') !!}`;
 						let userDom = `
                             <section id="a-w__s${index}" class="a-wrapper__section">
                                 <div class="a-wrapper__section_el a-id">${user.id}</div>
@@ -78,7 +78,7 @@
 							success: data => {
 								$('.users-wrapper').empty();
 								main();
-								$.notify('@lang('admin/confirmation.userConfirmed_js')', {
+								$.notify('{!! trans('admin/confirmation.userConfirmed_js') !!}', {
 									type: 'success'
 								});
 							},
@@ -101,7 +101,7 @@
 							dataType: 'json',
 							success: data => {
 								$('.users-wrapper').empty();
-								$.notify('@lang('admin/confirmation.userCanceled_js')', {
+								$.notify('{!! trans('admin/confirmation.userCanceled_js') !!}', {
 									type: 'info'
 								});
 								main();
