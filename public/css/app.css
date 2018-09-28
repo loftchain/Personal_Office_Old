@@ -12249,6 +12249,12 @@ button.close {
   width: 70%;
 }
 
+@media (max-width: 768px) {
+  .a1-body .a1-container-wrapper article {
+    width: 55%;
+  }
+}
+
 .a1-body .a1-container-wrapper__wp {
   text-decoration: none;
   width: 25%;

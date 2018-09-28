@@ -1,6 +1,5 @@
 import axios from 'axios';
 import ethers from 'ethers';
-import Web3 from 'web3';
 
 export default {
     name: 'tx-info',

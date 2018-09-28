@@ -15,7 +15,7 @@ class LoginController extends Controller
 {
 	use RedirectsUsers, ThrottlesLogins;
 
-	protected $redirectTo = '/agreement1';
+	protected $redirectTo = '/agreement';
 
 	public function __construct()
 	{
@@ -69,7 +69,7 @@ class LoginController extends Controller
 
 	public function showLoginForm()
 	{
-		return redirect('agreement1');
+		return redirect('agreement');
 	}
 
 	protected function guard()

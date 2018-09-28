@@ -25,7 +25,7 @@ class ValidateUser
                 return redirect('logout');
                 break;
             case 1:
-                return redirect('agreement1');
+                return redirect('agreement');
                 break;
             default:
                 return $next($request);

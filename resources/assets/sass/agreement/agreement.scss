@@ -55,6 +55,9 @@
       article{
         width: 70%;
 
+        @media #{$mobile} {
+          width: 55%;
+        }
       }
 
       &__wp{
