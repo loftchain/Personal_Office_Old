@@ -65,6 +65,12 @@ Route::get('/getTdDesktop', 'TransactionController@getTdDesktop')->name('getTdDe
 Route::get('/getTxMobileView', 'TransactionController@getTxMobileView')->name('getTxMobileView');
 //-----------------------------------------------------------------------------------
 
+//Referral
+Route::group(['prefix' => 'referral', 'as' => 'referral.'], function (){
+    Route::get('check/wallet', 'ReferralController@checkWallet')->name('check.wallet');
+    Route::get('check', 'ReferralController@checkReferrals')->name('check');
+});
+
 //------------------------Language---------------------------------------------------
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
 //-----------------------------------------------------------------------------------
@@ -85,3 +91,5 @@ Route::group(['middleware' =>  ['admin']], function(){
 	Route::post('/admin/transaction/update', 'Admin\TransactionController@updateSend')->name('transaction.update.send');
 
 });
+
+Route::get('/test', 'ReferralController@getWallet')->name('test');

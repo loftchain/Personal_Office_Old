@@ -26,4 +26,9 @@ class UserReferralFields extends Authenticatable
     protected $hidden = [
 
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

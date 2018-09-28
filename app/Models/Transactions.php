@@ -20,4 +20,9 @@ class Transactions extends Model
 		'info', //amount converted from ETH to Tokens
 		'date',  // of transactions
 	];
+
+	public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

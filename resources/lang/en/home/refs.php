@@ -1,10 +1,9 @@
 ﻿<?php
 
 return [
-	'ref_article' => 'Our smart contract includes a referral program.
-        You will receive a bonus for each transaction of a user you refer.
-        All referral payments will be made in no less than 30 days after the end of main
-        stages of the ICO for 3 month, in equal shares.',
+	'ref_article' => 'Referral reward to a referral link owner is 5%, based on the number of tokens
+         purchased using the referral link. Those who bought tokens using a reference
+         link receive an extra 3% bonus.',
 	'referralBonus_span' => 'Referral bonus',
 	'refLink_label' => 'Your referral link:',
 	'refReferral_div' => 'Referred person',

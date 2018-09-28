@@ -41,4 +41,23 @@ class ReferralController extends Controller
 
 	}
 
+    //Check the wallet from the auth user
+	public function checkWallet()
+    {
+        $isWallet = '';
+        if (Auth::user()->wallet()->first()){
+            $isWallet = 'ok';
+        }
+
+        return $isWallet;
+    }
+
+    //Check the referrals from the auth user
+    public function checkReferrals()
+    {
+        $referrals = Auth::user()->referrals()->get();
+
+        return response($referrals);
+    }
+
 }

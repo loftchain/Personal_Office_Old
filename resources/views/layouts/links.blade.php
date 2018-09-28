@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{{ asset('css/jquery-ui/jquery-ui.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/animate/animate.css') }}">
 <link rel="stylesheet" href="{{ asset('css/mini-updloader.style.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap.min.css') }}">
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=VT323&amp;subset=latin-ext" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Raleway&amp;subset=latin-ext" rel="stylesheet">

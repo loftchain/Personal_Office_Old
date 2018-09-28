@@ -40,9 +40,19 @@ class User extends Authenticatable
         return $this->hasMany("App\\Models\\Conversion");
     }
 
-    public function wallets()
+    public function wallet()
     {
-        return $this->hasOne("App\\UserWalletFields");
+        return $this->hasOne(UserWalletFields::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transactions::class);
+    }
+
+    public function referrals()
+    {
+        return $this->hasMany(UserReferralFields::class);
     }
 
 

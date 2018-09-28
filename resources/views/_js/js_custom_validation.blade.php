@@ -140,24 +140,56 @@
             }
         },
 
+        validate() {
+            let wallet0 = $('#wallet0').val(),
+                wallet1 = $('#wallet1').val(),
+                wallet2 = $('#wallet2').val();
+
+                if (wallet0 !== ''){
+                let regex = new RegExp("^0x[a-fA-F0-9]{40}$");
+                    if(regex.test(wallet0)){
+                        return true
+                    } else {
+                        $('.error-message.error-message0.wallet').text('Введите правильный ETH кошелек');
+                        console.log('error ETH')
+                    }
+                }
+
+                if (wallet1 !== '' && wallet2 !== ''){
+                    let regEth = new RegExp("^0x[a-fA-F0-9]{40}$"),
+                        regBtc = new RegExp("^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$");
+                    if(regBtc.test(wallet1) && regEth.test(wallet2)) {
+                        return true
+                    } else if(!regBtc.test(wallet1)) {
+                        $('.error-message.error-message0.wallet').text('Введите правильный BTC кошелек');
+                        console.log('Введите правильный BTC кошелек')
+                    } else if(!regEth.test(wallet2)){
+                        $('.error-message.error-message0.wallet').text('Введите правильный ETH кошелек');
+                        console.log('Введите правильный ETH кошелек')
+                    }
+                }
+        },
+
         ajax_form: function () {
             $(this).on('submit', function (e) {
                 e.preventDefault();
                 v.resetModal();
-                $.ajax({
-                    url: $(this).attr('action'),
-                    type: $(this).attr('method'),
-                    data: $(this).serialize(),
-                    dataType: 'json',
-                    success: data => {
-                        v.loaderSpinner.hide();
-                        v.stateSelection(data, $(this));
-                    },
+                if(v.validate()){
+                    $.ajax({
+                        url: $(this).attr('action'),
+                        type: $(this).attr('method'),
+                        data: $(this).serialize(),
+                        dataType: 'json',
+                        success: data => {
+                            v.loaderSpinner.hide();
+                            v.stateSelection(data, $(this));
+                        },
 
-                    error: data => {
-                        console.log('Error: Something wrong with ajax call ' + data.errors);
-                    }
-                });
+                        error: data => {
+                            console.log('Error: Something wrong with ajax call ' + data.errors);
+                        }
+                    });
+                }
             });
         }
     };
@@ -171,10 +203,14 @@
     });
 
     v.xInput.on('input', function () {
-        if ($(this).is(':valid')) {
+        if (v.validate()){
             $(this).removeClass('isError');
             $(this).next().html('');
         }
+        // if ($(this).is(':valid')) {
+        //     $(this).removeClass('isError');
+        //     $(this).next().html('');
+        // }
     });
 
     v.form.each(v.ajax_form);
