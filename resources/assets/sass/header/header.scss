@@ -11,6 +11,10 @@ header{
       margin:0 5%;
   }
 
+  @media (max-width:991px){
+      margin:0 3%;
+  }
+
   @media #{$mobile} {
     margin:0 1%;
   }
