@@ -25,6 +25,9 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <li><a href="{{ route('lang.switch', 'en') }}">en</a></li>
                     <li><a href="{{ route('lang.switch', 'ru') }}">ru</a></li>
+                    <li><a href="{{ route('lang.switch', 'es') }}">es</a></li>
+                    <li><a href="{{ route('lang.switch', 'tr') }}">tr</a></li>
+                    <li><a href="{{ route('lang.switch', 'kr') }}">kr</a></li>
                 </ul>
             </div>
           {{--<a class="lang-switcher-eng {{ App::getLocale() }}" href="{{ route('lang.switch', 'en') }}">en</a>--}}

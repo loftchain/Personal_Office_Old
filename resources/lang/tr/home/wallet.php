@@ -1,0 +1,30 @@
+<?php
+
+return [
+    'goingToInvest_p' => 'Yatırım yapmak istiyorum',
+    'regToParticipate_js' => 'Programa katılmak için kayıt olun',
+    'eth_label' => 'Lütfen girin <b>Yatırım ve alma için Ethereum cüzdan</b> ERC20 standart belirteçleri',
+    'btcInvest_label' => 'Girin <b>Bitcoin</b> cuzdan',
+    'btcEthTokenGet_label' => 'Girin <b>Almak için Ethereum cüzdan</b> ERC20 standart belirteçleri',
+    'usdAmount_label' => 'Miktarı giriniz <B>USD</B> yatırım',
+    'save_btn' => 'kaydet',
+    'addWalletForInvest_p' => 'Yatırım yapmaya başlamak için lütfen ekleyin ',
+    'addWalletForInvest_p_ETH' => 'Cuzdan',
+    'addWalletForInvest_p_nonETH' => 'Cuzdanlar',
+    'date_span' => 'Tarih',
+    'noTxOnThisWallet_js' => 'Bu cüzdan için henüz işlem yapılmadı',
+    'tnxForParticipate_li' => 'Programa katıldığınız için teşekkür ederiz',
+    'setGas_li' => 'Set GAS: ',
+    'minimumPayment_li' => 'En az odeme',
+    'pleaseDoNot_li' => 'İşlemler için lütfen döviz cüzdanları kullanmayın. Sadece aşağıdaki cüzdanlar Ethereum ERC-20 belirteçleri ile uyumludur ve ilişkili bakiyeyi görüntülemenizi sağlar: JAXX, MyEtherWallet (online), Mist (Masaüstü), Parity (Masaüstü), ımToken (iOS), ımToken (Android).',
+    'pleaseEnsure_li' => 'Doğru belirteç makbuz adresini girdiğinizden ve ERC-20 belirteçleri ile uyumlu olduğundan emin olun. Ödemenizi yapmadan önce tüm belirteç satış koşullarını okuduğunuzdan emin olun',
+    'singleWallet_p' => 'Birleşik cüzdan' . env('APP_NAME') . 'yatırım kabul etmek için ',
+    'waitAdmin_js' => 'Hesabınız yönetim tarafından onaylanırken lütfen bekleyin. Olur bir e-posta alacaksınız',
+    'waitUntilStart_js' => 'Crowdsale başlayana kadar lütfen bekleyin',
+    'added_js' => 'Cüzdan ekledi',
+    'edited_js' => 'Cüzdan değişti',
+    'walletCopied_js' => 'Cüzdan panoya kopyalandı',
+    'sendUsdRequest_btn' => 'İstek gönder',
+    'requestWasSent_js' => 'İsteğiniz yöneticiye gönderildi',
+    'adminWillCoordinate_article' => '<li>Visa, Mastercard, American Express, Discover ve Diners Club ödemelerini dünya çapındaki müşterilerden kabul ediyoruz.</li> <li>USD yatırım için, eklemek ve ETH cüzdan kaydedip, sonrasında yatırım tutarı doldurun ve istek gönderin.</li> <li>Yönetim en kısa sürede sizinle irtibata geçerek işlemleri koordine edecektir</li>'
+];
