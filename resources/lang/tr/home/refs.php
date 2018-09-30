@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'ref_article' => "Bir referans bağlantı sahibine yapılan başvuru ödülü, belirteç sayısına göre 5%'dir.
-          referans linki kullanılarak satın alındı. Referans kullanarak jeton satın alanlar
-          bağlantı ekstra 3% bonus alır.",
+    'ref_article' => "Bir referans bağlantı sahibine yapılan başvuru ödülü, belirteç sayısına göre 5%'dir. Referans linki kullanılarak satın alındı. Referans kullanarak jeton satın alanlar bağlantı ekstra 3% bonus alır.",
     'referralBonus_span' => 'Öneri bonus',
     'refLink_label' => 'Öneri linkiniz',
     'refReferral_div' => 'Önerilen kişi',

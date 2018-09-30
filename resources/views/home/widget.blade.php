@@ -48,7 +48,7 @@
                       </div>
                       <div>
                         {{--<span class="js_eth_soft_cap">100 (soft cap)</span>--}}
-                        <span class="js_eth_hard_cap">{{ env('ICO_HARD_CAP') }} (hard cap)</span>
+                        <span class="js_eth_hard_cap">{{number_format( env('ICO_HARD_CAP'), 0, '.', ' ') }} USD (hard cap)</span>
                       </div>
                     </div>
                 </div>

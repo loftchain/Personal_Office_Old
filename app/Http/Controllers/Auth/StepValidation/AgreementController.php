@@ -53,7 +53,7 @@ class AgreementController extends Controller
 
 		$client = new Client();
 		try {
-			$client->request('POST', 'https://discordapp.com/api/webhooks/446240329230974986/CGqlDX8_XVi0pvhVmMUbkrpynxth1OcFjod1TlFov1F4yVXR_MwLCt6KL3VjlDw6AXPr', [
+			$client->request('POST', 'https://discordapp.com/api/webhooks/496033555848364045/UD7AghHUhN_fxoH7cpWW2vg-rgk3r8H4nQSRe5EiG_kJavReOPiag6kN2_whfy67bgzX', [
 				'json' => [
 					'content' => $str,
 				]
