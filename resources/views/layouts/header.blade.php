@@ -1,7 +1,7 @@
 <header>
     <section class="header">
         <div class="header__logo">
-          <a class="header__logo_link" href="https://leadrex.io/">
+          <a class="header__logo_link" href="https://opnplatform.io/">
             <img src="{{ asset('img/logo.svg') }}" alt="Logo">
           </a>
         </div>
