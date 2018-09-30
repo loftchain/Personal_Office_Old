@@ -107,40 +107,37 @@
             const form = _this.parent();
             const currency = form.find('.currency');
             const type = form.find('.type');
+            walletsData.currentWallets.forEach(function (wallet) {
+                let wallet_val = ($(window).width() > 555) ? wallet.wallet : wallet.wallet.trunc(20);
 
-            if (wa.userConfirmed === '1') {
-                walletsData.currentWallets.forEach(function (wallet) {
-                    let wallet_val = ($(window).width() > 555) ? wallet.wallet : wallet.wallet.trunc(20);
+                switch (wallet.type) {
+                    case 'from':
+                        if (currency.val() === wallet.currency) {
+                            _this.val(wallet_val);
+                            if($('#wallet2').val().length > 0){
+                                wa.showDescription('BTC');
+                            }
+                        }
+                        break;
+                    default:
+                        if (type.val() === wallet.type) {
 
-                    switch (wallet.type) {
-                        case 'from':
-                            if (currency.val() === wallet.currency) {
+                            if(wallet.type === 'from_to'){
                                 _this.val(wallet_val);
-                                if($('#wallet2').val().length > 0){
+                                wa.showDescription(wallet.currency);
+                            }
+
+                            if(wallet.type === 'to'){
+                                _this.val(wallet_val);
+                                if($('#wallet1').val().length > 0){
                                     wa.showDescription('BTC');
                                 }
                             }
-                            break;
-                        default:
-                            if (type.val() === wallet.type) {
 
-                                if(wallet.type === 'from_to'){
-                                    _this.val(wallet_val);
-                                    wa.showDescription(wallet.currency);
-                                }
-
-                                if(wallet.type === 'to'){
-                                    _this.val(wallet_val);
-                                    if($('#wallet1').val().length > 0){
-                                        wa.showDescription('BTC');
-                                    }
-                                }
-
-                            }
-                            break;
-                    }
-                });
-            }
+                        }
+                        break;
+                }
+            });
         },
 
         showDescription(currency) {

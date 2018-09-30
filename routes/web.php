@@ -94,6 +94,8 @@ Route::group(['middleware' =>  ['admin']], function(){
 
 });
 
+//------------------------KYC---------------------------------------------------
+
 Route::group(['prefix' => 'kyc', 'as' => 'kyc.', 'middleware' => 'isKyc'], function (){
     Route::get('/', 'KycController@index')->name('index');
     Route::get('user/update', 'KycController@userUpdate')->name('user.update');

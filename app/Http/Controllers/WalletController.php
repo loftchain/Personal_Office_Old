@@ -88,9 +88,9 @@ class WalletController extends Controller
   }
 
   public function current_wallets(Request $request){
-	$user = User::find(Auth::id());
-	$walletData = ($user->confirmed == '1') ? $this->walletService->getCurrentWallets() : '';
-    return response()->json(['currentWallets' => $walletData]);
+		$user = User::find(Auth::id());
+		$walletData = $this->walletService->getCurrentWallets();
+		return response()->json(['currentWallets' => $walletData]);
   }
 
 	public function description_view($currency){
@@ -98,7 +98,6 @@ class WalletController extends Controller
 	}
 
 	public function send_usd_proposal(Request $request){
-
 		$user = User::find(Auth::id());
 		$userPersonal = UserPersonalFields::where('user_id', Auth::id())->first();
 		$wallet = UserWalletFields::where('user_id', Auth::id())->where('type', 'to')->first();

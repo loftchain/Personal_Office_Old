@@ -6,4 +6,5 @@ return [
 	'link2_li' => 'Whitepaper',
 	'link3_li' => 'Roadmap',
 	'link4_li' => 'Team',
+	'lang_button' => 'language',
 ];

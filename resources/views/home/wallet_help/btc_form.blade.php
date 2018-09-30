@@ -4,7 +4,7 @@
     <input id="type1" name="type" class="type" type="hidden" value="from">
     <label for="wallet1">{!! trans('home/wallet.btcInvest_label') !!}</label>
     <button class="add-wallet-btn" type="button"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></button>
-    <input id="wallet1" name="wallet" class="w-input x-input" type="text" data-status="nonActive" disabled>
+    <input id="wallet1" name="wallet" class="w-input x-input" type="text" data-currency="BTC" data-status="nonActive" disabled>
     <div class="error-message error-message0 wallet"></div>
     <button class="sbmt-wallet-btn" type="submit">{!! trans('home/wallet.save_btn') !!}</button>
 </form>
@@ -15,7 +15,7 @@
     <input id="type2" name="type" class="type" type="hidden" value="to">
     <label for="wallet2">{!! trans('home/wallet.btcEthTokenGet_label') !!}</label>
     <button class="add-wallet-btn" type="button"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></button>
-    <input id="wallet2" name="wallet" class="w-input x-input" type="text" data-status="nonActive" disabled>
+    <input id="wallet2" name="wallet" class="w-input x-input" type="text" data-currency="ETH" data-status="nonActive" disabled>
     <div class="error-message error-message0 wallet"></div>
     <button class="sbmt-wallet-btn" type="submit">{!! trans('home/wallet.save_btn') !!}</button>
 </form>

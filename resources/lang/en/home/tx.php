@@ -1,7 +1,7 @@
 ﻿<?php
 
 return [
-	'noTxYet_h4' => 'There is no transactions yet. Please add a wallet.',
+	'noTxYet_h4' => 'There are no transactions yet. Please add a wallet.',
 	'currency_span' => 'Currency',
 	'to_span' => 'To',
 	'status_span' => 'Status',

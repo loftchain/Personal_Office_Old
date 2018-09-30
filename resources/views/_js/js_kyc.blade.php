@@ -1,11 +1,12 @@
 <script>
-    console.log('kyc script init')
-    var civicSip = new civic.sip({ appId: '4b2Zj8AtT' });
+    var civicSip = new civic.sip({ appId: '{{ env('CIVIC_APP_ID') }}' });
 
     var button = document.querySelector('#signupButton');
-    button.addEventListener('click', function () {
-        civicSip.signup({ style: 'popup', scopeRequest: civicSip.ScopeRequests.BASIC_SIGNUP });
-    });
+    if (button) {
+        button.addEventListener('click', function () {
+            civicSip.signup({ style: 'popup', scopeRequest: civicSip.ScopeRequests.BASIC_SIGNUP });
+        });
+    }
 
     // Listen for data
     civicSip.on('auth-code-received', function (event) {

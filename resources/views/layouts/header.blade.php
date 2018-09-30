@@ -1,7 +1,4 @@
 <header>
-    <script src="{{ asset('js/jquery.min.3.2.1.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap.min.css') }}">
     <section class="header">
         <div class="header__logo">
           <a class="header__logo_link" href="https://leadrex.io/">
@@ -17,18 +14,16 @@
             </ul>
         </div>
         <div class="header__lang">
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Lang
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="{{ route('lang.switch', 'en') }}">en</a></li>
-                    <li><a href="{{ route('lang.switch', 'ru') }}">ru</a></li>
-                </ul>
+          <div class="dropdown">
+            <button class="dropdown__btn">{!! trans('layouts/header.lang_button') !!}</button>
+            <div class="dropdown__content">
+              <a href="{{ route('lang.switch', 'en') }}">english</a>
+              <a href="{{ route('lang.switch', 'ru') }}">русский</a>
+              <a href="{{ route('lang.switch', 'es') }}">español</a>
+              <a href="{{ route('lang.switch', 'tr') }}">türk</a>
+              <a href="{{ route('lang.switch', 'kr') }}">한국</a>
             </div>
-          {{--<a class="lang-switcher-eng {{ App::getLocale() }}" href="{{ route('lang.switch', 'en') }}">en</a>--}}
-          {{--<a class="lang-switcher-rus {{ App::getLocale() }}" href="{{ route('lang.switch', 'ru') }}">ru</a>--}}
+          </div>
         </div>
         <div class="header__burger">
             <button class="hamburger hamburger--spin" type="button">
