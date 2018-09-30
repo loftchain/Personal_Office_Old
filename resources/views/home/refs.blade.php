@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="x-refs__no-wallet">
-      <h3>Please add wallet to participate referral program</h3>
+      <h3>{!! trans('home/refs.noWallet_h3') !!}</h3>
     </div>
     <section class="x-refs__header">
         <div class="x-refs__header_el r-referral">

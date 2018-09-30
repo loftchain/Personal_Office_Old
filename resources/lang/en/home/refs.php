@@ -10,4 +10,5 @@ return [
 	'refBonus_div' => 'Bonus',
 	'total_div' => 'Total:',
 	'linkCopied_js' => 'The link was copied to the clipboard',
+	'noWallet_h3' => 'Please add wallet to participate referral program'
 ];

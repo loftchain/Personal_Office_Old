@@ -6,4 +6,6 @@ return [
 	'link2_li' => '백지',
 	'link3_li' => '로드맵',
 	'link4_li' => '팀',
+	'lang_button' => '언어',
+
 ];

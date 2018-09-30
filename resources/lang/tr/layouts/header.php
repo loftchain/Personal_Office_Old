@@ -5,4 +5,5 @@ return [
     'link2_li' => 'Whitepaper',
     'link3_li' => 'Yol haritası',
     'link4_li' => 'Takim',
+		'lang_button' => 'dil',
 ];
