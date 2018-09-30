@@ -174,7 +174,6 @@
 	};
 
 	$(document).ready(() => {
-		if(wa.userConfirmed === '1') {
 			txs.setTransactions()
 				.then((data) => txs.renderDesktopTx(data))
 				.then((data) => txs.renderMobileTx(data))
@@ -182,7 +181,6 @@
 				.catch(e => {
 					console.error(e);
 				});
-		}
 
 		wa.submitBtn.each(function () {
 			$(this).click(() => {

@@ -37,8 +37,7 @@ class TransactionController extends Controller
 	}
 
 	public function getDataForMyTx(){
-		$user = User::find(Auth::id());
-		$txData = ($user->confirmed == '1') ? $this->txService->getDataForMyTx() : '';
+		$txData = $this->txService->getDataForMyTx();
 		return $txData;
 	}
 

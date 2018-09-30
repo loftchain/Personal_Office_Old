@@ -84,6 +84,7 @@
 .x-refs__header,
 .x-refs__section,
 .x-refs__footer,
+.x-transaction,
 .modal-dialog form .modal-footer,
 .a1-body .a1-container-wrapper__wp {
   display: -webkit-box;
@@ -11824,6 +11825,16 @@ button.close {
   text-align: center;
   margin-top: 30px;
   color: #828282;
+}
+
+.x-transaction {
+  width: 750px;
+}
+
+@media (max-width: 768px) {
+  .x-transaction {
+    width: auto;
+  }
 }
 
 .x-transaction__no-tx-msg {

@@ -21,6 +21,7 @@
     @include('_js.js_transaction')
     @include('_js.js_admin_confirmation')
 @endif
+
 @include('_js.js_custom_validation')
 @include('_js.js_agreement2')
 @include('_js.js_kyc')
