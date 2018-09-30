@@ -1,13 +1,13 @@
 .modal-dialog{
-  width:400px;
+  width:400px !important;
   border: transparent;
   border-radius: 5px;
 
   @media #{$mobile} {
-    width: 95%;
-    min-width: 310px;
-    max-width: 400px;
-    margin: 15px auto;
+    max-width: 400px !important;
+    min-width: 300px !important;
+    width: 95% !important;
+    margin: 15px auto !important;
   }
 
   .modal-content{

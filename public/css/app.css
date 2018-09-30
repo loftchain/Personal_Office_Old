@@ -331,7 +331,7 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  z-index: 1;
+  z-index: -1;
 }
 
 footer img {
@@ -10364,6 +10364,12 @@ button.close {
   }
 }
 
+@media (max-width: 991px) {
+  .header {
+    margin: 0 3%;
+  }
+}
+
 @media (max-width: 768px) {
   .header {
     margin: 0 1%;
@@ -10557,6 +10563,12 @@ button.close {
   }
 }
 
+@media (max-width: 991px) {
+  .x-dashboard {
+    padding: 0 3%;
+  }
+}
+
 @media (max-width: 768px) {
   .x-dashboard {
     position: relative;
@@ -10625,11 +10637,18 @@ button.close {
 .x-dashboard__tabs ul li a {
   font-size: 18px;
   font-weight: 700;
+  text-align: center;
   text-transform: uppercase;
   color: #E0E0E0;
   border: none !important;
   background: transparent !important;
   letter-spacing: 1px;
+}
+
+@media (max-width: 991px) {
+  .x-dashboard__tabs ul li a {
+    font-size: 17px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -12010,17 +12029,17 @@ button.close {
 }
 
 .modal-dialog {
-  width: 400px;
+  width: 400px !important;
   border: transparent;
   border-radius: 5px;
 }
 
 @media (max-width: 768px) {
   .modal-dialog {
-    width: 95%;
-    min-width: 310px;
-    max-width: 400px;
-    margin: 15px auto;
+    max-width: 400px !important;
+    min-width: 300px !important;
+    width: 95% !important;
+    margin: 15px auto !important;
   }
 }
 
@@ -12245,13 +12264,24 @@ button.close {
   width: 100%;
 }
 
+@media (max-width: 545px) {
+  .a1-body .a1-container-wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 .a1-body .a1-container-wrapper article {
   width: 70%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 545px) {
   .a1-body .a1-container-wrapper article {
-    width: 55%;
+    width: 80%;
+    margin-bottom: 20px;
+    text-align: center;
   }
 }
 
@@ -12259,6 +12289,7 @@ button.close {
   text-decoration: none;
   width: 25%;
   padding: 5px 0;
+  border: 1px solid transparent;
 }
 
 .a1-body .a1-container-wrapper__wp:hover {
@@ -12266,8 +12297,21 @@ button.close {
   border-radius: 25px;
 }
 
+@media (max-width: 545px) {
+  .a1-body .a1-container-wrapper__wp {
+    width: 45%;
+  }
+}
+
 .a1-body .a1-container-wrapper__wp img {
   margin-right: 20px;
+}
+
+@media (max-width: 768px) {
+  .a1-body .a1-container-wrapper__wp img {
+    width: 28px;
+    margin-right: 10px;
+  }
 }
 
 .a1-body .a1-container-wrapper__wp .title {

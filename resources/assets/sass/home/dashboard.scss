@@ -8,6 +8,10 @@
       padding: 0 5%;
   }
 
+  @media (max-width:991px) {
+    padding: 0 3%;
+  }
+
   @media #{$mobile}{
     position: relative;
     padding: 10px;
@@ -72,11 +76,16 @@
         a{
           font-size: 18px;
           font-weight: 700;
+          text-align: center;
           text-transform: uppercase;
           color:$gray4;
           border: none!important;
           background: transparent!important;
           letter-spacing: 1px;
+
+          @media (max-width: 991px) {
+            font-size: 17px;
+          }
 
           @media #{$mobile} {
             font-size: 12px;
