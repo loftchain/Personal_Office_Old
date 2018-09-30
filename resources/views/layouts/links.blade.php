@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css?family=Raleway&amp;subset=latin-ext" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet">
+<link rel="stylesheet" href="https://hosted-sip.civic.com/css/civic-modal.min.css">
 <link href="{{ asset('css/app.css?v='.env('VERSION')) }}" rel="stylesheet">
 <link rel="icon" type="image/png" href="https://opnplatform.io/favicon.ico?v=1">
 

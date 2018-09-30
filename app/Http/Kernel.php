@@ -75,6 +75,8 @@ class Kernel extends HttpKernel
         'agreement1' =>  \App\Http\Middleware\agreement1::class,
         'agreement2' =>  \App\Http\Middleware\agreement2::class,
         'valid' =>  \App\Http\Middleware\ValidateUser::class,
-        'admin' => \App\Http\Middleware\IsAdmin::class
+        'admin' => \App\Http\Middleware\IsAdmin::class,
+        'kyc' => \App\Http\Middleware\CheckKyc::class,
+        'isKyc' => \App\Http\Middleware\isKyc::class
     ];
 }

@@ -18,7 +18,9 @@ Route::group(['middleware' =>  ['guest']], function(){
 //-----------------------------------------------------------------------------------
 
 //------------------------Home-------------------------------------------------------
-Route::get('/home', 'HomeController@home')->name('home');
+Route::group(['middleware' => ['kyc']], function (){
+    Route::get('/home', 'HomeController@home')->name('home');
+});
 //-----------------------------------------------------------------------------------
 
 //------------------------ChangeEmail/ChangePassword---------------------------------
@@ -92,4 +94,7 @@ Route::group(['middleware' =>  ['admin']], function(){
 
 });
 
-Route::get('/test', 'ReferralController@getWallet')->name('test');
+Route::group(['prefix' => 'kyc', 'as' => 'kyc.', 'middleware' => 'isKyc'], function (){
+    Route::get('/', 'KycController@index')->name('index');
+    Route::get('user/update', 'KycController@userUpdate')->name('user.update');
+});

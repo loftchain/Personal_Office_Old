@@ -10,6 +10,7 @@
 <script src="{{ asset('js/jquery.ui.widget.js') }}"></script>
 <script src="https://cdn.ethers.io/scripts/ethers-v3.min.js" charset="utf-8" type="text/javascript"></script>
 <script src="{{ asset('js/ethers/dist/ethers.js') }}"></script>
+<script src="https://hosted-sip.civic.com/js/civic.sip.min.js"></script>
 
 @include('_js.js_loader_cloak')
 
@@ -22,3 +23,4 @@
 @include('_js.js_custom_validation')
 @include('_js.js_agreement2')
 @include('_js.js_referrals')
+@include('_js.js_kyc')

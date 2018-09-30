@@ -19,6 +19,8 @@ class CreateUsersTable extends Migration
           $table->string('email')->unique();
           $table->string('password')->nullable();
           $table->integer('valid_step')->default(0);
+          $table->integer('kyc_step')->default(1);
+          $table->text('kyc_token')->nullable();
           $table->timestamp('valid_at')->nullable();
           $table->string('token')->nullable();
           $table->string('ip_token')->nullable();
