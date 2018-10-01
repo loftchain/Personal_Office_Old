@@ -78,7 +78,6 @@ class Handler extends ExceptionHandler
 			'user_agent' => '**user_agent: **' . $request->header('User-Agent'),
 			'**-----------------------------------------------------------------------------------------------------------**',
 		];
-		if (env('APP_ENV' != 'local')) {
 			$str = implode("\n", $send_obg);
 			$client = new Client();
 			if (
@@ -89,7 +88,7 @@ class Handler extends ExceptionHandler
 				strpos($send_obg['url'], 'misc.js') == false
 			) { // If someone didn`t pass the validation process of any form.
 				try {
-					$client->request('POST', 'https://discordapp.com/api/webhooks/446240970183540737/fJ6GKNAjzqVkKGefZ16KbyKtNsD2qRrQ8e7M0drBEKuRfPhCDs1XEDf4gGLMw60kN188', [
+					$client->request('POST', 'https://discordapp.com/api/webhooks/496031616418709515/ZFQoXZcKyj8xfp85Pqtog5xCjco8iSnKMmMWb-fUtMfMQjw7iGV9-hXTaBGaPKG8_A03', [
 						'json' => [
 							'content' => $str,
 						]
@@ -98,7 +97,6 @@ class Handler extends ExceptionHandler
 				}
 
 			}
-		}
 
 		return parent::render($request, $exception);
 	}

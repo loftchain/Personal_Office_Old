@@ -6,6 +6,13 @@
 }
 
 .x-transaction {
+  @extend %fc;
+  width: 750px;
+
+  @media #{$mobile} {
+    width: auto;
+  }
+
   &__no-tx-msg{
     margin-top: 20px;
     color: $white;

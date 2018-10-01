@@ -159,7 +159,6 @@
                         _this.val('');
                     }
                     break;
-
             }
         },
 
@@ -201,7 +200,6 @@
 
           if($(this).hasClass('w-input')){
               v.validate($(this));
-
           }
         }
 

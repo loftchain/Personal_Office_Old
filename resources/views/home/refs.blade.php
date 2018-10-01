@@ -11,6 +11,9 @@
           <img class="r-copy-click" src="{{ asset('img/copy.png') }}" alt="copy">
         </div>
     </div>
+    <div class="x-refs__no-wallet">
+      <h3>{!! trans('home/refs.noWallet_h3') !!}</h3>
+    </div>
     <section class="x-refs__header">
         <div class="x-refs__header_el r-referral">
           {!! trans('home/refs.refReferral_div') !!}

@@ -3,10 +3,11 @@
 	let r = {
 		refLinkInput: $('#refLink'),
 		refCopy: $('.r-copy-click'),
-        refBonus: $('.x-refs__bonus'),
-        refInputContainer: $('.x-refs__input-container'),
-        refTableHeader: $('.x-refs__header'),
-        refTableFooter: $('.x-refs__footer'),
+    refBonus: $('.x-refs__bonus'),
+    refInputContainer: $('.x-refs__input-container'),
+    refTableHeader: $('.x-refs__header'),
+    refTableFooter: $('.x-refs__footer'),
+    noWalletMsg: $('.x-refs__no-wallet'),
 		copyToClipboard() {
 			let $temp = $("<input>");
 			$("body").append($temp);
@@ -23,6 +24,7 @@
                     if(data === 'ok'){
                         r.refBonus.show();
                         r.refInputContainer.show();
+                        r.noWalletMsg.hide();
                     }
                 }
             })
@@ -37,6 +39,7 @@
                     if(data.length > 0){
                         r.refTableHeader.show();
                         r.refTableFooter.show();
+                        r.noWalletMsg.hide();
                     }
                 }
             })

@@ -28,7 +28,8 @@
 
             if (timeDiff <= 0) {
                 clearInterval(this.timerInterval);
-                location.reload();
+                timeDiff = 0;
+                // location.reload();
             }
         },
         
