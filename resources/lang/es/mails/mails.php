@@ -15,4 +15,8 @@ return [
     'followLink3_div' => 'Restablece su password',
     'doNotReply_p' => 'Por favor, no conteste a esta letra',
     'contactUs_p' => 'Puede ponerse en contacto con nosotros href="mailto:info@opnplatform.com">info@opnplatform.com</a>',
+    'kyc_subject' => 'Su transacción fue exitosa.',
+    'kyc_text' => 'Gracias por participar en el programa.
+                    Su transacción fue exitosa
+                    Solo queda por pasar '
 ];

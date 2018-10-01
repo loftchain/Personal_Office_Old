@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\User;
+use App\Services\UnisenderService;
 use Illuminate\Console\Command;
 
 class TransactionCheck extends Command
@@ -26,9 +27,12 @@ class TransactionCheck extends Command
      *
      * @return void
      */
-    public function __construct()
+    protected $unisender;
+
+    public function __construct(UnisenderService $unisenderService)
     {
         parent::__construct();
+        $this->unisender = $unisenderService;
     }
 
     /**
@@ -38,11 +42,16 @@ class TransactionCheck extends Command
      */
     public function handle()
     {
-        $users = User::has('transactions')->get();
+        $users = User::where('kyc_step', 2)->has('transactions')->get();
 
-        foreach ($users as $user){
+        foreach ($users as $user) {
             $user->kyc_step = 2;
             $user->save();
+            $this->unisender->sendEmail(
+                $user->email,
+                __('mails/mails.kyc_subject'),
+                view('mails.kyc')->render()
+            );
         }
 
     }

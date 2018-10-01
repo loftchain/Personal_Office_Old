@@ -11,6 +11,7 @@ class Transactions extends Model
 
 	protected $fillable = [
 		'transaction_id',
+        'user_id',
 		'status',  //status of transaction
         'send', // mining status transaction
 		'currency',  //currency of amount

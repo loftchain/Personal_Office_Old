@@ -15,4 +15,8 @@ return [
 	'followLink3_div' => 'to reset your password',
 	'doNotReply_p' => 'Please, do not reply on this letter',
 	'contactUs_p' => 'You can contact us <a href="mailto:info@opnplatform.com">info@opnplatform.com</a>',
+    'kyc_subject' => 'Your transaction was successful.',
+    'kyc_text' => 'Thank you for participating in the program.
+					Your transaction was successful.
+					The only thing left is to pass '
 ];

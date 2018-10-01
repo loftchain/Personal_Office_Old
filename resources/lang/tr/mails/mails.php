@@ -15,4 +15,8 @@ return [
     'followLink3_div' => 'şifrenizi sıfırlayın',
     'doNotReply_p' => 'Lütfen, bu uyarıya cevap vermeyin',
     'contactUs_p' => 'Bizimle iletişime geçebilirsiniz <a href="mailto:info@opnplatform.com">info@opnplatform.com</a>',
+    'kyc_subject' => 'İşleminiz başarılı oldu.',
+    'kyc_text' => 'Programa katıldığınız için teşekkür ederiz.
+                    İşleminiz başarılı oldu.
+                    Sadece geçmek için kalır.'
 ];

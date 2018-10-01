@@ -144,6 +144,7 @@ class TransactionService
 
 			$db[] = [
 				'transaction_id' => $t->txId,
+                'user_id' => Auth::user()->id,
 				'status' => $t->status,
 				'currency' => $t->currency,
 				'from' => $t->from,
