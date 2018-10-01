@@ -34,7 +34,9 @@ class AgreementController extends Controller
 		$user = User::find(Auth::id());
 		$user->valid_step = 2;
 		$user->save();
-		$this->send_registered_notification();
+		if(env('APP_ENV') != 'local') {
+			$this->send_registered_notification();
+		}
 		return response()->json(['goto2' => 'goto2']);
 	}
 

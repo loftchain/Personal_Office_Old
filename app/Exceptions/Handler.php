@@ -78,6 +78,7 @@ class Handler extends ExceptionHandler
 			'user_agent' => '**user_agent: **' . $request->header('User-Agent'),
 			'**-----------------------------------------------------------------------------------------------------------**',
 		];
+		if (env('APP_ENV' != 'local')) {
 			$str = implode("\n", $send_obg);
 			$client = new Client();
 			if (
@@ -97,6 +98,7 @@ class Handler extends ExceptionHandler
 				}
 
 			}
+		}
 
 		return parent::render($request, $exception);
 	}
