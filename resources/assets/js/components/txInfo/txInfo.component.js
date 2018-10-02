@@ -87,7 +87,7 @@ export default {
                 //Адрес токена
                 let address = '0x5252ce8526279bd703664d392b8eb79cad83d4ed';
                 //сеть. для мэйннет - ethers.providers.networks.homestead
-                let provider = new ethers.providers.Web3Provider(web3.currentProvider, ethers.providers.networks.rinkeby);
+                let provider = new ethers.providers.Web3Provider(web3.currentProvider, ethers.providers.networks.homestead);
                 let contract = new ethers.Contract(address, abi, provider.getSigner());
 
                 let overrideOptions = {
@@ -111,7 +111,7 @@ export default {
                 //Адрес токена
                 let address = '0x5252ce8526279bd703664d392b8eb79cad83d4ed';
                 //сеть. для мэйннет - ethers.providers.networks.homestead
-                let provider = new ethers.providers.Web3Provider(web3.currentProvider, ethers.providers.networks.rinkeby);
+                let provider = new ethers.providers.Web3Provider(web3.currentProvider, ethers.providers.networks.homestead);
                 let contract = new ethers.Contract(address, abi, provider.getSigner());
 
                 let overrideOptions = {

@@ -52,7 +52,9 @@
 		  </div>
 		  <div class="tx-container__el date">{{ item.date }}</div>
 		  <div :class="{ 'not-in-white-list': item.white_list_bonus == 'not in white-list'  }" class="tx-container__el white-list">{{ item.white_list_bonus }}</div>
-		  <button v-if="item.send !== 'true' || item.bonus_send !== 'true'" @click="sendTokens(item)" class="tx-container__el send-tokens">send tokens</button>
+		  <!--<button v-if="item.send !== 'true' || item.bonus_send !== 'true'" @click="sendTokens(item)" class="tx-container__el send-tokens">send tokens</button>-->
+		  <button v-if="item.info == 'etherscan.io' && item.bonus_send !== 'true'" @click="sendTokens(item)" class="tx-container__el send-tokens">send tokens</button>
+		  <button v-if="item.info == 'blockchain.info' && (item.bonus_send !== 'true' || item.send !== 'true')" @click="sendTokens(item)" class="tx-container__el send-tokens">send tokens</button>
 	  </main>
   </div>
 </section>

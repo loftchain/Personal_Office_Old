@@ -53166,7 +53166,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 //Адрес токена
                 var address = '0x5252ce8526279bd703664d392b8eb79cad83d4ed';
                 //сеть. для мэйннет - ethers.providers.networks.homestead
-                var provider = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.Web3Provider(web3.currentProvider, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.networks.rinkeby);
+                var provider = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.Web3Provider(web3.currentProvider, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.networks.homestead);
                 var contract = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.Contract(address, abi, provider.getSigner());
 
                 var overrideOptions = {
@@ -53190,7 +53190,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 //Адрес токена
                 var _address = '0x5252ce8526279bd703664d392b8eb79cad83d4ed';
                 //сеть. для мэйннет - ethers.providers.networks.homestead
-                var _provider = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.Web3Provider(web3.currentProvider, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.networks.rinkeby);
+                var _provider = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.Web3Provider(web3.currentProvider, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.networks.homestead);
                 var _contract = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.Contract(_address, _abi, _provider.getSigner());
 
                 var _overrideOptions = {
@@ -62750,7 +62750,23 @@ var render = function() {
               [_vm._v(_vm._s(item.white_list_bonus))]
             ),
             _vm._v(" "),
-            item.send !== "true" || item.bonus_send !== "true"
+            item.info == "etherscan.io" && item.bonus_send !== "true"
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "tx-container__el send-tokens",
+                    on: {
+                      click: function($event) {
+                        _vm.sendTokens(item)
+                      }
+                    }
+                  },
+                  [_vm._v("send tokens")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            item.info == "blockchain.info" &&
+            (item.bonus_send !== "true" || item.send !== "true")
               ? _c(
                   "button",
                   {
