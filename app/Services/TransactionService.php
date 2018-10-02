@@ -141,10 +141,11 @@ class TransactionService
 			$txTimestamp = strtotime($t->date);
 			$closest = null;
 			$info = ($t->currency == 'ETH') ? 'etherscan.io' : 'blockchain.info';
+			$wallet = UserWalletFields::where('wallet', $t->from)->first();
 
 			$db[] = [
 				'transaction_id' => $t->txId,
-                'user_id' => Auth::user()->id,
+                'user_id' => $wallet->user_id,
 				'status' => $t->status,
 				'currency' => $t->currency,
 				'from' => $t->from,

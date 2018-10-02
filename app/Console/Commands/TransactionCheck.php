@@ -42,16 +42,18 @@ class TransactionCheck extends Command
      */
     public function handle()
     {
-        $users = User::where('kyc_step', 2)->has('transactions')->get();
-
+        $users = User::has('transactions')->get();
+        
         foreach ($users as $user) {
-            $user->kyc_step = 2;
-            $user->save();
-            $this->unisender->sendEmail(
-                $user->email,
-                __('mails/mails.kyc_subject'),
-                view('mails.kyc')->render()
-            );
+            if($user->kyc_step == 1){
+                $user->kyc_step = 2;
+                $user->save();
+                $this->unisender->sendEmail(
+                    $user->email,
+                    __('mails/mails.kyc_subject'),
+                    view('mails.kyc')->render()
+                );
+            }
         }
 
     }
