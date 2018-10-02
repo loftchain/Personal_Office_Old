@@ -55,7 +55,8 @@ class HomeController extends Controller
 		$data['time'] = is_numeric(Input::get('time')) ? Input::get('time') : time();
 		$data['btcCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('BTC', 'BTC/ETH');
 		$data['ethCurrentAmount'] = $this->widgetService->calcCurrentCryptoAmount('ETH', 'ETH/ETH');
-		$data['totalUSDCollected'] = $data['btcCurrentAmount']['currency'] * $this->widgetService->getCurrencyByPair('BTC/USD') + $data['ethCurrentAmount']['currency'] * $this->widgetService->getCurrencyByPair('ETH/USD');
+		$data['totalUSDCollected'] = $data['btcCurrentAmount']['currency'] * $this->widgetService->getCurrencyByPair('BTC/USD') + $data['ethCurrentAmount']['currency'] * $this->widgetService->getCurrencyByPair('ETH/USD')
+        + env('PRIVATE_SALE_FUNDS');
         $data = array_merge($data, $this->bonusService->getStageInfo());
 		$data['authenticated'] = Auth::check();
 		$data['confirmed'] = $user->confirmed;

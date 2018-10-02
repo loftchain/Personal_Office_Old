@@ -12,7 +12,10 @@ class TransactionController extends Controller
     public function updateSend(Request $request)
     {
         $transaction = Transactions::where('transaction_id', $request->id)->first();
-        $transaction->send = 'true';
+        if ($request->action == 'token_send')
+            $transaction->send = 'true';
+        if ($request->action == 'bonus_send')
+            $transaction->bonus_send = 'true';
         $transaction->save();
 
         return [
