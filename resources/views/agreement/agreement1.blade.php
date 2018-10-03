@@ -8,7 +8,7 @@
         <article>
           {!! trans('agreement/agreement.congrats_article') !!}
         </article>
-        <a target="_blank" class="a1-container-wrapper__wp" href="{{ 'files/wp_'.App::getLocale().'.pdf' }}">
+        <a target="_blank" class="a1-container-wrapper__wp" href="https://drive.google.com/file/d/12MKdsHPQLQEqS5Ep9sO3BI30FJ1fGso-/view">
           <img src="{{ asset('img/pdf.png') }}" alt="">
           <span class="title">{!! trans('agreement/agreement.whiteBook_span') !!}</span>
         </a>
