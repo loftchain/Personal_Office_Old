@@ -15,6 +15,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('tx-info', require('./components/txInfo/index'));
+Vue.component('ref-table', require('./components/referrals/index'));
 
 const txInfo = new Vue({
     el: '#xBody'

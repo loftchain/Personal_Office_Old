@@ -57,6 +57,10 @@
         width: 110px;
       }
 
+      &.refs-bonus{
+        width: 110px;
+      }
+
       &.send-tokens{
         width: 90px;
         margin-left: 5px;
@@ -85,7 +89,7 @@
       @extend %fc;
       justify-content: flex-start;
       background: #1b6d85;
-      width: 1145px;
+      width: 1255px;
 
       div{
         color: white;
@@ -94,7 +98,7 @@
     }
 
     main{
-      width: 1240px;
+      width: 1445px;
       @extend %fc;
       justify-content: flex-start;
 

@@ -37,7 +37,7 @@ class ReferralService
 			$referredWallets = UserWalletFields::where('user_id', $ref->id)->get();
 			if ($referredWallets) {
 				foreach ($referredWallets as $rw) {
-					$transactions = Transactions::where('from', $rw->wallet)->get();
+					$transactions = Transactions::where([['from', $rw->wallet], ['refs_send', 'false']])->get();
 					foreach ($transactions as $tx) {
 						if($tx) {
 							$singleRefArray[] =   ['ref_owner_id' => $ref->referred_by,

@@ -10726,6 +10726,7 @@ window.Vue = __webpack_require__(71);
  */
 
 Vue.component('tx-info', __webpack_require__(72));
+Vue.component('ref-table', __webpack_require__(157));
 
 var txInfo = new Vue({
   el: '#xBody'
@@ -52578,7 +52579,7 @@ exports = module.exports = __webpack_require__(75)(false);
 
 
 // module
-exports.push([module.i, "\n.tx-info .tx-container__el[data-v-8a11ee28], .tx-info .tx-container header[data-v-8a11ee28], .tx-info .tx-container main[data-v-8a11ee28] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.tx-info .tx-container main div.from[data-v-8a11ee28] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.tx-info .helpBar[data-v-8a11ee28] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n@-webkit-keyframes sk-foldCubeAngle-data-v-8a11ee28 {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n@keyframes sk-foldCubeAngle-data-v-8a11ee28 {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n.tx-info[data-v-8a11ee28] {\n  width: 100%;\n  margin-left: -12%;\n  margin-bottom: 40px;\n}\n.tx-info .helpBar[data-v-8a11ee28] {\n    width: 1075px;\n}\n.tx-info .tx-container__el[data-v-8a11ee28] {\n    text-align: center;\n    border: 1px solid #1b6d85;\n    color: #A3A3A3;\n}\n.tx-info .tx-container__el.id[data-v-8a11ee28] {\n      width: 55px;\n}\n.tx-info .tx-container__el.currency[data-v-8a11ee28] {\n      width: 55px;\n}\n.tx-info .tx-container__el.amount[data-v-8a11ee28] {\n      width: 55px;\n}\n.tx-info .tx-container__el.amount_tokens[data-v-8a11ee28] {\n      width: 110px;\n}\n.tx-info .tx-container__el.status[data-v-8a11ee28] {\n      width: 70px;\n}\n.tx-info .tx-container__el.send[data-v-8a11ee28] {\n      width: 70px;\n}\n.tx-info .tx-container__el.from[data-v-8a11ee28] {\n      width: 320px;\n}\n.tx-info .tx-container__el.info[data-v-8a11ee28] {\n      width: 100px;\n}\n.tx-info .tx-container__el.date[data-v-8a11ee28] {\n      width: 200px;\n}\n.tx-info .tx-container__el.white-list[data-v-8a11ee28] {\n      width: 110px;\n}\n.tx-info .tx-container__el.send-tokens[data-v-8a11ee28] {\n      width: 90px;\n      margin-left: 5px;\n      background: #1e6176;\n      color: white;\n      border: none;\n      cursor: pointer;\n}\n.tx-info .tx-container__el.tx-successful[data-v-8a11ee28] {\n      color: #27ae60;\n}\n.tx-info .tx-container__el.tx-failed[data-v-8a11ee28] {\n      color: #CF0032;\n}\n.tx-info .tx-container__el.not-in-white-list[data-v-8a11ee28] {\n      color: black;\n}\n.tx-info .tx-container header[data-v-8a11ee28] {\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n    background: #1b6d85;\n    width: 1145px;\n}\n.tx-info .tx-container header div[data-v-8a11ee28] {\n      color: white;\n      cursor: pointer;\n}\n.tx-info .tx-container main[data-v-8a11ee28] {\n    width: 1240px;\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n}\n.tx-info .tx-container main div[data-v-8a11ee28] {\n      height: 40px;\n      color: #4b4b4b;\n}\n.tx-info .tx-container main div.from[data-v-8a11ee28] {\n        font-size: 12px;\n}\n", ""]);
+exports.push([module.i, "\n.tx-info .tx-container__el[data-v-8a11ee28], .tx-info .tx-container header[data-v-8a11ee28], .tx-info .tx-container main[data-v-8a11ee28] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.tx-info .tx-container main div.from[data-v-8a11ee28] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.tx-info .helpBar[data-v-8a11ee28] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n@-webkit-keyframes sk-foldCubeAngle-data-v-8a11ee28 {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n@keyframes sk-foldCubeAngle-data-v-8a11ee28 {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n.tx-info[data-v-8a11ee28] {\n  width: 100%;\n  margin-left: -12%;\n  margin-bottom: 40px;\n}\n.tx-info .helpBar[data-v-8a11ee28] {\n    width: 1075px;\n}\n.tx-info .tx-container__el[data-v-8a11ee28] {\n    text-align: center;\n    border: 1px solid #1b6d85;\n    color: #A3A3A3;\n}\n.tx-info .tx-container__el.id[data-v-8a11ee28] {\n      width: 55px;\n}\n.tx-info .tx-container__el.currency[data-v-8a11ee28] {\n      width: 55px;\n}\n.tx-info .tx-container__el.amount[data-v-8a11ee28] {\n      width: 55px;\n}\n.tx-info .tx-container__el.amount_tokens[data-v-8a11ee28] {\n      width: 110px;\n}\n.tx-info .tx-container__el.status[data-v-8a11ee28] {\n      width: 70px;\n}\n.tx-info .tx-container__el.send[data-v-8a11ee28] {\n      width: 70px;\n}\n.tx-info .tx-container__el.from[data-v-8a11ee28] {\n      width: 320px;\n}\n.tx-info .tx-container__el.info[data-v-8a11ee28] {\n      width: 100px;\n}\n.tx-info .tx-container__el.date[data-v-8a11ee28] {\n      width: 200px;\n}\n.tx-info .tx-container__el.white-list[data-v-8a11ee28] {\n      width: 110px;\n}\n.tx-info .tx-container__el.refs-bonus[data-v-8a11ee28] {\n      width: 110px;\n}\n.tx-info .tx-container__el.send-tokens[data-v-8a11ee28] {\n      width: 90px;\n      margin-left: 5px;\n      background: #1e6176;\n      color: white;\n      border: none;\n      cursor: pointer;\n}\n.tx-info .tx-container__el.tx-successful[data-v-8a11ee28] {\n      color: #27ae60;\n}\n.tx-info .tx-container__el.tx-failed[data-v-8a11ee28] {\n      color: #CF0032;\n}\n.tx-info .tx-container__el.not-in-white-list[data-v-8a11ee28] {\n      color: black;\n}\n.tx-info .tx-container header[data-v-8a11ee28] {\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n    background: #1b6d85;\n    width: 1255px;\n}\n.tx-info .tx-container header div[data-v-8a11ee28] {\n      color: white;\n      cursor: pointer;\n}\n.tx-info .tx-container main[data-v-8a11ee28] {\n    width: 1445px;\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n}\n.tx-info .tx-container main div[data-v-8a11ee28] {\n      height: 40px;\n      color: #4b4b4b;\n}\n.tx-info .tx-container main div.from[data-v-8a11ee28] {\n        font-size: 12px;\n}\n", ""]);
 
 // exports
 
@@ -53118,7 +53119,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     var ar = _step.value;
 
                     ar.white_list_bonus = ar.email !== null ? (ar.amount_tokens * 0.3).toFixed(2) : 'not in white-list';
-                    ar.action = ar.info === 'blockchain.info' ? 'toBTC' : 'toWHITE';
+                    ar.refs_bonus = ar.referred_by !== null ? (ar.amount_tokens * 0.03).toFixed(2) : 'no refs bonus';
                     this.adminTxData = array;
                 }
             } catch (err) {
@@ -53135,6 +53136,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     }
                 }
             }
+
+            console.log(array);
         },
 
 
@@ -53227,6 +53230,34 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             //     })
             // })
         },
+
+        sendRefsToken: function sendRefsToken(item) {
+            var _this4 = this;
+
+            if (item.refs_send == 'false' && item.refs_bonus !== 'no refs bonus' && item.refs_bonus !== '0.00') {
+                var abi = [{ "anonymous": false, "inputs": [{ "indexed": true, "name": "owner", "type": "address" }], "name": "OwnerDeleted", "type": "event" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }, { "name": "proof", "type": "bytes" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "addBalanceForOraclize", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "addKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_newOwner", "type": "address" }], "name": "addOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_stopDay", "type": "uint256" }, { "name": "_bonus1", "type": "uint256" }, { "name": "_bonus2", "type": "uint256" }, { "name": "_bonus3", "type": "uint256" }], "name": "addStage", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }], "name": "buyTokens", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "delKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_owner", "type": "address" }], "name": "delOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "finalize", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }, { "name": "_tokens", "type": "uint256" }], "name": "manualSale", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "anonymous": false, "inputs": [], "name": "Finalized", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "purchaser", "type": "address" }, { "indexed": true, "name": "beneficiary", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }, { "indexed": false, "name": "tokens", "type": "uint256" }, { "indexed": false, "name": "bonus", "type": "uint256" }], "name": "TokenPurchase", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "description", "type": "string" }], "name": "NewOraclizeQuery", "type": "event" }, { "constant": false, "inputs": [{ "name": "_newPrice", "type": "uint256" }], "name": "setGasPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "newOwner", "type": "address" }], "name": "OwnerAdded", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "price", "type": "string" }], "name": "NewKrakenPriceTicker", "type": "event" }, { "constant": false, "inputs": [{ "name": "_url", "type": "string" }], "name": "setOraclizeUrl", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_price", "type": "uint256" }], "name": "setTokenPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "name": "_wallet", "type": "address" }, { "name": "_token", "type": "address" }, { "name": "_cap", "type": "uint256" }, { "name": "_reserveFund", "type": "address" }, { "name": "_tokenPriceInWei", "type": "uint256" }], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "payable": true, "stateMutability": "payable", "type": "fallback" }, { "constant": false, "inputs": [], "name": "updatePrice", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_to", "type": "address" }], "name": "withdrawBalance", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "cap", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "capReached", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "closingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "currentStage", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "hasClosed", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "isFinalized", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }], "name": "isOwner", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "address" }], "name": "KYC", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "openingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclize_url", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclizeBalance", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "bytes32" }], "name": "pendingQueries", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "reserveFund", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "stageCount", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "uint256" }], "name": "stages", "outputs": [{ "name": "stopDay", "type": "uint256" }, { "name": "bonus1", "type": "uint256" }, { "name": "bonus2", "type": "uint256" }, { "name": "bonus3", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "token", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokenPriceInWei", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokensSold", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "wallet", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "weiRaised", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }];
+                //Адрес токена
+                var address = '0x5252ce8526279bd703664d392b8eb79cad83d4ed';
+                //сеть. для мэйннет - ethers.providers.networks.homestead
+                var provider = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.Web3Provider(web3.currentProvider, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.networks.homestead);
+                var contract = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.Contract(address, abi, provider.getSigner());
+
+                var overrideOptions = {
+                    gasLimit: 150000
+                };
+
+                var beneficiary = item.to ? item.to : item.from; //адрес кому отправить токены
+
+                contract.manualSale(beneficiary, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.utils.parseEther(String(item.refs_bonus)), overrideOptions).then(function (tx) {
+                    alert('Транзакция ушла');
+                    provider.waitForTransaction(tx.hash).then(function (tx) {
+                        alert('Транзакция смайнилась');
+                        _this4.updateTransaction(item.transaction_id, 'refs_send');
+                    });
+                });
+            }
+        },
+
 
         //Update the status of the transaction if it was successfully sent
         updateTransaction: function () {
@@ -62672,6 +62703,19 @@ var render = function() {
               }
             },
             [_vm._v("white-list bonus")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "tx-container__el refs-bonus",
+              on: {
+                click: function($event) {
+                  _vm.sort("ref_bonus")
+                }
+              }
+            },
+            [_vm._v("refs bonus")]
           )
         ]),
         _vm._v(" "),
@@ -62750,6 +62794,15 @@ var render = function() {
               [_vm._v(_vm._s(item.white_list_bonus))]
             ),
             _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "tx-container__el refs-bonus",
+                class: { "ref-bonus": item.refs_bonus == "no refs bonus" }
+              },
+              [_vm._v(_vm._s(item.refs_bonus))]
+            ),
+            _vm._v(" "),
             item.info == "etherscan.io" && item.bonus_send !== "true"
               ? _c(
                   "button",
@@ -62779,6 +62832,21 @@ var render = function() {
                   },
                   [_vm._v("send tokens")]
                 )
+              : _vm._e(),
+            _vm._v(" "),
+            item.referred_by !== null && item.refs_send == "false"
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "tx-container__el send-tokens",
+                    on: {
+                      click: function($event) {
+                        _vm.sendRefsToken(item)
+                      }
+                    }
+                  },
+                  [_vm._v("send refs")]
+                )
               : _vm._e()
           ])
         })
@@ -62802,6 +62870,307 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(166)
+}
+var normalizeComponent = __webpack_require__(78)
+/* script */
+var __vue_script__ = __webpack_require__(163)
+/* template */
+var __vue_template__ = __webpack_require__(162)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-ff36569c"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/referrals/index.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-ff36569c", Component.options)
+  } else {
+    hotAPI.reload("data-v-ff36569c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._l(this.referrals, function(item) {
+        return _c("section", { staticClass: "a-wrapper__section" }, [
+          _c("div", { staticClass: "a-wrapper__section_el r-user-id" }, [
+            _vm._v(_vm._s(item.user_id))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "a-wrapper__section_el r-wallet-to" }, [
+            _vm._v(_vm._s(item.wallet_to))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "a-wrapper__section_el r-tokens" }, [
+            _vm._v(_vm._s(item.tokens))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "a-wrapper__section_el r-data" }, [
+            _vm._v(_vm._s(item.created_at))
+          ]),
+          _vm._v(" "),
+          item.send == "false"
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-default",
+                  on: {
+                    click: function($event) {
+                      _vm.sendTokens(item)
+                    }
+                  }
+                },
+                [_vm._v("send tokens")]
+              )
+            : _vm._e()
+        ])
+      })
+    ],
+    2
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "a-wrapper__header" }, [
+      _c("div", { staticClass: "a-wrapper__header_el r-user-id" }, [
+        _vm._v("user_id")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "a-wrapper__header_el r-wallet-to" }, [
+        _vm._v("wallet")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "a-wrapper__header_el r-tokens" }, [
+        _vm._v("tokens")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "a-wrapper__header_el r-data" }, [
+        _vm._v("data")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-ff36569c", module.exports)
+  }
+}
+
+/***/ }),
+/* 163 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ethers__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ethers___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ethers__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "RefferalsTable",
+
+    data: function data() {
+        return {
+            referrals: null
+        };
+    },
+    created: function created() {
+        this.getReferrals();
+    },
+
+
+    methods: {
+        getReferrals: function getReferrals() {
+            var _this = this;
+
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/admin/referrals').then(function (res) {
+                _this.referrals = res.data;
+            });
+        },
+        sendTokens: function sendTokens(item) {
+            var _this2 = this;
+
+            if (item.send == 'false' && item.tokens !== '0.00') {
+                var abi = [{ "anonymous": false, "inputs": [{ "indexed": true, "name": "owner", "type": "address" }], "name": "OwnerDeleted", "type": "event" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }, { "name": "proof", "type": "bytes" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "addBalanceForOraclize", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "addKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_newOwner", "type": "address" }], "name": "addOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_stopDay", "type": "uint256" }, { "name": "_bonus1", "type": "uint256" }, { "name": "_bonus2", "type": "uint256" }, { "name": "_bonus3", "type": "uint256" }], "name": "addStage", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }], "name": "buyTokens", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "delKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_owner", "type": "address" }], "name": "delOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "finalize", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }, { "name": "_tokens", "type": "uint256" }], "name": "manualSale", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "anonymous": false, "inputs": [], "name": "Finalized", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "purchaser", "type": "address" }, { "indexed": true, "name": "beneficiary", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }, { "indexed": false, "name": "tokens", "type": "uint256" }, { "indexed": false, "name": "bonus", "type": "uint256" }], "name": "TokenPurchase", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "description", "type": "string" }], "name": "NewOraclizeQuery", "type": "event" }, { "constant": false, "inputs": [{ "name": "_newPrice", "type": "uint256" }], "name": "setGasPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "newOwner", "type": "address" }], "name": "OwnerAdded", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "price", "type": "string" }], "name": "NewKrakenPriceTicker", "type": "event" }, { "constant": false, "inputs": [{ "name": "_url", "type": "string" }], "name": "setOraclizeUrl", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_price", "type": "uint256" }], "name": "setTokenPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "name": "_wallet", "type": "address" }, { "name": "_token", "type": "address" }, { "name": "_cap", "type": "uint256" }, { "name": "_reserveFund", "type": "address" }, { "name": "_tokenPriceInWei", "type": "uint256" }], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "payable": true, "stateMutability": "payable", "type": "fallback" }, { "constant": false, "inputs": [], "name": "updatePrice", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_to", "type": "address" }], "name": "withdrawBalance", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "cap", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "capReached", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "closingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "currentStage", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "hasClosed", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "isFinalized", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }], "name": "isOwner", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "address" }], "name": "KYC", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "openingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclize_url", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclizeBalance", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "bytes32" }], "name": "pendingQueries", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "reserveFund", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "stageCount", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "uint256" }], "name": "stages", "outputs": [{ "name": "stopDay", "type": "uint256" }, { "name": "bonus1", "type": "uint256" }, { "name": "bonus2", "type": "uint256" }, { "name": "bonus3", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "token", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokenPriceInWei", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokensSold", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "wallet", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "weiRaised", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }];
+                //Адрес токена
+                var address = '0x5252ce8526279bd703664d392b8eb79cad83d4ed';
+                //сеть. для мэйннет - ethers.providers.networks.homestead
+                var provider = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.Web3Provider(web3.currentProvider, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.networks.homestead);
+                var contract = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.Contract(address, abi, provider.getSigner());
+
+                var overrideOptions = {
+                    gasLimit: 150000
+                };
+
+                var beneficiary = item.wallet_to; //адрес кому отправить токены
+
+                contract.manualSale(beneficiary, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.utils.parseEther(String(item.tokens)), overrideOptions).then(function (tx) {
+                    alert('Транзакция ушла');
+                    provider.waitForTransaction(tx.hash).then(function (tx) {
+                        alert('Транзакция смайнилась');
+                        _this2.updateReferral(item);
+                    });
+                });
+            }
+        },
+        updateReferral: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(item) {
+                var response;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.next = 2;
+                                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('admin/referrals/update', {
+                                    id: item.id
+                                });
+
+                            case 2:
+                                response = _context.sent;
+
+                            case 3:
+                            case "end":
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function updateReferral(_x) {
+                return _ref.apply(this, arguments);
+            }
+
+            return updateReferral;
+        }()
+    }
+});
+
+/***/ }),
+/* 164 */,
+/* 165 */,
+/* 166 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(167);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(76)("a10aba7c", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ff36569c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!./referrals.component.scss", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ff36569c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!./referrals.component.scss");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 167 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(75)(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

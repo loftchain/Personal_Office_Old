@@ -1,0 +1,17 @@
+<div>
+    <section class="a-wrapper__header">
+        <div class="a-wrapper__header_el r-user-id">user_id</div>
+        <div class="a-wrapper__header_el r-wallet-to">wallet</div>
+        <div class="a-wrapper__header_el r-tokens">tokens</div>
+        <div class="a-wrapper__header_el r-data">data</div>
+    </section>
+
+    <section class="a-wrapper__section" v-for="item in this.referrals">
+        <div class="a-wrapper__section_el r-user-id">{{ item.user_id }}</div>
+        <div class="a-wrapper__section_el r-wallet-to">{{ item.wallet_to }}</div>
+        <div class="a-wrapper__section_el r-tokens">{{ item.tokens }}</div>
+        <div class="a-wrapper__section_el r-data">{{ item.created_at }}</div>
+        <button class="btn btn-default" v-if="item.send == 'false'" @click="sendTokens(item)">send tokens</button>
+    </section>
+
+</div>

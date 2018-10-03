@@ -10344,7 +10344,7 @@ button.close {
 }
 
 .r-wrapper section .r-user-id {
-  width: 35px;
+  width: 45px;
 }
 
 .r-wrapper section .r-wallet-to {
@@ -10353,6 +10353,10 @@ button.close {
 
 .r-wrapper section .r-tokens {
   width: 100px;
+}
+
+.r-wrapper section .r-data {
+  width: 150px;
 }
 
 .header {

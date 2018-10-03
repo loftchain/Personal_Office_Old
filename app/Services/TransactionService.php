@@ -191,9 +191,10 @@ class TransactionService
 				'transactions.from', 'transactions.amount',
 				'transactions.amount_tokens', 'transactions.info',
 				'transactions.transaction_id', 'transactions.date',
-				'transactions.transaction_id', 'transactions.date', 'transactions.send', 'transactions.bonus_send',
+				'transactions.transaction_id', 'transactions.date',
+                'transactions.send', 'transactions.bonus_send', 'transactions.refs_send',
 				'user_wallet_fields.type', 'user_wallet_fields.wallet',
-				'users.id', 'users.email', 'user_referral_fields.tokens')
+				'users.id', 'users.email', 'users.referred_by', 'user_referral_fields.tokens')
 			->leftJoin('user_wallet_fields','user_wallet_fields.wallet','=','transactions.from')
 			->leftJoin('users','users.id','=','user_wallet_fields.user_id')
 			->leftJoin('user_referral_fields','users.id','=','user_referral_fields.user_id')

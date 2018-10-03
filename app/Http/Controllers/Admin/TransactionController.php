@@ -16,6 +16,8 @@ class TransactionController extends Controller
             $transaction->send = 'true';
         if ($request->action == 'bonus_send')
             $transaction->bonus_send = 'true';
+        if ($request->action == 'refs_send')
+            $transaction->refs_send = 'true';
         $transaction->save();
 
         return [

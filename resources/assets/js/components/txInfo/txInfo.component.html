@@ -38,6 +38,7 @@
 		  <div class="tx-container__el info" @click="sort('info')">info</div>
 		  <div class="tx-container__el date" @click="sort('date')">date</div>
 		  <div class="tx-container__el white-list" @click="sort('white_list_bonus')">white-list bonus</div>
+		  <div class="tx-container__el refs-bonus" @click="sort('ref_bonus')">refs bonus</div>
 	  </header>
 	  <main v-for="item in sortedItems">
 		  <div class="tx-container__el id">{{ item.id }}</div>
@@ -52,9 +53,11 @@
 		  </div>
 		  <div class="tx-container__el date">{{ item.date }}</div>
 		  <div :class="{ 'not-in-white-list': item.white_list_bonus == 'not in white-list'  }" class="tx-container__el white-list">{{ item.white_list_bonus }}</div>
+		  <div :class="{ 'ref-bonus': item.refs_bonus == 'no refs bonus'  }" class="tx-container__el refs-bonus">{{ item.refs_bonus }}</div>
 		  <!--<button v-if="item.send !== 'true' || item.bonus_send !== 'true'" @click="sendTokens(item)" class="tx-container__el send-tokens">send tokens</button>-->
 		  <button v-if="item.info == 'etherscan.io' && item.bonus_send !== 'true'" @click="sendTokens(item)" class="tx-container__el send-tokens">send tokens</button>
 		  <button v-if="item.info == 'blockchain.info' && (item.bonus_send !== 'true' || item.send !== 'true')" @click="sendTokens(item)" class="tx-container__el send-tokens">send tokens</button>
+		  <button v-if="item.referred_by !== null && item.refs_send ==  'false'" @click="sendRefsToken(item)" class="tx-container__el send-tokens">send refs</button>
 	  </main>
   </div>
 </section>
