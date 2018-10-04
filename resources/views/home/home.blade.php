@@ -14,6 +14,9 @@
             <div id="adminReferrals" class="tab-pane fade">
                 @include('admin.referrals')
             </div>
+            <div id="adminKyc" class="tab-pane fade">
+                @include('admin.kyc')
+            </div>
         @else
             <div id="home" class="tab-pane fade in active">
                 @include('home.widget')

@@ -93,6 +93,7 @@ Route::group(['middleware' =>  ['admin']], function(){
 	Route::post('/admin/transaction/update', 'Admin\TransactionController@updateSend')->name('transaction.update');
     Route::get('/admin/referrals', 'Admin\ReferralController@index')->name('referral');
     Route::post('/admin/referrals/update', 'Admin\ReferralController@update')->name('referral.update');
+    Route::get('/admin/kyc', 'Admin\KycController@index')->name('kyc');
 });
 
 //------------------------KYC---------------------------------------------------
@@ -100,4 +101,6 @@ Route::group(['middleware' =>  ['admin']], function(){
 Route::group(['prefix' => 'kyc', 'as' => 'kyc.', 'middleware' => 'isKyc'], function (){
     Route::get('/', 'KycController@index')->name('index');
     Route::get('user/update', 'KycController@userUpdate')->name('user.update');
+    Route::post('store', 'KycController@store')->name('store');
+    Route::post('upload/img', 'KycController@uploadImg')->name('upload.img');
 });

@@ -1,0 +1,51 @@
+<section class="kyc">
+    <div class="helpBar">
+        <div class="helpBar__buttons">
+            <button @click="prevPage">Previous</button>
+            <button @click="nextPage">Next</button>
+        </div>
+        <div class="helpBar__help-text">
+            <p v-model="currentPage">current page: {{ currentPage }}</p>
+            <p v-model="totalPages">total transactions: {{ totalPages }}</p>
+        </div>
+        <div class="helpBar__page-select">
+            <label for="pageQuantity">Number of elements on the page</label>
+            <select v-model="pageSize" name="pageQuantity" id="pageQuantity">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option :value="totalPages">all, {{ totalPages }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="tx-container">
+        <header>
+            <div class="tx-container__el id" @click="sort('id')">user id</div>
+            <div class="tx-container__el email" @click="sort('email')">email</div>
+            <div class="tx-container__el date" @click="sort('created_at')">date of registration</div>
+            <div class="tx-container__el ip" @click="sort('ip_token')">ip</div>
+            <div class="tx-container__el name" @click="sort('name_surname')">name</div>
+            <div class="tx-container__el address" @click="sort('permanent_address')">address</div>
+            <div class="tx-container__el phone" @click="sort('contact_number')">phone</div>
+            <div class="tx-container__el dpb" @click="sort('date_place_birth')">date place birth</div>
+            <div class="tx-container__el nationality" @click="sort('nationality')">nationality</div>
+            <div class="tx-container__el sof" @click="sort('source_of_funds')">source of funds</div>
+            <div class="tx-container__el promo" @click="sort('promo')">promo</div>
+        </header>
+        <main v-for="user in sortedItems">
+            <div class="tx-container__el id">{{ user.id }}</div>
+            <div class="tx-container__el email">{{ user.email }}</div>
+            <div class="tx-container__el date">{{ user.created_at }}</div>
+            <div class="tx-container__el ip">{{ user.ip_token }}</div>
+            <div class="tx-container__el name">{{ user.personal.name_surname }}</div>
+            <div class="tx-container__el address">{{ user.personal.permanent_address }}</div>
+            <div class="tx-container__el phone">{{ user.personal.contact_number }}</div>
+            <div class="tx-container__el dpb">{{ user.personal.date_place_birth }}</div>
+            <div class="tx-container__el nationality">{{ user.personal.nationality }}</div>
+            <div class="tx-container__el sof">{{ user.personal.source_of_funds }}</div>
+            <div class="tx-container__el promo">{{ user.personal.promo }}</div>
+        </main>
+    </div>
+</section>
+

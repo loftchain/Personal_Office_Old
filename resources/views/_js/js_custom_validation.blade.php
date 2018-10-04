@@ -137,6 +137,9 @@
                 default:
                     console.log('js_custom_validation.blade.php default switch state');
                     break;
+                case !$.isEmptyObject(data.kyc_success):
+                    window.location.replace("{{ route('home') }}");
+                    break;
             }
         },
 
