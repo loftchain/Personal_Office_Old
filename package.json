@@ -26,6 +26,9 @@
         "ethers": "^3.0.29",
         "hamburgers": "^0.9.3",
         "laravel-echo": "^1.4.0",
-        "pusher-js": "^4.3.1"
+        "pusher-js": "^4.3.1",
+        "vue-gallery": "^1.4.0",
+        "vue-picture-swipe": "^0.4.0",
+        "vue-silentbox": "^0.1.2"
     }
 }

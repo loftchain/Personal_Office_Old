@@ -65,13 +65,21 @@ class KycController extends Controller
     public function uploadImg(Request $request)
     {
         $user = Auth::user();
+        $personal = UserPersonalFields::where('user_id', $user->id)->first();
+        $path = $request->upl->store('public/uploads');
+        $path = explode('/', $path);
 
-        $path = $request->upl->store('uploads');
-
-        UserPersonalFields::create([
-            'user_id' => $user->id,
-            'doc_img_path' => $path,
-        ]);
+        if ($personal){
+            $imgPersonal = $personal->doc_img_path;
+            $imgPersonal[] = $path[1] . '/' . $path[2];
+            $personal->doc_img_path = $imgPersonal;
+            $personal->save();
+        }else{
+            UserPersonalFields::create([
+                'user_id' => $user->id,
+                'doc_img_path' => [$path[1] . '/' . $path[2]],
+            ]);
+        }
 
         return [
             'status' => 'ok'

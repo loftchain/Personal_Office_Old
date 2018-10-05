@@ -32,6 +32,7 @@
             <div class="tx-container__el nationality" @click="sort('nationality')">nationality</div>
             <div class="tx-container__el sof" @click="sort('source_of_funds')">source of funds</div>
             <div class="tx-container__el promo" @click="sort('promo')">promo</div>
+            <div class="tx-container__el img" @click="sort('img')">photo</div>
         </header>
         <main v-for="user in sortedItems">
             <div class="tx-container__el id">{{ user.id }}</div>
@@ -45,6 +46,13 @@
             <div class="tx-container__el nationality">{{ user.personal.nationality }}</div>
             <div class="tx-container__el sof">{{ user.personal.source_of_funds }}</div>
             <div class="tx-container__el promo">{{ user.personal.promo }}</div>
+            <div class="tx-container__el img">
+                <silentbox-group>
+                    <silentbox-item v-for="img in user.personal.doc_img_path" :src="currentUrl + '/storage/' + img">
+                        <img :src="currentUrl + '/storage/' + img" width="45px">
+                    </silentbox-item>
+                </silentbox-group>
+            </div>
         </main>
     </div>
 </section>

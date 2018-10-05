@@ -6,6 +6,7 @@ export default {
     data() {
         return {
             users: null,
+            currentUrl: window.location.origin,
             currentSort:'date',
             currentSortDir:'desc',
             pageSize:5,
@@ -57,5 +58,5 @@ export default {
         prevPage:function() {
             if(this.currentPage > 1) this.currentPage--;
         },
-    }
+    },
 }

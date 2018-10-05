@@ -61,6 +61,10 @@
         width: 155px;
       }
 
+      &.img{
+        width: 250px;
+      }
+
       &.tx-successful{
         color: $status-green;
       }
@@ -80,7 +84,7 @@
       @extend %fc;
       justify-content: flex-start;
       background: #1b6d85;
-      width: 1520px;
+      width: 1770px;
 
       div{
         color: white;
@@ -89,7 +93,7 @@
     }
 
     main{
-      width: 1520px;
+      width: 1770px;
       @extend %fc;
       justify-content: flex-start;
 
