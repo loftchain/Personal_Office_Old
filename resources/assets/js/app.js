@@ -16,6 +16,7 @@ window.Vue = require('vue');
 
 Vue.component('tx-info', require('./components/txInfo/index'));
 Vue.component('ref-table', require('./components/referrals/index'));
+Vue.component('kyc-table', require('./components/kyc/index'));
 
 const txInfo = new Vue({
     el: '#xBody'

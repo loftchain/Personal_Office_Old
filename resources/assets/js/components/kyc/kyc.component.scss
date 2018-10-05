@@ -1,0 +1,108 @@
+@import "../../../sass/variables";
+
+.kyc {
+  width: 100%;
+  margin-left:-12%;
+  margin-bottom: 40px;
+
+  .helpBar{
+    width: 1075px;
+    @extend %fsb;
+  }
+
+  .tx-container{
+    &__el{
+      text-align: center;
+      border: 1px solid #1b6d85;
+      color:$white;
+      @extend %fc;
+
+      &.id{
+        width: 55px;
+      }
+
+      &.email{
+        width: 220px;
+      }
+
+      &.date{
+        width: 150px;
+      }
+
+      &.ip{
+        width: 110px;
+      }
+
+      &.name{
+        width: 160px;
+      }
+
+      &.address{
+        width: 240px;
+      }
+
+      &.phone{
+        width: 155px;
+      }
+
+      &.dpb{
+        width: 100px;
+      }
+
+      &.nationality{
+        width: 130px;
+      }
+
+      &.sof{
+        width: 110px;
+      }
+
+      &.promo{
+        width: 155px;
+      }
+
+      &.tx-successful{
+        color: $status-green;
+      }
+
+      &.tx-failed{
+        color: $status-red;
+      }
+
+      &.not-in-white-list{
+        color: black;
+      }
+
+
+    }
+
+    header{
+      @extend %fc;
+      justify-content: flex-start;
+      background: #1b6d85;
+      width: 1520px;
+
+      div{
+        color: white;
+        cursor: pointer;
+      }
+    }
+
+    main{
+      width: 1520px;
+      @extend %fc;
+      justify-content: flex-start;
+
+      div{
+        height: 40px;
+        color: $gray2;
+
+        &.from{
+          @extend %fcc;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+

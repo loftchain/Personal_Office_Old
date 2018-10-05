@@ -56,5 +56,9 @@ class User extends Authenticatable
         return $this->hasMany(UserReferralFields::class);
     }
 
+    public function personal()
+    {
+        return $this->hasOne(UserPersonalFields::class);
+    }
 
 }
