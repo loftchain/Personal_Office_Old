@@ -48,7 +48,7 @@
             <div class="tx-container__el promo">{{ user.personal.promo }}</div>
             <div class="tx-container__el img">
                 <silentbox-group>
-                    <silentbox-item v-for="img in user.personal.doc_img_path" :src="currentUrl + '/storage/' + img">
+                    <silentbox-item v-for="img in user.personal.doc_img_path" v-bind:key="user.id" :src="currentUrl + '/storage/' + img">
                         <img :src="currentUrl + '/storage/' + img" width="45px">
                     </silentbox-item>
                 </silentbox-group>
