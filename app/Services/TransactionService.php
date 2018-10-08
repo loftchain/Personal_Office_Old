@@ -187,10 +187,9 @@ class TransactionService
 	{
 
 		$adminTxData = DB::table('transactions')
-			->select('transactions.status','transactions.currency',
+			->select('transactions.user_id','transactions.status','transactions.currency',
 				'transactions.from', 'transactions.amount',
 				'transactions.amount_tokens', 'transactions.info',
-				'transactions.transaction_id', 'transactions.date',
 				'transactions.transaction_id', 'transactions.date',
                 'transactions.send', 'transactions.bonus_send', 'transactions.refs_send',
 				'user_wallet_fields.type', 'user_wallet_fields.wallet',
