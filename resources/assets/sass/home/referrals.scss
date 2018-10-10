@@ -127,8 +127,9 @@
 
   &__section {
     @extend %fc;
-    border-bottom: 1px solid $dark-blue;
+    border-bottom: 1px solid $gray2;
     width: 750px;
+    margin-top: 10px;
 
     @media #{$mobile} {
       width: 100%;

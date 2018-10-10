@@ -1,0 +1,117 @@
+@import "../../../sass/variables";
+
+.ref-admin-info {
+  width: 100%;
+  margin-left:-12%;
+  margin-bottom: 40px;
+
+  .helpBar{
+    width: 1075px;
+    @extend %fsb;
+  }
+
+  .ref-admin-container{
+    &__el{
+      text-align: center;
+      border: 1px solid #1b6d85;
+      color:$white;
+      @extend %fc;
+
+      &.id{
+        width: 55px;
+      }
+
+      &.currency{
+        width: 55px;
+      }
+
+      &.amount{
+        width: 55px;
+      }
+
+      &.amount_tokens{
+        width: 110px;
+      }
+
+      &.status{
+        width: 70px;
+      }
+
+      &.send{
+        width: 70px;
+      }
+
+      &.from{
+        width: 320px;
+      }
+
+      &.info{
+        width: 100px;
+      }
+
+      &.date{
+        width: 200px;
+      }
+
+      &.white-list{
+        width: 110px;
+      }
+
+      &.refs-bonus{
+        width: 110px;
+      }
+
+      &.send-tokens{
+        width: 90px;
+        margin-left: 5px;
+        background: #1e6176;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      &.ref-admin-successful{
+        color: $status-green;
+      }
+
+      &.ref-admin-failed{
+        color: $status-red;
+      }
+
+      &.not-in-white-list{
+        color: black;
+      }
+
+
+    }
+
+    header{
+      @extend %fc;
+      justify-content: flex-start;
+      background: #1b6d85;
+      width: 1255px;
+
+      div{
+        color: white;
+        cursor: pointer;
+      }
+    }
+
+    main{
+      width: 1445px;
+      @extend %fc;
+      justify-content: flex-start;
+
+      div{
+        height: 40px;
+        color: $gray2;
+
+        &.from{
+          @extend %fcc;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+

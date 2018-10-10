@@ -17,21 +17,24 @@ export default {
 
     created() {
         this.getPersonals();
+
     },
 
     computed: {
         sortedItems:function() {
-            return this.users.sort((a,b) => {
-                let modifier = 1;
-                if(this.currentSortDir === 'desc') modifier = -1;
-                if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
-                if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
-                return 0;
-            }).filter((row, index) => {
-                let start = (this.currentPage-1)*this.pageSize;
-                let end = this.currentPage*this.pageSize;
-                if(index >= start && index < end) return true;
-            });
+            if(this.users !== null){
+                return this.users.sort((a,b) => {
+                    let modifier = 1;
+                    if(this.currentSortDir === 'desc') modifier = -1;
+                    if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
+                    if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
+                    return 0;
+                }).filter((row, index) => {
+                    let start = (this.currentPage-1)*this.pageSize;
+                    let end = this.currentPage*this.pageSize;
+                    if(index >= start && index < end) return true;
+                });
+            }
         },
     },
 
@@ -39,8 +42,10 @@ export default {
         getPersonals() {
             axios.get('/admin/kyc')
                 .then(res => {
-                    this.users = res.data
-                    this.totalPages = res.data.length
+                    if(res.data){
+                        this.users = res.data;
+                        this.totalPages = res.data.length;
+                    }
                 })
         },
 

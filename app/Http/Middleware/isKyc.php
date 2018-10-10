@@ -16,7 +16,7 @@ class isKyc
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->kyc_step !== 2) {
+        if(Auth::user() && Auth::user()->kyc_step !== 2) {
             return redirect()->route('home');
         }
 

@@ -13,8 +13,7 @@
 					type: 'GET',
 					dataType: 'json',
 					success: data => {
-						let _data = _.sortBy( data, 'confirmed' );
-						resolve(_data)
+						resolve(data);
 					},
 					error: data => reject(data)
 				});

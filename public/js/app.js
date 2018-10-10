@@ -4715,33 +4715,6 @@ module.exports = keccak256;
 
 /***/ }),
 /* 10 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -4893,6 +4866,33 @@ module.exports = {
     bigNumberify: bigNumberify,
     BigNumber: BigNumber
 };
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
 
 
 /***/ }),
@@ -5336,7 +5336,7 @@ var utils = (function() {
         getAddress: __webpack_require__(8).getAddress,
         getContractAddress: __webpack_require__(44).getContractAddress,
 
-        bigNumberify: __webpack_require__(11).bigNumberify,
+        bigNumberify: __webpack_require__(10).bigNumberify,
         arrayify: convert.arrayify,
 
         hexlify: convert.hexlify,
@@ -6877,12 +6877,6 @@ curve.edwards = __webpack_require__(137);
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(57);
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
@@ -7620,7 +7614,7 @@ var utils = (function() {
         defineProperty: __webpack_require__(1).defineProperty,
 
         arrayify: convert.arrayify,
-        bigNumberify: __webpack_require__(11).bigNumberify,
+        bigNumberify: __webpack_require__(10).bigNumberify,
         hexlify: convert.hexlify,
 
         toUtf8Bytes: __webpack_require__(6).toUtf8Bytes,
@@ -8271,15 +8265,18 @@ module.exports = Cancel;
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
+/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
+            (typeof self !== "undefined" && self) ||
+            window;
+var apply = Function.prototype.apply;
 
 // DOM APIs, for completeness
 
 exports.setTimeout = function() {
-  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
+  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);
 };
 exports.setInterval = function() {
-  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
+  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);
 };
 exports.clearTimeout =
 exports.clearInterval = function(timeout) {
@@ -8294,7 +8291,7 @@ function Timeout(id, clearFn) {
 }
 Timeout.prototype.unref = Timeout.prototype.ref = function() {};
 Timeout.prototype.close = function() {
-  this._clearFn.call(window, this._id);
+  this._clearFn.call(scope, this._id);
 };
 
 // Does not start the time, just sets up the members needed.
@@ -8332,343 +8329,187 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ }),
 /* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-  Modified by Evan You @yyx990803
-*/
+/* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
+    "use strict";
 
-var hasDocument = typeof document !== 'undefined'
-
-if (typeof DEBUG !== 'undefined' && DEBUG) {
-  if (!hasDocument) {
-    throw new Error(
-    'vue-style-loader cannot be used in a non-browser environment. ' +
-    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
-  ) }
-}
-
-var listToStyles = __webpack_require__(80)
-
-/*
-type StyleObject = {
-  id: number;
-  parts: Array<StyleObjectPart>
-}
-
-type StyleObjectPart = {
-  css: string;
-  media: string;
-  sourceMap: ?string
-}
-*/
-
-var stylesInDom = {/*
-  [id: number]: {
-    id: number,
-    refs: number,
-    parts: Array<(obj?: StyleObjectPart) => void>
-  }
-*/}
-
-var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
-var singletonElement = null
-var singletonCounter = 0
-var isProduction = false
-var noop = function () {}
-var options = null
-var ssrIdKey = 'data-vue-ssr-id'
-
-// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-// tags it will allow on a page
-var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
-
-module.exports = function (parentId, list, _isProduction, _options) {
-  isProduction = _isProduction
-
-  options = _options || {}
-
-  var styles = listToStyles(parentId, list)
-  addStylesToDom(styles)
-
-  return function update (newList) {
-    var mayRemove = []
-    for (var i = 0; i < styles.length; i++) {
-      var item = styles[i]
-      var domStyle = stylesInDom[item.id]
-      domStyle.refs--
-      mayRemove.push(domStyle)
+    if (global.setImmediate) {
+        return;
     }
-    if (newList) {
-      styles = listToStyles(parentId, newList)
-      addStylesToDom(styles)
-    } else {
-      styles = []
+
+    var nextHandle = 1; // Spec says greater than zero
+    var tasksByHandle = {};
+    var currentlyRunningATask = false;
+    var doc = global.document;
+    var setImmediate;
+
+    function addFromSetImmediateArguments(args) {
+        tasksByHandle[nextHandle] = partiallyApplied.apply(undefined, args);
+        return nextHandle++;
     }
-    for (var i = 0; i < mayRemove.length; i++) {
-      var domStyle = mayRemove[i]
-      if (domStyle.refs === 0) {
-        for (var j = 0; j < domStyle.parts.length; j++) {
-          domStyle.parts[j]()
+
+    // This function accepts the same arguments as setImmediate, but
+    // returns a function that requires no arguments.
+    function partiallyApplied(handler) {
+        var args = [].slice.call(arguments, 1);
+        return function() {
+            if (typeof handler === "function") {
+                handler.apply(undefined, args);
+            } else {
+                (new Function("" + handler))();
+            }
+        };
+    }
+
+    function runIfPresent(handle) {
+        // From the spec: "Wait until any invocations of this algorithm started before this one have completed."
+        // So if we're currently running a task, we'll need to delay this invocation.
+        if (currentlyRunningATask) {
+            // Delay by doing a setTimeout. setImmediate was tried instead, but in Firefox 7 it generated a
+            // "too much recursion" error.
+            setTimeout(partiallyApplied(runIfPresent, handle), 0);
+        } else {
+            var task = tasksByHandle[handle];
+            if (task) {
+                currentlyRunningATask = true;
+                try {
+                    task();
+                } finally {
+                    clearImmediate(handle);
+                    currentlyRunningATask = false;
+                }
+            }
         }
-        delete stylesInDom[domStyle.id]
-      }
     }
-  }
-}
 
-function addStylesToDom (styles /* Array<StyleObject> */) {
-  for (var i = 0; i < styles.length; i++) {
-    var item = styles[i]
-    var domStyle = stylesInDom[item.id]
-    if (domStyle) {
-      domStyle.refs++
-      for (var j = 0; j < domStyle.parts.length; j++) {
-        domStyle.parts[j](item.parts[j])
-      }
-      for (; j < item.parts.length; j++) {
-        domStyle.parts.push(addStyle(item.parts[j]))
-      }
-      if (domStyle.parts.length > item.parts.length) {
-        domStyle.parts.length = item.parts.length
-      }
+    function clearImmediate(handle) {
+        delete tasksByHandle[handle];
+    }
+
+    function installNextTickImplementation() {
+        setImmediate = function() {
+            var handle = addFromSetImmediateArguments(arguments);
+            process.nextTick(partiallyApplied(runIfPresent, handle));
+            return handle;
+        };
+    }
+
+    function canUsePostMessage() {
+        // The test against `importScripts` prevents this implementation from being installed inside a web worker,
+        // where `global.postMessage` means something completely different and can't be used for this purpose.
+        if (global.postMessage && !global.importScripts) {
+            var postMessageIsAsynchronous = true;
+            var oldOnMessage = global.onmessage;
+            global.onmessage = function() {
+                postMessageIsAsynchronous = false;
+            };
+            global.postMessage("", "*");
+            global.onmessage = oldOnMessage;
+            return postMessageIsAsynchronous;
+        }
+    }
+
+    function installPostMessageImplementation() {
+        // Installs an event handler on `global` for the `message` event: see
+        // * https://developer.mozilla.org/en/DOM/window.postMessage
+        // * http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#crossDocumentMessages
+
+        var messagePrefix = "setImmediate$" + Math.random() + "$";
+        var onGlobalMessage = function(event) {
+            if (event.source === global &&
+                typeof event.data === "string" &&
+                event.data.indexOf(messagePrefix) === 0) {
+                runIfPresent(+event.data.slice(messagePrefix.length));
+            }
+        };
+
+        if (global.addEventListener) {
+            global.addEventListener("message", onGlobalMessage, false);
+        } else {
+            global.attachEvent("onmessage", onGlobalMessage);
+        }
+
+        setImmediate = function() {
+            var handle = addFromSetImmediateArguments(arguments);
+            global.postMessage(messagePrefix + handle, "*");
+            return handle;
+        };
+    }
+
+    function installMessageChannelImplementation() {
+        var channel = new MessageChannel();
+        channel.port1.onmessage = function(event) {
+            var handle = event.data;
+            runIfPresent(handle);
+        };
+
+        setImmediate = function() {
+            var handle = addFromSetImmediateArguments(arguments);
+            channel.port2.postMessage(handle);
+            return handle;
+        };
+    }
+
+    function installReadyStateChangeImplementation() {
+        var html = doc.documentElement;
+        setImmediate = function() {
+            var handle = addFromSetImmediateArguments(arguments);
+            // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
+            // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
+            var script = doc.createElement("script");
+            script.onreadystatechange = function () {
+                runIfPresent(handle);
+                script.onreadystatechange = null;
+                html.removeChild(script);
+                script = null;
+            };
+            html.appendChild(script);
+            return handle;
+        };
+    }
+
+    function installSetTimeoutImplementation() {
+        setImmediate = function() {
+            var handle = addFromSetImmediateArguments(arguments);
+            setTimeout(partiallyApplied(runIfPresent, handle), 0);
+            return handle;
+        };
+    }
+
+    // If supported, we should attach to the prototype of global, since that is where setTimeout et al. live.
+    var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
+    attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
+
+    // Don't get fooled by e.g. browserify environments.
+    if ({}.toString.call(global.process) === "[object process]") {
+        // For Node.js before 0.9
+        installNextTickImplementation();
+
+    } else if (canUsePostMessage()) {
+        // For non-IE10 modern browsers
+        installPostMessageImplementation();
+
+    } else if (global.MessageChannel) {
+        // For web workers, where supported
+        installMessageChannelImplementation();
+
+    } else if (doc && "onreadystatechange" in doc.createElement("script")) {
+        // For IE 6–8
+        installReadyStateChangeImplementation();
+
     } else {
-      var parts = []
-      for (var j = 0; j < item.parts.length; j++) {
-        parts.push(addStyle(item.parts[j]))
-      }
-      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+        // For older browsers
+        installSetTimeoutImplementation();
     }
-  }
-}
 
-function createStyleElement () {
-  var styleElement = document.createElement('style')
-  styleElement.type = 'text/css'
-  head.appendChild(styleElement)
-  return styleElement
-}
-
-function addStyle (obj /* StyleObjectPart */) {
-  var update, remove
-  var styleElement = document.querySelector('style[' + ssrIdKey + '~="' + obj.id + '"]')
-
-  if (styleElement) {
-    if (isProduction) {
-      // has SSR styles and in production mode.
-      // simply do nothing.
-      return noop
-    } else {
-      // has SSR styles but in dev mode.
-      // for some reason Chrome can't handle source map in server-rendered
-      // style tags - source maps in <style> only works if the style tag is
-      // created and inserted dynamically. So we remove the server rendered
-      // styles and inject new ones.
-      styleElement.parentNode.removeChild(styleElement)
-    }
-  }
-
-  if (isOldIE) {
-    // use singleton mode for IE9.
-    var styleIndex = singletonCounter++
-    styleElement = singletonElement || (singletonElement = createStyleElement())
-    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
-    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
-  } else {
-    // use multi-style-tag mode in all other cases
-    styleElement = createStyleElement()
-    update = applyToTag.bind(null, styleElement)
-    remove = function () {
-      styleElement.parentNode.removeChild(styleElement)
-    }
-  }
-
-  update(obj)
-
-  return function updateStyle (newObj /* StyleObjectPart */) {
-    if (newObj) {
-      if (newObj.css === obj.css &&
-          newObj.media === obj.media &&
-          newObj.sourceMap === obj.sourceMap) {
-        return
-      }
-      update(obj = newObj)
-    } else {
-      remove()
-    }
-  }
-}
-
-var replaceText = (function () {
-  var textStore = []
-
-  return function (index, replacement) {
-    textStore[index] = replacement
-    return textStore.filter(Boolean).join('\n')
-  }
-})()
-
-function applyToSingletonTag (styleElement, index, remove, obj) {
-  var css = remove ? '' : obj.css
-
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = replaceText(index, css)
-  } else {
-    var cssNode = document.createTextNode(css)
-    var childNodes = styleElement.childNodes
-    if (childNodes[index]) styleElement.removeChild(childNodes[index])
-    if (childNodes.length) {
-      styleElement.insertBefore(cssNode, childNodes[index])
-    } else {
-      styleElement.appendChild(cssNode)
-    }
-  }
-}
-
-function applyToTag (styleElement, obj) {
-  var css = obj.css
-  var media = obj.media
-  var sourceMap = obj.sourceMap
-
-  if (media) {
-    styleElement.setAttribute('media', media)
-  }
-  if (options.ssrId) {
-    styleElement.setAttribute(ssrIdKey, obj.id)
-  }
-
-  if (sourceMap) {
-    // https://developer.chrome.com/devtools/docs/javascript-debugging
-    // this makes source maps inside style tags work properly in Chrome
-    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
-    // http://stackoverflow.com/a/26603875
-    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
-  }
-
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = css
-  } else {
-    while (styleElement.firstChild) {
-      styleElement.removeChild(styleElement.firstChild)
-    }
-    styleElement.appendChild(document.createTextNode(css))
-  }
-}
-
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file.
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
+    attachTo.setImmediate = setImmediate;
+    attachTo.clearImmediate = clearImmediate;
+}(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(25)))
 
@@ -9201,7 +9042,7 @@ var utils = (function() {
         arrayify: convert.arrayify,
         padZeros: convert.padZeros,
 
-        bigNumberify: __webpack_require__(11).bigNumberify,
+        bigNumberify: __webpack_require__(10).bigNumberify,
 
         getAddress: __webpack_require__(8).getAddress,
 
@@ -53201,199 +53042,6 @@ VueSilentbox.install = function (Vue, options) {
 /* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
-    "use strict";
-
-    if (global.setImmediate) {
-        return;
-    }
-
-    var nextHandle = 1; // Spec says greater than zero
-    var tasksByHandle = {};
-    var currentlyRunningATask = false;
-    var doc = global.document;
-    var registerImmediate;
-
-    function setImmediate(callback) {
-      // Callback can either be a function or a string
-      if (typeof callback !== "function") {
-        callback = new Function("" + callback);
-      }
-      // Copy function arguments
-      var args = new Array(arguments.length - 1);
-      for (var i = 0; i < args.length; i++) {
-          args[i] = arguments[i + 1];
-      }
-      // Store and register the task
-      var task = { callback: callback, args: args };
-      tasksByHandle[nextHandle] = task;
-      registerImmediate(nextHandle);
-      return nextHandle++;
-    }
-
-    function clearImmediate(handle) {
-        delete tasksByHandle[handle];
-    }
-
-    function run(task) {
-        var callback = task.callback;
-        var args = task.args;
-        switch (args.length) {
-        case 0:
-            callback();
-            break;
-        case 1:
-            callback(args[0]);
-            break;
-        case 2:
-            callback(args[0], args[1]);
-            break;
-        case 3:
-            callback(args[0], args[1], args[2]);
-            break;
-        default:
-            callback.apply(undefined, args);
-            break;
-        }
-    }
-
-    function runIfPresent(handle) {
-        // From the spec: "Wait until any invocations of this algorithm started before this one have completed."
-        // So if we're currently running a task, we'll need to delay this invocation.
-        if (currentlyRunningATask) {
-            // Delay by doing a setTimeout. setImmediate was tried instead, but in Firefox 7 it generated a
-            // "too much recursion" error.
-            setTimeout(runIfPresent, 0, handle);
-        } else {
-            var task = tasksByHandle[handle];
-            if (task) {
-                currentlyRunningATask = true;
-                try {
-                    run(task);
-                } finally {
-                    clearImmediate(handle);
-                    currentlyRunningATask = false;
-                }
-            }
-        }
-    }
-
-    function installNextTickImplementation() {
-        registerImmediate = function(handle) {
-            process.nextTick(function () { runIfPresent(handle); });
-        };
-    }
-
-    function canUsePostMessage() {
-        // The test against `importScripts` prevents this implementation from being installed inside a web worker,
-        // where `global.postMessage` means something completely different and can't be used for this purpose.
-        if (global.postMessage && !global.importScripts) {
-            var postMessageIsAsynchronous = true;
-            var oldOnMessage = global.onmessage;
-            global.onmessage = function() {
-                postMessageIsAsynchronous = false;
-            };
-            global.postMessage("", "*");
-            global.onmessage = oldOnMessage;
-            return postMessageIsAsynchronous;
-        }
-    }
-
-    function installPostMessageImplementation() {
-        // Installs an event handler on `global` for the `message` event: see
-        // * https://developer.mozilla.org/en/DOM/window.postMessage
-        // * http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#crossDocumentMessages
-
-        var messagePrefix = "setImmediate$" + Math.random() + "$";
-        var onGlobalMessage = function(event) {
-            if (event.source === global &&
-                typeof event.data === "string" &&
-                event.data.indexOf(messagePrefix) === 0) {
-                runIfPresent(+event.data.slice(messagePrefix.length));
-            }
-        };
-
-        if (global.addEventListener) {
-            global.addEventListener("message", onGlobalMessage, false);
-        } else {
-            global.attachEvent("onmessage", onGlobalMessage);
-        }
-
-        registerImmediate = function(handle) {
-            global.postMessage(messagePrefix + handle, "*");
-        };
-    }
-
-    function installMessageChannelImplementation() {
-        var channel = new MessageChannel();
-        channel.port1.onmessage = function(event) {
-            var handle = event.data;
-            runIfPresent(handle);
-        };
-
-        registerImmediate = function(handle) {
-            channel.port2.postMessage(handle);
-        };
-    }
-
-    function installReadyStateChangeImplementation() {
-        var html = doc.documentElement;
-        registerImmediate = function(handle) {
-            // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
-            // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
-            var script = doc.createElement("script");
-            script.onreadystatechange = function () {
-                runIfPresent(handle);
-                script.onreadystatechange = null;
-                html.removeChild(script);
-                script = null;
-            };
-            html.appendChild(script);
-        };
-    }
-
-    function installSetTimeoutImplementation() {
-        registerImmediate = function(handle) {
-            setTimeout(runIfPresent, 0, handle);
-        };
-    }
-
-    // If supported, we should attach to the prototype of global, since that is where setTimeout et al. live.
-    var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
-    attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
-
-    // Don't get fooled by e.g. browserify environments.
-    if ({}.toString.call(global.process) === "[object process]") {
-        // For Node.js before 0.9
-        installNextTickImplementation();
-
-    } else if (canUsePostMessage()) {
-        // For non-IE10 modern browsers
-        installPostMessageImplementation();
-
-    } else if (global.MessageChannel) {
-        // For web workers, where supported
-        installMessageChannelImplementation();
-
-    } else if (doc && "onreadystatechange" in doc.createElement("script")) {
-        // For IE 6–8
-        installReadyStateChangeImplementation();
-
-    } else {
-        // For older browsers
-        installSetTimeoutImplementation();
-    }
-
-    attachTo.setImmediate = setImmediate;
-    attachTo.clearImmediate = clearImmediate;
-}(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10), __webpack_require__(17)))
-
-/***/ }),
-/* 77 */
-/***/ (function(module, exports, __webpack_require__) {
-
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
@@ -54449,15 +54097,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             totalPages: 1,
             currencies: ['BTC', 'ETH'],
             checkedCurrency: ['BTC', 'ETH'],
-            abi: [{ "constant": true, "inputs": [], "name": "hasClosed", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [], "name": "addBalanceForOraclize", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "delKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "tokenPriceInWei", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "cap", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }, { "name": "proof", "type": "bytes" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "addKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "weiRaised", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "closingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [], "name": "finalize", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "capReached", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokensSold", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "wallet", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "currentStage", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [], "name": "withdrawBalance", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_url", "type": "string" }], "name": "setOraclizeUrl", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "updatePrice", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_price", "type": "uint256" }], "name": "setTokenPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "uint256" }], "name": "stages", "outputs": [{ "name": "stopDay", "type": "uint256" }, { "name": "bonus1", "type": "uint256" }, { "name": "bonus2", "type": "uint256" }, { "name": "bonus3", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "bytes32" }], "name": "pendingQueries", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "isFinalized", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "owner", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_stopDay", "type": "uint256" }, { "name": "_bonus1", "type": "uint256" }, { "name": "_bonus2", "type": "uint256" }, { "name": "_bonus3", "type": "uint256" }], "name": "addStage", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "openingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "reserveFund", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "address" }], "name": "KYC", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_newPrice", "type": "uint256" }], "name": "setGasPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclizeBalance", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclize_url", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }], "name": "buyTokens", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }, { "name": "_tokens", "type": "uint256" }], "name": "manualSale", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_newOwner", "type": "address" }], "name": "transferOwnership", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "stageCount", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "token", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "inputs": [{ "name": "_wallet", "type": "address" }, { "name": "_token", "type": "address" }, { "name": "_cap", "type": "uint256" }, { "name": "_openingTime", "type": "uint256" }, { "name": "_closingTime", "type": "uint256" }, { "name": "_reserveFund", "type": "address" }, { "name": "_tokenPriceInWei", "type": "uint256" }], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "payable": true, "stateMutability": "payable", "type": "fallback" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "purchaser", "type": "address" }, { "indexed": true, "name": "beneficiary", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }, { "indexed": false, "name": "tokens", "type": "uint256" }, { "indexed": false, "name": "bonus", "type": "uint256" }], "name": "TokenPurchase", "type": "event" }, { "anonymous": false, "inputs": [], "name": "Finalized", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "description", "type": "string" }], "name": "NewOraclizeQuery", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "price", "type": "string" }], "name": "NewKrakenPriceTicker", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "previousOwner", "type": "address" }, { "indexed": true, "name": "newOwner", "type": "address" }], "name": "OwnershipTransferred", "type": "event" }],
-            crowdSaleAddress: '0x237a33fcf1264a73b78e27a112eec1adccda7fdd',
-            overrideOptions: { gasLimit: 150000 }
+            abi: [{ "constant": true, "inputs": [], "name": "hasClosed", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [], "name": "addBalanceForOraclize", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "delKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }], "name": "isOwner", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokenPriceInWei", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "cap", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }, { "name": "proof", "type": "bytes" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "addKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "weiRaised", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "closingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [], "name": "finalize", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "capReached", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokensSold", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "wallet", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "currentStage", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_url", "type": "string" }], "name": "setOraclizeUrl", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "updatePrice", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_price", "type": "uint256" }], "name": "setTokenPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_newOwner", "type": "address" }], "name": "addOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_owner", "type": "address" }], "name": "delOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_to", "type": "address" }], "name": "withdrawBalance", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "uint256" }], "name": "stages", "outputs": [{ "name": "stopDay", "type": "uint256" }, { "name": "bonus1", "type": "uint256" }, { "name": "bonus2", "type": "uint256" }, { "name": "bonus3", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "bytes32" }], "name": "pendingQueries", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "isFinalized", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_stopDay", "type": "uint256" }, { "name": "_bonus1", "type": "uint256" }, { "name": "_bonus2", "type": "uint256" }, { "name": "_bonus3", "type": "uint256" }], "name": "addStage", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "openingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "reserveFund", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "address" }], "name": "KYC", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_newPrice", "type": "uint256" }], "name": "setGasPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclizeBalance", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclize_url", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }], "name": "buyTokens", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }, { "name": "_tokens", "type": "uint256" }], "name": "manualSale", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "stageCount", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "token", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "inputs": [{ "name": "_wallet", "type": "address" }, { "name": "_token", "type": "address" }, { "name": "_cap", "type": "uint256" }, { "name": "_openingTime", "type": "uint256" }, { "name": "_closingTime", "type": "uint256" }, { "name": "_reserveFund", "type": "address" }, { "name": "_tokenPriceInWei", "type": "uint256" }], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "payable": true, "stateMutability": "payable", "type": "fallback" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "purchaser", "type": "address" }, { "indexed": true, "name": "beneficiary", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }, { "indexed": false, "name": "tokens", "type": "uint256" }, { "indexed": false, "name": "bonus", "type": "uint256" }], "name": "TokenPurchase", "type": "event" }, { "anonymous": false, "inputs": [], "name": "Finalized", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "description", "type": "string" }], "name": "NewOraclizeQuery", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "price", "type": "string" }], "name": "NewKrakenPriceTicker", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "newOwner", "type": "address" }], "name": "OwnerAdded", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "owner", "type": "address" }], "name": "OwnerDeleted", "type": "event" }],
+            crowdSaleAddress: "0x0c78003843B4a72b765938cb3b14aecb188dBC6a",
+            overrideOptions: { gasLimit: 150000 },
+            provider: new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.Web3Provider(web3.currentProvider, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.networks.homestead)
         };
     },
     created: function created() {
         this.loadTransactions();
     },
     mounted: function mounted() {},
+
 
     computed: {
         sortedItems: function sortedItems() {
@@ -54469,10 +54119,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 if (a[_this.currentSort] < b[_this.currentSort]) return -1 * modifier;
                 if (a[_this.currentSort] > b[_this.currentSort]) return 1 * modifier;
                 return 0;
-            }).filter(function (row, index) {
+            }).filter(function (row, item) {
                 var start = (_this.currentPage - 1) * _this.pageSize;
                 var end = _this.currentPage * _this.pageSize;
-                if (index >= start && index < end) return true;
+                if (item >= start && item < end) return true;
             }).filter(function (i) {
                 return _this.checkedCurrency.includes(i.currency);
             });
@@ -54499,7 +54149,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                     ar.white_list_bonus = ar.email !== null ? (ar.amount_tokens * 0.3).toFixed(2) : 'not in white-list';
                     ar.refs_bonus = ar.referred_by !== null ? (ar.amount_tokens * 0.03).toFixed(2) : 'no refs bonus';
-                    this.adminTxData = array;
                 }
             } catch (err) {
                 _didIteratorError = true;
@@ -54516,7 +54165,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }
             }
 
-            console.log(array);
+            this.adminTxData = array;
         },
 
 
@@ -54540,84 +54189,48 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
 
         sendTokens: function sendTokens(item) {
+            switch (this.showButtonCondition(item)[1]) {
+                case 'white-list bonus':
+                    this.sendTokensProccess(item, item.white_list_bonus);
+                    break;
+                case 'for BTC investment':
+                    this.sendTokensProccess(item, item.amount_tokens);
+                    break;
+                case 'for referral link':
+                    this.sendTokensProccess(item, item.refs_bonus);
+                    break;
+            }
+        },
+        sendTokensProccess: function sendTokensProccess(item, tokens) {
             var _this3 = this;
 
-            //send bonus tokens
+            var beneficiary = item.to ? item.to : item.from;
+            var provider = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.Web3Provider(web3.currentProvider, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.networks.homestead);
+            var contract = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.Contract(this.crowdSaleAddress, this.abi, this.provider.getSigner());
+            var overrideOptions = {
+                gasLimit: 150000
+            };
+            contract.manualSale(beneficiary, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.utils.parseEther(tokens), overrideOptions).then(function (tx) {
+                alert('submitted');
+                provider.waitForTransaction(tx.hash).then(function (tx) {
+                    alert('confirmed');
+                    _this3.updateTransaction(item.transaction_id, 'bonus_send');
+                });
+            });
+        },
+
+
+        showButtonCondition: function showButtonCondition(item) {
             if (item.white_list_bonus !== 'not in white-list' && item.bonus_send !== 'true' && item.white_list_bonus !== '0.00') {
-                var abi = [{ "anonymous": false, "inputs": [{ "indexed": true, "name": "owner", "type": "address" }], "name": "OwnerDeleted", "type": "event" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }, { "name": "proof", "type": "bytes" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "addBalanceForOraclize", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "addKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_newOwner", "type": "address" }], "name": "addOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_stopDay", "type": "uint256" }, { "name": "_bonus1", "type": "uint256" }, { "name": "_bonus2", "type": "uint256" }, { "name": "_bonus3", "type": "uint256" }], "name": "addStage", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }], "name": "buyTokens", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "delKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_owner", "type": "address" }], "name": "delOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "finalize", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }, { "name": "_tokens", "type": "uint256" }], "name": "manualSale", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "anonymous": false, "inputs": [], "name": "Finalized", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "purchaser", "type": "address" }, { "indexed": true, "name": "beneficiary", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }, { "indexed": false, "name": "tokens", "type": "uint256" }, { "indexed": false, "name": "bonus", "type": "uint256" }], "name": "TokenPurchase", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "description", "type": "string" }], "name": "NewOraclizeQuery", "type": "event" }, { "constant": false, "inputs": [{ "name": "_newPrice", "type": "uint256" }], "name": "setGasPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "newOwner", "type": "address" }], "name": "OwnerAdded", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "price", "type": "string" }], "name": "NewKrakenPriceTicker", "type": "event" }, { "constant": false, "inputs": [{ "name": "_url", "type": "string" }], "name": "setOraclizeUrl", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_price", "type": "uint256" }], "name": "setTokenPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "name": "_wallet", "type": "address" }, { "name": "_token", "type": "address" }, { "name": "_cap", "type": "uint256" }, { "name": "_reserveFund", "type": "address" }, { "name": "_tokenPriceInWei", "type": "uint256" }], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "payable": true, "stateMutability": "payable", "type": "fallback" }, { "constant": false, "inputs": [], "name": "updatePrice", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_to", "type": "address" }], "name": "withdrawBalance", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "cap", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "capReached", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "closingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "currentStage", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "hasClosed", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "isFinalized", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }], "name": "isOwner", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "address" }], "name": "KYC", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "openingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclize_url", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclizeBalance", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "bytes32" }], "name": "pendingQueries", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "reserveFund", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "stageCount", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "uint256" }], "name": "stages", "outputs": [{ "name": "stopDay", "type": "uint256" }, { "name": "bonus1", "type": "uint256" }, { "name": "bonus2", "type": "uint256" }, { "name": "bonus3", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "token", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokenPriceInWei", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokensSold", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "wallet", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "weiRaised", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }];
-                //Адрес токена
-                var address = '0x0c78003843B4a72b765938cb3b14aecb188dBC6a';
-                //сеть. для мэйннет - ethers.providers.networks.homestead
-                var provider = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.Web3Provider(web3.currentProvider, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.networks.homestead);
-                var contract = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.Contract(address, abi, provider.getSigner());
-
-                var overrideOptions = {
-                    gasLimit: 150000
-                };
-
-                var beneficiary = item.to ? item.to : item.from; //адрес кому отправить токены
-
-                contract.manualSale(beneficiary, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.utils.parseEther(item.white_list_bonus), overrideOptions).then(function (tx) {
-                    alert('Бонус отправлен');
-                    provider.waitForTransaction(tx.hash).then(function (tx) {
-                        alert('Транзакция смайнилась');
-                        _this3.updateTransaction(item.transaction_id, 'bonus_send');
-                    });
-                });
-            }
-
-            //send tokens btc
-            if (item.send !== 'true' && item.info == 'blockchain.info') {
-                var _abi = [{ "anonymous": false, "inputs": [{ "indexed": true, "name": "owner", "type": "address" }], "name": "OwnerDeleted", "type": "event" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }, { "name": "proof", "type": "bytes" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "addBalanceForOraclize", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "addKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_newOwner", "type": "address" }], "name": "addOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_stopDay", "type": "uint256" }, { "name": "_bonus1", "type": "uint256" }, { "name": "_bonus2", "type": "uint256" }, { "name": "_bonus3", "type": "uint256" }], "name": "addStage", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }], "name": "buyTokens", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "delKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_owner", "type": "address" }], "name": "delOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "finalize", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }, { "name": "_tokens", "type": "uint256" }], "name": "manualSale", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "anonymous": false, "inputs": [], "name": "Finalized", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "purchaser", "type": "address" }, { "indexed": true, "name": "beneficiary", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }, { "indexed": false, "name": "tokens", "type": "uint256" }, { "indexed": false, "name": "bonus", "type": "uint256" }], "name": "TokenPurchase", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "description", "type": "string" }], "name": "NewOraclizeQuery", "type": "event" }, { "constant": false, "inputs": [{ "name": "_newPrice", "type": "uint256" }], "name": "setGasPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "newOwner", "type": "address" }], "name": "OwnerAdded", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "price", "type": "string" }], "name": "NewKrakenPriceTicker", "type": "event" }, { "constant": false, "inputs": [{ "name": "_url", "type": "string" }], "name": "setOraclizeUrl", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_price", "type": "uint256" }], "name": "setTokenPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "name": "_wallet", "type": "address" }, { "name": "_token", "type": "address" }, { "name": "_cap", "type": "uint256" }, { "name": "_reserveFund", "type": "address" }, { "name": "_tokenPriceInWei", "type": "uint256" }], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "payable": true, "stateMutability": "payable", "type": "fallback" }, { "constant": false, "inputs": [], "name": "updatePrice", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_to", "type": "address" }], "name": "withdrawBalance", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "cap", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "capReached", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "closingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "currentStage", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "hasClosed", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "isFinalized", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }], "name": "isOwner", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "address" }], "name": "KYC", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "openingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclize_url", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclizeBalance", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "bytes32" }], "name": "pendingQueries", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "reserveFund", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "stageCount", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "uint256" }], "name": "stages", "outputs": [{ "name": "stopDay", "type": "uint256" }, { "name": "bonus1", "type": "uint256" }, { "name": "bonus2", "type": "uint256" }, { "name": "bonus3", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "token", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokenPriceInWei", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokensSold", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "wallet", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "weiRaised", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }];
-                //Адрес токена
-                var _address = '0x0c78003843B4a72b765938cb3b14aecb188dBC6a';
-                //сеть. для мэйннет - ethers.providers.networks.homestead
-                var _provider = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.Web3Provider(web3.currentProvider, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.networks.homestead);
-                var _contract = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.Contract(_address, _abi, _provider.getSigner());
-
-                var _overrideOptions = {
-                    gasLimit: 150000
-                };
-
-                var _beneficiary = item.to; //адрес кому отправить токены
-
-                _contract.manualSale(_beneficiary, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.utils.parseEther(String(item.amount)), _overrideOptions).then(function (tx) {
-                    alert('Транзакция ушла');
-                    _provider.waitForTransaction(tx.hash).then(function (tx) {
-                        alert('Транзакция смайнилась');
-                        _this3.updateTransaction(item.transaction_id, 'token_send');
-                    });
-                });
+                return [true, 'white-list bonus'];
+            } else if (item.send !== 'true' && item.info === 'blockchain.info') {
+                return [true, 'for BTC investment'];
+            } else if (item.refs_send === 'false' && item.refs_bonus !== 'no refs bonus' && item.refs_bonus !== '0.00') {
+                return [true, 'for referral link'];
+            } else {
+                return [false, ''];
             }
         },
-
-        sendRefsToken: function sendRefsToken(item) {
-            var _this4 = this;
-
-            if (item.refs_send == 'false' && item.refs_bonus !== 'no refs bonus' && item.refs_bonus !== '0.00') {
-                var abi = [{ "anonymous": false, "inputs": [{ "indexed": true, "name": "owner", "type": "address" }], "name": "OwnerDeleted", "type": "event" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }, { "name": "proof", "type": "bytes" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "addBalanceForOraclize", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "addKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_newOwner", "type": "address" }], "name": "addOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_stopDay", "type": "uint256" }, { "name": "_bonus1", "type": "uint256" }, { "name": "_bonus2", "type": "uint256" }, { "name": "_bonus3", "type": "uint256" }], "name": "addStage", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }], "name": "buyTokens", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "delKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_owner", "type": "address" }], "name": "delOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "finalize", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }, { "name": "_tokens", "type": "uint256" }], "name": "manualSale", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "anonymous": false, "inputs": [], "name": "Finalized", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "purchaser", "type": "address" }, { "indexed": true, "name": "beneficiary", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }, { "indexed": false, "name": "tokens", "type": "uint256" }, { "indexed": false, "name": "bonus", "type": "uint256" }], "name": "TokenPurchase", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "description", "type": "string" }], "name": "NewOraclizeQuery", "type": "event" }, { "constant": false, "inputs": [{ "name": "_newPrice", "type": "uint256" }], "name": "setGasPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "newOwner", "type": "address" }], "name": "OwnerAdded", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "price", "type": "string" }], "name": "NewKrakenPriceTicker", "type": "event" }, { "constant": false, "inputs": [{ "name": "_url", "type": "string" }], "name": "setOraclizeUrl", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_price", "type": "uint256" }], "name": "setTokenPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "name": "_wallet", "type": "address" }, { "name": "_token", "type": "address" }, { "name": "_cap", "type": "uint256" }, { "name": "_reserveFund", "type": "address" }, { "name": "_tokenPriceInWei", "type": "uint256" }], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "payable": true, "stateMutability": "payable", "type": "fallback" }, { "constant": false, "inputs": [], "name": "updatePrice", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_to", "type": "address" }], "name": "withdrawBalance", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "cap", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "capReached", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "closingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "currentStage", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "hasClosed", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "isFinalized", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }], "name": "isOwner", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "address" }], "name": "KYC", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "openingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclize_url", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclizeBalance", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "bytes32" }], "name": "pendingQueries", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "reserveFund", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "stageCount", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "uint256" }], "name": "stages", "outputs": [{ "name": "stopDay", "type": "uint256" }, { "name": "bonus1", "type": "uint256" }, { "name": "bonus2", "type": "uint256" }, { "name": "bonus3", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "token", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokenPriceInWei", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokensSold", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "wallet", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "weiRaised", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }];
-                //Адрес токена
-                var address = '0x5252ce8526279bd703664d392b8eb79cad83d4ed';
-                //сеть. для мэйннет - ethers.providers.networks.homestead
-                var provider = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.Web3Provider(web3.currentProvider, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.networks.homestead);
-                var contract = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.Contract(address, abi, provider.getSigner());
-
-                var overrideOptions = {
-                    gasLimit: 150000
-                };
-
-                var beneficiary = item.to ? item.to : item.from; //адрес кому отправить токены
-
-                contract.manualSale(beneficiary, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.utils.parseEther(String(item.refs_bonus)), overrideOptions).then(function (tx) {
-                    alert('Транзакция ушла');
-                    provider.waitForTransaction(tx.hash).then(function (tx) {
-                        alert('Транзакция смайнилась');
-                        _this4.updateTransaction(item.transaction_id, 'refs_send');
-                    });
-                });
-            }
-        },
-
 
         //Update the status of the transaction if it was successfully sent
         updateTransaction: function () {
@@ -55432,7 +55045,7 @@ if (hadRuntime) {
 /* 103 */
 /***/ (function(module, exports) {
 
-module.exports = {"_from":"ethers","_id":"ethers@3.0.29","_inBundle":false,"_integrity":"sha512-OGyA5pW5xFC5o/ZV5MfIoVp/EdA1QMg2bMJFf7Kznsz8m7IzzbgsPHTCjzSfKQDs/XDphGyRcA7A6bkIeJL4gw==","_location":"/ethers","_phantomChildren":{"bn.js":"4.11.8","brorand":"1.1.0","hash.js":"1.1.3"},"_requested":{"type":"tag","registry":true,"raw":"ethers","name":"ethers","escapedName":"ethers","rawSpec":"","saveSpec":null,"fetchSpec":"latest"},"_requiredBy":["#USER","/"],"_resolved":"https://registry.npmjs.org/ethers/-/ethers-3.0.29.tgz","_shasum":"ce8139955b4ed44456eb6764b089bb117c86775d","_spec":"ethers","_where":"C:\\OSPanel\\domains\\pao.loc","author":{"name":"Richard Moore","email":"me@ricmoo.com"},"browser":{"fs":"./tests/browser-fs.js","zlib":"browserify-zlib","./utils/base64.js":"./utils/browser-base64.js","./utils/random-bytes.js":"./utils/browser-random-bytes.js","./providers/ipc-provider.js":"./utils/empty.js","xmlhttprequest":"./providers/browser-xmlhttprequest.js"},"bugs":{"url":"https://github.com/ethers-io/ethers-wallet/issues"},"bundleDependencies":false,"dependencies":{"aes-js":"3.0.0","bn.js":"^4.4.0","elliptic":"6.3.3","hash.js":"^1.0.0","inherits":"2.0.1","js-sha3":"0.5.7","scrypt-js":"2.0.3","setimmediate":"1.0.4","uuid":"2.0.1","xmlhttprequest":"1.8.0"},"deprecated":false,"description":"Ethereum wallet library.","devDependencies":{"browserify-zlib":"^0.2.0","eslint":"^5.0.1","eslint-plugin-promise":"^3.8.0","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"1.2.0","grunt-contrib-uglify":"^1.0.1","mocha":"^5.2.0","mocha-phantomjs-core":"2.1.2","solc":"0.4.20","web3":"0.20.2"},"homepage":"https://github.com/ethers-io/ethers-wallet#readme","keywords":["ethereum","wallet"],"license":"MIT","main":"index.js","name":"ethers","repository":{"type":"git","url":"git://github.com/ethers-io/ethers-wallet.git"},"scripts":{"eslint":"eslint index.js contracts/*.js providers/*.js utils/*.js wallet/*.js","test":"if [ \"$RUN_PHANTOMJS\" = \"1\" ]; then npm run-script test-phantomjs; else npm run-script test-node; fi","test-node":"mocha tests/test-*.js","test-phantomjs":"grunt dist && ./node_modules/.bin/grunt --gruntfile Gruntfile-test.js dist && phantomjs --web-security=false ./node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js ./tests/test.html","version":"grunt dist"},"version":"3.0.29"}
+module.exports = {"_args":[["ethers@3.0.29","C:\\OSPanel\\domains\\pao.loc"]],"_from":"ethers@3.0.29","_id":"ethers@3.0.29","_inBundle":false,"_integrity":"sha512-OGyA5pW5xFC5o/ZV5MfIoVp/EdA1QMg2bMJFf7Kznsz8m7IzzbgsPHTCjzSfKQDs/XDphGyRcA7A6bkIeJL4gw==","_location":"/ethers","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"ethers@3.0.29","name":"ethers","escapedName":"ethers","rawSpec":"3.0.29","saveSpec":null,"fetchSpec":"3.0.29"},"_requiredBy":["/"],"_resolved":"https://registry.npmjs.org/ethers/-/ethers-3.0.29.tgz","_spec":"3.0.29","_where":"C:\\OSPanel\\domains\\pao.loc","author":{"name":"Richard Moore","email":"me@ricmoo.com"},"browser":{"fs":"./tests/browser-fs.js","zlib":"browserify-zlib","./utils/base64.js":"./utils/browser-base64.js","./utils/random-bytes.js":"./utils/browser-random-bytes.js","./providers/ipc-provider.js":"./utils/empty.js","xmlhttprequest":"./providers/browser-xmlhttprequest.js"},"bugs":{"url":"https://github.com/ethers-io/ethers-wallet/issues"},"dependencies":{"aes-js":"3.0.0","bn.js":"^4.4.0","elliptic":"6.3.3","hash.js":"^1.0.0","inherits":"2.0.1","js-sha3":"0.5.7","scrypt-js":"2.0.3","setimmediate":"1.0.4","uuid":"2.0.1","xmlhttprequest":"1.8.0"},"description":"Ethereum wallet library.","devDependencies":{"browserify-zlib":"^0.2.0","eslint":"^5.0.1","eslint-plugin-promise":"^3.8.0","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"1.2.0","grunt-contrib-uglify":"^1.0.1","mocha":"^5.2.0","mocha-phantomjs-core":"2.1.2","solc":"0.4.20","web3":"0.20.2"},"homepage":"https://github.com/ethers-io/ethers-wallet#readme","keywords":["ethereum","wallet"],"license":"MIT","main":"index.js","name":"ethers","repository":{"type":"git","url":"git://github.com/ethers-io/ethers-wallet.git"},"scripts":{"eslint":"eslint index.js contracts/*.js providers/*.js utils/*.js wallet/*.js","test":"if [ \"$RUN_PHANTOMJS\" = \"1\" ]; then npm run-script test-phantomjs; else npm run-script test-node; fi","test-node":"mocha tests/test-*.js","test-phantomjs":"grunt dist && ./node_modules/.bin/grunt --gruntfile Gruntfile-test.js dist && phantomjs --web-security=false ./node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js ./tests/test.html","version":"grunt dist"},"version":"3.0.29"}
 
 /***/ }),
 /* 104 */
@@ -55467,7 +55080,7 @@ var utils = (function() {
 
         getAddress: __webpack_require__(8).getAddress,
 
-        bigNumberify: __webpack_require__(11).bigNumberify,
+        bigNumberify: __webpack_require__(10).bigNumberify,
 
         arrayify: convert.arrayify,
         hexlify: convert.hexlify,
@@ -57292,7 +56905,7 @@ Hmac.prototype.digest = function digest(enc) {
 "use strict";
 
 
-var bigNumberify = __webpack_require__(11).bigNumberify;
+var bigNumberify = __webpack_require__(10).bigNumberify;
 var convert = __webpack_require__(0);
 var getAddress = __webpack_require__(8).getAddress;
 var utf8 = __webpack_require__(6);
@@ -57438,7 +57051,7 @@ if (crypto._weakCrypto === true) {
 
 module.exports = randomBytes;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ }),
 /* 126 */
@@ -57633,7 +57246,7 @@ var utils = (function() {
         stripZeros: convert.stripZeros,
         hexZeroPad: convert.hexZeroPad,
 
-        bigNumberify: __webpack_require__(11).bigNumberify,
+        bigNumberify: __webpack_require__(10).bigNumberify,
 
         toUtf8Bytes: __webpack_require__(6).toUtf8Bytes,
 
@@ -58105,7 +57718,7 @@ module.exports = Wallet;
 /* 129 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"elliptic","version":"6.3.3","description":"EC cryptography","main":"lib/elliptic.js","files":["lib"],"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","unit":"istanbul test _mocha --reporter=spec test/index.js","test":"npm run lint && npm run unit","version":"grunt dist && git add dist/"},"repository":{"type":"git","url":"git@github.com:indutny/elliptic"},"keywords":["EC","Elliptic","curve","Cryptography"],"author":"Fedor Indutny <fedor@indutny.com>","license":"MIT","bugs":{"url":"https://github.com/indutny/elliptic/issues"},"homepage":"https://github.com/indutny/elliptic","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","inherits":"^2.0.1"},"_resolved":"https://registry.npmjs.org/elliptic/-/elliptic-6.3.3.tgz","_integrity":"sha1-VILZZG1UvLif19mU/J4ulWiHbj8=","_from":"elliptic@6.3.3"}
+module.exports = {"_args":[["elliptic@6.3.3","C:\\OSPanel\\domains\\pao.loc"]],"_from":"elliptic@6.3.3","_id":"elliptic@6.3.3","_inBundle":false,"_integrity":"sha1-VILZZG1UvLif19mU/J4ulWiHbj8=","_location":"/elliptic","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"elliptic@6.3.3","name":"elliptic","escapedName":"elliptic","rawSpec":"6.3.3","saveSpec":null,"fetchSpec":"6.3.3"},"_requiredBy":["/browserify-sign","/create-ecdh","/ethers"],"_resolved":"https://registry.npmjs.org/elliptic/-/elliptic-6.3.3.tgz","_spec":"6.3.3","_where":"C:\\OSPanel\\domains\\pao.loc","author":{"name":"Fedor Indutny","email":"fedor@indutny.com"},"bugs":{"url":"https://github.com/indutny/elliptic/issues"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","inherits":"^2.0.1"},"description":"EC cryptography","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"files":["lib"],"homepage":"https://github.com/indutny/elliptic","keywords":["EC","Elliptic","curve","Cryptography"],"license":"MIT","main":"lib/elliptic.js","name":"elliptic","repository":{"type":"git","url":"git+ssh://git@github.com/indutny/elliptic.git"},"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","test":"npm run lint && npm run unit","unit":"istanbul test _mocha --reporter=spec test/index.js","version":"grunt dist && git add dist/"},"version":"6.3.3"}
 
 /***/ }),
 /* 130 */
@@ -63741,192 +63354,10 @@ if (!rng) {
 module.exports = rng;
 
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ }),
 /* 151 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
-    "use strict";
-
-    if (global.setImmediate) {
-        return;
-    }
-
-    var nextHandle = 1; // Spec says greater than zero
-    var tasksByHandle = {};
-    var currentlyRunningATask = false;
-    var doc = global.document;
-    var setImmediate;
-
-    function addFromSetImmediateArguments(args) {
-        tasksByHandle[nextHandle] = partiallyApplied.apply(undefined, args);
-        return nextHandle++;
-    }
-
-    // This function accepts the same arguments as setImmediate, but
-    // returns a function that requires no arguments.
-    function partiallyApplied(handler) {
-        var args = [].slice.call(arguments, 1);
-        return function() {
-            if (typeof handler === "function") {
-                handler.apply(undefined, args);
-            } else {
-                (new Function("" + handler))();
-            }
-        };
-    }
-
-    function runIfPresent(handle) {
-        // From the spec: "Wait until any invocations of this algorithm started before this one have completed."
-        // So if we're currently running a task, we'll need to delay this invocation.
-        if (currentlyRunningATask) {
-            // Delay by doing a setTimeout. setImmediate was tried instead, but in Firefox 7 it generated a
-            // "too much recursion" error.
-            setTimeout(partiallyApplied(runIfPresent, handle), 0);
-        } else {
-            var task = tasksByHandle[handle];
-            if (task) {
-                currentlyRunningATask = true;
-                try {
-                    task();
-                } finally {
-                    clearImmediate(handle);
-                    currentlyRunningATask = false;
-                }
-            }
-        }
-    }
-
-    function clearImmediate(handle) {
-        delete tasksByHandle[handle];
-    }
-
-    function installNextTickImplementation() {
-        setImmediate = function() {
-            var handle = addFromSetImmediateArguments(arguments);
-            process.nextTick(partiallyApplied(runIfPresent, handle));
-            return handle;
-        };
-    }
-
-    function canUsePostMessage() {
-        // The test against `importScripts` prevents this implementation from being installed inside a web worker,
-        // where `global.postMessage` means something completely different and can't be used for this purpose.
-        if (global.postMessage && !global.importScripts) {
-            var postMessageIsAsynchronous = true;
-            var oldOnMessage = global.onmessage;
-            global.onmessage = function() {
-                postMessageIsAsynchronous = false;
-            };
-            global.postMessage("", "*");
-            global.onmessage = oldOnMessage;
-            return postMessageIsAsynchronous;
-        }
-    }
-
-    function installPostMessageImplementation() {
-        // Installs an event handler on `global` for the `message` event: see
-        // * https://developer.mozilla.org/en/DOM/window.postMessage
-        // * http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#crossDocumentMessages
-
-        var messagePrefix = "setImmediate$" + Math.random() + "$";
-        var onGlobalMessage = function(event) {
-            if (event.source === global &&
-                typeof event.data === "string" &&
-                event.data.indexOf(messagePrefix) === 0) {
-                runIfPresent(+event.data.slice(messagePrefix.length));
-            }
-        };
-
-        if (global.addEventListener) {
-            global.addEventListener("message", onGlobalMessage, false);
-        } else {
-            global.attachEvent("onmessage", onGlobalMessage);
-        }
-
-        setImmediate = function() {
-            var handle = addFromSetImmediateArguments(arguments);
-            global.postMessage(messagePrefix + handle, "*");
-            return handle;
-        };
-    }
-
-    function installMessageChannelImplementation() {
-        var channel = new MessageChannel();
-        channel.port1.onmessage = function(event) {
-            var handle = event.data;
-            runIfPresent(handle);
-        };
-
-        setImmediate = function() {
-            var handle = addFromSetImmediateArguments(arguments);
-            channel.port2.postMessage(handle);
-            return handle;
-        };
-    }
-
-    function installReadyStateChangeImplementation() {
-        var html = doc.documentElement;
-        setImmediate = function() {
-            var handle = addFromSetImmediateArguments(arguments);
-            // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
-            // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
-            var script = doc.createElement("script");
-            script.onreadystatechange = function () {
-                runIfPresent(handle);
-                script.onreadystatechange = null;
-                html.removeChild(script);
-                script = null;
-            };
-            html.appendChild(script);
-            return handle;
-        };
-    }
-
-    function installSetTimeoutImplementation() {
-        setImmediate = function() {
-            var handle = addFromSetImmediateArguments(arguments);
-            setTimeout(partiallyApplied(runIfPresent, handle), 0);
-            return handle;
-        };
-    }
-
-    // If supported, we should attach to the prototype of global, since that is where setTimeout et al. live.
-    var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
-    attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
-
-    // Don't get fooled by e.g. browserify environments.
-    if ({}.toString.call(global.process) === "[object process]") {
-        // For Node.js before 0.9
-        installNextTickImplementation();
-
-    } else if (canUsePostMessage()) {
-        // For non-IE10 modern browsers
-        installPostMessageImplementation();
-
-    } else if (global.MessageChannel) {
-        // For web workers, where supported
-        installMessageChannelImplementation();
-
-    } else if (doc && "onreadystatechange" in doc.createElement("script")) {
-        // For IE 6–8
-        installReadyStateChangeImplementation();
-
-    } else {
-        // For older browsers
-        installSetTimeoutImplementation();
-    }
-
-    attachTo.setImmediate = setImmediate;
-    attachTo.clearImmediate = clearImmediate;
-}(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10), __webpack_require__(17)))
-
-/***/ }),
-/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -64216,7 +63647,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("refs bonus")]
+            [_vm._v("3% refs bonus")]
           )
         ]),
         _vm._v(" "),
@@ -64280,13 +63711,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "tx-container__el date" }, [
-              _vm._v(
-                _vm._s(item.date) +
-                  " " +
-                  _vm._s(item.bonus_send) +
-                  " " +
-                  _vm._s(item.send)
-              )
+              _vm._v(_vm._s(item.date))
             ]),
             _vm._v(" "),
             _c(
@@ -64310,7 +63735,7 @@ var render = function() {
               [_vm._v(_vm._s(item.refs_bonus))]
             ),
             _vm._v(" "),
-            Number.isInteger(item.white_list_bonus)
+            _vm.showButtonCondition(item)[0] === true
               ? _c(
                   "button",
                   {
@@ -64321,38 +63746,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("send tokens")]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            item.info == "blockchain.info" &&
-            (item.bonus_send !== "true" && item.send !== "true")
-              ? _c(
-                  "button",
-                  {
-                    staticClass: "tx-container__el send-tokens",
-                    on: {
-                      click: function($event) {
-                        _vm.sendTokens(item)
-                      }
-                    }
-                  },
-                  [_vm._v("send tokens")]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            item.referred_by !== null && item.refs_send == "0"
-              ? _c(
-                  "button",
-                  {
-                    staticClass: "tx-container__el send-tokens",
-                    on: {
-                      click: function($event) {
-                        _vm.sendRefsToken(item)
-                      }
-                    }
-                  },
-                  [_vm._v("send refs")]
+                  [_vm._v(_vm._s(_vm.showButtonCondition(item)[1]))]
                 )
               : _vm._e()
           ])
@@ -64368,7 +63762,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-122a0ec2", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-8a11ee28", module.exports)
   }
 }
 
@@ -64391,7 +63785,7 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-4c68a1e5"
+var __vue_scopeId__ = "data-v-ff36569c"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -64402,7 +63796,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\referrals\\index.vue"
+Component.options.__file = "resources/assets/js/components/referrals/index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -64411,9 +63805,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4c68a1e5", Component.options)
+    hotAPI.createRecord("data-v-ff36569c", Component.options)
   } else {
-    hotAPI.reload("data-v-4c68a1e5", Component.options)
+    hotAPI.reload("data-v-ff36569c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -64458,7 +63852,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "\n.ref-admin-info .ref-admin-container__el[data-v-ff36569c], .ref-admin-info .ref-admin-container header[data-v-ff36569c], .ref-admin-info .ref-admin-container main[data-v-ff36569c] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.ref-admin-info .ref-admin-container main div.from[data-v-ff36569c] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.ref-admin-info .helpBar[data-v-ff36569c] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n@-webkit-keyframes sk-foldCubeAngle-data-v-ff36569c {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n@keyframes sk-foldCubeAngle-data-v-ff36569c {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n.ref-admin-info[data-v-ff36569c] {\n  width: 100%;\n  margin-left: -12%;\n  margin-bottom: 40px;\n}\n.ref-admin-info .helpBar[data-v-ff36569c] {\n    width: 1075px;\n}\n.ref-admin-info .ref-admin-container__el[data-v-ff36569c] {\n    text-align: center;\n    border: 1px solid #1b6d85;\n    color: #A3A3A3;\n}\n.ref-admin-info .ref-admin-container__el.id[data-v-ff36569c] {\n      width: 55px;\n}\n.ref-admin-info .ref-admin-container__el.currency[data-v-ff36569c] {\n      width: 55px;\n}\n.ref-admin-info .ref-admin-container__el.amount[data-v-ff36569c] {\n      width: 55px;\n}\n.ref-admin-info .ref-admin-container__el.amount_tokens[data-v-ff36569c] {\n      width: 110px;\n}\n.ref-admin-info .ref-admin-container__el.status[data-v-ff36569c] {\n      width: 70px;\n}\n.ref-admin-info .ref-admin-container__el.send[data-v-ff36569c] {\n      width: 70px;\n}\n.ref-admin-info .ref-admin-container__el.from[data-v-ff36569c] {\n      width: 320px;\n}\n.ref-admin-info .ref-admin-container__el.info[data-v-ff36569c] {\n      width: 100px;\n}\n.ref-admin-info .ref-admin-container__el.date[data-v-ff36569c] {\n      width: 200px;\n}\n.ref-admin-info .ref-admin-container__el.white-list[data-v-ff36569c] {\n      width: 110px;\n}\n.ref-admin-info .ref-admin-container__el.refs-bonus[data-v-ff36569c] {\n      width: 110px;\n}\n.ref-admin-info .ref-admin-container__el.send-tokens[data-v-ff36569c] {\n      width: 90px;\n      margin-left: 5px;\n      background: #1e6176;\n      color: white;\n      border: none;\n      cursor: pointer;\n}\n.ref-admin-info .ref-admin-container__el.ref-admin-successful[data-v-ff36569c] {\n      color: #27ae60;\n}\n.ref-admin-info .ref-admin-container__el.ref-admin-failed[data-v-ff36569c] {\n      color: #CF0032;\n}\n.ref-admin-info .ref-admin-container__el.not-in-white-list[data-v-ff36569c] {\n      color: black;\n}\n.ref-admin-info .ref-admin-container header[data-v-ff36569c] {\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n    background: #1b6d85;\n    width: 1255px;\n}\n.ref-admin-info .ref-admin-container header div[data-v-ff36569c] {\n      color: white;\n      cursor: pointer;\n}\n.ref-admin-info .ref-admin-container main[data-v-ff36569c] {\n    width: 1445px;\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n}\n.ref-admin-info .ref-admin-container main div[data-v-ff36569c] {\n      height: 40px;\n      color: #4b4b4b;\n}\n.ref-admin-info .ref-admin-container main div.from[data-v-ff36569c] {\n        font-size: 12px;\n}\n", ""]);
 
 // exports
 
@@ -64486,7 +63880,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
     data: function data() {
         return {
-            referrals: null
+            referrals: [],
+            currentSort: 'date',
+            currentSortDir: 'desc',
+            pageSize: 5,
+            currentPage: 1,
+            totalPages: 1,
+            currencies: ['BTC', 'ETH'],
+            checkedCurrency: ['BTC', 'ETH'],
+            abi: [{ "anonymous": false, "inputs": [{ "indexed": true, "name": "owner", "type": "address" }], "name": "OwnerDeleted", "type": "event" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }, { "name": "proof", "type": "bytes" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "addBalanceForOraclize", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "addKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_newOwner", "type": "address" }], "name": "addOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_stopDay", "type": "uint256" }, { "name": "_bonus1", "type": "uint256" }, { "name": "_bonus2", "type": "uint256" }, { "name": "_bonus3", "type": "uint256" }], "name": "addStage", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }], "name": "buyTokens", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "delKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_owner", "type": "address" }], "name": "delOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "finalize", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }, { "name": "_tokens", "type": "uint256" }], "name": "manualSale", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "anonymous": false, "inputs": [], "name": "Finalized", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "purchaser", "type": "address" }, { "indexed": true, "name": "beneficiary", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }, { "indexed": false, "name": "tokens", "type": "uint256" }, { "indexed": false, "name": "bonus", "type": "uint256" }], "name": "TokenPurchase", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "description", "type": "string" }], "name": "NewOraclizeQuery", "type": "event" }, { "constant": false, "inputs": [{ "name": "_newPrice", "type": "uint256" }], "name": "setGasPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "newOwner", "type": "address" }], "name": "OwnerAdded", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "price", "type": "string" }], "name": "NewKrakenPriceTicker", "type": "event" }, { "constant": false, "inputs": [{ "name": "_url", "type": "string" }], "name": "setOraclizeUrl", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_price", "type": "uint256" }], "name": "setTokenPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "name": "_wallet", "type": "address" }, { "name": "_token", "type": "address" }, { "name": "_cap", "type": "uint256" }, { "name": "_reserveFund", "type": "address" }, { "name": "_tokenPriceInWei", "type": "uint256" }], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "payable": true, "stateMutability": "payable", "type": "fallback" }, { "constant": false, "inputs": [], "name": "updatePrice", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_to", "type": "address" }], "name": "withdrawBalance", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "cap", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "capReached", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "closingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "currentStage", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "hasClosed", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "isFinalized", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }], "name": "isOwner", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "address" }], "name": "KYC", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "openingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclize_url", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclizeBalance", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "bytes32" }], "name": "pendingQueries", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "reserveFund", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "stageCount", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "uint256" }], "name": "stages", "outputs": [{ "name": "stopDay", "type": "uint256" }, { "name": "bonus1", "type": "uint256" }, { "name": "bonus2", "type": "uint256" }, { "name": "bonus3", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "token", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokenPriceInWei", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokensSold", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "wallet", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "weiRaised", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }],
+            crowdSaleAddress: "0x0c78003843B4a72b765938cb3b14aecb188dBC6a",
+            overrideOptions: { gasLimit: 150000 }
         };
     },
     created: function created() {
@@ -64494,36 +63898,56 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
 
 
-    methods: {
-        getReferrals: function getReferrals() {
+    computed: {
+
+        sortedItems: function sortedItems() {
             var _this = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/admin/referrals').then(function (res) {
-                _this.referrals = res.data;
+            return this.referrals.sort(function (a, b) {
+                var modifier = 1;
+                if (_this.currentSortDir === 'desc') modifier = -1;
+                if (a[_this.currentSort] < b[_this.currentSort]) return -1 * modifier;
+                if (a[_this.currentSort] > b[_this.currentSort]) return 1 * modifier;
+                return 0;
+            }).filter(function (row, index) {
+                var start = (_this.currentPage - 1) * _this.pageSize;
+                var end = _this.currentPage * _this.pageSize;
+                if (index >= start && index < end) return true;
             });
-        },
-        sendTokens: function sendTokens(item) {
+        }
+    },
+
+    methods: {
+        getReferrals: function getReferrals() {
             var _this2 = this;
 
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/admin/referrals').then(function (res) {
+                _this2.referrals = res.data;
+            });
+        },
+
+
+        nextPage: function nextPage() {
+            if (this.currentPage * this.pageSize < this.adminTxData.length) this.currentPage++;
+        },
+
+        prevPage: function prevPage() {
+            if (this.currentPage > 1) this.currentPage--;
+        },
+
+        sendTokens: function sendTokens(item) {
+            var _this3 = this;
+
             if (item.send == 'false' && item.tokens !== '0.00') {
-                var abi = [{ "anonymous": false, "inputs": [{ "indexed": true, "name": "owner", "type": "address" }], "name": "OwnerDeleted", "type": "event" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }, { "name": "proof", "type": "bytes" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "addBalanceForOraclize", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "addKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_newOwner", "type": "address" }], "name": "addOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_stopDay", "type": "uint256" }, { "name": "_bonus1", "type": "uint256" }, { "name": "_bonus2", "type": "uint256" }, { "name": "_bonus3", "type": "uint256" }], "name": "addStage", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }], "name": "buyTokens", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "delKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_owner", "type": "address" }], "name": "delOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "finalize", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }, { "name": "_tokens", "type": "uint256" }], "name": "manualSale", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "anonymous": false, "inputs": [], "name": "Finalized", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "purchaser", "type": "address" }, { "indexed": true, "name": "beneficiary", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }, { "indexed": false, "name": "tokens", "type": "uint256" }, { "indexed": false, "name": "bonus", "type": "uint256" }], "name": "TokenPurchase", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "description", "type": "string" }], "name": "NewOraclizeQuery", "type": "event" }, { "constant": false, "inputs": [{ "name": "_newPrice", "type": "uint256" }], "name": "setGasPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "newOwner", "type": "address" }], "name": "OwnerAdded", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "price", "type": "string" }], "name": "NewKrakenPriceTicker", "type": "event" }, { "constant": false, "inputs": [{ "name": "_url", "type": "string" }], "name": "setOraclizeUrl", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_price", "type": "uint256" }], "name": "setTokenPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "name": "_wallet", "type": "address" }, { "name": "_token", "type": "address" }, { "name": "_cap", "type": "uint256" }, { "name": "_reserveFund", "type": "address" }, { "name": "_tokenPriceInWei", "type": "uint256" }], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "payable": true, "stateMutability": "payable", "type": "fallback" }, { "constant": false, "inputs": [], "name": "updatePrice", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_to", "type": "address" }], "name": "withdrawBalance", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "cap", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "capReached", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "closingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "currentStage", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "hasClosed", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "isFinalized", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }], "name": "isOwner", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "address" }], "name": "KYC", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "openingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclize_url", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclizeBalance", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "bytes32" }], "name": "pendingQueries", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "reserveFund", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "stageCount", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "uint256" }], "name": "stages", "outputs": [{ "name": "stopDay", "type": "uint256" }, { "name": "bonus1", "type": "uint256" }, { "name": "bonus2", "type": "uint256" }, { "name": "bonus3", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "token", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokenPriceInWei", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokensSold", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "wallet", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "weiRaised", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }];
-                //Адрес токена
-                var address = '0x5252ce8526279bd703664d392b8eb79cad83d4ed';
                 //сеть. для мэйннет - ethers.providers.networks.homestead
                 var provider = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.Web3Provider(web3.currentProvider, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.networks.homestead);
-                var contract = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.Contract(address, abi, provider.getSigner());
-
-                var overrideOptions = {
-                    gasLimit: 150000
-                };
-
+                var contract = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.Contract(this.crowdSaleAddress, this.abi, provider.getSigner());
                 var beneficiary = item.wallet_to; //адрес кому отправить токены
-
-                contract.manualSale(beneficiary, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.utils.parseEther(String(item.tokens)), overrideOptions).then(function (tx) {
-                    alert('Транзакция ушла');
+                contract.manualSale(beneficiary, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.utils.parseEther(String(item.tokens)), this.overrideOptions).then(function (tx) {
+                    alert('Submitted');
                     provider.waitForTransaction(tx.hash).then(function (tx) {
-                        alert('Транзакция смайнилась');
-                        _this2.updateReferral(item);
+                        alert('Confirmed');
+                        _this3.updateReferral(item);
                     });
                 });
             }
@@ -64568,73 +63992,319 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm._m(0),
+  return _c("section", { staticClass: "ref-admin-info" }, [
+    _c("div", { staticClass: "helpBar" }, [
+      _c("div", { staticClass: "helpBar__buttons" }, [
+        _c("button", { on: { click: _vm.prevPage } }, [_vm._v("Previous")]),
+        _vm._v(" "),
+        _c("button", { on: { click: _vm.nextPage } }, [_vm._v("Next")])
+      ]),
       _vm._v(" "),
-      _vm._l(this.referrals, function(item) {
-        return _c("section", { staticClass: "a-wrapper__section" }, [
-          _c("div", { staticClass: "a-wrapper__section_el r-user-id" }, [
-            _vm._v(_vm._s(item.user_id))
-          ]),
+      _c("div", { staticClass: "helpBar__help-text" }, [
+        _c(
+          "p",
+          {
+            model: {
+              value: _vm.currentPage,
+              callback: function($$v) {
+                _vm.currentPage = $$v
+              },
+              expression: "currentPage"
+            }
+          },
+          [_vm._v("current page: " + _vm._s(_vm.currentPage))]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          {
+            model: {
+              value: _vm.totalPages,
+              callback: function($$v) {
+                _vm.totalPages = $$v
+              },
+              expression: "totalPages"
+            }
+          },
+          [_vm._v("total referrals: " + _vm._s(_vm.totalPages))]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "helpBar__page-select" }, [
+        _c("label", { attrs: { for: "pageQuantity" } }, [
+          _vm._v("Number of elements on the page")
+        ]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.pageSize,
+                expression: "pageSize"
+              }
+            ],
+            attrs: { name: "pageQuantity", id: "pageQuantity" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.pageSize = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "5" } }, [_vm._v("5")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "15" } }, [_vm._v("15")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "20" } }, [_vm._v("20")]),
+            _vm._v(" "),
+            _c("option", { domProps: { value: _vm.totalPages } }, [
+              _vm._v("all, " + _vm._s(_vm.totalPages))
+            ])
+          ]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "ref-admin-container" },
+      [
+        _c("header", [
+          _c(
+            "div",
+            {
+              staticClass: "ref-admin-container__el id",
+              on: {
+                click: function($event) {
+                  _vm.sort("id")
+                }
+              }
+            },
+            [_vm._v("user id")]
+          ),
           _vm._v(" "),
-          _c("div", { staticClass: "a-wrapper__section_el r-wallet-to" }, [
-            _vm._v(_vm._s(item.wallet_to))
-          ]),
+          _c(
+            "div",
+            {
+              staticClass: "ref-admin-container__el currency",
+              on: {
+                click: function($event) {
+                  _vm.sort("wallet")
+                }
+              }
+            },
+            [_vm._v("wallet")]
+          ),
           _vm._v(" "),
-          _c("div", { staticClass: "a-wrapper__section_el r-tokens" }, [
-            _vm._v(_vm._s(item.tokens))
-          ]),
+          _c(
+            "div",
+            {
+              staticClass: "ref-admin-container__el amount",
+              on: {
+                click: function($event) {
+                  _vm.sort("amount")
+                }
+              }
+            },
+            [_vm._v("tokens")]
+          ),
           _vm._v(" "),
-          _c("div", { staticClass: "a-wrapper__section_el r-data" }, [
-            _vm._v(_vm._s(item.created_at))
-          ]),
+          _c(
+            "div",
+            {
+              staticClass: "ref-admin-container__el amount_tokens",
+              on: {
+                click: function($event) {
+                  _vm.sort("amount_tokens")
+                }
+              }
+            },
+            [_vm._v("token amount")]
+          ),
           _vm._v(" "),
-          item.send == "false"
-            ? _c(
-                "button",
+          _c(
+            "div",
+            {
+              staticClass: "ref-admin-container__el send",
+              on: {
+                click: function($event) {
+                  _vm.sort("send")
+                }
+              }
+            },
+            [_vm._v("send")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "ref-admin-container__el date",
+              on: {
+                click: function($event) {
+                  _vm.sort("date")
+                }
+              }
+            },
+            [_vm._v("date")]
+          )
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.sortedItems, function(item) {
+          return _c("main", [
+            _c("div", { staticClass: "ref-admin-container__el id" }, [
+              _vm._v(_vm._s(item.user_id))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ref-admin-container__el wallet" }, [
+              _vm._v(_vm._s(item.wallet))
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "ref-admin-container__el amount_tokens" },
+              [_vm._v(_vm._s(item.amount_tokens))]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "ref-admin-container__el status",
+                class: {
+                  "ref-admin-successful": item.status == "true",
+                  "ref-admin-failed": item.status == "false"
+                }
+              },
+              [_vm._v(_vm._s(item.status))]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "ref-admin-container__el send",
+                class: {
+                  "ref-admin-successful": item.send == "true",
+                  "ref-admin-failed": item.send !== "true"
+                }
+              },
+              [_vm._v(_vm._s(item.send))]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "ref-admin-container__el from" }, [
+              _c("span", [_vm._v(_vm._s(item.from))]),
+              item.to ? _c("span", [_vm._v(_vm._s(item.to))]) : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ref-admin-container__el info" }, [
+              _c(
+                "a",
                 {
-                  staticClass: "btn btn-default",
-                  on: {
-                    click: function($event) {
-                      _vm.sendTokens(item)
-                    }
+                  attrs: {
+                    href: "https://" + item.info + "/tx/" + item.transaction_id
                   }
                 },
-                [_vm._v("send tokens")]
+                [_vm._v(_vm._s(item.info))]
               )
-            : _vm._e()
-        ])
-      })
-    ],
-    2
-  )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ref-admin-container__el date" }, [
+              _vm._v(
+                _vm._s(item.date) +
+                  " " +
+                  _vm._s(item.bonus_send) +
+                  " " +
+                  _vm._s(item.send)
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "ref-admin-container__el white-list",
+                class: {
+                  "not-in-white-list":
+                    item.white_list_bonus == "not in white-list"
+                }
+              },
+              [_vm._v(_vm._s(item.white_list_bonus))]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "ref-admin-container__el refs-bonus",
+                class: { "ref-bonus": item.refs_bonus == "no refs bonus" }
+              },
+              [_vm._v(_vm._s(item.refs_bonus))]
+            ),
+            _vm._v(" "),
+            Number.isInteger(item.white_list_bonus)
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "ref-admin-container__el send-tokens",
+                    on: {
+                      click: function($event) {
+                        _vm.sendTokens(item)
+                      }
+                    }
+                  },
+                  [_vm._v("send tokens")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            item.info == "blockchain.info" &&
+            (item.bonus_send !== "true" && item.send !== "true")
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "ref-admin-container__el send-tokens",
+                    on: {
+                      click: function($event) {
+                        _vm.sendTokens(item)
+                      }
+                    }
+                  },
+                  [_vm._v("send tokens")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            item.referred_by !== null && item.refs_send == "0"
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "ref-admin-container__el send-tokens",
+                    on: {
+                      click: function($event) {
+                        _vm.sendRefsToken(item)
+                      }
+                    }
+                  },
+                  [_vm._v("send refs")]
+                )
+              : _vm._e()
+          ])
+        })
+      ],
+      2
+    )
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "a-wrapper__header" }, [
-      _c("div", { staticClass: "a-wrapper__header_el r-user-id" }, [
-        _vm._v("user_id")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "a-wrapper__header_el r-wallet-to" }, [
-        _vm._v("wallet")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "a-wrapper__header_el r-tokens" }, [
-        _vm._v("tokens")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "a-wrapper__header_el r-data" }, [
-        _vm._v("data")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -64720,38 +64390,6 @@ if(false) {
  // When the module is disposed, remove the <style> tags
  module.hot.dispose(function() { update(); });
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "a-wrapper__header" }, [
-      _c("div", { staticClass: "a-wrapper__header_el r-user-id" }, [
-        _vm._v("user_id")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "a-wrapper__header_el r-wallet-to" }, [
-        _vm._v("wallet")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "a-wrapper__header_el r-tokens" }, [
-        _vm._v("tokens")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "a-wrapper__header_el r-data" }, [
-        _vm._v("data")
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4c68a1e5", module.exports)
-  }
-}
 
 /***/ }),
 /* 159 */
@@ -64762,7 +64400,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, "\n.kyc .tx-container__el[data-v-aa0e721e], .kyc .tx-container header[data-v-aa0e721e], .kyc .tx-container main[data-v-aa0e721e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.kyc .tx-container main div.from[data-v-aa0e721e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.kyc .helpBar[data-v-aa0e721e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n@-webkit-keyframes sk-foldCubeAngle-data-v-aa0e721e {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n@keyframes sk-foldCubeAngle-data-v-aa0e721e {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n.kyc[data-v-aa0e721e] {\n  width: 100%;\n  margin-left: -12%;\n  margin-bottom: 40px;\n}\n.kyc .helpBar[data-v-aa0e721e] {\n    width: 1075px;\n}\n.kyc .tx-container__el[data-v-aa0e721e] {\n    text-align: center;\n    border: 1px solid #1b6d85;\n    color: #A3A3A3;\n}\n.kyc .tx-container__el.id[data-v-aa0e721e] {\n      width: 55px;\n}\n.kyc .tx-container__el.email[data-v-aa0e721e] {\n      width: 220px;\n}\n.kyc .tx-container__el.date[data-v-aa0e721e] {\n      width: 150px;\n}\n.kyc .tx-container__el.ip[data-v-aa0e721e] {\n      width: 110px;\n}\n.kyc .tx-container__el.name[data-v-aa0e721e] {\n      width: 160px;\n}\n.kyc .tx-container__el.address[data-v-aa0e721e] {\n      width: 240px;\n}\n.kyc .tx-container__el.phone[data-v-aa0e721e] {\n      width: 155px;\n}\n.kyc .tx-container__el.dpb[data-v-aa0e721e] {\n      width: 100px;\n}\n.kyc .tx-container__el.nationality[data-v-aa0e721e] {\n      width: 130px;\n}\n.kyc .tx-container__el.sof[data-v-aa0e721e] {\n      width: 110px;\n}\n.kyc .tx-container__el.promo[data-v-aa0e721e] {\n      width: 155px;\n}\n.kyc .tx-container__el.img[data-v-aa0e721e] {\n      width: 250px;\n}\n.kyc .tx-container__el.tx-successful[data-v-aa0e721e] {\n      color: #27ae60;\n}\n.kyc .tx-container__el.tx-failed[data-v-aa0e721e] {\n      color: #CF0032;\n}\n.kyc .tx-container__el.not-in-white-list[data-v-aa0e721e] {\n      color: black;\n}\n.kyc .tx-container header[data-v-aa0e721e] {\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n    background: #1b6d85;\n    width: 1770px;\n}\n.kyc .tx-container header div[data-v-aa0e721e] {\n      color: white;\n      cursor: pointer;\n}\n.kyc .tx-container main[data-v-aa0e721e] {\n    width: 1770px;\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n}\n.kyc .tx-container main div[data-v-aa0e721e] {\n      height: 40px;\n      color: #4b4b4b;\n}\n.kyc .tx-container main div.from[data-v-aa0e721e] {\n        font-size: 12px;\n}\n", ""]);
+exports.push([module.i, "\n.kyc .kyc-admin-container__el[data-v-aa0e721e], .kyc .kyc-admin-container header[data-v-aa0e721e], .kyc .kyc-admin-container main[data-v-aa0e721e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.kyc .kyc-admin-container main div.from[data-v-aa0e721e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.kyc .helpBar[data-v-aa0e721e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n@-webkit-keyframes sk-foldCubeAngle-data-v-aa0e721e {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n@keyframes sk-foldCubeAngle-data-v-aa0e721e {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n.kyc[data-v-aa0e721e] {\n  width: 100%;\n  margin-left: -12%;\n  margin-bottom: 40px;\n}\n.kyc .helpBar[data-v-aa0e721e] {\n    width: 1075px;\n}\n.kyc .kyc-admin-container[data-v-aa0e721e] {\n    margin-left: -17%;\n}\n.kyc .kyc-admin-container__el[data-v-aa0e721e] {\n      text-align: center;\n      border: 1px solid #1b6d85;\n      color: #A3A3A3;\n}\n.kyc .kyc-admin-container__el.id[data-v-aa0e721e] {\n        width: 55px;\n}\n.kyc .kyc-admin-container__el.email[data-v-aa0e721e] {\n        width: 220px;\n}\n.kyc .kyc-admin-container__el.date[data-v-aa0e721e] {\n        width: 150px;\n}\n.kyc .kyc-admin-container__el.ip[data-v-aa0e721e] {\n        width: 110px;\n}\n.kyc .kyc-admin-container__el.name[data-v-aa0e721e] {\n        width: 160px;\n}\n.kyc .kyc-admin-container__el.address[data-v-aa0e721e] {\n        width: 240px;\n}\n.kyc .kyc-admin-container__el.phone[data-v-aa0e721e] {\n        width: 155px;\n}\n.kyc .kyc-admin-container__el.dpb[data-v-aa0e721e] {\n        width: 100px;\n}\n.kyc .kyc-admin-container__el.nationality[data-v-aa0e721e] {\n        width: 130px;\n}\n.kyc .kyc-admin-container__el.sof[data-v-aa0e721e] {\n        width: 110px;\n}\n.kyc .kyc-admin-container__el.promo[data-v-aa0e721e] {\n        width: 155px;\n}\n.kyc .kyc-admin-container__el.img[data-v-aa0e721e] {\n        width: 250px;\n}\n.kyc .kyc-admin-container__el.kyc-successful[data-v-aa0e721e] {\n        color: #27ae60;\n}\n.kyc .kyc-admin-container__el.kyc-failed[data-v-aa0e721e] {\n        color: #CF0032;\n}\n.kyc .kyc-admin-container__el.not-in-white-list[data-v-aa0e721e] {\n        color: black;\n}\n.kyc .kyc-admin-container header[data-v-aa0e721e] {\n      -webkit-box-pack: start;\n          -ms-flex-pack: start;\n              justify-content: flex-start;\n      background: #1b6d85;\n      width: 1770px;\n}\n.kyc .kyc-admin-container header div[data-v-aa0e721e] {\n        color: white;\n        cursor: pointer;\n}\n.kyc .kyc-admin-container main[data-v-aa0e721e] {\n      width: 1770px;\n      -webkit-box-pack: start;\n          -ms-flex-pack: start;\n              justify-content: flex-start;\n}\n.kyc .kyc-admin-container main div[data-v-aa0e721e] {\n        height: 40px;\n        color: #4b4b4b;\n}\n.kyc .kyc-admin-container main div.from[data-v-aa0e721e] {\n          font-size: 12px;\n}\n", ""]);
 
 // exports
 
@@ -64800,17 +64438,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         sortedItems: function sortedItems() {
             var _this = this;
 
-            return this.users.sort(function (a, b) {
-                var modifier = 1;
-                if (_this.currentSortDir === 'desc') modifier = -1;
-                if (a[_this.currentSort] < b[_this.currentSort]) return -1 * modifier;
-                if (a[_this.currentSort] > b[_this.currentSort]) return 1 * modifier;
-                return 0;
-            }).filter(function (row, index) {
-                var start = (_this.currentPage - 1) * _this.pageSize;
-                var end = _this.currentPage * _this.pageSize;
-                if (index >= start && index < end) return true;
-            });
+            if (this.users !== null) {
+                return this.users.sort(function (a, b) {
+                    var modifier = 1;
+                    if (_this.currentSortDir === 'desc') modifier = -1;
+                    if (a[_this.currentSort] < b[_this.currentSort]) return -1 * modifier;
+                    if (a[_this.currentSort] > b[_this.currentSort]) return 1 * modifier;
+                    return 0;
+                }).filter(function (row, index) {
+                    var start = (_this.currentPage - 1) * _this.pageSize;
+                    var end = _this.currentPage * _this.pageSize;
+                    if (index >= start && index < end) return true;
+                });
+            }
         }
     },
 
@@ -64819,8 +64459,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/admin/kyc').then(function (res) {
-                _this2.users = res.data;
-                _this2.totalPages = res.data.length;
+                if (res.data) {
+                    _this2.users = res.data;
+                    _this2.totalPages = res.data.length;
+                }
             });
         },
 
@@ -64884,7 +64526,7 @@ var render = function() {
               expression: "totalPages"
             }
           },
-          [_vm._v("total transactions: " + _vm._s(_vm.totalPages))]
+          [_vm._v("total persons: " + _vm._s(_vm.totalPages))]
         )
       ]),
       _vm._v(" "),
@@ -64940,13 +64582,13 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "tx-container" },
+      { staticClass: "kyc-admin-container" },
       [
         _c("header", [
           _c(
             "div",
             {
-              staticClass: "tx-container__el id",
+              staticClass: "kyc-admin-container__el id",
               on: {
                 click: function($event) {
                   _vm.sort("id")
@@ -64959,7 +64601,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "tx-container__el email",
+              staticClass: "kyc-admin-container__el email",
               on: {
                 click: function($event) {
                   _vm.sort("email")
@@ -64972,7 +64614,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "tx-container__el date",
+              staticClass: "kyc-admin-container__el date",
               on: {
                 click: function($event) {
                   _vm.sort("created_at")
@@ -64985,7 +64627,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "tx-container__el ip",
+              staticClass: "kyc-admin-container__el ip",
               on: {
                 click: function($event) {
                   _vm.sort("ip_token")
@@ -64998,7 +64640,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "tx-container__el name",
+              staticClass: "kyc-admin-container__el name",
               on: {
                 click: function($event) {
                   _vm.sort("name_surname")
@@ -65011,7 +64653,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "tx-container__el address",
+              staticClass: "kyc-admin-container__el address",
               on: {
                 click: function($event) {
                   _vm.sort("permanent_address")
@@ -65024,7 +64666,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "tx-container__el phone",
+              staticClass: "kyc-admin-container__el phone",
               on: {
                 click: function($event) {
                   _vm.sort("contact_number")
@@ -65037,7 +64679,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "tx-container__el dpb",
+              staticClass: "kyc-admin-container__el dpb",
               on: {
                 click: function($event) {
                   _vm.sort("date_place_birth")
@@ -65050,7 +64692,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "tx-container__el nationality",
+              staticClass: "kyc-admin-container__el nationality",
               on: {
                 click: function($event) {
                   _vm.sort("nationality")
@@ -65063,7 +64705,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "tx-container__el sof",
+              staticClass: "kyc-admin-container__el sof",
               on: {
                 click: function($event) {
                   _vm.sort("source_of_funds")
@@ -65076,7 +64718,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "tx-container__el promo",
+              staticClass: "kyc-admin-container__el promo",
               on: {
                 click: function($event) {
                   _vm.sort("promo")
@@ -65089,7 +64731,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "tx-container__el img",
+              staticClass: "kyc-admin-container__el img",
               on: {
                 click: function($event) {
                   _vm.sort("img")
@@ -65102,53 +64744,53 @@ var render = function() {
         _vm._v(" "),
         _vm._l(_vm.sortedItems, function(user) {
           return _c("main", [
-            _c("div", { staticClass: "tx-container__el id" }, [
+            _c("div", { staticClass: "kyc-admin-container__el id" }, [
               _vm._v(_vm._s(user.id))
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "tx-container__el email" }, [
+            _c("div", { staticClass: "kyc-admin-container__el email" }, [
               _vm._v(_vm._s(user.email))
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "tx-container__el date" }, [
+            _c("div", { staticClass: "kyc-admin-container__el date" }, [
               _vm._v(_vm._s(user.created_at))
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "tx-container__el ip" }, [
+            _c("div", { staticClass: "kyc-admin-container__el ip" }, [
               _vm._v(_vm._s(user.ip_token))
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "tx-container__el name" }, [
+            _c("div", { staticClass: "kyc-admin-container__el name" }, [
               _vm._v(_vm._s(user.personal.name_surname))
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "tx-container__el address" }, [
+            _c("div", { staticClass: "kyc-admin-container__el address" }, [
               _vm._v(_vm._s(user.personal.permanent_address))
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "tx-container__el phone" }, [
+            _c("div", { staticClass: "kyc-admin-container__el phone" }, [
               _vm._v(_vm._s(user.personal.contact_number))
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "tx-container__el dpb" }, [
+            _c("div", { staticClass: "kyc-admin-container__el dpb" }, [
               _vm._v(_vm._s(user.personal.date_place_birth))
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "tx-container__el nationality" }, [
+            _c("div", { staticClass: "kyc-admin-container__el nationality" }, [
               _vm._v(_vm._s(user.personal.nationality))
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "tx-container__el sof" }, [
+            _c("div", { staticClass: "kyc-admin-container__el sof" }, [
               _vm._v(_vm._s(user.personal.source_of_funds))
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "tx-container__el promo" }, [
+            _c("div", { staticClass: "kyc-admin-container__el promo" }, [
               _vm._v(_vm._s(user.personal.promo))
             ]),
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "tx-container__el img" },
+              { staticClass: "kyc-admin-container__el img" },
               [
                 _c(
                   "silentbox-group",

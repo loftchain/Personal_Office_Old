@@ -14,7 +14,6 @@ use App\Http\Controllers\HomeController;
 use GuzzleHttp\Client;
 use App\Services\BonusService;
 
-
 class ReferralService
 {
 
@@ -31,6 +30,7 @@ class ReferralService
 	{
 		UserReferralFields::truncate();
 
+		$finalReferralSumm = [];
 		$singleRefArray = [];
 		$referals = User::where('referred_by', '!=', null)->get();
 		foreach ($referals as $ref) {
@@ -58,9 +58,15 @@ class ReferralService
 		}
 
 		foreach($result as $key => $value) {
-			$wallets = UserWalletFields::where('user_id', $key)->first();
-			if ($wallets->type === 'from_to' || $wallets->type === 'to') {
-				$finalReferralSumm[] = array('id' => $key, 'wallet' => $wallets->wallet, 'token_sum' => array_sum($value)*0.05);
+			$wallets = UserWalletFields::where('user_id', $key)->get();
+			foreach ($wallets as $w){
+				if ($w->type === 'from_to'){
+					$finalReferralSumm[] = array('id' => $key, 'wallet' => $w->wallet, 'token_sum' => array_sum($value)*0.05);
+					break;
+				} else if ($w->type === 'to') {
+					$finalReferralSumm[] = array('id' => $key, 'wallet' => $w->wallet, 'token_sum' => array_sum($value)*0.05); //DRY as it is)
+					break;
+				}
 			}
 		}
 

@@ -10,7 +10,9 @@
     @extend %fsb;
   }
 
-  .tx-container{
+  .kyc-admin-container{
+    margin-left:-17%;
+
     &__el{
       text-align: center;
       border: 1px solid #1b6d85;
@@ -65,11 +67,11 @@
         width: 250px;
       }
 
-      &.tx-successful{
+      &.kyc-successful{
         color: $status-green;
       }
 
-      &.tx-failed{
+      &.kyc-failed{
         color: $status-red;
       }
 

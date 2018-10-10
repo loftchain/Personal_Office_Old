@@ -92,7 +92,6 @@ class TransactionService
 						if ($r->pair === 'ETH/USD') {
 							$tokenAmount = $amount * $r->price;
 							$totalTokenAmount = $this->sumBonusAndTokens($tokenAmount, $amount);
-//							Log::info('eth '.$totalTokenAmount);
 						}
 						break;
 					case 'BTC':
@@ -100,10 +99,6 @@ class TransactionService
 							$tokenAmount = $amount * $this->bonusService->getLatestCurrencies('BTC/USD', $date);
 							$amountETH = $amount * $r->price;
 							$totalTokenAmount = $this->sumBonusAndTokens($tokenAmount, $amountETH);
-							Log::info('$amount '.$amount);
-							Log::info('$tokenAmount '.$tokenAmount);
-							Log::info('$amountETH '.$amountETH);
-							Log::info('$totalTokenAmount '.$totalTokenAmount);
 						}
 						break;
 				}

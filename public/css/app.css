@@ -11772,8 +11772,9 @@ button.close {
 }
 
 .x-refs__section {
-  border-bottom: 1px solid #103163;
+  border-bottom: 1px solid #4b4b4b;
   width: 750px;
+  margin-top: 10px;
 }
 
 @media (max-width: 768px) {
