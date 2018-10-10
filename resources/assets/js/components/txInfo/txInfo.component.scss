@@ -2,7 +2,7 @@
 
 .tx-info {
   width: 100%;
-  margin-left:-12%;
+  margin-left:-20%;
   margin-bottom: 40px;
 
   .helpBar{
@@ -68,6 +68,7 @@
         color: white;
         border: none;
         cursor: pointer;
+        font-size: 12px;
       }
 
       &.tx-successful{
@@ -81,15 +82,13 @@
       &.not-in-white-list{
         color: black;
       }
-
-
     }
 
     header{
       @extend %fc;
       justify-content: flex-start;
       background: #1b6d85;
-      width: 1255px;
+      width: 1395px;
 
       div{
         color: white;
@@ -98,7 +97,7 @@
     }
 
     main{
-      width: 1445px;
+      width: 1500px;
       @extend %fc;
       justify-content: flex-start;
 

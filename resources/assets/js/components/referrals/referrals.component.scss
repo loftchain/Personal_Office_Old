@@ -2,11 +2,11 @@
 
 .ref-admin-info {
   width: 100%;
-  margin-left:-12%;
+  margin-left:-5%;
   margin-bottom: 40px;
 
   .helpBar{
-    width: 1075px;
+    width: 875px;
     @extend %fsb;
   }
 
@@ -21,44 +21,21 @@
         width: 55px;
       }
 
-      &.currency{
-        width: 55px;
-      }
-
-      &.amount{
-        width: 55px;
-      }
-
-      &.amount_tokens{
+      &.tokens{
         width: 110px;
       }
 
-      &.status{
-        width: 70px;
+      &.wallet_to{
+        width: 320px;
+        font-size: 12px;
       }
 
       &.send{
         width: 70px;
       }
 
-      &.from{
-        width: 320px;
-      }
-
-      &.info{
-        width: 100px;
-      }
-
       &.date{
-        width: 200px;
-      }
-
-      &.white-list{
-        width: 110px;
-      }
-
-      &.refs-bonus{
-        width: 110px;
+        width: 320px;
       }
 
       &.send-tokens{
@@ -77,19 +54,13 @@
       &.ref-admin-failed{
         color: $status-red;
       }
-
-      &.not-in-white-list{
-        color: black;
-      }
-
-
     }
 
     header{
       @extend %fc;
       justify-content: flex-start;
       background: #1b6d85;
-      width: 1255px;
+      width: 875px;
 
       div{
         color: white;

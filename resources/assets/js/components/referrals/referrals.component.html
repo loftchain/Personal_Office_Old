@@ -21,47 +21,19 @@
 	</div>
 	<div class="ref-admin-container">
 		<header>
-			<div class="ref-admin-container__el id" @click="sort('id')">user id</div>
-			<div class="ref-admin-container__el currency" @click="sort('wallet')">wallet</div>
-			<div class="ref-admin-container__el amount" @click="sort('amount')">tokens</div>
-			<div class="ref-admin-container__el amount_tokens" @click="sort('amount_tokens')">token amount</div>
+			<div class="ref-admin-container__el id" @click="sort('user_id')">user id</div>
+			<div class="ref-admin-container__el tokens" @click="sort('tokens')">tokens</div>
+			<div class="ref-admin-container__el wallet_to" @click="sort('wallet_to')">wallet</div>
 			<div class="ref-admin-container__el send" @click="sort('send')">send</div>
-			<div class="ref-admin-container__el date" @click="sort('date')">date</div>
+			<div class="ref-admin-container__el date" @click="sort('updated_at')">date</div>
 		</header>
 		<main v-for="item in sortedItems">
 			<div class="ref-admin-container__el id">{{ item.user_id }}</div>
-			<div class="ref-admin-container__el wallet">{{ item.wallet }}</div>
-			<div class="ref-admin-container__el amount_tokens">{{ item.amount_tokens }}</div>
-			<div :class="{ 'ref-admin-successful': item.status == 'true', 'ref-admin-failed': item.status == 'false' }" class="ref-admin-container__el status">{{ item.status }}</div>
+			<div class="ref-admin-container__el tokens">{{ item.tokens }}</div>
+			<div class="ref-admin-container__el wallet_to">{{ item.wallet_to }}</div>
 			<div :class="{ 'ref-admin-successful': item.send == 'true', 'ref-admin-failed': item.send !== 'true' }" class="ref-admin-container__el send">{{ item.send }}</div>
-			<div class="ref-admin-container__el from"><span>{{ item.from }}</span><span v-if="item.to">{{ item.to }}</span></div>
-			<div class="ref-admin-container__el info">
-				<a :href="'https://' + item.info + '/tx/' + item.transaction_id">{{ item.info }}</a>
-			</div>
-			<div class="ref-admin-container__el date">{{ item.date }} {{item.bonus_send }} {{item.send }}</div>
-			<div :class="{ 'not-in-white-list': item.white_list_bonus == 'not in white-list'  }" class="ref-admin-container__el white-list">{{ item.white_list_bonus }}</div>
-			<div :class="{ 'ref-bonus': item.refs_bonus == 'no refs bonus'  }" class="ref-admin-container__el refs-bonus">{{ item.refs_bonus }}</div>
-			<button v-if="Number.isInteger(item.white_list_bonus)" @click="sendTokens(item)" class="ref-admin-container__el send-tokens">send tokens</button>
-			<button v-if="item.info == 'blockchain.info' && (item.bonus_send !== 'true' && item.send !== 'true')" @click="sendTokens(item)" class="ref-admin-container__el send-tokens">send tokens</button>
-			<button v-if="item.referred_by !== null && item.refs_send ==  '0'" @click="sendRefsToken(item)" class="ref-admin-container__el send-tokens">send refs</button>
+			<div class="ref-admin-container__el date">{{ item.updated_at }}</div>
+			<button class="ref-admin-container__el send-tokens" v-if="item.send == 'false'" @click="sendTokens(item)">send tokens</button>
 		</main>
 	</div>
 </section>
-
-<!--<div>-->
-    <!--<section class="a-wrapper__header">-->
-        <!--<div class="a-wrapper__header_el r-user-id">user_id</div>-->
-        <!--<div class="a-wrapper__header_el r-wallet-to">wallet</div>-->
-        <!--<div class="a-wrapper__header_el r-tokens">tokens</div>-->
-        <!--<div class="a-wrapper__header_el r-data">data</div>-->
-    <!--</section>-->
-
-    <!--<section class="a-wrapper__section" v-for="item in this.referrals">-->
-        <!--<div class="a-wrapper__section_el r-user-id">{{ item.user_id }}</div>-->
-        <!--<div class="a-wrapper__section_el r-wallet-to">{{ item.wallet_to }}</div>-->
-        <!--<div class="a-wrapper__section_el r-tokens">{{ item.tokens }}</div>-->
-        <!--<div class="a-wrapper__section_el r-data">{{ item.created_at }}</div>-->
-        <!--<button class="btn btn-default" v-if="item.send == 'false'" @click="sendTokens(item)">send tokens</button>-->
-    <!--</section>-->
-
-<!--</div>-->

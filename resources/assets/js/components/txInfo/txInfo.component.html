@@ -25,6 +25,12 @@
 				</li>
 			</ul>
 		</div>
+		<div class="helpBar__help-checkboxes">
+			<ul>
+				<li> <input type="checkbox" v-model="userTx" @click="checkBoxClick" checked/> users transactions</li>
+				<li> <input type="checkbox" v-model="txStatus" @click="checkBoxClick" checked/> status: true </li>
+			</ul>
+		</div>
 	</div>
 	<div class="tx-container">
 	  <header>
@@ -33,7 +39,9 @@
 		  <div class="tx-container__el amount" @click="sort('amount')">amount</div>
 		  <div class="tx-container__el amount_tokens" @click="sort('amount_tokens')">amount_tokens</div>
 		  <div class="tx-container__el status" @click="sort('status')">status</div>
-		  <div class="tx-container__el send" @click="sort('send')">send</div>
+		  <div class="tx-container__el send" @click="sort('send')">sent for BTC?</div>
+		  <div class="tx-container__el send" @click="sort('bonus_send')">sent for W-L?</div>
+		  <div class="tx-container__el send" @click="sort('refs_send')">sent for ref?</div>
 		  <div class="tx-container__el from" @click="sort('from')">from/to</div>
 		  <div class="tx-container__el info" @click="sort('info')">info</div>
 		  <div class="tx-container__el date" @click="sort('date')">date</div>
@@ -47,6 +55,8 @@
 		  <div class="tx-container__el amount_tokens">{{ item.amount_tokens }}</div>
 		  <div :class="{ 'tx-successful': item.status == 'true', 'tx-failed': item.status == 'false' }" class="tx-container__el status">{{ item.status }}</div>
 		  <div :class="{ 'tx-successful': item.send == 'true', 'tx-failed': item.send !== 'true' }" class="tx-container__el send">{{ item.send }}</div>
+		  <div :class="{ 'tx-successful': item.bonus_send == 'true', 'tx-failed': item.bonus_send !== 'true' }" class="tx-container__el send">{{ item.bonus_send }}</div>
+		  <div :class="{ 'tx-successful': item.refs_send == 'true', 'tx-failed': item.refs_send !== 'true' }" class="tx-container__el send">{{ item.refs_send }}</div>
 		  <div class="tx-container__el from"><span>{{ item.from }}</span><span v-if="item.to">{{ item.to }}</span></div>
 		  <div class="tx-container__el info">
 			  <a :href="'https://' + item.info + '/tx/' + item.transaction_id">{{ item.info }}</a>

@@ -54058,7 +54058,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, "\n.tx-info .tx-container__el[data-v-8a11ee28], .tx-info .tx-container header[data-v-8a11ee28], .tx-info .tx-container main[data-v-8a11ee28] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.tx-info .tx-container main div.from[data-v-8a11ee28] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.tx-info .helpBar[data-v-8a11ee28] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n@-webkit-keyframes sk-foldCubeAngle-data-v-8a11ee28 {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n@keyframes sk-foldCubeAngle-data-v-8a11ee28 {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n.tx-info[data-v-8a11ee28] {\n  width: 100%;\n  margin-left: -12%;\n  margin-bottom: 40px;\n}\n.tx-info .helpBar[data-v-8a11ee28] {\n    width: 1075px;\n}\n.tx-info .tx-container__el[data-v-8a11ee28] {\n    text-align: center;\n    border: 1px solid #1b6d85;\n    color: #A3A3A3;\n}\n.tx-info .tx-container__el.id[data-v-8a11ee28] {\n      width: 55px;\n}\n.tx-info .tx-container__el.currency[data-v-8a11ee28] {\n      width: 55px;\n}\n.tx-info .tx-container__el.amount[data-v-8a11ee28] {\n      width: 55px;\n}\n.tx-info .tx-container__el.amount_tokens[data-v-8a11ee28] {\n      width: 110px;\n}\n.tx-info .tx-container__el.status[data-v-8a11ee28] {\n      width: 70px;\n}\n.tx-info .tx-container__el.send[data-v-8a11ee28] {\n      width: 70px;\n}\n.tx-info .tx-container__el.from[data-v-8a11ee28] {\n      width: 320px;\n}\n.tx-info .tx-container__el.info[data-v-8a11ee28] {\n      width: 100px;\n}\n.tx-info .tx-container__el.date[data-v-8a11ee28] {\n      width: 200px;\n}\n.tx-info .tx-container__el.white-list[data-v-8a11ee28] {\n      width: 110px;\n}\n.tx-info .tx-container__el.refs-bonus[data-v-8a11ee28] {\n      width: 110px;\n}\n.tx-info .tx-container__el.send-tokens[data-v-8a11ee28] {\n      width: 90px;\n      margin-left: 5px;\n      background: #1e6176;\n      color: white;\n      border: none;\n      cursor: pointer;\n}\n.tx-info .tx-container__el.tx-successful[data-v-8a11ee28] {\n      color: #27ae60;\n}\n.tx-info .tx-container__el.tx-failed[data-v-8a11ee28] {\n      color: #CF0032;\n}\n.tx-info .tx-container__el.not-in-white-list[data-v-8a11ee28] {\n      color: black;\n}\n.tx-info .tx-container header[data-v-8a11ee28] {\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n    background: #1b6d85;\n    width: 1255px;\n}\n.tx-info .tx-container header div[data-v-8a11ee28] {\n      color: white;\n      cursor: pointer;\n}\n.tx-info .tx-container main[data-v-8a11ee28] {\n    width: 1445px;\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n}\n.tx-info .tx-container main div[data-v-8a11ee28] {\n      height: 40px;\n      color: #4b4b4b;\n}\n.tx-info .tx-container main div.from[data-v-8a11ee28] {\n        font-size: 12px;\n}\n", ""]);
+exports.push([module.i, "\n.tx-info .tx-container__el[data-v-8a11ee28], .tx-info .tx-container header[data-v-8a11ee28], .tx-info .tx-container main[data-v-8a11ee28] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.tx-info .tx-container main div.from[data-v-8a11ee28] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.tx-info .helpBar[data-v-8a11ee28] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n@-webkit-keyframes sk-foldCubeAngle-data-v-8a11ee28 {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n@keyframes sk-foldCubeAngle-data-v-8a11ee28 {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n.tx-info[data-v-8a11ee28] {\n  width: 100%;\n  margin-left: -20%;\n  margin-bottom: 40px;\n}\n.tx-info .helpBar[data-v-8a11ee28] {\n    width: 1075px;\n}\n.tx-info .tx-container__el[data-v-8a11ee28] {\n    text-align: center;\n    border: 1px solid #1b6d85;\n    color: #A3A3A3;\n}\n.tx-info .tx-container__el.id[data-v-8a11ee28] {\n      width: 55px;\n}\n.tx-info .tx-container__el.currency[data-v-8a11ee28] {\n      width: 55px;\n}\n.tx-info .tx-container__el.amount[data-v-8a11ee28] {\n      width: 55px;\n}\n.tx-info .tx-container__el.amount_tokens[data-v-8a11ee28] {\n      width: 110px;\n}\n.tx-info .tx-container__el.status[data-v-8a11ee28] {\n      width: 70px;\n}\n.tx-info .tx-container__el.send[data-v-8a11ee28] {\n      width: 70px;\n}\n.tx-info .tx-container__el.from[data-v-8a11ee28] {\n      width: 320px;\n}\n.tx-info .tx-container__el.info[data-v-8a11ee28] {\n      width: 100px;\n}\n.tx-info .tx-container__el.date[data-v-8a11ee28] {\n      width: 200px;\n}\n.tx-info .tx-container__el.white-list[data-v-8a11ee28] {\n      width: 110px;\n}\n.tx-info .tx-container__el.refs-bonus[data-v-8a11ee28] {\n      width: 110px;\n}\n.tx-info .tx-container__el.send-tokens[data-v-8a11ee28] {\n      width: 90px;\n      margin-left: 5px;\n      background: #1e6176;\n      color: white;\n      border: none;\n      cursor: pointer;\n      font-size: 12px;\n}\n.tx-info .tx-container__el.tx-successful[data-v-8a11ee28] {\n      color: #27ae60;\n}\n.tx-info .tx-container__el.tx-failed[data-v-8a11ee28] {\n      color: #CF0032;\n}\n.tx-info .tx-container__el.not-in-white-list[data-v-8a11ee28] {\n      color: black;\n}\n.tx-info .tx-container header[data-v-8a11ee28] {\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n    background: #1b6d85;\n    width: 1395px;\n}\n.tx-info .tx-container header div[data-v-8a11ee28] {\n      color: white;\n      cursor: pointer;\n}\n.tx-info .tx-container main[data-v-8a11ee28] {\n    width: 1500px;\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n}\n.tx-info .tx-container main div[data-v-8a11ee28] {\n      height: 40px;\n      color: #4b4b4b;\n}\n.tx-info .tx-container main div.from[data-v-8a11ee28] {\n        font-size: 12px;\n}\n", ""]);
 
 // exports
 
@@ -54092,9 +54092,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             adminTxData: [],
             currentSort: 'date',
             currentSortDir: 'desc',
-            pageSize: 5,
+            pageSize: 10,
             currentPage: 1,
             totalPages: 1,
+            userTx: true,
+            txStatus: true,
             currencies: ['BTC', 'ETH'],
             checkedCurrency: ['BTC', 'ETH'],
             abi: [{ "constant": true, "inputs": [], "name": "hasClosed", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [], "name": "addBalanceForOraclize", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "delKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }], "name": "isOwner", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokenPriceInWei", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "cap", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }, { "name": "proof", "type": "bytes" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "addKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "weiRaised", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "closingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [], "name": "finalize", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "capReached", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokensSold", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "wallet", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "currentStage", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_url", "type": "string" }], "name": "setOraclizeUrl", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "updatePrice", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_price", "type": "uint256" }], "name": "setTokenPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_newOwner", "type": "address" }], "name": "addOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_owner", "type": "address" }], "name": "delOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_to", "type": "address" }], "name": "withdrawBalance", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "uint256" }], "name": "stages", "outputs": [{ "name": "stopDay", "type": "uint256" }, { "name": "bonus1", "type": "uint256" }, { "name": "bonus2", "type": "uint256" }, { "name": "bonus3", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "bytes32" }], "name": "pendingQueries", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "isFinalized", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_stopDay", "type": "uint256" }, { "name": "_bonus1", "type": "uint256" }, { "name": "_bonus2", "type": "uint256" }, { "name": "_bonus3", "type": "uint256" }], "name": "addStage", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "openingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "reserveFund", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "address" }], "name": "KYC", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_newPrice", "type": "uint256" }], "name": "setGasPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclizeBalance", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclize_url", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }], "name": "buyTokens", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }, { "name": "_tokens", "type": "uint256" }], "name": "manualSale", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "stageCount", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "token", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "inputs": [{ "name": "_wallet", "type": "address" }, { "name": "_token", "type": "address" }, { "name": "_cap", "type": "uint256" }, { "name": "_openingTime", "type": "uint256" }, { "name": "_closingTime", "type": "uint256" }, { "name": "_reserveFund", "type": "address" }, { "name": "_tokenPriceInWei", "type": "uint256" }], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "payable": true, "stateMutability": "payable", "type": "fallback" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "purchaser", "type": "address" }, { "indexed": true, "name": "beneficiary", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }, { "indexed": false, "name": "tokens", "type": "uint256" }, { "indexed": false, "name": "bonus", "type": "uint256" }], "name": "TokenPurchase", "type": "event" }, { "anonymous": false, "inputs": [], "name": "Finalized", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "description", "type": "string" }], "name": "NewOraclizeQuery", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "price", "type": "string" }], "name": "NewKrakenPriceTicker", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "newOwner", "type": "address" }], "name": "OwnerAdded", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "owner", "type": "address" }], "name": "OwnerDeleted", "type": "event" }],
@@ -54125,6 +54127,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 if (item >= start && item < end) return true;
             }).filter(function (i) {
                 return _this.checkedCurrency.includes(i.currency);
+            }).filter(function (i) {
+                if (_this.txStatus === true) {
+                    if (i.status !== 'false') return true;
+                } else {
+                    return true;
+                }
+            }).filter(function (i) {
+                if (_this.userTx === true) {
+                    if (i.user_id !== null) return true;
+                } else {
+                    return true;
+                }
             });
         }
     },
@@ -54136,6 +54150,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/getDataForAdminTx').then(function (res) {
                 _this2.countWhiteListBonus(res.data);
                 _this2.totalPages = res.data.length; // get quantity of transactions
+                _this2.pageSize = _this2.totalPages;
             });
         },
         countWhiteListBonus: function countWhiteListBonus(array) {
@@ -54186,35 +54201,32 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
         checkBoxClick: function checkBoxClick() {
             this.pageSize = this.totalPages;
+            console.log(this.sortedItems);
         },
 
         sendTokens: function sendTokens(item) {
             switch (this.showButtonCondition(item)[1]) {
                 case 'white-list bonus':
-                    this.sendTokensProccess(item, item.white_list_bonus);
+                    this.sendTokensProccess(item, item.white_list_bonus, 'bonus_send');
                     break;
                 case 'for BTC investment':
-                    this.sendTokensProccess(item, item.amount_tokens);
+                    this.sendTokensProccess(item, item.amount_tokens, 'send');
                     break;
                 case 'for referral link':
-                    this.sendTokensProccess(item, item.refs_bonus);
+                    this.sendTokensProccess(item, item.refs_bonus, 'refs_send');
                     break;
             }
         },
-        sendTokensProccess: function sendTokensProccess(item, tokens) {
+        sendTokensProccess: function sendTokensProccess(item, tokens, type) {
             var _this3 = this;
 
             var beneficiary = item.to ? item.to : item.from;
-            var provider = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.Web3Provider(web3.currentProvider, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.networks.homestead);
             var contract = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.Contract(this.crowdSaleAddress, this.abi, this.provider.getSigner());
-            var overrideOptions = {
-                gasLimit: 150000
-            };
-            contract.manualSale(beneficiary, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.utils.parseEther(tokens), overrideOptions).then(function (tx) {
+            contract.manualSale(beneficiary, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.utils.parseEther(tokens), this.overrideOptions).then(function (tx) {
                 alert('submitted');
+                _this3.updateTransaction(item.transaction_id, type);
                 provider.waitForTransaction(tx.hash).then(function (tx) {
                     alert('confirmed');
-                    _this3.updateTransaction(item.transaction_id, 'bonus_send');
                 });
             });
         },
@@ -63499,6 +63511,94 @@ var render = function() {
             ])
           })
         )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "helpBar__help-checkboxes" }, [
+        _c("ul", [
+          _c("li", [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.userTx,
+                  expression: "userTx"
+                }
+              ],
+              attrs: { type: "checkbox", checked: "" },
+              domProps: {
+                checked: Array.isArray(_vm.userTx)
+                  ? _vm._i(_vm.userTx, null) > -1
+                  : _vm.userTx
+              },
+              on: {
+                click: _vm.checkBoxClick,
+                change: function($event) {
+                  var $$a = _vm.userTx,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.userTx = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.userTx = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.userTx = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" users transactions")
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.txStatus,
+                  expression: "txStatus"
+                }
+              ],
+              attrs: { type: "checkbox", checked: "" },
+              domProps: {
+                checked: Array.isArray(_vm.txStatus)
+                  ? _vm._i(_vm.txStatus, null) > -1
+                  : _vm.txStatus
+              },
+              on: {
+                click: _vm.checkBoxClick,
+                change: function($event) {
+                  var $$a = _vm.txStatus,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.txStatus = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.txStatus = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.txStatus = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" status: true ")
+          ])
+        ])
       ])
     ]),
     _vm._v(" "),
@@ -63582,7 +63682,33 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("send")]
+            [_vm._v("sent for BTC?")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "tx-container__el send",
+              on: {
+                click: function($event) {
+                  _vm.sort("bonus_send")
+                }
+              }
+            },
+            [_vm._v("sent for W-L?")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "tx-container__el send",
+              on: {
+                click: function($event) {
+                  _vm.sort("refs_send")
+                }
+              }
+            },
+            [_vm._v("sent for ref?")]
           ),
           _vm._v(" "),
           _c(
@@ -63691,6 +63817,30 @@ var render = function() {
                 }
               },
               [_vm._v(_vm._s(item.send))]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "tx-container__el send",
+                class: {
+                  "tx-successful": item.bonus_send == "true",
+                  "tx-failed": item.bonus_send !== "true"
+                }
+              },
+              [_vm._v(_vm._s(item.bonus_send))]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "tx-container__el send",
+                class: {
+                  "tx-successful": item.refs_send == "true",
+                  "tx-failed": item.refs_send !== "true"
+                }
+              },
+              [_vm._v(_vm._s(item.refs_send))]
             ),
             _vm._v(" "),
             _c("div", { staticClass: "tx-container__el from" }, [
@@ -63852,7 +64002,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, "\n.ref-admin-info .ref-admin-container__el[data-v-ff36569c], .ref-admin-info .ref-admin-container header[data-v-ff36569c], .ref-admin-info .ref-admin-container main[data-v-ff36569c] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.ref-admin-info .ref-admin-container main div.from[data-v-ff36569c] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.ref-admin-info .helpBar[data-v-ff36569c] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n@-webkit-keyframes sk-foldCubeAngle-data-v-ff36569c {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n@keyframes sk-foldCubeAngle-data-v-ff36569c {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n.ref-admin-info[data-v-ff36569c] {\n  width: 100%;\n  margin-left: -12%;\n  margin-bottom: 40px;\n}\n.ref-admin-info .helpBar[data-v-ff36569c] {\n    width: 1075px;\n}\n.ref-admin-info .ref-admin-container__el[data-v-ff36569c] {\n    text-align: center;\n    border: 1px solid #1b6d85;\n    color: #A3A3A3;\n}\n.ref-admin-info .ref-admin-container__el.id[data-v-ff36569c] {\n      width: 55px;\n}\n.ref-admin-info .ref-admin-container__el.currency[data-v-ff36569c] {\n      width: 55px;\n}\n.ref-admin-info .ref-admin-container__el.amount[data-v-ff36569c] {\n      width: 55px;\n}\n.ref-admin-info .ref-admin-container__el.amount_tokens[data-v-ff36569c] {\n      width: 110px;\n}\n.ref-admin-info .ref-admin-container__el.status[data-v-ff36569c] {\n      width: 70px;\n}\n.ref-admin-info .ref-admin-container__el.send[data-v-ff36569c] {\n      width: 70px;\n}\n.ref-admin-info .ref-admin-container__el.from[data-v-ff36569c] {\n      width: 320px;\n}\n.ref-admin-info .ref-admin-container__el.info[data-v-ff36569c] {\n      width: 100px;\n}\n.ref-admin-info .ref-admin-container__el.date[data-v-ff36569c] {\n      width: 200px;\n}\n.ref-admin-info .ref-admin-container__el.white-list[data-v-ff36569c] {\n      width: 110px;\n}\n.ref-admin-info .ref-admin-container__el.refs-bonus[data-v-ff36569c] {\n      width: 110px;\n}\n.ref-admin-info .ref-admin-container__el.send-tokens[data-v-ff36569c] {\n      width: 90px;\n      margin-left: 5px;\n      background: #1e6176;\n      color: white;\n      border: none;\n      cursor: pointer;\n}\n.ref-admin-info .ref-admin-container__el.ref-admin-successful[data-v-ff36569c] {\n      color: #27ae60;\n}\n.ref-admin-info .ref-admin-container__el.ref-admin-failed[data-v-ff36569c] {\n      color: #CF0032;\n}\n.ref-admin-info .ref-admin-container__el.not-in-white-list[data-v-ff36569c] {\n      color: black;\n}\n.ref-admin-info .ref-admin-container header[data-v-ff36569c] {\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n    background: #1b6d85;\n    width: 1255px;\n}\n.ref-admin-info .ref-admin-container header div[data-v-ff36569c] {\n      color: white;\n      cursor: pointer;\n}\n.ref-admin-info .ref-admin-container main[data-v-ff36569c] {\n    width: 1445px;\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n}\n.ref-admin-info .ref-admin-container main div[data-v-ff36569c] {\n      height: 40px;\n      color: #4b4b4b;\n}\n.ref-admin-info .ref-admin-container main div.from[data-v-ff36569c] {\n        font-size: 12px;\n}\n", ""]);
+exports.push([module.i, "\n.ref-admin-info .ref-admin-container__el[data-v-ff36569c], .ref-admin-info .ref-admin-container header[data-v-ff36569c], .ref-admin-info .ref-admin-container main[data-v-ff36569c] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.ref-admin-info .ref-admin-container main div.from[data-v-ff36569c] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.ref-admin-info .helpBar[data-v-ff36569c] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n@-webkit-keyframes sk-foldCubeAngle-data-v-ff36569c {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n@keyframes sk-foldCubeAngle-data-v-ff36569c {\n0%, 10% {\n    -webkit-transform: perspective(140px) rotateX(-180deg);\n    transform: perspective(140px) rotateX(-180deg);\n    opacity: 0;\n}\n25%, 75% {\n    -webkit-transform: perspective(140px) rotateX(0deg);\n    transform: perspective(140px) rotateX(0deg);\n    opacity: 1;\n}\n90%, 100% {\n    -webkit-transform: perspective(140px) rotateY(180deg);\n    transform: perspective(140px) rotateY(180deg);\n    opacity: 0;\n}\n}\n.ref-admin-info[data-v-ff36569c] {\n  width: 100%;\n  margin-left: -5%;\n  margin-bottom: 40px;\n}\n.ref-admin-info .helpBar[data-v-ff36569c] {\n    width: 875px;\n}\n.ref-admin-info .ref-admin-container__el[data-v-ff36569c] {\n    text-align: center;\n    border: 1px solid #1b6d85;\n    color: #A3A3A3;\n}\n.ref-admin-info .ref-admin-container__el.id[data-v-ff36569c] {\n      width: 55px;\n}\n.ref-admin-info .ref-admin-container__el.tokens[data-v-ff36569c] {\n      width: 110px;\n}\n.ref-admin-info .ref-admin-container__el.wallet_to[data-v-ff36569c] {\n      width: 320px;\n      font-size: 12px;\n}\n.ref-admin-info .ref-admin-container__el.send[data-v-ff36569c] {\n      width: 70px;\n}\n.ref-admin-info .ref-admin-container__el.date[data-v-ff36569c] {\n      width: 320px;\n}\n.ref-admin-info .ref-admin-container__el.send-tokens[data-v-ff36569c] {\n      width: 90px;\n      margin-left: 5px;\n      background: #1e6176;\n      color: white;\n      border: none;\n      cursor: pointer;\n}\n.ref-admin-info .ref-admin-container__el.ref-admin-successful[data-v-ff36569c] {\n      color: #27ae60;\n}\n.ref-admin-info .ref-admin-container__el.ref-admin-failed[data-v-ff36569c] {\n      color: #CF0032;\n}\n.ref-admin-info .ref-admin-container header[data-v-ff36569c] {\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n    background: #1b6d85;\n    width: 875px;\n}\n.ref-admin-info .ref-admin-container header div[data-v-ff36569c] {\n      color: white;\n      cursor: pointer;\n}\n.ref-admin-info .ref-admin-container main[data-v-ff36569c] {\n    width: 1445px;\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n}\n.ref-admin-info .ref-admin-container main div[data-v-ff36569c] {\n      height: 40px;\n      color: #4b4b4b;\n}\n.ref-admin-info .ref-admin-container main div.from[data-v-ff36569c] {\n        font-size: 12px;\n}\n", ""]);
 
 // exports
 
@@ -63875,6 +64025,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "RefferalsTable",
 
@@ -63886,11 +64037,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             pageSize: 5,
             currentPage: 1,
             totalPages: 1,
-            currencies: ['BTC', 'ETH'],
-            checkedCurrency: ['BTC', 'ETH'],
-            abi: [{ "anonymous": false, "inputs": [{ "indexed": true, "name": "owner", "type": "address" }], "name": "OwnerDeleted", "type": "event" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }, { "name": "proof", "type": "bytes" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "addBalanceForOraclize", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "addKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_newOwner", "type": "address" }], "name": "addOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_stopDay", "type": "uint256" }, { "name": "_bonus1", "type": "uint256" }, { "name": "_bonus2", "type": "uint256" }, { "name": "_bonus3", "type": "uint256" }], "name": "addStage", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }], "name": "buyTokens", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "delKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_owner", "type": "address" }], "name": "delOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "finalize", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }, { "name": "_tokens", "type": "uint256" }], "name": "manualSale", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "anonymous": false, "inputs": [], "name": "Finalized", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "purchaser", "type": "address" }, { "indexed": true, "name": "beneficiary", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }, { "indexed": false, "name": "tokens", "type": "uint256" }, { "indexed": false, "name": "bonus", "type": "uint256" }], "name": "TokenPurchase", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "description", "type": "string" }], "name": "NewOraclizeQuery", "type": "event" }, { "constant": false, "inputs": [{ "name": "_newPrice", "type": "uint256" }], "name": "setGasPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "newOwner", "type": "address" }], "name": "OwnerAdded", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "price", "type": "string" }], "name": "NewKrakenPriceTicker", "type": "event" }, { "constant": false, "inputs": [{ "name": "_url", "type": "string" }], "name": "setOraclizeUrl", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_price", "type": "uint256" }], "name": "setTokenPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "name": "_wallet", "type": "address" }, { "name": "_token", "type": "address" }, { "name": "_cap", "type": "uint256" }, { "name": "_reserveFund", "type": "address" }, { "name": "_tokenPriceInWei", "type": "uint256" }], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "payable": true, "stateMutability": "payable", "type": "fallback" }, { "constant": false, "inputs": [], "name": "updatePrice", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_to", "type": "address" }], "name": "withdrawBalance", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "cap", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "capReached", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "closingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "currentStage", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "hasClosed", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "isFinalized", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }], "name": "isOwner", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "address" }], "name": "KYC", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "openingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclize_url", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclizeBalance", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "bytes32" }], "name": "pendingQueries", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "reserveFund", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "stageCount", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "uint256" }], "name": "stages", "outputs": [{ "name": "stopDay", "type": "uint256" }, { "name": "bonus1", "type": "uint256" }, { "name": "bonus2", "type": "uint256" }, { "name": "bonus3", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "token", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokenPriceInWei", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokensSold", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "wallet", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "weiRaised", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }],
+            abi: [{ "constant": true, "inputs": [], "name": "hasClosed", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [], "name": "addBalanceForOraclize", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "delKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }], "name": "isOwner", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokenPriceInWei", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "cap", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "myid", "type": "bytes32" }, { "name": "result", "type": "string" }, { "name": "proof", "type": "bytes" }], "name": "__callback", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_user", "type": "address" }], "name": "addKYC", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "weiRaised", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "closingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [], "name": "finalize", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "capReached", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "tokensSold", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "wallet", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "currentStage", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_url", "type": "string" }], "name": "setOraclizeUrl", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "updatePrice", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_price", "type": "uint256" }], "name": "setTokenPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_newOwner", "type": "address" }], "name": "addOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_owner", "type": "address" }], "name": "delOwner", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_to", "type": "address" }], "name": "withdrawBalance", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "uint256" }], "name": "stages", "outputs": [{ "name": "stopDay", "type": "uint256" }, { "name": "bonus1", "type": "uint256" }, { "name": "bonus2", "type": "uint256" }, { "name": "bonus3", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "bytes32" }], "name": "pendingQueries", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "isFinalized", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_stopDay", "type": "uint256" }, { "name": "_bonus1", "type": "uint256" }, { "name": "_bonus2", "type": "uint256" }, { "name": "_bonus3", "type": "uint256" }], "name": "addStage", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "openingTime", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "reserveFund", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "address" }], "name": "KYC", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_newPrice", "type": "uint256" }], "name": "setGasPrice", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclizeBalance", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "oraclize_url", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }], "name": "buyTokens", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_beneficiary", "type": "address" }, { "name": "_tokens", "type": "uint256" }], "name": "manualSale", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "stageCount", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "token", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "inputs": [{ "name": "_wallet", "type": "address" }, { "name": "_token", "type": "address" }, { "name": "_cap", "type": "uint256" }, { "name": "_openingTime", "type": "uint256" }, { "name": "_closingTime", "type": "uint256" }, { "name": "_reserveFund", "type": "address" }, { "name": "_tokenPriceInWei", "type": "uint256" }], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "payable": true, "stateMutability": "payable", "type": "fallback" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "purchaser", "type": "address" }, { "indexed": true, "name": "beneficiary", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }, { "indexed": false, "name": "tokens", "type": "uint256" }, { "indexed": false, "name": "bonus", "type": "uint256" }], "name": "TokenPurchase", "type": "event" }, { "anonymous": false, "inputs": [], "name": "Finalized", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "description", "type": "string" }], "name": "NewOraclizeQuery", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "price", "type": "string" }], "name": "NewKrakenPriceTicker", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "newOwner", "type": "address" }], "name": "OwnerAdded", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "owner", "type": "address" }], "name": "OwnerDeleted", "type": "event" }],
             crowdSaleAddress: "0x0c78003843B4a72b765938cb3b14aecb188dBC6a",
-            overrideOptions: { gasLimit: 150000 }
+            overrideOptions: { gasLimit: 150000 },
+            provider: new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.Web3Provider(web3.currentProvider, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.networks.homestead)
         };
     },
     created: function created() {
@@ -63899,7 +64049,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
     computed: {
-
         sortedItems: function sortedItems() {
             var _this = this;
 
@@ -63923,6 +64072,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/admin/referrals').then(function (res) {
                 _this2.referrals = res.data;
+                console.log(_this2.referrals);
             });
         },
 
@@ -63939,15 +64089,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             var _this3 = this;
 
             if (item.send == 'false' && item.tokens !== '0.00') {
-                //сеть. для мэйннет - ethers.providers.networks.homestead
-                var provider = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.Web3Provider(web3.currentProvider, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.providers.networks.homestead);
-                var contract = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.Contract(this.crowdSaleAddress, this.abi, provider.getSigner());
+                var contract = new __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.Contract(this.crowdSaleAddress, this.abi, this.provider.getSigner());
                 var beneficiary = item.wallet_to; //адрес кому отправить токены
                 contract.manualSale(beneficiary, __WEBPACK_IMPORTED_MODULE_2_ethers___default.a.utils.parseEther(String(item.tokens)), this.overrideOptions).then(function (tx) {
                     alert('Submitted');
+                    _this3.updateReferral(item);
                     provider.waitForTransaction(tx.hash).then(function (tx) {
                         alert('Confirmed');
-                        _this3.updateReferral(item);
                     });
                 });
             }
@@ -64091,7 +64239,7 @@ var render = function() {
               staticClass: "ref-admin-container__el id",
               on: {
                 click: function($event) {
-                  _vm.sort("id")
+                  _vm.sort("user_id")
                 }
               }
             },
@@ -64101,23 +64249,10 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "ref-admin-container__el currency",
+              staticClass: "ref-admin-container__el tokens",
               on: {
                 click: function($event) {
-                  _vm.sort("wallet")
-                }
-              }
-            },
-            [_vm._v("wallet")]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "ref-admin-container__el amount",
-              on: {
-                click: function($event) {
-                  _vm.sort("amount")
+                  _vm.sort("tokens")
                 }
               }
             },
@@ -64127,14 +64262,14 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "ref-admin-container__el amount_tokens",
+              staticClass: "ref-admin-container__el wallet_to",
               on: {
                 click: function($event) {
-                  _vm.sort("amount_tokens")
+                  _vm.sort("wallet_to")
                 }
               }
             },
-            [_vm._v("token amount")]
+            [_vm._v("wallet")]
           ),
           _vm._v(" "),
           _c(
@@ -64156,7 +64291,7 @@ var render = function() {
               staticClass: "ref-admin-container__el date",
               on: {
                 click: function($event) {
-                  _vm.sort("date")
+                  _vm.sort("updated_at")
                 }
               }
             },
@@ -64170,27 +64305,13 @@ var render = function() {
               _vm._v(_vm._s(item.user_id))
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "ref-admin-container__el wallet" }, [
-              _vm._v(_vm._s(item.wallet))
+            _c("div", { staticClass: "ref-admin-container__el tokens" }, [
+              _vm._v(_vm._s(item.tokens))
             ]),
             _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "ref-admin-container__el amount_tokens" },
-              [_vm._v(_vm._s(item.amount_tokens))]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "ref-admin-container__el status",
-                class: {
-                  "ref-admin-successful": item.status == "true",
-                  "ref-admin-failed": item.status == "false"
-                }
-              },
-              [_vm._v(_vm._s(item.status))]
-            ),
+            _c("div", { staticClass: "ref-admin-container__el wallet_to" }, [
+              _vm._v(_vm._s(item.wallet_to))
+            ]),
             _vm._v(" "),
             _c(
               "div",
@@ -64204,55 +64325,11 @@ var render = function() {
               [_vm._v(_vm._s(item.send))]
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "ref-admin-container__el from" }, [
-              _c("span", [_vm._v(_vm._s(item.from))]),
-              item.to ? _c("span", [_vm._v(_vm._s(item.to))]) : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "ref-admin-container__el info" }, [
-              _c(
-                "a",
-                {
-                  attrs: {
-                    href: "https://" + item.info + "/tx/" + item.transaction_id
-                  }
-                },
-                [_vm._v(_vm._s(item.info))]
-              )
-            ]),
-            _vm._v(" "),
             _c("div", { staticClass: "ref-admin-container__el date" }, [
-              _vm._v(
-                _vm._s(item.date) +
-                  " " +
-                  _vm._s(item.bonus_send) +
-                  " " +
-                  _vm._s(item.send)
-              )
+              _vm._v(_vm._s(item.updated_at))
             ]),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "ref-admin-container__el white-list",
-                class: {
-                  "not-in-white-list":
-                    item.white_list_bonus == "not in white-list"
-                }
-              },
-              [_vm._v(_vm._s(item.white_list_bonus))]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "ref-admin-container__el refs-bonus",
-                class: { "ref-bonus": item.refs_bonus == "no refs bonus" }
-              },
-              [_vm._v(_vm._s(item.refs_bonus))]
-            ),
-            _vm._v(" "),
-            Number.isInteger(item.white_list_bonus)
+            item.send == "false"
               ? _c(
                   "button",
                   {
@@ -64264,37 +64341,6 @@ var render = function() {
                     }
                   },
                   [_vm._v("send tokens")]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            item.info == "blockchain.info" &&
-            (item.bonus_send !== "true" && item.send !== "true")
-              ? _c(
-                  "button",
-                  {
-                    staticClass: "ref-admin-container__el send-tokens",
-                    on: {
-                      click: function($event) {
-                        _vm.sendTokens(item)
-                      }
-                    }
-                  },
-                  [_vm._v("send tokens")]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            item.referred_by !== null && item.refs_send == "0"
-              ? _c(
-                  "button",
-                  {
-                    staticClass: "ref-admin-container__el send-tokens",
-                    on: {
-                      click: function($event) {
-                        _vm.sendRefsToken(item)
-                      }
-                    }
-                  },
-                  [_vm._v("send refs")]
                 )
               : _vm._e()
           ])
