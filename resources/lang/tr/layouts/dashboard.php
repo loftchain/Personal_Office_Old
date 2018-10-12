@@ -10,5 +10,6 @@ return [
     'logOut' => 'çıkış',
     'changeEmail' => 'e-postayı Değiştir',
     'changePassword' => 'parolayı Değiştir',
-    'changelly' => 'değişim'
+    'changelly' => 'değişim',
+		'howToUse' => 'nasıl kullanılır',
 ];

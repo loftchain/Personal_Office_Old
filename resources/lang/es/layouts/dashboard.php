@@ -12,4 +12,5 @@ return [
     'changeEmail' => 'Modificar mail',
     'changePassword' => 'Modificar password',
     'changelly' => 'Cambio',
+    'howToUse' => 'cómo utilizar',
 ];

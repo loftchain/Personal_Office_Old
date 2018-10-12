@@ -12,4 +12,5 @@ return [
 		'changeEmail' => '이메일을 바꾸다',
 		'changePassword' => '비밀번호 변경',
 		'changelly' => '교환',
+		'howToUse' => '사용하는 방법',
 ];
