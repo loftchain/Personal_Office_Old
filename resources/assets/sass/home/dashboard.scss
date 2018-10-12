@@ -16,6 +16,7 @@
     position: relative;
     padding: 10px;
     border-bottom: transparent;
+    box-shadow: 0 0 0 0;
   }
 
   &.auth{
@@ -58,6 +59,8 @@
       left:0;
       right: 0;
       margin: 0 auto;
+      border-top: 1px solid $gray2;
+      border-bottom: 1px solid $gray2;
     }
 
     ul{
@@ -68,13 +71,15 @@
       }
 
       li{
+        @extend %fcc;
+
         &.active a{
           color:$main1!important;
           opacity: 1;
         }
 
         a{
-          font-size: 18px;
+          font-size: 14px;
           font-weight: 700;
           text-align: center;
           text-transform: uppercase;

@@ -57,6 +57,10 @@ footer {
     left:5px;
     font-size: 12px;
 
+    @media #{$mobile} {
+      display: none;
+    }
+
     &__kyc {
       font-weight: bold;
     }

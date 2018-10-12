@@ -271,6 +271,7 @@
     @media #{$mobile} {
       width: 100%;
       padding: 0 30px;
+      flex-direction: column;
     }
 
     @media #{$mobile545} {
@@ -295,13 +296,13 @@
     }
 
     &_unified-wallet-button{
-      margin-right: 40px;
+      margin-right: 180px;
       cursor:pointer;
       @include x-gradient($main1, $main2);
       color:  white;
       border: 1px solid $main1;
       border-radius: 25px;
-      padding: 10px 20px;
+      padding: 10px 40px;
       text-decoration: none;
       transition: ease-in-out .2ms;
 
@@ -310,6 +311,10 @@
         @include x-gradient($main2, $main2);
         border: 1px solid transparent;
         text-decoration: none;
+      }
+
+      @media #{$mobile} {
+        margin-right: 0;
       }
 
     }

@@ -17,6 +17,7 @@
                     <li> <a data-toggle="tab" href="#transactions">{!! trans('layouts/dashboard.myTx') !!}</a> </li>
                     <li> <a data-toggle="tab" href="#refs">{!! trans('layouts/dashboard.myRefs') !!}</a> </li>
                     <li> <a data-toggle="tab" href="#changelly">{!! trans('layouts/dashboard.changelly') !!}</a> </li>
+                    <li> <a data-toggle="tab" href="#howToUse">{!! trans('layouts/dashboard.howToUse') !!}</a> </li>
                 @endif
             </ul>
         </div>

@@ -28,6 +28,9 @@
             <div id="changelly" class="tab-pane fade">
               @include('home.changelly')
             </div>
+            <div id="howToUse" class="tab-pane fade">
+              @include('home.howToUse')
+            </div>
         @endif
     </div>
 

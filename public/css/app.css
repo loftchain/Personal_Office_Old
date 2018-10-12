@@ -100,6 +100,7 @@
 
 .a-wrapper section .a-confirm-btn,
 .x-dashboard__info,
+.x-dashboard__tabs ul li,
 .x-dashboard__options,
 .x-dashboard__guest .right-box,
 .x-widget .widget-part,
@@ -346,6 +347,12 @@ footer .developers {
   bottom: 5px;
   left: 5px;
   font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  footer .developers {
+    display: none;
+  }
 }
 
 footer .developers__kyc {
@@ -10438,7 +10445,7 @@ button.close {
     margin: 0 auto;
     right: 0;
     left: 0;
-    background: #041123;
+    background: white;
     -webkit-transition: .3s ease-in-out;
     transition: .3s ease-in-out;
     height: 250px;
@@ -10448,6 +10455,8 @@ button.close {
 @media (max-width: 1024px) {
   .header__links.is-active {
     top: 0;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -10632,6 +10641,8 @@ button.close {
     position: relative;
     padding: 10px;
     border-bottom: transparent;
+    -webkit-box-shadow: 0 0 0 0;
+            box-shadow: 0 0 0 0;
   }
 }
 
@@ -10677,6 +10688,8 @@ button.close {
     left: 0;
     right: 0;
     margin: 0 auto;
+    border-top: 1px solid #4b4b4b;
+    border-bottom: 1px solid #4b4b4b;
   }
 }
 
@@ -10693,7 +10706,7 @@ button.close {
 }
 
 .x-dashboard__tabs ul li a {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
@@ -11518,6 +11531,10 @@ button.close {
   .x-wallets__text {
     width: 100%;
     padding: 0 30px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 }
 
@@ -11546,7 +11563,7 @@ button.close {
 }
 
 .x-wallets__text_unified-wallet-button {
-  margin-right: 40px;
+  margin-right: 180px;
   cursor: pointer;
   background: #56CCF2;
   background: -webkit-gradient(left top, right top, color-stop(0%, #56CCF2), color-stop(100%, #458ED3));
@@ -11555,7 +11572,7 @@ button.close {
   color: white;
   border: 1px solid #56CCF2;
   border-radius: 25px;
-  padding: 10px 20px;
+  padding: 10px 40px;
   text-decoration: none;
   -webkit-transition: ease-in-out .2ms;
   transition: ease-in-out .2ms;
@@ -11574,6 +11591,12 @@ button.close {
   background: linear-gradient(to right, #458ED3 0%, #458ED3 100%);
   border: 1px solid transparent;
   text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .x-wallets__text_unified-wallet-button {
+    margin-right: 0;
+  }
 }
 
 .x-wallets__text p {
@@ -12096,6 +12119,17 @@ button.close {
 
 .x-ac-transaction {
   display: none;
+}
+
+.x-howToUse {
+  margin-top: 20px;
+}
+
+.x-howToUse ol li {
+  margin: 10px 0;
+  font-size: 22px;
+  color: #828282;
+  font-weight: bold;
 }
 
 .kyc-container {
