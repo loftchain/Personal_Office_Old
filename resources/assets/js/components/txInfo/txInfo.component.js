@@ -70,7 +70,6 @@ export default {
                     this.countWhiteListBonus(res.data);
                     this.totalPages = res.data.length;  // get quantity of transactions
                     this.pageSize = this.totalPages;
-
                 })
         },
 

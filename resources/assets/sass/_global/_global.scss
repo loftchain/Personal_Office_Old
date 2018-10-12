@@ -53,7 +53,22 @@ footer {
 
   .developers{
     position: absolute;
-    bottom: 0;
+    bottom: 5px;
+    left:5px;
+    font-size: 12px;
+
+    &__kyc {
+      font-weight: bold;
+    }
+
+    p{
+      margin: 2px 0;
+
+      a{
+        color: $main2;
+      }
+    }
+
   }
 }
 

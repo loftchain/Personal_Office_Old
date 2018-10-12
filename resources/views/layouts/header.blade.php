@@ -22,6 +22,7 @@
               <a href="{{ route('lang.switch', 'es') }}">español</a>
               <a href="{{ route('lang.switch', 'tr') }}">türk</a>
               <a href="{{ route('lang.switch', 'kr') }}">한국</a>
+              <a href="{{ route('lang.switch', 'cn') }}">中文</a>
             </div>
           </div>
         </div>
