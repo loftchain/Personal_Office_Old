@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\TempTransaction;
 use Illuminate\Console\Command;
 use App\Services\TransactionService;
 
@@ -42,6 +43,7 @@ class StoreTransactions extends Command
      */
     public function handle()
     {
+        TempTransaction::truncate();
 	    $this->txService->storeTx();
     }
 }

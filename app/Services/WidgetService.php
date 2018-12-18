@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Helpers\ICOAPI;
+use App\Models\TempCurrency;
+use App\Models\TempTransaction;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +33,7 @@ class WidgetService
 
 	public function getCurrencyByPair($pair)
 	{
-		$currency = $this->bonusService->getLatestCurrencies();
+        $currency = TempCurrency::all();
         
 		$price = 0;
 		foreach ($currency as $c) {
@@ -39,21 +41,20 @@ class WidgetService
 				$price = $c->price;
 			}
 		}
+
 		return $price;
 	}
 
 	public function calcCurrentCryptoAmount($currency, $pair)
 	{
-		$tx = $this->getTx();
+        $tx = TempTransaction::all();
 		$amountCurrency = 0;
 		$amountUsd = 0;
 		$amountToken = 0;
 
 		foreach ($tx as $t) {
-			if($t->status == 'true'){
 				if ($t->currency == $currency) {
 					$amountCurrency += $t->amount;
-				}
 			}
 		}
         
